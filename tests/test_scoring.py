@@ -4,6 +4,7 @@ import json
 import subprocess
 
 import pytest
+import yaml
 
 from conftest import ROOT
 from battery_lit.candidates import append_candidates, get_candidate, load_candidates, normalize_candidate
@@ -98,8 +99,52 @@ def test_apply_candidate_scores_writes_score_metadata_atomically(tmp_path):
     assert first["score_confidence"] == "high"
     assert first["score_reasons"] == ["Directly studies test-time guidance for flow models."]
     assert first["scored_by"] == "codex"
-    assert first["score_version"] == "candidate-relevance-v1"
+    assert first["score_version"] == "candidate-module-relevance-v2"
     assert "scored_at" in first
+
+
+def test_apply_candidate_scores_classifies_into_configured_modules(tmp_path):
+    init_topic(tmp_path)
+    topic_path = tmp_path / "topic.yml"
+    topic = yaml.safe_load(topic_path.read_text(encoding="utf-8"))
+    topic["research_modules"] = [
+        {"id": "cvd_porous_carbon_silicon"},
+        {"id": "multiscale_simulation"},
+    ]
+    topic_path.write_text(yaml.safe_dump(topic, sort_keys=False), encoding="utf-8")
+    _add_candidates(tmp_path)
+    scores = tmp_path / "module_scores.jsonl"
+    scores.write_text(
+        json.dumps(
+            {
+                "candidate_id": "CAND-001",
+                "module_ids": ["cvd_porous_carbon_silicon", "multiscale_simulation"],
+                "primary_module_id": "cvd_porous_carbon_silicon",
+                "module_scores": {"cvd_porous_carbon_silicon": 0.94, "multiscale_simulation": 0.58},
+                "module_reasons": {
+                    "cvd_porous_carbon_silicon": ["Supports host, process, and deposition-location concepts."],
+                    "multiscale_simulation": ["Transfers atomistic parameters to an electrode model."],
+                },
+                "scope_evidence": ["silane CVD", "inside porous carbon"],
+                "content": 0.65,
+                "preference": 0.08,
+                "credibility": 0.02,
+                "score": 0.75,
+                "score_confidence": "high",
+                "reasons": ["Matches two configured research modules."],
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    apply_candidate_scores(tmp_path, scores)
+
+    candidate = get_candidate(tmp_path, "CAND-001")
+    assert candidate["module_ids"] == ["cvd_porous_carbon_silicon", "multiscale_simulation"]
+    assert candidate["primary_module_id"] == "cvd_porous_carbon_silicon"
+    assert candidate["cross_module"] is True
+    assert candidate["module_scores"]["cvd_porous_carbon_silicon"] == 0.94
 
 
 def test_apply_candidate_scores_rejects_invalid_score_without_partial_write(tmp_path):

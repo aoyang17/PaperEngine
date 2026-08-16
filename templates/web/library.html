@@ -8,6 +8,12 @@
 {% if papers %}
 <section class="toolbar library-toolbar" data-battery-table-controls="library">
   <input type="search" placeholder="Search title, bibkey, venue" data-i18n-placeholder="library_search_placeholder" data-search-table="library">
+  <label class="module-filter"><span data-i18n="module_filter">研究模块</span>
+    <select data-filter-table="library" data-filter-field="module">
+      <option value="" data-i18n="all">全部</option>
+      {% for module in research_modules %}<option value="{{ module.id }}" data-module-option data-title-zh="{{ module.title_zh }}" data-title-en="{{ module.title_en }}">{{ module.title_zh }}</option>{% endfor %}
+    </select>
+  </label>
   <span class="selection-count" data-library-selected-count>0 selected</span>
   <button type="button" class="read-selected" data-bulk-action="library-read" data-session-action="library_read_selected" data-i18n="read_selected_papers" disabled>Read Paper</button>
 </section>
@@ -32,6 +38,7 @@
         data-year="{{ paper.year }}"
         data-venue="{{ paper.venue }}"
         data-doi="{{ paper.doi or '' }}"
+        data-module="{{ paper.module_ids|default([])|join(',') }}"
         data-search="{{ paper.bibkey }} {{ paper.title }} {{ paper.venue }} {{ paper.doi or '' }}"
       >
         <td><input type="checkbox" name="bibkey" value="{{ paper.bibkey }}"></td>
@@ -47,6 +54,14 @@
             {% if paper.year %}<span class="meta-chip">{{ paper.year }}</span>{% endif %}
             {% if paper.doi %}<span class="meta-chip quiet">DOI</span>{% endif %}
           </div>
+          {% if paper.module_ids %}
+            <div class="module-badges">
+              {% for module_id in paper.module_ids %}
+                {% set module = research_module_by_id.get(module_id) %}
+                {% if module %}<span><span class="lang-zh">{{ module.title_zh }}</span><span class="lang-en">{{ module.title_en }}</span></span>{% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
         </td>
         <td>{{ paper.year }}</td>
         <td>{{ paper.venue }}</td>

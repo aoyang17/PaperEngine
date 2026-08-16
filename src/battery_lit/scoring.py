@@ -7,7 +7,7 @@ from .candidates import load_candidates, save_candidates
 from .topic import load_preferences, load_topic
 from .util import read_jsonl, utc_now
 
-SCORE_VERSION = "candidate-relevance-v1"
+SCORE_VERSION = "candidate-module-relevance-v2"
 CONFIDENCE_LEVELS = {"low", "medium", "high"}
 COMPONENT_RANGES = {
     "content": (-0.70, 0.70),
@@ -102,6 +102,36 @@ def validate_score_record(record: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(reasons, list) or not all(isinstance(reason, str) for reason in reasons):
         raise ValueError("reasons must be a list of strings")
 
+    module_ids = record.get("module_ids") or []
+    if not isinstance(module_ids, list) or not all(isinstance(value, str) and value.strip() for value in module_ids):
+        raise ValueError("module_ids must be a list of non-empty strings")
+    module_ids = list(dict.fromkeys(value.strip() for value in module_ids))
+    module_scores = record.get("module_scores") or {}
+    if not isinstance(module_scores, dict):
+        raise ValueError("module_scores must be an object")
+    normalized_module_scores: dict[str, float] = {}
+    for module_id, module_score in module_scores.items():
+        if not isinstance(module_score, (int, float)):
+            raise ValueError(f"module score for {module_id} must be a number")
+        _validate_range(f"module score for {module_id}", float(module_score), 0.0, 1.0)
+        normalized_module_scores[str(module_id)] = round(float(module_score), 3)
+    if set(module_ids) != set(normalized_module_scores):
+        raise ValueError("module_ids must match module_scores keys")
+    primary_module_id = str(record.get("primary_module_id") or "").strip() or None
+    if primary_module_id and primary_module_id not in module_ids:
+        raise ValueError("primary_module_id must be included in module_ids")
+    module_reasons = record.get("module_reasons") or {}
+    if not isinstance(module_reasons, dict):
+        raise ValueError("module_reasons must be an object")
+    normalized_module_reasons: dict[str, list[str]] = {}
+    for module_id, values in module_reasons.items():
+        if module_id not in module_ids or not isinstance(values, list) or not all(isinstance(value, str) for value in values):
+            raise ValueError("module_reasons must contain string lists for assigned modules")
+        normalized_module_reasons[module_id] = [value.strip() for value in values if value.strip()][:6]
+    scope_evidence = record.get("scope_evidence") or []
+    if not isinstance(scope_evidence, list) or not all(isinstance(value, str) for value in scope_evidence):
+        raise ValueError("scope_evidence must be a list of strings")
+
     return {
         "record_id": record_id or None,
         "candidate_id": candidate_id,
@@ -111,12 +141,28 @@ def validate_score_record(record: dict[str, Any]) -> dict[str, Any]:
         "score_reasons": [reason.strip() for reason in reasons if reason.strip()][:8],
         "scored_by": str(record.get("scored_by") or "codex").strip() or "codex",
         "score_version": str(record.get("score_version") or SCORE_VERSION),
+        "module_ids": module_ids,
+        "primary_module_id": primary_module_id,
+        "module_scores": normalized_module_scores,
+        "module_reasons": normalized_module_reasons,
+        "cross_module": len(module_ids) > 1,
+        "scope_evidence": [value.strip() for value in scope_evidence if value.strip()][:12],
     }
 
 
 def apply_candidate_scores(root: str | Path, scores_path: str | Path) -> dict[str, Any]:
     incoming = read_jsonl(Path(scores_path))
     validated = [validate_score_record(record) for record in incoming]
+    topic = load_topic(root)
+    allowed_module_ids = {
+        str(module.get("id"))
+        for module in topic.get("research_modules") or []
+        if isinstance(module, dict) and module.get("id")
+    }
+    for score in validated:
+        unknown = set(score["module_ids"]) - allowed_module_ids
+        if unknown:
+            raise ValueError(f"unknown research module(s): {', '.join(sorted(unknown))}")
     records = load_candidates(root)
     by_record_id = {str(record.get("record_id")): record for record in records if record.get("record_id")}
     by_candidate_id: dict[str, list[dict[str, Any]]] = {}
@@ -145,6 +191,12 @@ def apply_candidate_scores(root: str | Path, scores_path: str | Path) -> dict[st
         record["scored_by"] = score["scored_by"]
         record["scored_at"] = now
         record["score_version"] = score["score_version"]
+        record["module_ids"] = score["module_ids"]
+        record["primary_module_id"] = score["primary_module_id"]
+        record["module_scores"] = score["module_scores"]
+        record["module_reasons"] = score["module_reasons"]
+        record["cross_module"] = score["cross_module"]
+        record["scope_evidence"] = score["scope_evidence"]
         record["updated_at"] = now
 
     save_candidates(root, records)

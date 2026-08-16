@@ -119,7 +119,10 @@ def web_context(root: str | Path) -> dict[str, Any]:
     raw_candidates = load_candidates(paths.root) if paths.candidates_jsonl.exists() else []
     candidates = [_candidate_view(paths.root, candidate) for candidate in raw_candidates]
     papers = _library_view(paths.root)
+    _attach_candidate_modules(papers, raw_candidates)
     status = topic_status(paths.root)
+    research_modules = _research_module_views(topic, raw_candidates, papers)
+    research_module_by_id = {str(module.get("id")): module for module in research_modules}
     return {
         "root": str(paths.root),
         "title": topic.get("title") or paths.root.name,
@@ -127,6 +130,9 @@ def web_context(root: str | Path) -> dict[str, Any]:
         "status": status,
         "candidates": candidates,
         "papers": papers,
+        "research_modules": research_modules,
+        "research_module_by_id": research_module_by_id,
+        "cross_module_papers": _cross_module_paper_views(candidates, papers),
         "candidate_years": sorted({str(item.get("year")) for item in candidates if item.get("year")}, reverse=True),
         "candidate_venues": sorted({str(item.get("venue")) for item in candidates if item.get("venue")}),
         "candidate_sources": sorted({str(item.get("source")) for item in candidates if item.get("source")}),
@@ -135,6 +141,66 @@ def web_context(root: str | Path) -> dict[str, Any]:
         "sandbox_warning": codex_sandbox_warning(),
         "bootstrap_mode": False,
     }
+
+
+def _research_module_views(
+    topic: dict[str, Any], candidates: list[dict[str, Any]], papers: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    paper_by_bibkey = {str(paper.get("bibkey") or ""): paper for paper in papers}
+    views: list[dict[str, Any]] = []
+    for module in topic.get("research_modules") or []:
+        if not isinstance(module, dict) or not module.get("id"):
+            continue
+        module_id = str(module["id"])
+        matches = [
+            candidate
+            for candidate in candidates
+            if module_id in {str(value) for value in candidate.get("module_ids") or []}
+        ]
+        library_matches = [candidate for candidate in matches if candidate.get("status") == "in_library"]
+        read_count = sum(
+            1
+            for candidate in library_matches
+            if paper_by_bibkey.get(str(candidate.get("bibkey") or ""), {}).get("has_knowledge")
+        )
+        view = dict(module)
+        view.update(
+            {
+                "candidate_count": len(matches),
+                "library_count": len(library_matches),
+                "read_count": read_count,
+                "coverage_percent": round((read_count / len(library_matches)) * 100) if library_matches else 0,
+            }
+        )
+        views.append(view)
+    return sorted(views, key=lambda item: (int(item.get("order") or 999), str(item.get("id"))))
+
+
+def _attach_candidate_modules(papers: list[dict[str, Any]], candidates: list[dict[str, Any]]) -> None:
+    modules_by_bibkey: dict[str, set[str]] = {}
+    for candidate in candidates:
+        bibkey = str(candidate.get("bibkey") or "")
+        if not bibkey:
+            continue
+        modules_by_bibkey.setdefault(bibkey, set()).update(str(value) for value in candidate.get("module_ids") or [])
+    for paper in papers:
+        module_ids = sorted(modules_by_bibkey.get(str(paper.get("bibkey") or ""), set()))
+        paper["module_ids"] = module_ids
+        paper["cross_module"] = len(module_ids) > 1
+
+
+def _cross_module_paper_views(candidates: list[dict[str, Any]], papers: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    paper_by_bibkey = {str(paper.get("bibkey") or ""): paper for paper in papers}
+    rows: list[dict[str, Any]] = []
+    for candidate in candidates:
+        module_ids = list(candidate.get("module_ids") or [])
+        if len(module_ids) < 2:
+            continue
+        row = dict(candidate)
+        paper = paper_by_bibkey.get(str(candidate.get("bibkey") or ""), {})
+        row["has_knowledge"] = bool(paper.get("has_knowledge"))
+        rows.append(row)
+    return sorted(rows, key=lambda item: (-float(item.get("score") or 0.0), str(item.get("title") or "")))[:12]
 
 
 def _candidate_view(root: Path, candidate: dict[str, Any]) -> dict[str, Any]:

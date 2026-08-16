@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from battery_lit.candidates import append_candidates
+import yaml
+
+from battery_lit.candidates import append_candidates, update_candidate
 from battery_lit.topic import init_topic
 from battery_lit.web_app import WebApp
 
@@ -178,6 +180,48 @@ def test_candidate_and_library_pages_have_filter_and_sort_controls(tmp_path):
     assert 'data-filter-field="status"' in candidates
     assert 'data-sort-key="year"' in candidates
     assert 'data-battery-table="library"' in library
+
+
+def test_four_module_dashboard_and_module_filters_render_in_chinese_by_default(tmp_path):
+    root = _topic_with_content(tmp_path)
+    topic_path = root / "topic.yml"
+    topic = yaml.safe_load(topic_path.read_text(encoding="utf-8"))
+    topic["research_modules"] = [
+        {
+            "id": f"module_{index}",
+            "order": index,
+            "title_zh": f"模块{index}",
+            "title_en": f"Module {index}",
+            "description_zh": f"中文说明{index}",
+            "description_en": f"English description {index}",
+            "strict_scope": index == 1,
+        }
+        for index in range(1, 5)
+    ]
+    topic_path.write_text(yaml.safe_dump(topic, sort_keys=False, allow_unicode=True), encoding="utf-8")
+    update_candidate(
+        root,
+        "CAND-001",
+        module_ids=["module_1", "module_3"],
+        primary_module_id="module_1",
+        module_scores={"module_1": 0.9, "module_3": 0.6},
+        module_reasons={"module_1": ["match"], "module_3": ["match"]},
+        cross_module=True,
+        scope_evidence=["evidence"],
+    )
+    app = WebApp(root)
+
+    dashboard = app.handle("/dashboard.html").body
+    candidates = app.handle("/candidates.html").body
+    library = app.handle("/library.html").body
+
+    assert '<html lang="zh">' in dashboard
+    assert dashboard.count('class="research-module-card"') == 4
+    assert 'data-i18n="research_chain"' in dashboard
+    assert "Rendered Candidate" in dashboard
+    assert 'data-filter-field="module"' in candidates
+    assert 'data-module="module_1,module_3"' in candidates
+    assert 'data-filter-field="module"' in library
     assert 'placeholder="Search title, bibkey, venue"' in library
     assert 'data-sort-key="venue"' in library
 

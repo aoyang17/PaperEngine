@@ -4,6 +4,94 @@ direction: "Systematic review of silicon-carbon negative-electrode materials, in
 user_description_raw: "Systematic review of silicon-carbon negative-electrode materials, interfaces, manufacturing, degradation, safety, and practical full-cell validation for high-energy traction batteries"
 seed_papers: []
 refinement_questions_answered: []
+ui:
+  default_language: "zh"
+  available_languages: ["zh", "en"]
+research_modules:
+  - id: "cvd_porous_carbon_silicon"
+    order: 1
+    title_zh: "微米级多孔碳中 CVD 沉积纳米硅"
+    title_en: "CVD Silicon in Micron-Scale Porous Carbon"
+    description_zh: "严格限定为以微米级多孔碳颗粒为宿主，通过 CVD 或气相热解在内部孔道、孔壁沉积纳米硅的负极材料。"
+    description_en: "Strictly scoped to nanosilicon deposited by CVD or vapor-phase decomposition inside the pores or on pore walls of micron-scale porous-carbon hosts."
+    strict_scope: true
+    required_concepts:
+      host: ["micron-scale porous carbon", "microporous carbon", "mesoporous carbon", "porous carbon host"]
+      process: ["chemical vapor deposition", "CVD", "silane decomposition", "vapor deposition", "gas-phase deposition"]
+      location: ["inside pores", "pore-confined silicon", "deposited on pore walls", "internal pore deposition"]
+    exclude_concepts: ["mechanical blending", "ball milling only", "silicon graphite blend", "carbon coating on silicon", "SiOx/C"]
+    screening_questions:
+      - "宿主是否明确为微米级多孔碳颗粒？"
+      - "硅是否通过 CVD、硅烷热解或等价气相过程沉积？"
+      - "硅是否位于内部孔道或孔壁，而非仅在颗粒外表面混合或包覆？"
+      - "是否报告孔结构、硅含量、硅空间分布及沉积条件？"
+    evidence_fields: ["carbon_host_size", "pore_size_distribution", "pore_volume", "CVD_precursor", "deposition_temperature", "deposition_time", "silicon_loading", "silicon_location", "silicon_crystallinity", "electrode_loading", "full_cell_validation"]
+    seed_queries:
+      - '("porous carbon" AND silicon AND (CVD OR "chemical vapor deposition" OR silane) AND anode)'
+      - '("pore-confined silicon" OR "silicon deposited in porous carbon") lithium-ion anode'
+      - '(micron OR micrometer) porous carbon silane decomposition nanosilicon anode'
+
+  - id: "lithiated_silicon_phase_mechanics"
+    order: 2
+    title_zh: "锂化硅相变、晶化与力学条件"
+    title_en: "Phase Transformation, Crystallization, and Mechanics of Lithiated Silicon"
+    description_zh: "研究晶态硅首次锂化的非晶化、富锂晶相形成，以及应力、约束、尺寸和晶向对成核、相界面迁移与稳定性的影响。"
+    description_en: "Covers first-lithiation amorphization, Li-rich crystalline phase formation, and how stress, constraint, size, and orientation affect nucleation, phase-front motion, and stability."
+    strict_scope: false
+    positive_concepts: ["lithiated silicon", "Li15Si4", "crystalline lithium silicide", "solid-state amorphization", "phase boundary", "stress-dependent chemical potential", "chemo-mechanics"]
+    exclude_concepts: ["silicon crystallization unrelated to lithiation", "thin-film mechanics without electrochemistry", "purely empirical cycling study without phase evidence"]
+    screening_questions:
+      - "研究的是晶态硅非晶化、富锂晶相形成，还是两者之间的循环转变？"
+      - "是否给出应力、压力、约束、尺寸或晶向条件？"
+      - "是否解析成核、相界面迁移、化学势或相稳定性？"
+      - "是否有原位实验、第一性原理、分子动力学或连续体模型验证？"
+    evidence_fields: ["initial_silicon_phase", "lithiated_phase", "lithium_concentration", "potential_window", "stress_state", "constraint", "particle_size", "crystal_orientation", "nucleation_condition", "phase_front_velocity", "constitutive_model", "validation_method"]
+    seed_queries:
+      - '(silicon lithiation AND (crystallization OR crystalline phase OR Li15Si4) AND (stress OR pressure OR mechanics))'
+      - '(crystalline silicon amorphization lithiation) phase boundary stress orientation'
+      - '(lithiated silicon chemical potential) stress constraint nucleation'
+
+  - id: "phase_field_chemo_mechanics"
+    order: 3
+    title_zh: "分相材料的相场—力学—电化学仿真"
+    title_en: "Phase-Field, Mechanics, and Electrochemical Simulation of Phase-Separating Materials"
+    description_zh: "研究两相或多相域中，自由能、界面能、相变应变、弹性失配、外载、扩散与电化学反应如何共同控制分相行为。"
+    description_en: "Studies how free energy, interfacial energy, transformation strain, elastic mismatch, loading, diffusion, and electrochemical reactions jointly control phase separation."
+    strict_scope: false
+    positive_concepts: ["phase-field", "Cahn-Hilliard", "Allen-Cahn", "phase separation", "coherency strain", "elastic mismatch", "electro-chemo-mechanics", "Butler-Volmer"]
+    exclude_concepts: ["image segmentation called phase field", "phase diagram only", "electrochemistry without phase evolution", "mechanics without compositional phases"]
+    screening_questions:
+      - "序参量和守恒组分场分别是什么？"
+      - "自由能、梯度能、相变应变和弹性能如何定义？"
+      - "外载、弹性失配和边界条件如何进入模型？"
+      - "扩散、界面反应与电势方程如何耦合？"
+      - "模型是否与解析解、基准算例或实验观测比较？"
+    evidence_fields: ["phase_variables", "free_energy", "gradient_energy", "kinetic_equation", "mechanical_model", "transformation_strain", "elastic_mismatch", "electrochemical_kinetics", "boundary_conditions", "numerical_method", "validation"]
+    seed_queries:
+      - '(phase field AND phase separation AND mechanics AND electrochemistry) battery material'
+      - '(Cahn-Hilliard OR Allen-Cahn) stress strain electrochemical phase transformation'
+      - 'two-phase material external load elastic mismatch phase-field simulation'
+
+  - id: "multiscale_simulation"
+    order: 4
+    title_zh: "多尺度仿真方法与案例"
+    title_en: "Multiscale Simulation Methods and Case Studies"
+    description_zh: "关注从第一性原理、原子与颗粒模型到电极、电芯和系统模型的参数传递、双向耦合、降阶、不确定性传播及实验验证。"
+    description_en: "Focuses on parameter transfer, bidirectional coupling, reduction, uncertainty propagation, and experimental validation from first-principles and particle models to electrode, cell, and system models."
+    strict_scope: false
+    positive_concepts: ["multiscale battery modeling", "first-principles to continuum", "DFT parameterization", "molecular dynamics", "homogenization", "porous electrode model", "cell-level coupling", "experimental validation"]
+    exclude_concepts: ["multiple scales shown without information transfer", "single-scale parameter sweep", "review without a concrete coupling pathway"]
+    screening_questions:
+      - "包含哪些空间和时间尺度？"
+      - "上一尺度向下一尺度传递哪些变量、分布或闭合关系？"
+      - "耦合是单向、双向、并发还是离线参数化？"
+      - "是否使用均匀化、降阶或不确定性传播？"
+      - "在哪一尺度与实验结果进行定量对照？"
+    evidence_fields: ["scale_levels", "model_at_each_scale", "transferred_quantities", "coupling_direction", "homogenization", "model_reduction", "uncertainty_propagation", "system_level_output", "experimental_validation"]
+    seed_queries:
+      - '(multiscale modeling battery) first principles atomistic particle electrode cell validation'
+      - '(DFT OR molecular dynamics) parameter passing continuum electrochemical model battery'
+      - 'microstructure-resolved electrode model cell-level coupling experimental validation'
 follow:
   venues: []
   authors: []

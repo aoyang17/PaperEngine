@@ -37,6 +37,25 @@
     "scored_by": {"type": "string"},
     "scored_at": {"type": "string"},
     "score_version": {"type": "string"},
+    "module_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "primary_module_id": {"type": ["string", "null"]},
+    "module_scores": {
+      "type": "object",
+      "additionalProperties": {"type": "number", "minimum": 0.0, "maximum": 1.0}
+    },
+    "module_reasons": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {"type": "string"}
+      }
+    },
+    "cross_module": {"type": "boolean"},
+    "scope_evidence": {"type": "array", "items": {"type": "string"}},
     "status": {"enum": ["new", "relevant", "irrelevant", "dismissed", "downloaded", "in_library", "manual_pdf_needed"]},
     "decision": {"type": ["string", "null"]},
     "bibkey": {"type": ["string", "null"]},

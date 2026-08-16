@@ -15,7 +15,7 @@ Do not read full `library.bib` or `candidates.jsonl`. Use CLI summaries and buil
 ## Workflow
 
 1. Run `battery_lit status --json` to understand current counts and health.
-2. Build one concise query from `topic.yml`, `preferences.yml`, user request, and any explicit seed paper/title. Use `preferences.yml` as a compact memory: add `query_hints` when relevant and avoid `exclude_hints`.
+2. Select exactly one of the four `research_modules` for each search pass. Build one concise query from that module's `seed_queries`, required/positive concepts, exclusions, `preferences.yml`, and any explicit seed paper/title. Do not blend all four modules into one broad query.
 3. Run `battery_lit collect --query "..." --target-new N` or `battery_lit tool search --query "..." --json` when the user only wants a preview.
 4. Run `battery_lit tool dedup --fix --json` after adding candidates.
 5. If new candidates were added, follow `skills/candidate_scoring/SKILL.md` before screening; unscored candidates have `score: 0` and are not yet ranked.
@@ -46,6 +46,8 @@ Use this workflow instead:
 5. Add only those admitted titles with `skills/literature_collect/scripts/collect_titles.py`, then run `battery_lit tool dedup --root <topic> --fix --json`.
 
 Rejected preview hits must not be written to `candidates.jsonl`, marked dismissed, or shown in the All tab. Report only counts and short reasons for rejected preview hits unless the user asks for details.
+
+For a `strict_scope` module, preview-filter results against every required concept group before admission. A generic silicon-carbon composite paper is not a match for the target-material module unless the available title/abstract supports the porous-carbon host, vapor-deposition process, and internal-pore/pore-wall deposition location.
 
 ## Preference-Aware Search
 

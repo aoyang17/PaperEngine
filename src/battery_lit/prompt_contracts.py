@@ -146,7 +146,7 @@ def collect_candidates_task(target_new: int = 20, score_threshold: float | None 
         f"Use `{command}` from the active topic root, adjusting the query only when the current topic preferences clearly support it.\n"
         "If the collect result reports added candidates, immediately score the unscored new candidates: "
         f"use `battery_lit candidates scoring-batch --status new --limit {target_new} --json`, write "
-        "`reports/candidate_scores.jsonl`, then use "
+        "`reports/candidate_scores.jsonl`, classifying each paper into zero or more of the four research modules before assigning its relevance score, then use "
         "`battery_lit candidates apply-scores --scores reports/candidate_scores.jsonl`.\n"
         "If scoring cannot complete, report that the candidates remain unscored instead of treating score 0 as a real relevance score.\n"
         "After scoring, or after a zero-added collect, run the smallest relevant status/check command.\n"
@@ -156,7 +156,8 @@ def collect_candidates_task(target_new: int = 20, score_threshold: float | None 
 
 def score_candidates_task(limit: int = 20) -> str:
     return (
-        f"Score up to {limit} new candidate papers using the topic-local candidate scoring skill.\n"
+        f"Classify and score up to {limit} new candidate papers using the topic-local candidate scoring skill.\n"
+        "First compare each title and abstract against all four `research_modules` in `topic.yml`. Enforce every `strict_scope` required-concept group, allow zero or multiple module assignments, then score relevance.\n"
         f"Use `battery_lit candidates scoring-batch --status new --limit {limit} --json`, write scores to "
         "`reports/candidate_scores.jsonl`, then use `battery_lit candidates apply-scores --scores reports/candidate_scores.jsonl`.\n"
         "After scoring, run `battery_lit candidates list --status new --sort score --min-score 0 --json`."

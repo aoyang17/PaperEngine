@@ -95,6 +95,18 @@
       unscored: "Unscored",
       venue: "Venue",
       year: "Year",
+      research_modules: "Research Modules",
+      module_scope_note: "The review is limited to the following four modules.",
+      module_candidates: "Candidates",
+      module_library: "Library",
+      module_read: "Read",
+      strict_scope: "Strict scope",
+      module_coverage: "Reading coverage",
+      research_chain: "Research Chain",
+      research_chain_note: "The four modules form a progression from material architecture to mechanisms, coupled models, and system validation.",
+      cross_module_papers: "Cross-Module Papers",
+      no_cross_module_papers: "No cross-module papers have been classified yet.",
+      module_filter: "Research module",
     },
     zh: {
       action: "操作",
@@ -189,11 +201,23 @@
       unscored: "未打分",
       venue: "Venue",
       year: "年份",
+      research_modules: "研究模块",
+      module_scope_note: "当前调研严格限定为以下四个模块。",
+      module_candidates: "候选",
+      module_library: "入库",
+      module_read: "已解读",
+      strict_scope: "严格范围",
+      module_coverage: "精读覆盖率",
+      research_chain: "研究链路",
+      research_chain_note: "四个模块从材料结构出发，逐步连接相变机理、耦合模型与系统验证。",
+      cross_module_papers: "跨模块论文",
+      no_cross_module_papers: "尚未完成跨模块论文分类。",
+      module_filter: "研究模块",
     },
   };
 
   function language() {
-    return localStorage.getItem("battery_language") || "en";
+    return localStorage.getItem("battery_language") || "zh";
   }
 
   function t(key) {
@@ -208,6 +232,9 @@
     });
     document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
       node.setAttribute("placeholder", t(node.dataset.i18nPlaceholder));
+    });
+    document.querySelectorAll("[data-module-option]").forEach((option) => {
+      option.textContent = lang === "zh" ? option.dataset.titleZh : option.dataset.titleEn;
     });
     const select = document.querySelector("[data-language-select]");
     if (select) select.value = lang;
@@ -539,7 +566,8 @@
       const matchesFilter = Object.entries(filters).every(([field, filterValue]) => {
         if (!filterValue) return true;
         const values = String(filterValue).split(",").map((value) => value.trim()).filter(Boolean);
-        return values.length === 0 || values.includes(row.dataset[field] || "");
+        const rowValues = String(row.dataset[field] || "").split(",").map((value) => value.trim()).filter(Boolean);
+        return values.length === 0 || values.some((value) => rowValues.includes(value));
       });
       row.hidden = !(matchesSearch && matchesFilter);
     });

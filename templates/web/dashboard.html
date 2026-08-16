@@ -12,6 +12,68 @@
   <div class="metric-card"><span data-i18n="read_paper_count">Read Paper</span><strong>{{ status.read_papers }}</strong></div>
 </section>
 
+<section class="panel research-module-panel">
+  <div class="panel-heading-row">
+    <div>
+      <h2 data-i18n="research_modules">研究模块</h2>
+      <p class="muted" data-i18n="module_scope_note">当前调研严格限定为以下四个模块。</p>
+    </div>
+  </div>
+  <div class="research-module-grid">
+    {% for module in research_modules %}
+      <article class="research-module-card" data-module-id="{{ module.id }}">
+        <div class="module-index">{{ "%02d" | format(module.order) }}</div>
+        <div class="module-copy">
+          <h3><span class="lang-zh">{{ module.title_zh }}</span><span class="lang-en">{{ module.title_en }}</span></h3>
+          <p><span class="lang-zh">{{ module.description_zh }}</span><span class="lang-en">{{ module.description_en }}</span></p>
+          {% if module.strict_scope %}<span class="strict-scope" data-i18n="strict_scope">严格范围</span>{% endif %}
+        </div>
+        <dl class="module-metrics">
+          <div><dt data-i18n="module_candidates">候选</dt><dd>{{ module.candidate_count }}</dd></div>
+          <div><dt data-i18n="module_library">入库</dt><dd>{{ module.library_count }}</dd></div>
+          <div><dt data-i18n="module_read">已解读</dt><dd>{{ module.read_count }}</dd></div>
+          <div><dt data-i18n="module_coverage">精读覆盖率</dt><dd>{{ module.coverage_percent }}%</dd></div>
+        </dl>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="panel research-chain-panel">
+  <h2 data-i18n="research_chain">研究链路</h2>
+  <p class="muted" data-i18n="research_chain_note">四个模块从材料结构出发，逐步连接相变机理、耦合模型与系统验证。</p>
+  <div class="research-chain">
+    {% for module in research_modules %}
+      <div class="chain-node">
+        <span>{{ "%02d" | format(module.order) }}</span>
+        <strong><span class="lang-zh">{{ module.title_zh }}</span><span class="lang-en">{{ module.title_en }}</span></strong>
+      </div>
+      {% if not loop.last %}<div class="chain-arrow" aria-hidden="true">→</div>{% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="panel cross-module-panel">
+  <h2 data-i18n="cross_module_papers">跨模块论文</h2>
+  {% if cross_module_papers %}
+    <div class="cross-module-list">
+      {% for paper in cross_module_papers %}
+        <article>
+          <strong>{{ paper.title }}</strong>
+          <div class="module-badges">
+            {% for module_id in paper.module_ids %}
+              {% set module = research_module_by_id.get(module_id) %}
+              {% if module %}<span><span class="lang-zh">{{ module.title_zh }}</span><span class="lang-en">{{ module.title_en }}</span></span>{% endif %}
+            {% endfor %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted" data-i18n="no_cross_module_papers">尚未完成跨模块论文分类。</p>
+  {% endif %}
+</section>
+
 <section class="panel topic-summary">
   <h2 data-i18n="topic_scope">Topic</h2>
   <p>{{ direction }}</p>

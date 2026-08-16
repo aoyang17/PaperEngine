@@ -12,6 +12,12 @@
     <button type="button" data-tab-filter="relevant" data-filter-table="candidates" data-filter-field="status" data-filter-value="relevant,in_library,downloaded,manual_pdf_needed" data-i18n="relevant">Relevant</button>
     <button type="button" data-tab-filter="irrelevant" data-filter-table="candidates" data-filter-field="status" data-filter-value="irrelevant,dismissed" data-i18n="irrelevant">Irrelevant</button>
   </div>
+  <label class="module-filter"><span data-i18n="module_filter">研究模块</span>
+    <select data-filter-table="candidates" data-filter-field="module">
+      <option value="" data-i18n="all">全部</option>
+      {% for module in research_modules %}<option value="{{ module.id }}" data-module-option data-title-zh="{{ module.title_zh }}" data-title-en="{{ module.title_en }}">{{ module.title_zh }}</option>{% endfor %}
+    </select>
+  </label>
   <div class="bulk-actions">
     <span class="selection-count" data-selected-count data-count-template-en="selected" data-count-template-zh="已选择">0 selected</span>
     <button type="button" class="download-selected" data-bulk-action="candidate-download" data-session-action="candidate_download_selected" data-i18n="download_selected_pdfs" disabled>Download Selected PDFs</button>
@@ -60,6 +66,7 @@
         data-decision="{{ candidate.decision or '' }}"
         data-source="{{ candidate.source }}"
         data-pdf="{% if candidate.has_pdf %}yes{% else %}no{% endif %}"
+        data-module="{{ candidate.module_ids|default([])|join(',') }}"
         data-search="{{ candidate.title }} {{ candidate.authors|join(' ') }} {{ candidate.abstract }}"
       >
         <td><input type="checkbox" name="candidate_id" value="{{ candidate.candidate_id }}"></td>
@@ -83,6 +90,14 @@
             {% if candidate.source %}<span class="meta-chip source">{{ candidate.source }}</span>{% endif %}
             {% if candidate.year %}<span class="meta-chip">{{ candidate.year }}</span>{% endif %}
           </div>
+          {% if candidate.module_ids %}
+            <div class="module-badges">
+              {% for module_id in candidate.module_ids %}
+                {% set module = research_module_by_id.get(module_id) %}
+                {% if module %}<span><span class="lang-zh">{{ module.title_zh }}</span><span class="lang-en">{{ module.title_en }}</span></span>{% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
           <details class="abstract"><summary>Abstract</summary>{{ candidate.abstract }}<div>DOI/arXiv/URL: {{ candidate.doi or candidate.arxiv_id or candidate.url or "" }}</div></details>
         </td>
         <td class="authors-cell">{{ candidate.authors|join(", ") }}</td>

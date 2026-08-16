@@ -187,6 +187,18 @@ def normalize_candidate(raw: dict[str, Any], candidate_id: str | None = None) ->
         "created_at": raw.get("created_at") or now,
         "updated_at": raw.get("updated_at") or now,
     }
+    for key, default in (
+        ("module_ids", []),
+        ("module_scores", {}),
+        ("module_reasons", {}),
+        ("scope_evidence", []),
+    ):
+        if raw.get(key) is not None:
+            record[key] = raw.get(key) or default
+    if raw.get("primary_module_id") is not None:
+        record["primary_module_id"] = raw.get("primary_module_id")
+    if raw.get("cross_module") is not None:
+        record["cross_module"] = bool(raw.get("cross_module"))
     if raw.get("verified_sources"):
         record["verified_sources"] = list(raw.get("verified_sources") or [])
     if raw.get("source_metadata"):
@@ -278,7 +290,7 @@ def _merge_candidate_records(records: list[dict[str, Any]]) -> dict[str, Any]:
             if merged.get(key) in (None, "", [], {}, "unknown") and value not in (None, "", [], {}, "unknown"):
                 merged[key] = value
         if record.get("score_status") == "scored" and merged.get("score_status") != "scored":
-            for key in ("score", "score_status", "score_components", "score_confidence", "score_reasons", "scored_by", "scored_at", "score_version"):
+            for key in ("score", "score_status", "score_components", "score_confidence", "score_reasons", "scored_by", "scored_at", "score_version", "module_ids", "primary_module_id", "module_scores", "module_reasons", "cross_module", "scope_evidence"):
                 if key in record:
                     merged[key] = record[key]
     merged["candidate_id"] = str(primary.get("candidate_id"))
