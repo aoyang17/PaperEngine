@@ -1,0 +1,21 @@
+{
+  "schema_version": "v3-source-map-2026-06",
+  "paper": {
+    "bibkey": "Example2026A",
+    "title": "A Paper",
+    "source_type": "pdf",
+    "pdf_path": "papers/Example2026A/paper.pdf",
+    "parsed_markdown_path": "papers/Example2026A/parsed.md"
+  },
+  "blocks": [
+    {"id": "S001", "page": 1, "section": "Abstract", "section_id": "sec:001", "paragraph_ids": ["p:0001"], "type": "paragraph", "source_kind": "body_text", "source_text": "Fixture PDF for paper reading tests.", "confidence": "high", "notes": "Fixture abstract."},
+    {"id": "S002", "page": 1, "section": "Contribution", "section_id": "sec:002", "paragraph_ids": ["p:0002"], "type": "paragraph", "source_kind": "body_text", "source_text": "Provides a deterministic fixture for integration testing.", "confidence": "high", "notes": ""},
+    {"id": "S003", "page": 1, "section": "Method", "section_id": "sec:003", "paragraph_ids": ["p:0003"], "type": "paragraph", "source_kind": "body_text", "source_text": "The pipeline parses a local PDF and stores artifacts under the paper directory.", "confidence": "high", "notes": ""},
+    {"id": "S004", "page": 1, "section": "Tests", "section_id": "sec:004", "paragraph_ids": ["p:0004"], "type": "paragraph", "source_kind": "body_text", "source_text": "Validation and rebuild commands produce required artifacts.", "confidence": "high", "notes": ""},
+    {"id": "S005", "page": 1, "section": "Limitations", "section_id": "sec:005", "paragraph_ids": ["p:0005"], "type": "paragraph", "source_kind": "body_text", "source_text": "This report is a fixture and does not claim real scientific findings.", "confidence": "high", "notes": ""},
+    {"id": "S006", "page": 1, "section": "Future Work", "section_id": "sec:006", "paragraph_ids": ["p:0006"], "type": "paragraph", "source_kind": "body_text", "source_text": "The same artifact contract should be tested on real downloaded papers.", "confidence": "medium", "notes": ""},
+    {"id": "E001", "page": 0, "section": "External availability lookup", "section_id": "external_availability", "paragraph_ids": [], "type": "repository", "source_kind": "external", "source_text": "External GitHub lookup found a fixture repository URL for the synthetic paper.", "confidence": "medium", "notes": "title=fixture repository; url=https://github.com/example/fixture-paper; accessed=2026-07-04; query=fixture paper GitHub"},
+    {"id": "C001", "page": 1, "section": "Figure", "section_id": "sec:003", "paragraph_ids": ["p:0003"], "type": "caption", "source_kind": "caption", "source_text": "Fixture page rendered from the PDF.", "confidence": "medium", "notes": ""},
+    {"id": "F001", "page": 1, "section": "Figure", "section_id": "sec:003", "paragraph_ids": [], "type": "figure", "source_kind": "figure", "source_text": "Full-page fixture image.", "confidence": "medium", "notes": "Full page, not a tight crop."}
+  ]
+}

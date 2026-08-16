@@ -1,0 +1,61 @@
+schema_version: v1
+topic_title: "Silicon-Carbon Anodes for Traction Batteries"
+created_at: "2026-08-16T04:13:23+00:00"
+
+principles:
+  - "Project policy and CLI commands define the default safety boundary; Codex follows them but is not the only safety mechanism."
+  - "Prefer battery_lit commands for state changes."
+  - "Do not invent citations, metadata, PDFs, BibTeX, or paper claims."
+  - "Treat parent directories and sibling topic folders as out of scope unless the user explicitly names them for migration, copy, comparison, or reference."
+
+allowed_direct_writes:
+  - "papers/<bibkey>/source_map.json"
+  - "papers/<bibkey>/note_plan.json"
+  - "papers/<bibkey>/deep_read.json"
+  - "reports/*.json"
+  - "reports/*.md"
+  - "small user-facing notes explicitly requested by the user"
+
+cli_only_writes:
+  - "candidate status and decisions"
+  - "library.bib"
+  - "papers/<bibkey>/metadata.yml"
+  - "papers/<bibkey>/paper.pdf"
+  - "papers/<bibkey>/parsed.md"
+  - "papers/<bibkey>/visual_index.md"
+  - "papers/<bibkey>/page_images/*"
+  - "papers/<bibkey>/math_pages/*"
+  - "papers/<bibkey>/math_index.json"
+  - "papers/<bibkey>/formula_vision.json"
+  - "papers/<bibkey>/reading_result.html"
+  - "html/*"
+
+forbidden_without_explicit_confirmation:
+  - "delete topic root"
+  - "clear library.bib"
+  - "clear candidates.jsonl"
+  - "remove papers/"
+  - "bulk overwrite paper directories"
+  - "bulk delete PDFs or notes"
+
+destructive_policy:
+  requires_dry_run: true
+  requires_explicit_user_confirmation: true
+  preferred_confirmation: "confirm with the topic root or topic title"
+  no_safe_cli_behavior: "report a blocker or propose the smallest safe CLI addition instead of using shell commands to bypass state management"
+
+context_policy:
+  root_boundary: "current topic root only"
+  parent_and_sibling_topics: "out of scope unless explicitly requested by the user with a specific path"
+  read_first:
+    - "AGENTS.md"
+    - "policy.yml"
+    - "topic.yml"
+    - "preferences.yml"
+  do_not_read_in_full_by_default:
+    - "library.bib"
+    - "candidates.jsonl"
+    - "papers/*/parsed.md"
+    - "papers/*/page_images/*"
+    - "papers/*/deep_read.json"
+    - "papers/*/paper.pdf"

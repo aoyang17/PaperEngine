@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1 data-i18n="create_topic">Create Topic</h1>
+  <p><span data-i18n="bootstrap_intro">Start a clean-room literature topic under</span> {{ base_dir }}.</p>
+</section>
+
+<section class="panel command-panel">
+  <h2 data-i18n="new_topic">New Topic</h2>
+  <form method="post" action="/api/codex/init-topic" class="command-form" data-async-action>
+    <label><span data-i18n="title_label">Title</span>
+      <input name="title" type="text" maxlength="200" placeholder="test-time guided generative model" data-i18n-placeholder="topic_title_placeholder" required>
+    </label>
+    <label><span data-i18n="research_direction">Research direction</span>
+      <textarea name="direction" rows="5" maxlength="4000" placeholder="Describe the papers to collect, preferred scope, and exclusions." data-i18n-placeholder="direction_placeholder" required></textarea>
+    </label>
+    <label><span data-i18n="seed_paper">Seed paper</span>
+      <input name="seed_paper" type="text" maxlength="500" placeholder="optional paper title" data-i18n-placeholder="seed_paper_placeholder">
+    </label>
+    <button type="submit" {% if active_job %}disabled{% endif %} data-i18n="create_topic">Create Topic</button>
+  </form>
+  <p class="muted" data-i18n="clean_room_note">Do not inspect sibling topics. This workbench creates a new topic from built-in templates and your inputs only.</p>
+</section>
+
+<section class="panel">
+  <h2 data-i18n="recent_jobs">Recent Jobs</h2>
+  <div data-recent-jobs>
+    {% if recent_jobs %}
+      <table>
+        <thead><tr><th data-i18n="action">Action</th><th data-i18n="status">Status</th><th data-i18n="summary">Summary</th></tr></thead>
+        <tbody>
+        {% for job in recent_jobs %}
+          <tr><td>{{ job.action }}</td><td>{{ "ok" if job.ok else "failed" }}</td><td>{{ job.summary or job.error or "" }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted" data-i18n="no_completed_jobs">No completed jobs yet</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

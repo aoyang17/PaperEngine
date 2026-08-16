@@ -1,0 +1,36 @@
+{
+  "schema_version": "v3-paper-index-2026-06",
+  "coverage": {
+    "parsed_pages": 1,
+    "rendered_pages": 1,
+    "missing_pages": [],
+    "parser": "fixture",
+    "known_limitations": []
+  },
+  "sections": [
+    {"section_id": "sec:001", "title": "Abstract", "level": 1, "page_start": 1, "page_end": 1, "paragraph_start": "p:0001", "paragraph_end": "p:0001"},
+    {"section_id": "sec:002", "title": "Contribution", "level": 1, "page_start": 1, "page_end": 1, "paragraph_start": "p:0002", "paragraph_end": "p:0002"},
+    {"section_id": "sec:003", "title": "Method", "level": 1, "page_start": 1, "page_end": 1, "paragraph_start": "p:0003", "paragraph_end": "p:0003"},
+    {"section_id": "sec:004", "title": "Tests", "level": 1, "page_start": 1, "page_end": 1, "paragraph_start": "p:0004", "paragraph_end": "p:0004"},
+    {"section_id": "sec:005", "title": "Limitations", "level": 1, "page_start": 1, "page_end": 1, "paragraph_start": "p:0005", "paragraph_end": "p:0005"},
+    {"section_id": "sec:006", "title": "Future Work", "level": 1, "page_start": 1, "page_end": 1, "paragraph_start": "p:0006", "paragraph_end": "p:0006"}
+  ],
+  "paragraphs": [
+    {"paragraph_id": "p:0001", "section_id": "sec:001", "page": 1, "text": "Fixture PDF for paper reading tests.", "char_start": 0, "char_end": 36},
+    {"paragraph_id": "p:0002", "section_id": "sec:002", "page": 1, "text": "Provides a deterministic fixture for integration testing.", "char_start": 37, "char_end": 91},
+    {"paragraph_id": "p:0003", "section_id": "sec:003", "page": 1, "text": "The pipeline parses a local PDF and stores artifacts under the paper directory.", "char_start": 92, "char_end": 167},
+    {"paragraph_id": "p:0004", "section_id": "sec:004", "page": 1, "text": "Validation and rebuild commands produce required artifacts.", "char_start": 168, "char_end": 224},
+    {"paragraph_id": "p:0005", "section_id": "sec:005", "page": 1, "text": "This report is a fixture and does not claim real scientific findings.", "char_start": 225, "char_end": 292},
+    {"paragraph_id": "p:0006", "section_id": "sec:006", "page": 1, "text": "The same artifact contract should be tested on real downloaded papers.", "char_start": 293, "char_end": 361}
+  ],
+  "figures_tables": [
+    {
+      "label": "Figure 1",
+      "kind": "page_image",
+      "page": 1,
+      "caption": "Fixture page rendered from the PDF.",
+      "nearby_section_id": "sec:003",
+      "candidate_image_paths": ["papers/Example2026A/page_images/page-001.png"]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "parse_quality", "selected_pages", "math_page_images", "text_candidates", "vision_fallback"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "parse_quality": {
+      "type": "object",
+      "required": ["quality", "reasons", "metrics"],
+      "properties": {
+        "quality": {"type": "string"},
+        "reasons": {"type": "array", "items": {"type": "string"}},
+        "metrics": {"type": "object", "additionalProperties": true}
+      },
+      "additionalProperties": true
+    },
+    "selected_pages": {"type": "array", "items": {"type": "integer"}},
+    "math_page_images": {"type": "array", "items": {"type": "string"}},
+    "text_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "page", "source_kind", "raw_text", "cleaned_equation", "confidence", "backend"],
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "page": {"type": "integer"},
+          "section_id": {"type": "string"},
+          "paragraph_ids": {"type": "array", "items": {"type": "string"}},
+          "source_kind": {"type": "string"},
+          "raw_text": {"type": "string"},
+          "cleaned_equation": {"type": "string"},
+          "confidence": {"type": "string"},
+          "backend": {"type": "string"},
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "vision_fallback": {
+      "type": "object",
+      "required": ["needed", "status", "reasons", "image_paths", "instruction"],
+      "properties": {
+        "needed": {"type": "boolean"},
+        "status": {"type": "string"},
+        "reasons": {"type": "array", "items": {"type": "string"}},
+        "image_paths": {"type": "array", "items": {"type": "string"}},
+        "instruction": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

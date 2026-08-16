@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }} - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav><a href="dashboard.html">Dashboard</a><a href="candidates.html">Candidates</a><a href="library.html">Library</a></nav>
+  <main>
+    <h1>{{ title }}</h1>
+    <p>{{ direction }}</p>
+    <section class="metrics">
+      <div><strong>{{ candidate_count }}</strong><span>Candidates</span></div>
+      <div><strong>{{ paper_count }}</strong><span>Papers</span></div>
+      <div><strong>{{ pdf_count }}</strong><span>PDFs</span></div>
+    </section>
+  </main>
+</body>
+</html>
+

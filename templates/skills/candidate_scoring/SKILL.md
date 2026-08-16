@@ -1,0 +1,62 @@
+# candidate_scoring
+
+Use this skill whenever the user asks to score, rank, prioritize, or filter candidates by topic relevance.
+
+## Inputs
+
+Read only:
+
+- `topic.yml`
+- `preferences.yml`
+- candidate batches from `battery_lit candidates scoring-batch --json`
+
+Do not read full `candidates.jsonl`, `library.bib`, or paper directories.
+
+## Rubric
+
+Score each candidate for topic relevance in `[-1, 1]`. A score of `0` is the default admission threshold.
+
+- `content` in `[-0.70, 0.70]`: use title and abstract. Directly addresses the topic: positive. Broadly adjacent: small positive. Off-topic or excluded direction: negative.
+- `preference` in `[-0.15, 0.15]`: use explicit positive and negative preferences from `topic.yml` and `preferences.yml`.
+- `credibility` in `[-0.15, 0.15]`: use venue and authors only as a small tie-breaker. Strong or field-relevant venue may get a small boost. arXiv is neutral by default. Penalize only clearly low-quality, predatory, or unreliable venues.
+
+Do not use DOI, PDF URL, publication year, search backend, or retrieval source as scoring factors.
+
+## Workflow
+
+1. Run `battery_lit candidates scoring-batch --root <topic> --status new --limit 20 --json`.
+2. Score candidates using the rubric above. If uncertain, use `score_confidence: "low"` and keep the score near zero.
+3. Write JSONL to `reports/candidate_scores.jsonl`, one candidate per line.
+4. Apply the scores with `battery_lit candidates apply-scores --root <topic> --scores reports/candidate_scores.jsonl`.
+5. Inspect ranked candidates with `battery_lit candidates list --root <topic> --status new --sort score --min-score 0 --json`.
+
+## Batch Sidecar Acceleration
+
+For large scoring batches, sidecars may speed up the judgment step only. The main Codex worker still owns validation and the single `apply-scores` mutation.
+
+- Use sidecars only for independent candidate-score shards.
+- Each sidecar writes a job-local shard such as `.battery/jobs/<job-id>/sidecars/score_shard_01.jsonl` or a temporary `/tmp/battery-v3-sidecar-*` artifact.
+- Sidecars must not run `battery_lit candidates apply-scores`, edit `candidates.jsonl`, edit `preferences.yml`, or mutate the topic.
+- Merge shards with project validation before applying. Reject malformed JSONL, duplicate score identities, scores outside `[-1, 1]`, and missing `candidate_id`.
+- Apply the merged score file once from the main worker.
+- Remove temporary sidecar directories after the merge unless the user explicitly asks to keep them for debugging.
+
+## Preview Scoring Before Admission
+
+When `skills/literature_collect/SKILL.md` asks for score-gated collection, score raw `battery_lit tool search --json` preview results in the current Codex turn before they become candidates. Use the same rubric, but do not call `battery_lit candidates apply-scores` because these records are not in `candidates.jsonl` yet.
+
+Keep only preview results that satisfy the requested score threshold, then pass their titles to the literature collection title-intake workflow. Preview results below threshold are search hits, not candidates; do not mark them dismissed or write them to `candidates.jsonl`.
+
+## JSONL Output
+
+Each line must have:
+
+```json
+{"candidate_id":"CAND-001","content":0.55,"preference":0.05,"credibility":0.0,"score":0.6,"score_confidence":"medium","reasons":["Title and abstract directly match the topic."],"scored_by":"codex"}
+```
+
+The final `score` must equal the intended overall judgment and stay within `[-1, 1]`.
+
+## Output to User
+
+Report how many candidates were scored, how many are above `0`, and the top few candidates with short reasons.

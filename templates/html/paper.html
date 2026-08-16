@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ paper.bibkey }}</title>
+  <link rel="stylesheet" href="{{ paper.css_href or '../style.css' }}">
+</head>
+<body>
+  <nav>
+    <a href="{{ paper.nav_dashboard_href or '../dashboard.html' }}">Dashboard</a>
+    <a href="{{ paper.nav_candidates_href or '../candidates.html' }}">Candidates</a>
+    <a href="{{ paper.nav_library_href or '../library.html' }}">Library</a>
+    <span class="nav-spacer"></span>
+    <button class="language-toggle" type="button" data-lang-button="en">EN</button>
+    <button class="language-toggle" type="button" data-lang-button="zh">中文</button>
+  </nav>
+  <main class="paper-detail">
+    <header class="paper-hero">
+      <p class="eyebrow">{{ paper.bibkey }}</p>
+      <h1>{{ paper.title }}</h1>
+      <p class="meta-line">
+        {% if paper.authors_text %}{{ paper.authors_text }} · {% endif %}{{ paper.year }} · {{ paper.venue }}
+        {% if paper.doi %} · DOI {{ paper.doi }}{% endif %}
+        {% if paper.arxiv_id %} · arXiv {{ paper.arxiv_id }}{% endif %}
+      </p>
+      <p class="link-row">
+        {% if paper.pdf_href %}<a href="{{ paper.pdf_href }}">PDF</a>{% endif %}
+        {% if paper.note_href %}<a href="{{ paper.note_href }}">Markdown note</a>{% endif %}
+      </p>
+      {% if paper.report.profile_badges %}
+      <div class="chips profile-chips">
+        {% for badge in paper.report.profile_badges %}<span>{{ badge }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </header>
+
+    {% if paper.has_report %}
+    {% if paper.report.reading_quality.accepted_with_limitations %}
+    <section class="quality-warning full-width">
+      <h2><span class="lang-en">Accepted with limitations</span><span class="lang-zh">带局限接受</span></h2>
+      <p>
+        <span class="lang-en">This reading result reached the reader-review cycle limit{% if paper.report.reading_quality.cycles_used %} after {{ paper.report.reading_quality.cycles_used }} cycles{% endif %}. Use it with care and review the unresolved issues below.</span>
+        <span class="lang-zh">该阅读结果达到 reader-review 轮次上限{% if paper.report.reading_quality.cycles_used %}（{{ paper.report.reading_quality.cycles_used }} 轮）{% endif %}后被带局限接受。使用前请检查下列未解决问题。</span>
+      </p>
+      {% if paper.report.reading_quality.issues %}
+      <ul>
+        {% for issue in paper.report.reading_quality.issues %}
+          <li>{{ issue }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </section>
+    {% endif %}
+
+    <section class="knowledge-panel full-width wide">
+      <h2><span class="lang-en">One-sentence summary</span><span class="lang-zh">一句话总结</span></h2>
+      <p class="summary-text"><span class="lang-en">{{ paper.report.one_sentence_summary }}</span><span class="lang-zh">{{ paper.report.one_sentence_summary_zh }}</span></p>
+    </section>
+
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">Quick Read</span><span class="lang-zh">快速阅读</span></h2>
+      {% with items=paper.report.quick_read %}{% include "paper_items.html" %}{% endwith %}
+    </section>
+
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">Argument Map</span><span class="lang-zh">论证地图</span></h2>
+      <div class="argument-grid">
+      {% for row in paper.report.argument_rows %}
+        <div class="argument-card">
+          <strong><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></strong>
+          <p><span class="lang-en">{{ row.text }}</span><span class="lang-zh">{{ row.text_zh }}</span></p>
+          {% if row.meta %}<span class="item-meta">{{ row.meta }}</span>{% endif %}
+        </div>
+      {% endfor %}
+      </div>
+    </section>
+
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">Central Claims</span><span class="lang-zh">核心论点</span></h2>
+      <div class="claim-grid">
+      {% for item in paper.report.central_claims %}
+        <div class="claim-card">
+          <strong><span class="lang-en">{{ item.claim }}</span><span class="lang-zh">{{ item.claim_zh }}</span></strong>
+          <p><span><span class="lang-en">Evidence</span><span class="lang-zh">证据</span></span><span class="lang-en">{{ item.evidence }}</span><span class="lang-zh">{{ item.evidence_zh }}</span></p>
+          <p><span><span class="lang-en">What it proves</span><span class="lang-zh">说明了什么</span></span><span class="lang-en">{{ item.proves }}</span><span class="lang-zh">{{ item.proves_zh }}</span></p>
+          <p><span><span class="lang-en">Boundary</span><span class="lang-zh">边界</span></span><span class="lang-en">{{ item.does_not_prove }}</span><span class="lang-zh">{{ item.does_not_prove_zh }}</span></p>
+          <p><span><span class="lang-en">Open question</span><span class="lang-zh">开放问题</span></span><span class="lang-en">{{ item.open_question }}</span><span class="lang-zh">{{ item.open_question_zh }}</span></p>
+          <p class="item-meta">Evidence: {{ item.source_refs }}</p>
+        </div>
+      {% endfor %}
+      </div>
+    </section>
+
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">Method Understanding</span><span class="lang-zh">方法理解</span></h2>
+      {% with visual_cards=paper.report.visual_cards_by_section.get("method_understanding", []) %}{% include "paper_visual_inline.html" %}{% endwith %}
+      <h3><span class="lang-en">Pipeline</span><span class="lang-zh">流程</span></h3>
+      {% with items=paper.report.method.pipeline %}{% include "paper_items.html" %}{% endwith %}
+      {% if paper.report.method.algorithm_steps %}
+      <h3><span class="lang-en">Algorithm Steps</span><span class="lang-zh">算法步骤</span></h3>
+      <table class="compact-table algorithm-table">
+        <thead><tr><th>#</th><th><span class="lang-en">Action</span><span class="lang-zh">动作</span></th><th><span class="lang-en">Inputs</span><span class="lang-zh">输入</span></th><th><span class="lang-en">Outputs</span><span class="lang-zh">输出</span></th></tr></thead>
+        <tbody>
+        {% for row in paper.report.method.algorithm_steps %}
+          <tr>
+            <td>{{ row.step }}</td>
+            <td><span class="lang-en">{{ row.action }}</span><span class="lang-zh">{{ row.action_zh }}</span><br><span class="item-meta">Evidence: {{ row.source_refs }}</span></td>
+            <td><span class="lang-en">{{ row.inputs }}</span><span class="lang-zh">{{ row.inputs_zh }}</span></td>
+            <td><span class="lang-en">{{ row.outputs }}</span><span class="lang-zh">{{ row.outputs_zh }}</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      <h3><span class="lang-en">Engineering Derivation Sketch</span><span class="lang-zh">工程化推导理解</span></h3>
+      <p class="summary-text"><span class="lang-en">{{ paper.report.method.derivation.text }}</span><span class="lang-zh">{{ paper.report.method.derivation.text_zh }}</span></p>
+      {% if paper.report.method.derivation.meta %}<span class="item-meta">{{ paper.report.method.derivation.meta }}</span>{% endif %}
+      {% if paper.report.method.implementation_details %}
+      <h3><span class="lang-en">Implementation Details</span><span class="lang-zh">实现细节</span></h3>
+      {% with items=paper.report.method.implementation_details %}{% include "paper_items.html" %}{% endwith %}
+      {% endif %}
+    </section>
+
+    {% if paper.report.math_core.has_content %}
+    <section class="knowledge-panel full-width math-core-panel">
+      <h2><span class="lang-en">Mathematical Core</span><span class="lang-zh">数学核心</span></h2>
+      {% if paper.report.math_core.problem.text %}
+      <h3><span class="lang-en">Problem Formulation</span><span class="lang-zh">问题形式</span></h3>
+      <p class="summary-text"><span class="lang-en">{{ paper.report.math_core.problem.text }}</span><span class="lang-zh">{{ paper.report.math_core.problem.text_zh }}</span></p>
+      {% if paper.report.math_core.problem.meta %}<span class="item-meta">{{ paper.report.math_core.problem.meta }}</span>{% endif %}
+      {% endif %}
+      {% if paper.report.math_core.equations %}
+      <h3><span class="lang-en">Key Equations</span><span class="lang-zh">关键公式</span></h3>
+      <div class="equation-grid">
+      {% for row in paper.report.math_core.equations %}
+        <div class="equation-card">
+          <strong><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></strong>
+          {% if row.equation_mathml %}
+          <div class="equation-render">{{ row.equation_mathml }}</div>
+          {% endif %}
+          <pre class="equation-block">{{ row.equation }}</pre>
+          <p><span class="lang-en">{{ row.explanation }}</span><span class="lang-zh">{{ row.explanation_zh }}</span></p>
+          {% if row.source_refs %}<span class="item-meta">Evidence: {{ row.source_refs }}</span>{% endif %}
+          {% if row.source_images %}
+          <p class="source-image-links">
+            {% for image in row.source_images %}
+              <a href="{{ image.href }}">{{ image.label }}</a>
+            {% endfor %}
+          </p>
+          {% endif %}
+        </div>
+      {% endfor %}
+      </div>
+      {% endif %}
+      {% if paper.report.math_core.chain %}
+      <h3><span class="lang-en">Theorem / Principle Chain</span><span class="lang-zh">定理/原理链</span></h3>
+      <ol class="principle-chain">
+      {% for row in paper.report.math_core.chain %}
+        <li>
+          <strong><span class="lang-en">{{ row.principle }}</span><span class="lang-zh">{{ row.principle_zh }}</span></strong>
+          <p><span class="lang-en">{{ row.role }}</span><span class="lang-zh">{{ row.role_zh }}</span></p>
+          <p><span class="lang-en">{{ row.intuition }}</span><span class="lang-zh">{{ row.intuition_zh }}</span></p>
+          {% if row.source_refs %}<span class="item-meta">Evidence: {{ row.source_refs }}</span>{% endif %}
+        </li>
+      {% endfor %}
+      </ol>
+      {% endif %}
+      {% if paper.report.math_core.derivation.text %}
+      <h3><span class="lang-en">Engineering Proof Sketch</span><span class="lang-zh">工程化证明理解</span></h3>
+      <p class="summary-text"><span class="lang-en">{{ paper.report.math_core.derivation.text }}</span><span class="lang-zh">{{ paper.report.math_core.derivation.text_zh }}</span></p>
+      {% if paper.report.math_core.derivation.meta %}<span class="item-meta">{{ paper.report.math_core.derivation.meta }}</span>{% endif %}
+      {% endif %}
+    </section>
+    {% elif paper.report.paper_profile and "theory" in paper.report.paper_profile.active_lenses %}
+    <section class="knowledge-panel full-width empty-state">
+      <h2><span class="lang-en">Mathematical Core</span><span class="lang-zh">数学核心</span></h2>
+      <p><span class="lang-en">{{ paper.report.math_core.missing }}</span><span class="lang-zh">{{ paper.report.math_core.missing_zh }}</span></p>
+    </section>
+    {% endif %}
+
+    {% if paper.report.survey_map.has_content %}
+    <section class="knowledge-panel full-width survey-map-panel">
+      <h2><span class="lang-en">Survey Map</span><span class="lang-zh">综述地图</span></h2>
+      {% if paper.report.survey_map.matrix %}
+      <h3><span class="lang-en">Method Family Matrix</span><span class="lang-zh">方法族矩阵</span></h3>
+      <table class="compact-table method-family-table">
+        <thead><tr><th><span class="lang-en">Family</span><span class="lang-zh">方法族</span></th><th><span class="lang-en">Core idea</span><span class="lang-zh">核心想法</span></th><th><span class="lang-en">Strengths</span><span class="lang-zh">优势</span></th><th><span class="lang-en">Limits</span><span class="lang-zh">局限</span></th><th><span class="lang-en">Best for</span><span class="lang-zh">适合</span></th></tr></thead>
+        <tbody>
+        {% for row in paper.report.survey_map.matrix %}
+          <tr>
+            <th><span class="lang-en">{{ row.family }}</span><span class="lang-zh">{{ row.family_zh }}</span></th>
+            <td><span class="lang-en">{{ row.core_idea }}</span><span class="lang-zh">{{ row.core_idea_zh }}</span>{% if row.source_refs %}<span class="item-meta">Evidence: {{ row.source_refs }}</span>{% endif %}</td>
+            <td><span class="lang-en">{{ row.strengths }}</span><span class="lang-zh">{{ row.strengths_zh }}</span></td>
+            <td><span class="lang-en">{{ row.limitations }}</span><span class="lang-zh">{{ row.limitations_zh }}</span></td>
+            <td><span class="lang-en">{{ row.best_for }}</span><span class="lang-zh">{{ row.best_for_zh }}</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      {% if paper.report.survey_map.timeline %}
+      <h3><span class="lang-en">Timeline</span><span class="lang-zh">时间线</span></h3>
+      <ol class="timeline-rail">
+      {% for row in paper.report.survey_map.timeline %}
+        <li>
+          {% if row.time %}<strong><span class="lang-en">{{ row.time }}</span><span class="lang-zh">{{ row.time_zh }}</span></strong>{% endif %}
+          <p><span class="lang-en">{{ row.text }}</span><span class="lang-zh">{{ row.text_zh }}</span></p>
+          {% if row.meta %}<span class="item-meta">{{ row.meta }}</span>{% endif %}
+        </li>
+      {% endfor %}
+      </ol>
+      {% endif %}
+    </section>
+    {% elif paper.report.paper_profile and "survey" in paper.report.paper_profile.active_lenses %}
+    <section class="knowledge-panel full-width empty-state">
+      <h2><span class="lang-en">Survey Map</span><span class="lang-zh">综述地图</span></h2>
+      <p><span class="lang-en">{{ paper.report.survey_map.missing }}</span><span class="lang-zh">{{ paper.report.survey_map.missing_zh }}</span></p>
+    </section>
+    {% endif %}
+
+    {% if paper.report.dataset_report.is_structured_v2 %}
+    <section class="knowledge-panel full-width dataset-report-panel">
+      <h2><span class="lang-en">Dataset / Benchmark Understanding</span><span class="lang-zh">数据集/基准理解</span></h2>
+      {% with visual_cards=paper.report.visual_cards_by_section.get("dataset_benchmark_understanding", []) %}{% include "paper_visual_inline.html" %}{% endwith %}
+      <h3><span class="lang-en">Dataset at a Glance</span><span class="lang-zh">数据集速览</span></h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="compact-table dataset-glance-table">
+          <thead>
+            <tr>
+              <th><span class="lang-en">Metric</span><span class="lang-zh">指标</span></th>
+              <th><span class="lang-en">Value</span><span class="lang-zh">数值</span></th>
+              <th><span class="lang-en">Context</span><span class="lang-zh">说明</span></th>
+              <th><span class="lang-en">Evidence</span><span class="lang-zh">证据</span></th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for row in paper.report.dataset_report.key_numbers %}
+            <tr>
+              <th><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></th>
+              <td class="dataset-value"><strong>{{ row.value }}</strong>{% if row.unit %} <span class="dataset-unit">{{ row.unit }}</span>{% endif %}</td>
+              <td><span class="lang-en">{{ row.context }}</span><span class="lang-zh">{{ row.context_zh }}</span></td>
+              <td class="dataset-evidence">{{ row.source_refs }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <h3><span class="lang-en">Construction Pipeline</span><span class="lang-zh">构建流程</span></h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="compact-table construction-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th><span class="lang-en">Stage</span><span class="lang-zh">阶段</span></th>
+              <th><span class="lang-en">Action</span><span class="lang-zh">操作</span></th>
+              <th><span class="lang-en">Output</span><span class="lang-zh">产物</span></th>
+              <th><span class="lang-en">Quality control</span><span class="lang-zh">质量控制</span></th>
+              <th><span class="lang-en">Evidence</span><span class="lang-zh">证据</span></th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for row in paper.report.dataset_report.construction_steps %}
+            <tr>
+              <td class="pipeline-number">{{ row.number }}</td>
+              <th><span class="lang-en">{{ row.stage }}</span><span class="lang-zh">{{ row.stage_zh }}</span></th>
+              <td><span class="lang-en">{{ row.action }}</span><span class="lang-zh">{{ row.action_zh }}</span></td>
+              <td><span class="lang-en">{{ row.output }}</span><span class="lang-zh">{{ row.output_zh }}</span></td>
+              <td><span class="lang-en">{{ row.quality_control }}</span><span class="lang-zh">{{ row.quality_control_zh }}</span></td>
+              <td class="dataset-evidence">{{ row.source_refs }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% if paper.report.dataset_report.biases_or_limits %}
+      <h3><span class="lang-en">Biases or Limits</span><span class="lang-zh">偏差或局限</span></h3>
+      {% with items=paper.report.dataset_report.biases_or_limits %}{% include "paper_items.html" %}{% endwith %}
+      {% endif %}
+    </section>
+    {% endif %}
+
+    {% for section in paper.report.type_sections %}
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">{{ section.title }}</span><span class="lang-zh">{{ section.title_zh }}</span></h2>
+      {% with visual_cards=paper.report.visual_cards_by_section.get(section.key, []) %}{% include "paper_visual_inline.html" %}{% endwith %}
+      {% for group in section.groups %}
+        <h3><span class="lang-en">{{ group.label }}</span><span class="lang-zh">{{ group.label_zh }}</span></h3>
+        {% if group["items"] %}
+          {% with items=group["items"] %}{% include "paper_items.html" %}{% endwith %}
+        {% elif group.text %}
+          <p class="summary-text"><span class="lang-en">{{ group.text }}</span><span class="lang-zh">{{ group.text_zh }}</span></p>
+          {% if group.meta %}<span class="item-meta">{{ group.meta }}</span>{% endif %}
+        {% endif %}
+      {% endfor %}
+    </section>
+    {% endfor %}
+
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">Evaluation</span><span class="lang-zh">实验评估</span></h2>
+      {% with visual_cards=paper.report.visual_cards_by_section.get("evaluation", []) %}{% include "paper_visual_inline.html" %}{% endwith %}
+      {% for label, key in [
+        ("Datasets", "datasets"),
+        ("Metrics", "metrics"),
+        ("Main Results", "main_results"),
+        ("Ablation / Comparison Takeaways", "ablation_or_comparison_takeaways")
+      ] %}
+      {% set items = paper.report.evaluation.get(key, []) %}
+      {% if items %}
+      <h3><span class="lang-en">{{ label }}</span><span class="lang-zh">{% if label == "Datasets" %}数据集{% elif label == "Metrics" %}指标{% elif label == "Main Results" %}主要结果{% else %}消融/对比结论{% endif %}</span></h3>
+      {% include "paper_items.html" %}
+      {% endif %}
+      {% endfor %}
+      {% if paper.report.evaluation.numeric_results %}
+      <h3><span class="lang-en">Numeric Results</span><span class="lang-zh">关键数值结果</span></h3>
+      <table class="compact-table">
+        <thead><tr><th><span class="lang-en">Task</span><span class="lang-zh">任务</span></th><th><span class="lang-en">Metric</span><span class="lang-zh">指标</span></th><th><span class="lang-en">Value</span><span class="lang-zh">数值</span></th><th><span class="lang-en">Comparison</span><span class="lang-zh">对比</span></th><th><span class="lang-en">Interpretation</span><span class="lang-zh">解读</span></th></tr></thead>
+        <tbody>
+        {% for row in paper.report.evaluation.numeric_results %}
+          <tr>
+            <td><span class="lang-en">{{ row.task }}</span><span class="lang-zh">{{ row.task_zh }}</span></td>
+            <td><span class="lang-en">{{ row.metric }}</span><span class="lang-zh">{{ row.metric_zh }}</span></td>
+            <td><strong>{{ row.value }}</strong></td>
+            <td>{{ row.comparison }}</td>
+            <td><span class="lang-en">{{ row.interpretation }}</span><span class="lang-zh">{{ row.interpretation_zh }}</span><br><span class="item-meta"><span class="lang-en">does not prove: {{ row.does_not_prove }}</span><span class="lang-zh">不能说明：{{ row.does_not_prove_zh }}</span> · Evidence: {{ row.source_refs }}</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </section>
+
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">Visual Cards</span><span class="lang-zh">图表卡片</span></h2>
+      <div class="visual-grid">
+      {% for item in paper.report.visual_cards %}
+        <div class="visual-card">
+          <strong><span class="lang-en">{{ item.display_label }}</span><span class="lang-zh">{{ item.display_label_zh }}</span> · {{ item.kind }}</strong>
+          {% if item.image_href %}
+          <button class="visual-open" type="button" data-lightbox-src="{{ item.image_href }}" data-lightbox-title="{{ item.display_label }}"><img src="{{ item.image_href }}" alt="{{ item.label }}"></button>
+          {% elif item.image_path %}
+          <p class="item-meta">image path: {{ item.image_path }}</p>
+          {% endif %}
+          {% if item.placeholder_reason %}<p><span><span class="lang-en">Placeholder</span><span class="lang-zh">占位说明</span></span><span class="lang-en">{{ item.placeholder_reason }}</span><span class="lang-zh">{{ item.placeholder_reason_zh }}</span></p>{% endif %}
+          <p><span><span class="lang-en">Caption</span><span class="lang-zh">图表说明</span></span><span class="lang-en">{{ item.source_caption }}</span><span class="lang-zh">{{ item.source_caption_zh }}</span></p>
+          <p><span><span class="lang-en">Reading note</span><span class="lang-zh">阅读提示</span></span><span class="lang-en">{{ item.reading_note }}</span><span class="lang-zh">{{ item.reading_note_zh }}</span></p>
+          <p class="item-meta">Evidence: {{ item.source_refs }}</p>
+          <span class="status-pill">{{ item.crop_status }}</span>
+        </div>
+      {% endfor %}
+      </div>
+    </section>
+
+    <section class="knowledge-panel full-width">
+      <h2><span class="lang-en">Availability</span><span class="lang-zh">可用性</span></h2>
+      <table class="compact-table">
+        <tbody>
+        {% for row in paper.report.availability_rows %}
+          <tr>
+            <th><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></th>
+            <td>
+              <strong><span class="lang-en">{{ row.status }}</span><span class="lang-zh">{{ row.status_zh }}</span></strong>
+              {% if row.detail %}<br><span class="item-meta"><span class="lang-en">{{ row.detail }}</span><span class="lang-zh">{{ row.detail_zh }}</span></span>{% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <details class="knowledge-panel full-width extraction-details">
+      <summary><span class="lang-en">Extraction Quality Notes</span><span class="lang-zh">提取质量说明</span></summary>
+      <table class="compact-table">
+        <tbody>
+        {% for row in paper.report.extraction_rows %}
+          <tr><th><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></th><td><span class="lang-en">{{ row.value }}</span><span class="lang-zh">{{ row.value_zh }}</span></td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </details>
+    {% else %}
+    <section class="knowledge-panel full-width empty-state">
+      <h2>No structured reading report yet</h2>
+      <p>Run the paper deep-read workflow and rebuild the note to generate this page.</p>
+    </section>
+    {% endif %}
+
+    <section class="knowledge-panel full-width">
+      <h2>BibTeX</h2>
+      <pre class="bibtex">{{ paper.bibtex }}</pre>
+    </section>
+  </main>
+  <div class="lightbox" data-lightbox hidden>
+    <button class="lightbox-close" type="button" data-lightbox-close>Close</button>
+    <p data-lightbox-title></p>
+    <img data-lightbox-image alt="">
+  </div>
+  <script>
+    (function () {
+      function setLang(lang) {
+        document.documentElement.dataset.lang = lang;
+        try { localStorage.setItem("battery-paper-lang", lang); } catch (error) {}
+      }
+      setLang(localStorage.getItem("battery-paper-lang") || "en");
+      document.querySelectorAll("[data-lang-button]").forEach(function (button) {
+        button.addEventListener("click", function () { setLang(button.dataset.langButton); });
+      });
+      var lightbox = document.querySelector("[data-lightbox]");
+      var image = document.querySelector("[data-lightbox-image]");
+      var title = document.querySelector("[data-lightbox-title]");
+      document.querySelectorAll("[data-lightbox-src]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          image.src = button.dataset.lightboxSrc;
+          title.textContent = button.dataset.lightboxTitle || "";
+          lightbox.hidden = false;
+        });
+      });
+      document.querySelector("[data-lightbox-close]").addEventListener("click", function () {
+        lightbox.hidden = true;
+        image.removeAttribute("src");
+      });
+    })();
+  </script>
+</body>
+</html>

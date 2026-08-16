@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1>{{ paper.title }}</h1>
+  <p>{{ paper.bibkey }} · {{ paper.year }} · {{ paper.venue }}</p>
+</section>
+
+<section class="panel">
+  <h2 data-i18n="metadata">Metadata</h2>
+  <dl class="meta-list">
+    <dt>Bibkey</dt><dd>{{ paper.bibkey }}</dd>
+    <dt data-i18n="title_col">Title</dt><dd>{{ paper.title }}</dd>
+    <dt data-i18n="year">Year</dt><dd>{{ paper.year }}</dd>
+    <dt data-i18n="venue">Venue</dt><dd>{{ paper.venue }}</dd>
+    <dt>DOI</dt><dd>{{ paper.doi or "" }}</dd>
+  </dl>
+  <div class="actions">
+    {% if paper.has_pdf %}<a href="{{ paper.pdf_href }}" target="_blank" rel="noopener">PDF</a>{% else %}<span class="warn" data-i18n="missing_pdf">Missing PDF</span>{% endif %}
+    {% if paper.has_knowledge %}<a href="{{ paper.knowledge_href }}" target="_blank" rel="noopener" data-i18n="knowledge">Knowledge</a>{% else %}<span class="muted" data-i18n="knowledge_pending">Knowledge pending</span>{% endif %}
+    <button type="button" data-session-action="library_read_selected" data-bibkey="{{ paper.bibkey }}" data-i18n="read_paper">Read Paper</button>
+  </div>
+</section>
+{% endblock %}

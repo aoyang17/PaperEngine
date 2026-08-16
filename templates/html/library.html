@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav><a href="dashboard.html">Dashboard</a><a href="candidates.html">Candidates</a><a href="library.html">Library</a></nav>
+  <main>
+    <h1>Library</h1>
+    <table>
+      <thead><tr><th>BibTeX</th><th>Year</th><th>Venue</th><th>Title</th></tr></thead>
+      <tbody>
+      {% for p in papers %}
+        <tr>
+          <td><a href="{{ p.detail_href }}">{{ p.bibkey }}</a></td>
+          <td>{{ p.year }}</td>
+          <td>{{ p.venue }}</td>
+          <td>{{ p.title }}{% if p.has_pdf %} <a href="../papers/{{ p.bibkey }}/paper.pdf">PDF</a>{% endif %}{% if p.has_report or p.has_note %} <a href="{{ p.detail_href }}">Note</a>{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["bibkey", "title", "authors", "year"],
+  "properties": {
+    "bibkey": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "authors": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "year": {"type": "integer"},
+    "venue": {"type": "string"},
+    "doi": {"type": ["string", "null"]},
+    "arxiv_id": {"type": ["string", "null"]},
+    "openalex_id": {"type": ["string", "null"]},
+    "semantic_scholar_id": {"type": ["string", "null"]},
+    "dblp_key": {"type": ["string", "null"]},
+    "issn": {"type": ["string", "null"]},
+    "isbn": {"type": ["string", "null"]},
+    "url": {"type": ["string", "null"]},
+    "pdf_url": {"type": ["string", "null"]},
+    "file": {"type": ["string", "null"]},
+    "verified_sources": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

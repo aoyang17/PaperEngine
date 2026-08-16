@@ -1,0 +1,529 @@
+{
+  "schema_version": "v3-source-map-2026-06",
+  "bibkey": "Example2026A",
+  "title": "A Paper",
+  "authors": [
+    "Ada Example",
+    "Ben Researcher"
+  ],
+  "year": 2026,
+  "venue": "Fixture Conference",
+  "pdf_path": "papers/Example2026A/paper.pdf",
+  "parsed_markdown_path": "papers/Example2026A/parsed.md",
+  "source_map_path": "papers/Example2026A/source_map.json",
+  "one_sentence_summary": "A compact fixture paper for exercising traceable paper-reading artifacts.",
+  "translations": {
+    "zh": {
+      "one_sentence_summary": "这是一篇用于测试可追溯论文阅读产物的紧凑 fixture 论文。",
+      "quick_read": [
+        "用这个 fixture 验证 schema、证据引用、Markdown 和 HTML 渲染。"
+      ],
+      "argument_map": {
+        "gap": "在信任真实论文阅读前，项目需要一个确定性的论文阅读 fixture。",
+        "core_contribution": "该 fixture 证明基于 source-map 的阅读产物可以被校验和渲染。",
+        "method_logic": "这个 fixture 读取本地 PDF，把每条结论连接到可核查的论文证据，并生成可浏览的论文笔记。",
+        "decisive_evidence": [
+          "校验和重建命令能够生成必要产物。"
+        ],
+        "limitations": [
+          "这个 fixture 不是真实科学结果。"
+        ],
+        "future_work": [
+          "在真实下载论文上使用同一产物契约。"
+        ]
+      },
+      "central_claims": [
+        {
+          "claim": "本地流程可以构建可追溯的论文阅读产物。",
+          "evidence_summary": "fixture 使用 source_map.json、deep_read.json、note.md 和 reading_result.html 作为互相关联的产物。",
+          "what_it_proves": "渲染器和校验器能够处理基于证据的报告。",
+          "what_it_does_not_prove": "它不能证明科学新颖性，也不能证明复杂 PDF 上的解析质量。",
+          "open_question": "真实公式和图表需要多少人工检查？"
+        }
+      ],
+      "method_understanding": {
+        "pipeline": [
+          "解析本地 PDF 并渲染页面图像。",
+          "写入 source map 和引用相同 source refs 的 deep-read 报告。"
+        ],
+        "algorithm_steps": [
+          {
+            "action": "读取论文 PDF。",
+            "inputs": "paper.pdf",
+            "outputs": "PDF 字节和元数据"
+          },
+          {
+            "action": "解析正文并渲染页面图像。",
+            "inputs": "paper.pdf",
+            "outputs": "parsed.md 和 page_images"
+          },
+          {
+            "action": "创建 evidence source map。",
+            "inputs": "parsed.md 和 page_images",
+            "outputs": "source_map.json"
+          },
+          {
+            "action": "写入并校验结构化阅读报告。",
+            "inputs": "source_map.json",
+            "outputs": "deep_read.json、note.md 和 reading_result.html"
+          }
+        ],
+        "engineering_derivation_sketch": "这个 fixture 把阅读可靠性问题化简为：每条合成结论都必须能回指到真实的论文证据。",
+        "implementation_details": [
+          "产物存放在 paper 目录下，而不是全局临时目录。"
+        ]
+      },
+      "evaluation": {
+        "datasets": [
+          "单元测试 fixture PDF。"
+        ],
+        "metrics": [
+          "有证据支撑的主张准确性。"
+        ],
+        "main_results": [
+          "fixture 包含一条由证据支持的主张。"
+        ],
+        "ablation_or_comparison_takeaways": [
+          "没有 source refs 时，报告不能说明结论来自哪里。"
+        ],
+        "numeric_results": [
+          {
+            "dataset_or_task": "Fixture benchmark",
+            "metric": "supported main claims",
+            "interpretation": "fixture 包含一条主张，且该主张有明确证据支撑。",
+            "what_it_does_not_prove": "这不能证明复杂真实论文的泛化效果。"
+          }
+        ]
+      },
+      "visual_cards": [
+        {
+          "label": "图 1",
+          "source_caption": "PDF 渲染出的 fixture 页面。",
+          "reading_note": "用该页面确认 fixture 具有视觉证据。"
+        }
+      ],
+      "availability": {
+        "code": {
+          "evidence": "外部 GitHub 检索找到了该 fixture 论文的合成仓库 URL。",
+          "notes": "这是外部检索 fixture，不是真实仓库。"
+        },
+        "data": {
+          "evidence": "fixture PDF 中没有数据链接。"
+        },
+        "models": {
+          "evidence": "该 fixture 没有定义模型发布。"
+        }
+      },
+      "type_sections": {
+        "application_understanding": {
+          "task_context": [
+            "fixture 的应用场景是验证本地 artifact 上的论文阅读流程。"
+          ],
+          "experimental_setup": [
+            "流程使用本地 fixture PDF、source map、deep-read 报告和重建 note。"
+          ],
+          "constraints": [
+            "fixture 被刻意保持最小，不应被解释为真实科学研究。"
+          ],
+          "transfer_limits": [
+            "同一契约仍需要在包含复杂图表和公式的真实下载论文上测试。"
+          ]
+        },
+        "dataset_benchmark_understanding": {
+          "format": "structured_v2",
+          "key_numbers": [
+            {
+              "label": "有证据支持的核心主张",
+              "value": "1",
+              "unit": "claim",
+              "context": "该 fixture 用一条核心主张验证逐行证据引用。",
+              "source_refs": [
+                "S004"
+              ]
+            }
+          ],
+          "construction_steps": [
+            {
+              "stage": "构建",
+              "action": "从本地 PDF 构建阅读 fixture。",
+              "output": "经过校验的结构化阅读报告",
+              "quality_control": "用 schema 和阅读契约执行校验。",
+              "source_refs": [
+                "S003",
+                "S004"
+              ]
+            }
+          ],
+          "biases_or_limits": [
+            {
+              "text": "fixture 内容经过刻意简化，因此不能代表复杂真实论文的解析难度。",
+              "source_refs": [
+                "S005",
+                "S006"
+              ]
+            }
+          ]
+        }
+      },
+      "extraction_notes": {
+        "parser_limitations": [
+          "Fixture PDF 内容刻意很少。"
+        ],
+        "missing_sections": [],
+        "low_confidence_equations": [],
+        "visual_crop_limitations": [
+          "Figure 1 使用整页渲染图，而不是紧裁剪图。"
+        ],
+        "external_info_used": [
+          "使用合成 GitHub 检索记录测试 E001 外部证据引用。"
+        ]
+      }
+    }
+  },
+  "paper_profile": {
+    "primary_type": "method",
+    "active_lenses": [
+      "method",
+      "application"
+    ],
+    "confidence": "high",
+    "rationale": "The fixture is a method-style pipeline test with explicit parsing, validation, and rendering evidence."
+  },
+  "argument_map": {
+    "gap": {
+      "text": "The project needs a deterministic paper-reading fixture before live reading is trusted.",
+      "source_refs": [
+        "S001"
+      ],
+      "confidence": "high"
+    },
+    "core_contribution": {
+      "text": "The fixture proves that source-map grounded reading artifacts can be validated and rendered.",
+      "source_refs": [
+        "S002"
+      ],
+      "confidence": "high"
+    },
+    "method_logic": {
+      "text": "The fixture reads a local PDF, links each conclusion to quoted paper evidence, and rebuilds a paper note for browsing.",
+      "source_refs": [
+        "S003"
+      ],
+      "confidence": "high"
+    },
+    "decisive_evidence": [
+      {
+        "text": "Validation and rebuild commands produce required artifacts.",
+        "source_refs": [
+          "S004"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "limitations": [
+      {
+        "text": "The fixture is not a real scientific result.",
+        "source_refs": [
+          "S005"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "future_work": [
+      {
+        "text": "Use the same artifact contract on real downloaded papers.",
+        "source_refs": [
+          "S006"
+        ],
+        "confidence": "medium"
+      }
+    ]
+  },
+  "quick_read": [
+    {
+      "text": "Use this fixture to verify schema, source refs, Markdown, and HTML rendering.",
+      "source_refs": [
+        "S001",
+        "S004"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "central_claims": [
+    {
+      "claim": "The local pipeline can build traceable paper-reading artifacts.",
+      "evidence_summary": "The fixture uses source_map.json, deep_read.json, note.md, and reading_result.html as linked artifacts.",
+      "source_refs": [
+        "S002",
+        "S004"
+      ],
+      "what_it_proves": "The renderer and validator can handle source-grounded reports.",
+      "what_it_does_not_prove": "It does not prove scientific novelty or parser quality on complex PDFs.",
+      "open_question": "How much manual inspection is needed for real equations and figures?",
+      "confidence": "high"
+    }
+  ],
+  "method_understanding": {
+    "pipeline": [
+      {
+        "text": "Parse the local PDF and render page images.",
+        "source_refs": [
+          "S003"
+        ],
+        "confidence": "high"
+      },
+      {
+        "text": "Write a source map and a deep-read report that cite the same source refs.",
+        "source_refs": [
+          "S004"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "algorithm_pseudocode": "Input paper PDF\nParse text and page images\nCreate source_map.json\nCreate deep_read.json with source_refs\nValidate and rebuild note/html",
+    "algorithm_steps": [
+      {
+        "step": 1,
+        "action": "Read the paper PDF.",
+        "inputs": "paper.pdf",
+        "outputs": "PDF bytes and metadata",
+        "source_refs": [
+          "S003"
+        ],
+        "confidence": "high"
+      },
+      {
+        "step": 2,
+        "action": "Parse text and render page images.",
+        "inputs": "paper.pdf",
+        "outputs": "parsed.md and page_images",
+        "source_refs": [
+          "S003"
+        ],
+        "confidence": "high"
+      },
+      {
+        "step": 3,
+        "action": "Create the evidence source map.",
+        "inputs": "parsed.md and page_images",
+        "outputs": "source_map.json",
+        "source_refs": [
+          "S004"
+        ],
+        "confidence": "high"
+      },
+      {
+        "step": 4,
+        "action": "Write and validate the structured reading report.",
+        "inputs": "source_map.json",
+        "outputs": "deep_read.json, note.md, and reading_result.html",
+        "source_refs": [
+          "S004"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "engineering_derivation_sketch": {
+      "text": "The fixture reduces the reading guarantee to checking that every synthesized claim points back to a real source block.",
+      "source_refs": [
+        "S004"
+      ],
+      "confidence": "high"
+    },
+    "implementation_details": [
+      {
+        "text": "Artifacts are stored under the paper directory rather than a global temporary area.",
+        "source_refs": [
+          "S003"
+        ],
+        "confidence": "high"
+      }
+    ]
+  },
+  "application_understanding": {
+    "task_context": [
+      {
+        "text": "The fixture application context is validating a paper-reading workflow on local artifacts.",
+        "source_refs": [
+          "S001"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "experimental_setup": [
+      {
+        "text": "The workflow uses a local fixture PDF, source map, deep-read report, and rebuilt notes.",
+        "source_refs": [
+          "S004"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "constraints": [
+      {
+        "text": "The fixture is intentionally minimal and should not be interpreted as a real scientific study.",
+        "source_refs": [
+          "S005"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "transfer_limits": [
+      {
+        "text": "The same contract still needs testing on real downloaded papers with complex figures and equations.",
+        "source_refs": [
+          "S006"
+        ],
+        "confidence": "medium"
+      }
+    ]
+  },
+  "dataset_benchmark_understanding": {
+    "format": "structured_v2",
+    "key_numbers": [
+      {
+        "label": "Evidence-supported central claims",
+        "value": "1",
+        "unit": "claim",
+        "context": "The fixture uses one central claim to exercise row-level evidence references.",
+        "source_refs": [
+          "S004"
+        ]
+      }
+    ],
+    "construction_steps": [
+      {
+        "stage": "Build",
+        "action": "Build the reading fixture from a local PDF.",
+        "output": "Validated structured reading report",
+        "quality_control": "Validate against the schema and reading contract.",
+        "source_refs": [
+          "S003",
+          "S004"
+        ]
+      }
+    ],
+    "biases_or_limits": [
+      {
+        "text": "The intentionally minimal fixture does not represent parsing difficulty on complex real papers.",
+        "source_refs": [
+          "S005",
+          "S006"
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "datasets": [
+      {
+        "text": "Unit fixture PDF.",
+        "source_refs": [
+          "S001"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "metrics": [
+      {
+        "text": "Artifact existence, schema validation, and renderer output.",
+        "source_refs": [
+          "S004"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "main_results": [
+      {
+        "text": "The fixture can produce parsed artifacts, validated reports, and rendered notes.",
+        "source_refs": [
+          "S004"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "ablation_or_comparison_takeaways": [
+      {
+        "text": "Without source refs, the report cannot prove where a claim came from.",
+        "source_refs": [
+          "S006"
+        ],
+        "confidence": "medium"
+      }
+    ],
+    "numeric_results": [
+      {
+        "dataset_or_task": "Fixture benchmark",
+        "metric": "supported main claims",
+        "value": 1,
+        "unit": "claim",
+        "baseline": "unsourced summary",
+        "comparison": "evidence-grounded report",
+        "higher_is_better": true,
+        "source_refs": [
+          "S004"
+        ],
+        "interpretation": "The fixture contains one central claim with explicit evidence support.",
+        "what_it_does_not_prove": "It does not prove robust performance on real multi-section PDFs."
+      }
+    ]
+  },
+  "visual_cards": [
+    {
+      "label": "Figure 1",
+      "kind": "method_overview",
+      "page": 1,
+      "image_path": "papers/Example2026A/page_images/page-001.png",
+      "source_caption": "Fixture page rendered from the PDF.",
+      "placement_section": "method_understanding",
+      "placed_near": "S003",
+      "reading_note": "Use the rendered page to confirm the parser has visual evidence for the fixture.",
+      "crop_status": "full_page_approximate",
+      "source_refs": [
+        "F001",
+        "C001"
+      ]
+    }
+  ],
+  "availability": {
+    "code": {
+      "status": "available",
+      "url": "https://github.com/example/fixture-paper",
+      "evidence": "External GitHub lookup found a fixture repository URL for the synthetic paper.",
+      "source_refs": [
+        "E001"
+      ],
+      "notes": "External retrieval fixture; not a real repository."
+    },
+    "data": {
+      "status": "unknown",
+      "url": null,
+      "evidence": "No data link is present in the fixture PDF.",
+      "source_refs": [
+        "S005"
+      ],
+      "notes": null
+    },
+    "models": {
+      "status": "not_applicable",
+      "url": null,
+      "evidence": "The fixture does not define a model release.",
+      "source_refs": [
+        "S005"
+      ],
+      "notes": null
+    }
+  },
+  "extraction_notes": {
+    "parser_limitations": [
+      "Fixture PDF content is intentionally minimal."
+    ],
+    "missing_sections": [],
+    "low_confidence_equations": [],
+    "visual_crop_limitations": [
+      "Figure 1 uses a full-page rendered image, not a tight crop."
+    ],
+    "external_info_used": [
+      "Synthetic GitHub lookup record used to test the E001 external evidence reference."
+    ]
+  }
+}

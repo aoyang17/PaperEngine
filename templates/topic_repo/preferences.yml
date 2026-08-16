@@ -1,0 +1,9 @@
+schema_version: v2
+effective_feedbacks: 0
+evidence_count: 0
+like: []
+dislike: []
+query_hints: []
+exclude_hints: []
+rationale: ""
+updated_at: "{created_at}"

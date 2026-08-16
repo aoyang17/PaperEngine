@@ -1,0 +1,43 @@
+schema_version: v2
+title: "Silicon-Carbon Anodes for Traction Batteries"
+direction: "Systematic review of silicon-carbon negative-electrode materials, interfaces, manufacturing, degradation, safety, and practical full-cell validation for high-energy traction batteries"
+user_description_raw: "Systematic review of silicon-carbon negative-electrode materials, interfaces, manufacturing, degradation, safety, and practical full-cell validation for high-energy traction batteries"
+seed_papers: []
+refinement_questions_answered: []
+follow:
+  venues: []
+  authors: []
+  keywords:
+    - "silicon-carbon anode"
+    - "silicon-graphite composite"
+    - "prelithiation"
+    - "practical full cell"
+search:
+  positive_terms:
+    - "silicon carbon"
+    - "silicon graphite"
+    - "negative electrode"
+    - "lithium-ion battery"
+    - "traction battery"
+    - "full cell"
+    - "prelithiation"
+    - "high areal loading"
+  negative_terms:
+    - "photovoltaic"
+    - "sensor"
+    - "supercapacitor"
+    - "sodium ion"
+  seed_queries:
+    - '("silicon carbon" OR "Si/C" OR "silicon graphite") anode lithium ion battery review'
+    - 'silicon carbon negative electrode traction battery practical full cell'
+    - 'silicon graphite composite anode manufacturing scale up'
+    - 'silicon carbon anode prelithiation initial coulombic efficiency practical'
+    - 'silicon carbon anode pouch cell high loading lean electrolyte cycle life'
+  exclude_terms:
+    - "positive electrode"
+    - "photovoltaic"
+    - "sensor"
+    - "supercapacitor"
+  default_threshold: 0.55
+created_at: "2026-08-16T04:13:23+00:00"
+updated_at: "2026-08-16T04:13:23+00:00"

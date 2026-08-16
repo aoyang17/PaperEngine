@@ -1,0 +1,18 @@
+schema_version: v2
+title: "{title}"
+direction: "{direction}"
+user_description_raw: "{direction}"
+seed_papers: []
+refinement_questions_answered: []
+follow:
+  venues: []
+  authors: []
+  keywords: []
+search:
+  positive_terms: []
+  negative_terms: []
+  seed_queries: []
+  exclude_terms: []
+  default_threshold: 0.0
+created_at: "{created_at}"
+updated_at: "{created_at}"

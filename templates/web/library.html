@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1 data-i18n="library">Library</h1>
+  <p>{{ papers|length }} <span data-i18n="papers_lower">papers</span></p>
+</section>
+
+{% if papers %}
+<section class="toolbar library-toolbar" data-battery-table-controls="library">
+  <input type="search" placeholder="Search title, bibkey, venue" data-i18n-placeholder="library_search_placeholder" data-search-table="library">
+  <span class="selection-count" data-library-selected-count>0 selected</span>
+  <button type="button" class="read-selected" data-bulk-action="library-read" data-session-action="library_read_selected" data-i18n="read_selected_papers" disabled>Read Paper</button>
+</section>
+
+<div class="table-scroll library-list-shell">
+  <table class="paper-list-table library-list-table" data-battery-table="library">
+    <thead>
+      <tr>
+        <th><label class="select-all-label"><input type="checkbox" data-select-all="library"> <span data-i18n="select">Select</span></label></th>
+        <th><button type="button" data-sort-table="library" data-sort-key="bibkey">Bibkey</button></th>
+        <th><button type="button" data-sort-table="library" data-sort-key="title" data-i18n="title_col">Title</button></th>
+        <th><button type="button" data-sort-table="library" data-sort-key="year" data-i18n="year">Year</button></th>
+        <th><button type="button" data-sort-table="library" data-sort-key="venue" data-i18n="venue">Venue</button></th>
+        <th><button type="button" data-sort-table="library" data-sort-key="doi">DOI</button></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for paper in papers %}
+      <tr
+        data-bibkey="{{ paper.bibkey }}"
+        data-title="{{ paper.title }}"
+        data-year="{{ paper.year }}"
+        data-venue="{{ paper.venue }}"
+        data-doi="{{ paper.doi or '' }}"
+        data-search="{{ paper.bibkey }} {{ paper.title }} {{ paper.venue }} {{ paper.doi or '' }}"
+      >
+        <td><input type="checkbox" name="bibkey" value="{{ paper.bibkey }}"></td>
+        <td><span class="bibkey-chip">{{ paper.bibkey }}</span></td>
+        <td class="library-title-cell">
+          <a class="paper-title" href="/papers/{{ paper.bibkey }}.html" target="_blank" rel="noopener">{{ paper.title }}</a>
+          <span class="paper-title-icons">
+            {% if paper.has_pdf %}<a href="{{ paper.pdf_href }}" target="_blank" rel="noopener" title="PDF" aria-label="PDF">PDF</a>{% endif %}
+            {% if paper.has_knowledge %}<a href="{{ paper.knowledge_href }}" target="_blank" rel="noopener" title="Knowledge" aria-label="Knowledge">Knowledge</a>{% endif %}
+          </span>
+          <div class="paper-row-meta">
+            {% if paper.venue %}<span class="meta-chip">{{ paper.venue }}</span>{% endif %}
+            {% if paper.year %}<span class="meta-chip">{{ paper.year }}</span>{% endif %}
+            {% if paper.doi %}<span class="meta-chip quiet">DOI</span>{% endif %}
+          </div>
+        </td>
+        <td>{{ paper.year }}</td>
+        <td>{{ paper.venue }}</td>
+        <td>{{ paper.doi or "" }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="muted" data-i18n="no_papers_yet">No papers yet</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+schema_version: v2
+effective_feedbacks: 0
+evidence_count: 0
+like: []
+dislike: []
+query_hints: []
+exclude_hints:
+  - "Exclude studies that omit cell configuration and test conditions."
+  - "Down-rank low-loading half-cell demonstrations without practical validation."
+rationale: "Initial preferences prioritize practical, reproducible evidence for high-energy traction-battery cells."
+updated_at: "2026-08-16T04:13:23+00:00"

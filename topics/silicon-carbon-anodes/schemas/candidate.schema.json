@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["candidate_id", "title", "authors", "year", "venue", "abstract", "source", "score", "status", "created_at", "updated_at"],
+  "properties": {
+    "record_id": {"type": "string", "pattern": "^REC-[A-Fa-f0-9]{12}$"},
+    "candidate_id": {"type": "string", "pattern": "^CAND-[0-9]{3,}$"},
+    "title": {"type": "string", "minLength": 1},
+    "authors": {"type": "array", "items": {"type": "string"}},
+    "year": {"type": ["integer", "null"]},
+    "venue": {"type": "string"},
+    "abstract": {"type": "string"},
+    "doi": {"type": ["string", "null"]},
+    "arxiv_id": {"type": ["string", "null"]},
+    "openalex_id": {"type": ["string", "null"]},
+    "semantic_scholar_id": {"type": ["string", "null"]},
+    "dblp_key": {"type": ["string", "null"]},
+    "issn": {"type": ["string", "null"]},
+    "isbn": {"type": ["string", "null"]},
+    "url": {"type": ["string", "null"]},
+    "pdf_url": {"type": ["string", "null"]},
+    "source": {"type": "string"},
+    "score": {"type": "number"},
+    "score_status": {"enum": ["unscored", "scored"]},
+    "score_components": {
+      "type": "object",
+      "properties": {
+        "content": {"type": "number", "minimum": -0.7, "maximum": 0.7},
+        "preference": {"type": "number", "minimum": -0.15, "maximum": 0.15},
+        "credibility": {"type": "number", "minimum": -0.15, "maximum": 0.15}
+      },
+      "required": ["content", "preference", "credibility"],
+      "additionalProperties": false
+    },
+    "score_reasons": {"type": "array", "items": {"type": "string"}},
+    "score_confidence": {"enum": ["low", "medium", "high"]},
+    "scored_by": {"type": "string"},
+    "scored_at": {"type": "string"},
+    "score_version": {"type": "string"},
+    "status": {"enum": ["new", "relevant", "irrelevant", "dismissed", "downloaded", "in_library", "manual_pdf_needed"]},
+    "decision": {"type": ["string", "null"]},
+    "bibkey": {"type": ["string", "null"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"}
+  },
+  "additionalProperties": true
+}

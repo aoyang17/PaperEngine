@@ -1,0 +1,16 @@
+{% if visual_cards %}
+<div class="inline-visuals">
+  {% for item in visual_cards %}
+  <div class="inline-visual">
+    <strong><span class="lang-en">{{ item.display_label }}</span><span class="lang-zh">{{ item.display_label_zh }}</span> · {{ item.crop_status }}</strong>
+    {% if item.image_href %}
+    <button class="visual-open" type="button" data-lightbox-src="{{ item.image_href }}" data-lightbox-title="{{ item.display_label }}"><img src="{{ item.image_href }}" alt="{{ item.label }}"></button>
+    {% elif item.placeholder_reason %}
+    <p class="item-meta">{{ item.placeholder_reason }}</p>
+    {% endif %}
+    <p><span class="lang-en">{{ item.reading_note }}</span><span class="lang-zh">{{ item.reading_note_zh }}</span></p>
+    <span class="item-meta">Evidence: {{ item.source_refs }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

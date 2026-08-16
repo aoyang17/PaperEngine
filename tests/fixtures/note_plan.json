@@ -1,0 +1,36 @@
+{
+  "schema_version": "v3-note-plan-2026-06",
+  "primary_type": "method",
+  "active_lenses": ["method", "application"],
+  "type_rationale": "The fixture behaves like a method workflow and includes a small application lens for renderer validation.",
+  "must_cover": [
+    "How the parser creates paper-local artifacts",
+    "How validation connects claims to evidence",
+    "Where visual evidence is approximate"
+  ],
+  "key_numbers": [
+    "One parsed fixture page",
+    "One rendered page image"
+  ],
+  "central_claims": [
+    "The local pipeline can build traceable paper-reading artifacts."
+  ],
+  "claim_boundaries": [
+    "The fixture does not prove scientific novelty or parser quality on complex PDFs."
+  ],
+  "mechanism_result_map": [
+    "Source-map grounded JSON enables validation and Markdown/HTML rebuild."
+  ],
+  "comparative_positioning": [
+    "Compared with unsourced summaries, this contract requires claim-level evidence IDs."
+  ],
+  "negative_or_limiting_results": [
+    "Full-page visual previews are approximate, not tight figure crops."
+  ],
+  "visual_plan": [
+    "Use the rendered fixture page as a full-page approximate visual card."
+  ],
+  "section_plan": [
+    "Summarize the workflow, then separate claims, method mechanics, evaluation, visuals, and availability."
+  ]
+}

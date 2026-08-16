@@ -1,0 +1,9 @@
+requests>=2.31
+urllib3<2; python_version < "3.10"
+feedparser>=6.0
+fastmcp>=2.0
+pypdf>=4
+mcp[cli]>=1.6.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+httpx[socks]>=0.28.1

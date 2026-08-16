@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "title": "A Paper",
+      "authors": ["Ada Example", "Ben Researcher"],
+      "year": 2026,
+      "venue": "Fixture Conference",
+      "abstract": "A fixture paper about AI scientific discovery and autonomous research agents.",
+      "doi": "10.1234/example.paper",
+      "arxiv_id": "2601.00001",
+      "url": "https://example.org/paper",
+      "source": "arxiv",
+      "citation_count": 12
+    }
+  ]
+}

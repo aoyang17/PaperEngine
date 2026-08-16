@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "bibkey", "backend", "status", "image_inputs", "equations", "errors"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "bibkey": {"type": "string"},
+    "backend": {"type": "string"},
+    "status": {"type": "string", "enum": ["completed", "completed_no_formula", "blocked", "exhausted"]},
+    "image_inputs": {"type": "array", "items": {"type": "string"}},
+    "equations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "page", "image_path", "label", "latex", "plain_text", "meaning", "variables", "confidence", "region_note"],
+        "properties": {
+          "id": {"type": "string"},
+          "page": {"type": "integer"},
+          "image_path": {"type": "string"},
+          "label": {"type": "string"},
+          "latex": {"type": "string"},
+          "plain_text": {"type": "string"},
+          "meaning": {"type": "string"},
+          "variables": {"type": "array", "items": {"type": "string"}},
+          "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+          "region_note": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "errors": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

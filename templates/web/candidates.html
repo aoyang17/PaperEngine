@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1 data-i18n="list">List / 文献列表</h1>
+  <p><span data-i18n="admitted_candidates_intro">Admitted candidates only</span> · {{ candidates|length }} <span data-i18n="candidates_lower">candidates</span></p>
+</section>
+
+<section class="toolbar table-tabs candidate-toolbar" data-battery-table-controls="candidates">
+  <div class="tab-group">
+    <button type="button" data-tab-filter="new" data-filter-table="candidates" data-filter-field="status" data-filter-value="new" data-i18n="queue">Queue</button>
+    <button type="button" data-tab-filter="all" data-filter-table="candidates" data-filter-field="status" data-filter-value="" data-i18n="all">All</button>
+    <button type="button" data-tab-filter="relevant" data-filter-table="candidates" data-filter-field="status" data-filter-value="relevant,in_library,downloaded,manual_pdf_needed" data-i18n="relevant">Relevant</button>
+    <button type="button" data-tab-filter="irrelevant" data-filter-table="candidates" data-filter-field="status" data-filter-value="irrelevant,dismissed" data-i18n="irrelevant">Irrelevant</button>
+  </div>
+  <div class="bulk-actions">
+    <span class="selection-count" data-selected-count data-count-template-en="selected" data-count-template-zh="已选择">0 selected</span>
+    <button type="button" class="download-selected" data-bulk-action="candidate-download" data-session-action="candidate_download_selected" data-i18n="download_selected_pdfs" disabled>Download Selected PDFs</button>
+  </div>
+</section>
+
+<div class="table-scroll candidate-list-shell">
+  <table class="paper-list-table candidate-list-table" data-battery-table="candidates">
+    <thead>
+      <tr>
+        <th class="select-column"><label><input type="checkbox" data-select-all="candidates"> <span data-i18n="select">Select</span></label></th>
+        <th>
+          <button type="button" data-sort-table="candidates" data-sort-key="score" data-i18n="score">Score</button>
+          <select class="head-filter" data-filter-table="candidates" data-filter-field="pdf" aria-label="PDF">
+            <option value="" data-i18n="all">All</option>
+            <option value="yes" data-i18n="has_pdf">Has PDF</option>
+            <option value="no" data-i18n="no_pdf">No PDF</option>
+          </select>
+        </th>
+        <th>
+          <button type="button" data-sort-table="candidates" data-sort-key="title" data-i18n="title_col">Title</button>
+          <input class="head-filter" type="search" placeholder="Search title, authors, abstract" data-i18n-placeholder="candidate_search_placeholder" data-search-table="candidates">
+        </th>
+        <th><button type="button" data-sort-table="candidates" data-sort-key="authors" data-i18n="authors">Authors</button></th>
+        <th><button type="button" data-sort-table="candidates" data-sort-key="year" data-i18n="year">Year</button></th>
+        <th>
+          <button type="button" data-sort-table="candidates" data-sort-key="venue" data-i18n="venue">Venue</button>
+          <select class="head-filter" data-filter-table="candidates" data-filter-field="venue">
+            <option value="">All venues</option>
+            {% for venue in candidate_venues %}<option value="{{ venue }}">{{ venue }}</option>{% endfor %}
+          </select>
+        </th>
+        <th class="relevance-column" data-i18n="set_relevance">Set relevance</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for candidate in candidates %}
+      <tr
+        data-id="{{ candidate.candidate_id }}"
+        data-title="{{ candidate.title }}"
+        data-authors="{{ candidate.authors|join(', ') }}"
+        data-year="{{ candidate.year or '' }}"
+        data-venue="{{ candidate.venue }}"
+        data-score="{{ candidate.score }}"
+        data-status="{{ candidate.status }}"
+        data-decision="{{ candidate.decision or '' }}"
+        data-source="{{ candidate.source }}"
+        data-pdf="{% if candidate.has_pdf %}yes{% else %}no{% endif %}"
+        data-search="{{ candidate.title }} {{ candidate.authors|join(' ') }} {{ candidate.abstract }}"
+      >
+        <td><input type="checkbox" name="candidate_id" value="{{ candidate.candidate_id }}"></td>
+        <td class="score-source">
+          {% if candidate.score_status == "scored" %}
+            <strong>{{ "%.2f"|format(candidate.score) }}</strong>
+          {% else %}
+            <strong class="score-unscored" data-i18n="unscored">Unscored</strong>
+          {% endif %}
+          <span title="{{ candidate.source }}">{{ candidate.source[:2]|upper }}</span>
+        </td>
+        <td>
+          <div>
+            <span class="paper-title">{{ candidate.title }}</span>
+            <span class="paper-title-icons">
+              {% if candidate.has_pdf %}<a href="{{ candidate.pdf_href }}" target="_blank" rel="noopener" title="PDF" aria-label="PDF">PDF</a>{% endif %}
+            </span>
+          </div>
+          <div class="paper-row-meta">
+            {% if candidate.venue %}<span class="meta-chip">{{ candidate.venue }}</span>{% endif %}
+            {% if candidate.source %}<span class="meta-chip source">{{ candidate.source }}</span>{% endif %}
+            {% if candidate.year %}<span class="meta-chip">{{ candidate.year }}</span>{% endif %}
+          </div>
+          <details class="abstract"><summary>Abstract</summary>{{ candidate.abstract }}<div>DOI/arXiv/URL: {{ candidate.doi or candidate.arxiv_id or candidate.url or "" }}</div></details>
+        </td>
+        <td class="authors-cell">{{ candidate.authors|join(", ") }}</td>
+        <td>{{ candidate.year or "" }}</td>
+        <td>{{ candidate.venue }}</td>
+        <td class="relevance-actions relevance-column">
+          <button type="button" class="relevance-button{% if candidate.decision == 'relevant' %} active relevant{% endif %}" data-session-action="candidate_mark_relevant" data-candidate-id="{{ candidate.candidate_id }}" data-decision="relevant" title="Relevant">+</button>
+          <button type="button" class="relevance-button{% if candidate.decision == 'dismissed' %} active dismissed{% endif %}" data-session-action="candidate_dismissed" data-candidate-id="{{ candidate.candidate_id }}" data-decision="dismissed" title="Dismissed">−</button>
+          <button type="button" class="relevance-button{% if candidate.decision == 'irrelevant' %} active irrelevant{% endif %}" data-session-action="candidate_mark_irrelevant" data-candidate-id="{{ candidate.candidate_id }}" data-decision="irrelevant" title="Irrelevant">×</button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

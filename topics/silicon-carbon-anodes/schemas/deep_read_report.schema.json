@@ -1,0 +1,449 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "bibkey",
+    "title",
+    "one_sentence_summary",
+    "paper_profile",
+    "argument_map",
+    "quick_read",
+    "central_claims",
+    "method_understanding",
+    "evaluation",
+    "visual_cards",
+    "availability",
+    "extraction_notes",
+    "translations"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "bibkey": {"type": "string"},
+    "title": {"type": "string"},
+    "authors": {"type": "array", "items": {"type": "string"}},
+    "year": {"type": "integer"},
+    "venue": {"type": "string"},
+    "pdf_path": {"type": "string"},
+    "parsed_markdown_path": {"type": "string"},
+    "source_map_path": {"type": "string"},
+    "one_sentence_summary": {"type": "string"},
+    "translations": {
+      "type": "object",
+      "required": ["zh"],
+      "properties": {
+        "zh": {"$ref": "#/$defs/zhTranslation"}
+      },
+      "additionalProperties": false
+    },
+    "paper_profile": {
+      "type": "object",
+      "required": ["primary_type", "active_lenses", "confidence", "rationale"],
+      "properties": {
+        "primary_type": {"$ref": "#/$defs/paperType"},
+        "active_lenses": {"type": "array", "items": {"$ref": "#/$defs/paperType"}},
+        "confidence": {"type": "string"},
+        "rationale": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "argument_map": {
+      "type": "object",
+      "required": ["gap", "core_contribution", "method_logic", "decisive_evidence", "limitations", "future_work"],
+      "properties": {
+        "gap": {"$ref": "#/$defs/sourcedText"},
+        "core_contribution": {"$ref": "#/$defs/sourcedText"},
+        "method_logic": {"$ref": "#/$defs/sourcedText"},
+        "decisive_evidence": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "limitations": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "future_work": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "quick_read": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/sourcedText"}
+    },
+    "central_claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["claim", "evidence_summary", "source_refs", "what_it_proves", "what_it_does_not_prove", "open_question"],
+        "properties": {
+          "claim": {"type": "string"},
+          "evidence_summary": {"type": "string"},
+          "source_refs": {"$ref": "#/$defs/sourceRefs"},
+          "what_it_proves": {"type": "string"},
+          "what_it_does_not_prove": {"type": "string"},
+          "open_question": {"type": "string"},
+          "confidence": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "method_understanding": {
+      "type": "object",
+      "required": ["pipeline", "engineering_derivation_sketch", "implementation_details"],
+      "properties": {
+        "pipeline": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "algorithm_pseudocode": {"type": ["string", "null"]},
+        "algorithm_steps": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/algorithmStep"}
+        },
+        "engineering_derivation_sketch": {"$ref": "#/$defs/sourcedText"},
+        "implementation_details": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "theory_understanding": {"$ref": "#/$defs/theoryUnderstanding"},
+    "dataset_benchmark_understanding": {"$ref": "#/$defs/datasetBenchmarkUnderstanding"},
+    "survey_understanding": {"$ref": "#/$defs/surveyUnderstanding"},
+    "application_understanding": {"$ref": "#/$defs/applicationUnderstanding"},
+    "system_understanding": {"$ref": "#/$defs/systemUnderstanding"},
+    "evaluation": {
+      "type": "object",
+      "required": ["datasets", "metrics", "main_results", "ablation_or_comparison_takeaways"],
+      "properties": {
+        "datasets": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "metrics": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "main_results": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "ablation_or_comparison_takeaways": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "numeric_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "dataset_or_task",
+              "metric",
+              "value",
+              "unit",
+              "baseline",
+              "comparison",
+              "higher_is_better",
+              "source_refs",
+              "interpretation",
+              "what_it_does_not_prove"
+            ],
+            "properties": {
+              "dataset_or_task": {"type": "string"},
+              "metric": {"type": "string"},
+              "value": {"type": "number"},
+              "unit": {"type": "string"},
+              "baseline": {"type": ["string", "null"]},
+              "comparison": {"type": ["string", "null"]},
+              "higher_is_better": {"type": ["boolean", "null"]},
+              "source_refs": {"$ref": "#/$defs/sourceRefs"},
+              "interpretation": {"type": "string"},
+              "what_it_does_not_prove": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "visual_cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "kind", "page", "source_caption", "placement_section", "placed_near", "reading_note", "crop_status", "source_refs"],
+        "properties": {
+          "label": {"type": "string"},
+          "kind": {"type": "string"},
+          "page": {"type": "integer"},
+          "image_path": {"type": "string"},
+          "placeholder_reason": {"type": "string"},
+          "source_caption": {"type": "string"},
+          "placement_section": {
+            "type": "string",
+            "enum": [
+              "argument_map",
+              "method_understanding",
+              "theory_understanding",
+              "dataset_benchmark_understanding",
+              "survey_understanding",
+              "application_understanding",
+              "system_understanding",
+              "evaluation",
+              "limitations"
+            ]
+          },
+          "placed_near": {"type": "string"},
+          "reading_note": {"type": "string"},
+          "crop_status": {
+            "type": "string",
+            "enum": ["tight_crop", "full_page_approximate", "placeholder", "missing"]
+          },
+          "source_refs": {"$ref": "#/$defs/sourceRefs"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "availability": {
+      "type": "object",
+      "required": ["code", "data", "models"],
+      "properties": {
+        "code": {"$ref": "#/$defs/availabilityItem"},
+        "data": {"$ref": "#/$defs/availabilityItem"},
+        "models": {"$ref": "#/$defs/availabilityItem"}
+      },
+      "additionalProperties": false
+    },
+    "reading_quality": {"$ref": "#/$defs/readingQuality"},
+    "extraction_notes": {
+      "type": "object",
+      "required": ["parser_limitations", "missing_sections", "low_confidence_equations", "visual_crop_limitations", "external_info_used"],
+      "properties": {
+        "parser_limitations": {"type": "array", "items": {"type": "string"}},
+        "missing_sections": {"type": "array", "items": {"type": "string"}},
+        "low_confidence_equations": {"type": "array", "items": {"type": "string"}},
+        "visual_crop_limitations": {"type": "array", "items": {"type": "string"}},
+        "external_info_used": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "readingQuality": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["clean", "accepted_with_limitations"]
+        },
+        "acceptance_reason": {
+          "type": "string",
+          "enum": ["max_cycles_reached"]
+        },
+        "cycles_used": {"type": "integer", "minimum": 1},
+        "open_issues": {"type": "array", "items": {"type": "string"}},
+        "controller_warnings": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "paperType": {
+      "type": "string",
+      "enum": ["method", "theory", "dataset_benchmark", "survey", "application", "system_tooling"]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "sourcedText": {
+      "type": "object",
+      "required": ["text", "source_refs"],
+      "properties": {
+        "text": {"type": "string"},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"},
+        "confidence": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "keyEquation": {
+      "type": "object",
+      "required": ["label", "equation", "explanation", "source_refs"],
+      "properties": {
+        "label": {"type": "string"},
+        "equation": {"type": "string"},
+        "latex": {"type": "string"},
+        "explanation": {"type": "string"},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"},
+        "confidence": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "theoremChainItem": {
+      "type": "object",
+      "required": ["principle", "role", "intuition", "source_refs"],
+      "properties": {
+        "principle": {"type": "string"},
+        "role": {"type": "string"},
+        "intuition": {"type": "string"},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"},
+        "confidence": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "methodFamilyItem": {
+      "type": "object",
+      "required": ["family", "core_idea", "strengths", "limitations", "best_for", "source_refs"],
+      "properties": {
+        "family": {"type": "string"},
+        "core_idea": {"type": "string"},
+        "strengths": {"type": "string"},
+        "limitations": {"type": "string"},
+        "best_for": {"type": "string"},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"},
+        "confidence": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "algorithmStep": {
+      "type": "object",
+      "required": ["step", "action", "source_refs"],
+      "properties": {
+        "step": {"type": "integer", "minimum": 1},
+        "action": {"type": "string"},
+        "inputs": {"type": "string"},
+        "outputs": {"type": "string"},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"},
+        "confidence": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "zhTranslation": {
+      "type": "object",
+      "required": [
+        "one_sentence_summary",
+        "quick_read",
+        "argument_map",
+        "central_claims",
+        "method_understanding",
+        "evaluation",
+        "visual_cards",
+        "availability",
+        "extraction_notes"
+      ],
+      "properties": {
+        "one_sentence_summary": {"type": "string"},
+        "quick_read": {"type": "array", "items": {"type": "string"}},
+        "argument_map": {"type": "object", "additionalProperties": true},
+        "central_claims": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+        "method_understanding": {"type": "object", "additionalProperties": true},
+        "evaluation": {"type": "object", "additionalProperties": true},
+        "visual_cards": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+        "type_sections": {"type": "object", "additionalProperties": true},
+        "availability": {"type": "object", "additionalProperties": true},
+        "extraction_notes": {"type": "object", "additionalProperties": true}
+      },
+      "additionalProperties": false
+    },
+    "theoryUnderstanding": {
+      "type": "object",
+      "required": ["assumptions", "key_results", "engineering_proof_sketch", "limitations"],
+      "properties": {
+        "problem_formulation": {"$ref": "#/$defs/sourcedText"},
+        "key_equations": {"type": "array", "items": {"$ref": "#/$defs/keyEquation"}},
+        "theorem_or_principle_chain": {"type": "array", "items": {"$ref": "#/$defs/theoremChainItem"}},
+        "assumptions": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "key_results": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "engineering_proof_sketch": {"$ref": "#/$defs/sourcedText"},
+        "limitations": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "datasetBenchmarkUnderstanding": {
+      "oneOf": [
+        {"$ref": "#/$defs/datasetBenchmarkLegacy"},
+        {"$ref": "#/$defs/datasetBenchmarkStructuredV2"}
+      ]
+    },
+    "datasetBenchmarkLegacy": {
+      "type": "object",
+      "required": ["data_construction", "statistics", "availability", "biases_or_limits"],
+      "properties": {
+        "data_construction": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "statistics": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "availability": {"$ref": "#/$defs/sourcedText"},
+        "biases_or_limits": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "datasetBenchmarkStructuredV2": {
+      "type": "object",
+      "required": ["format", "key_numbers", "construction_steps", "biases_or_limits"],
+      "properties": {
+        "format": {"const": "structured_v2"},
+        "key_numbers": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/datasetKeyNumberRow"}
+        },
+        "construction_steps": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/datasetConstructionStepRow"}
+        },
+        "biases_or_limits": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/sourcedText"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "datasetKeyNumberRow": {
+      "type": "object",
+      "required": ["label", "value", "context", "source_refs"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "value": {"type": "string", "minLength": 1},
+        "unit": {"type": "string"},
+        "context": {"type": "string", "minLength": 1},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"}
+      },
+      "additionalProperties": false
+    },
+    "datasetConstructionStepRow": {
+      "type": "object",
+      "required": ["stage", "action", "output", "source_refs"],
+      "properties": {
+        "stage": {"type": "string", "minLength": 1},
+        "action": {"type": "string", "minLength": 1},
+        "output": {"type": "string", "minLength": 1},
+        "quality_control": {"type": "string"},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"}
+      },
+      "additionalProperties": false
+    },
+    "surveyUnderstanding": {
+      "type": "object",
+      "required": ["scope", "taxonomy", "timeline_milestones", "coverage_gaps"],
+      "properties": {
+        "scope": {"$ref": "#/$defs/sourcedText"},
+        "taxonomy": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "method_family_matrix": {"type": "array", "items": {"$ref": "#/$defs/methodFamilyItem"}},
+        "timeline_milestones": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "coverage_gaps": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "applicationUnderstanding": {
+      "type": "object",
+      "required": ["task_context", "experimental_setup", "constraints", "transfer_limits"],
+      "properties": {
+        "task_context": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "experimental_setup": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "constraints": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "transfer_limits": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "systemUnderstanding": {
+      "type": "object",
+      "required": ["architecture", "interfaces", "workflow", "failure_modes"],
+      "properties": {
+        "architecture": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "interfaces": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "workflow": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "failure_modes": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "availabilityItem": {
+      "type": "object",
+      "required": ["status", "evidence"],
+      "properties": {
+        "status": {"type": "string"},
+        "url": {"type": ["string", "null"]},
+        "evidence": {"type": "string"},
+        "source_refs": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

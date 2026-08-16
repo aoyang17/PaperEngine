@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · battery_lit</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="workbench-shell">
+    <section class="workspace-pane">
+      <header class="topbar">
+        <nav class="navlinks" aria-label="Primary">
+          {% if bootstrap_mode %}
+            <a href="/dashboard.html" data-i18n="create_topic">Create Topic / 创建主题</a>
+            <span class="nav-disabled" data-i18n="list">List / 文献列表</span>
+            <span class="nav-disabled" data-i18n="library">Library / 文件库</span>
+          {% else %}
+            <a href="/dashboard.html" data-i18n="dashboard">Overview / 总览</a>
+            <a href="/candidates.html" data-i18n="list">List / 文献列表</a>
+            <a href="/library.html" data-i18n="library">Library / 文件库</a>
+          {% endif %}
+        </nav>
+        <div class="page-tools">
+          <label class="language-toggle"><span data-i18n="language">Language</span>
+            <select data-language-select>
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+            </select>
+          </label>
+          <button type="button" class="refresh-icon" data-page-refresh title="Refresh / 刷新" aria-label="Refresh">↻</button>
+        </div>
+      </header>
+      <section class="job-status" data-job-status>
+        {% if sandbox_warning %}
+          <p class="job warning">{{ sandbox_warning }}</p>
+        {% endif %}
+        {% if active_job %}
+          <p class="job active"><span data-i18n="running">Running</span>: {{ active_job.action }} · {{ active_job.job_id }}</p>
+        {% else %}
+          <p class="muted" data-i18n="no_active_job">No active job</p>
+        {% endif %}
+      </section>
+      <main class="workspace-content">
+        {% block content %}{% endblock %}
+      </main>
+    </section>
+
+    <aside class="chat-sidebar product-card" aria-label="Codex operator"{% if bootstrap_mode %} data-session-disabled="true"{% endif %}>
+      <div class="chat-head">
+        <div class="chat-title-row">
+          <h2 data-i18n="codex_console">Codex Console</h2>
+          <p data-session-status>alive</p>
+        </div>
+        <div class="chat-settings-row">
+          <label><span data-i18n="codex_model">Model</span>
+            <select data-codex-model>
+              <option value="gpt-5.6-sol" selected>GPT-5.6 Sol</option>
+              <option value="gpt-5.6-terra">GPT-5.6 Terra</option>
+              <option value="gpt-5.6-luna">GPT-5.6 Luna</option>
+              <option value="gpt-5.5">GPT-5.5</option>
+              <option value="gpt-5.3-codex-spark">GPT-5.3 Codex Spark</option>
+              <option value="default">Account default</option>
+            </select>
+          </label>
+          <label><span data-i18n="effort">Effort</span>
+            <select data-codex-effort>
+              <option value="default">default</option>
+              <option value="low">low</option>
+              <option value="medium" selected>medium</option>
+              <option value="high">high</option>
+              <option value="xhigh">xhigh</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="chat-transcript" data-session-events>
+        <article class="chat-message assistant">
+          <span>codex</span>
+          {% if bootstrap_mode %}
+            <p data-i18n="bootstrap_chat_intro">Create a topic first. Model and effort will be used for initialization; after creation I will enter the new topic.</p>
+          {% else %}
+            <p data-i18n="topic_chat_intro">I have entered the current topic. Tell me the next step, or use the quick commands below.</p>
+          {% endif %}
+        </article>
+      </div>
+      <form class="chat-composer" data-session-message-form>
+        <div class="quick-command-chips">
+          <button type="button" data-session-action="search_30" data-i18n="search_30" {% if bootstrap_mode %}disabled{% endif %}>Search +30</button>
+          <button type="button" data-session-action="score_queue" data-i18n="score_queue" {% if bootstrap_mode %}disabled{% endif %}>Score queue</button>
+          <button type="button" data-session-action="work_status" data-i18n="work_status" {% if bootstrap_mode %}disabled{% endif %}>Work status</button>
+        </div>
+        <textarea name="message" rows="4" data-session-message-input {% if bootstrap_mode %}disabled{% endif %} data-i18n-placeholder="chat_next_placeholder" placeholder="Tell Codex the next step, for example: download PDFs for candidates with score > 0.45 and add them to the library."></textarea>
+        <div class="composer-actions">
+          <button type="button" data-session-stop data-i18n="stop" {% if bootstrap_mode %}disabled{% endif %}>Stop</button>
+          <button type="button" data-session-clear data-i18n="clear_view">Clear view</button>
+          <button type="submit" class="primary" data-i18n="send" {% if bootstrap_mode %}disabled{% endif %}>Send</button>
+        </div>
+      </form>
+    </aside>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "paper", "blocks"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "paper": {
+      "type": "object",
+      "required": ["bibkey", "title", "source_type", "pdf_path", "parsed_markdown_path"],
+      "properties": {
+        "bibkey": {"type": "string"},
+        "title": {"type": "string"},
+        "source_type": {"type": "string"},
+        "pdf_path": {"type": "string"},
+        "parsed_markdown_path": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "page", "section", "type", "source_text", "confidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "page": {"type": "integer", "minimum": 0},
+          "section": {"type": "string"},
+          "section_id": {"type": "string"},
+          "paragraph_ids": {"type": "array", "items": {"type": "string"}},
+          "type": {"type": "string"},
+          "source_kind": {"type": "string"},
+          "source_text": {"type": "string"},
+          "latex": {"type": "string"},
+          "image_path": {"type": "string"},
+          "bbox": {
+            "type": "array",
+            "items": {"type": "number"},
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "backend": {"type": "string"},
+          "confidence": {"type": "string"},
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

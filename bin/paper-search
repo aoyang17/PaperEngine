@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+export PYTHONPATH="${ROOT_DIR}/third_party/paper-search-mcp:${ROOT_DIR}/.backend-deps:${PYTHONPATH:-}"
+exec python3 -m paper_search_mcp.cli "$@"
+

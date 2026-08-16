@@ -1,0 +1,10 @@
+<ul class="knowledge-list">
+{% for item in items or [] %}
+  <li>
+    <span><span class="lang-en">{{ item.text }}</span><span class="lang-zh">{{ item.text_zh }}</span></span>
+    {% if item.meta %}<small>{{ item.meta }}</small>{% endif %}
+  </li>
+{% else %}
+  <li><em>none</em></li>
+{% endfor %}
+</ul>
