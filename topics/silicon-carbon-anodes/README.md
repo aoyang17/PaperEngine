@@ -1,4 +1,4 @@
-# Silicon-Carbon Anodes for Traction Batteries
+# 动力电池硅碳负极文献调研
 
 This is a battery Research Literature topic repository.
 
