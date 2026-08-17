@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="zh-CN" data-lang="zh">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
         {% if paper.pdf_href %}<a href="{{ paper.pdf_href }}">PDF</a>{% endif %}
         {% if paper.note_href %}<a href="{{ paper.note_href }}">Markdown note</a>{% endif %}
       </p>
-      {% if paper.report.profile_badges %}
+      {% if paper.report.profile_badges and not paper.report.materials_sections_complete %}
       <div class="chips profile-chips">
         {% for badge in paper.report.profile_badges %}<span>{{ badge }}</span>{% endfor %}
       </div>
@@ -53,6 +53,39 @@
     </section>
     {% endif %}
 
+    {% if paper.report.research_overview.has_content %}
+    <section class="knowledge-panel full-width research-overview-panel">
+      <p class="section-kicker"><span class="lang-en">Section 1 of 6</span><span class="lang-zh">六大块 · 第一节</span></p>
+      <h2><span class="lang-en">Paper Overview</span><span class="lang-zh">论文概览</span></h2>
+      <div class="study-identity">
+        <span class="identity-type"><span class="lang-en">{{ paper.report.research_overview.identity.study_type }}</span><span class="lang-zh">{{ paper.report.research_overview.identity.study_type_zh }}</span></span>
+        <span><span class="lang-en">{{ paper.report.research_overview.identity.domain }}</span><span class="lang-zh">{{ paper.report.research_overview.identity.domain_zh }}</span></span>
+        <span><span class="lang-en">{{ paper.report.research_overview.identity.evidence_mode }}</span><span class="lang-zh">{{ paper.report.research_overview.identity.evidence_mode_zh }}</span></span>
+        {% if paper.report.research_overview.identity.source_refs %}<small>{{ paper.report.research_overview.identity.source_refs }}</small>{% endif %}
+      </div>
+      <h3><span class="lang-en">Fit to the four research modules</span><span class="lang-zh">四个研究模块归属</span></h3>
+      <div class="module-alignment-grid">
+      {% for item in paper.report.research_overview.modules %}
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">{{ item.title }}</span><span class="lang-zh">{{ item.title_zh }}</span></strong><b>{{ item.score_percent }}%</b></div>
+          <div class="module-score-track"><i style="width: {{ item.score_percent }}%"></i></div>
+          <p class="module-role"><span class="lang-en">{{ item.role }}</span><span class="lang-zh">{{ item.role_zh }}</span></p>
+          <p><span class="lang-en">{{ item.rationale }}</span><span class="lang-zh">{{ item.rationale_zh }}</span></p>
+          {% if item.source_refs %}<span class="item-meta">{{ item.source_refs }}</span>{% endif %}
+        </article>
+      {% endfor %}
+      </div>
+      <div class="overview-field-grid">
+      {% for item in paper.report.research_overview.fields %}
+        <article class="overview-field overview-{{ item.key }}">
+          <h3><span class="lang-en">{{ item.label }}</span><span class="lang-zh">{{ item.label_zh }}</span></h3>
+          <p><span class="lang-en">{{ item.text }}</span><span class="lang-zh">{{ item.text_zh }}</span></p>
+          {% if item.meta %}<span class="item-meta">{{ item.meta }}</span>{% endif %}
+        </article>
+      {% endfor %}
+      </div>
+    </section>
+    {% else %}
     <section class="knowledge-panel full-width wide">
       <h2><span class="lang-en">One-sentence summary</span><span class="lang-zh">一句话总结</span></h2>
       <p class="summary-text"><span class="lang-en">{{ paper.report.one_sentence_summary }}</span><span class="lang-zh">{{ paper.report.one_sentence_summary_zh }}</span></p>
@@ -91,7 +124,66 @@
       {% endfor %}
       </div>
     </section>
+    {% endif %}
 
+    {% if paper.report.materials_sections_complete %}
+    {% for section in paper.report.materials_sections %}
+    <section class="knowledge-panel full-width materials-section materials-section-{{ section.number }}">
+      <p class="section-kicker"><span class="lang-en">Section {{ section.number }} of 6</span><span class="lang-zh">六大块 · 第 {{ section.number }} 节</span></p>
+      <h2><span class="lang-en">{{ section.title }}</span><span class="lang-zh">{{ section.title_zh }}</span></h2>
+      {% for group in section.groups %}
+      <div class="materials-group">
+        <h3><span class="lang-en">{{ group.label }}</span><span class="lang-zh">{{ group.label_zh }}</span></h3>
+        {% if group.kind == "single" %}
+          <p class="summary-text"><span class="lang-en">{{ group.single.text }}</span><span class="lang-zh">{{ group.single.text_zh }}</span></p>
+          {% if group.single.meta %}<span class="item-meta">{{ group.single.meta }}</span>{% endif %}
+        {% elif group.kind == "items" %}
+          {% with items=group["items"] %}{% include "paper_items.html" %}{% endwith %}
+        {% elif group.kind == "equations" %}
+          <div class="equation-grid">
+          {% for row in group.equations %}
+            <article class="equation-card">
+              <strong><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></strong>
+              <pre class="equation-block">{{ row.equation }}</pre>
+              <p><span class="lang-en">{{ row.explanation }}</span><span class="lang-zh">{{ row.explanation_zh }}</span></p>
+              <span class="item-meta">{{ row.source_refs }}</span>
+            </article>
+          {% endfor %}
+          </div>
+        {% elif group.kind == "parameters" %}
+          <div class="table-scroll" tabindex="0"><table class="compact-table parameter-table">
+            <thead><tr><th><span class="lang-en">Parameter</span><span class="lang-zh">参数</span></th><th><span class="lang-en">Symbol</span><span class="lang-zh">符号</span></th><th><span class="lang-en">Value</span><span class="lang-zh">数值</span></th><th><span class="lang-en">Role</span><span class="lang-zh">作用</span></th></tr></thead>
+            <tbody>{% for row in group.parameters %}<tr><td><span class="lang-en">{{ row.name }}</span><span class="lang-zh">{{ row.name_zh }}</span></td><td>{{ row.symbol }}</td><td>{{ row.value }} {{ row.unit }}</td><td><span class="lang-en">{{ row.role }}</span><span class="lang-zh">{{ row.role_zh }}</span><br><span class="item-meta">{{ row.source_refs }}</span></td></tr>{% endfor %}</tbody>
+          </table></div>
+        {% endif %}
+      </div>
+      {% endfor %}
+
+      {% if section.key == "research_value_resources" %}
+      <div class="materials-group">
+        <h3><span class="lang-en">Key figures and tables</span><span class="lang-zh">关键图表</span></h3>
+        <div class="visual-grid">
+        {% for item in paper.report.visual_cards %}
+          <article class="visual-card">
+            <strong><span class="lang-en">{{ item.display_label }}</span><span class="lang-zh">{{ item.display_label_zh }}</span></strong>
+            {% if item.image_href %}<button class="visual-open" type="button" data-lightbox-src="{{ item.image_href }}" data-lightbox-title="{{ item.display_label }}"><img src="{{ item.image_href }}" alt="{{ item.label }}"></button>{% endif %}
+            <p><span class="lang-en">{{ item.reading_note }}</span><span class="lang-zh">{{ item.reading_note_zh }}</span></p>
+            <span class="item-meta">{{ item.source_refs }}</span>
+          </article>
+        {% endfor %}
+        </div>
+      </div>
+      <div class="materials-group">
+        <h3><span class="lang-en">Code, data, and model availability</span><span class="lang-zh">代码、数据与模型资源</span></h3>
+        <table class="compact-table"><tbody>{% for row in paper.report.availability_rows %}<tr><th><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></th><td><strong><span class="lang-en">{{ row.status }}</span><span class="lang-zh">{{ row.status_zh }}</span></strong><br><span class="item-meta"><span class="lang-en">{{ row.detail }}</span><span class="lang-zh">{{ row.detail_zh }}</span></span></td></tr>{% endfor %}</tbody></table>
+      </div>
+      <p class="resource-links">{% if paper.pdf_href %}<a href="{{ paper.pdf_href }}">PDF</a>{% endif %} {% if paper.note_href %}<a href="{{ paper.note_href }}"><span class="lang-en">Reading note</span><span class="lang-zh">阅读笔记</span></a>{% endif %}</p>
+      {% endif %}
+    </section>
+    {% endfor %}
+    {% endif %}
+
+    {% if not paper.report.materials_sections_complete %}
     <section class="knowledge-panel full-width">
       <h2><span class="lang-en">Method Understanding</span><span class="lang-zh">方法理解</span></h2>
       {% with visual_cards=paper.report.visual_cards_by_section.get("method_understanding", []) %}{% include "paper_visual_inline.html" %}{% endwith %}
@@ -380,6 +472,7 @@
         </tbody>
       </table>
     </details>
+    {% endif %}
     {% else %}
     <section class="knowledge-panel full-width empty-state">
       <h2>No structured reading report yet</h2>
@@ -403,7 +496,7 @@
         document.documentElement.dataset.lang = lang;
         try { localStorage.setItem("battery-paper-lang", lang); } catch (error) {}
       }
-      setLang(localStorage.getItem("battery-paper-lang") || "en");
+      setLang(localStorage.getItem("battery-paper-lang") || "zh");
       document.querySelectorAll("[data-lang-button]").forEach(function (button) {
         button.addEventListener("click", function () { setLang(button.dataset.langButton); });
       });

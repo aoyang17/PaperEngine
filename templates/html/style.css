@@ -37,6 +37,26 @@ article { white-space: pre-wrap; background: white; border: 1px solid #d8dee4; b
 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
 .chips span { background: #eef6f1; border: 1px solid #c7dfd2; border-radius: 999px; color: #174b37; padding: 4px 8px; }
 .profile-chips { margin-top: 12px; }
+.research-overview-panel { border-top: 4px solid #237a57; }
+.section-kicker { color: #237a57; font-size: 12px; font-weight: 700; letter-spacing: .08em; margin: 0 0 6px; text-transform: uppercase; }
+.study-identity { align-items: center; background: #f4f8f5; border-radius: 6px; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; padding: 12px; }
+.study-identity > span { background: white; border: 1px solid #d8e5dc; border-radius: 999px; padding: 5px 9px; }
+.study-identity .identity-type { background: #237a57; color: white; font-weight: 700; }
+.study-identity small { color: #65736b; width: 100%; }
+.module-alignment-grid, .overview-field-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.module-alignment-card, .overview-field { border: 1px solid #dfe6e1; border-radius: 6px; padding: 12px; }
+.module-alignment-head { align-items: start; display: flex; gap: 8px; justify-content: space-between; }
+.module-alignment-head b { color: #237a57; }
+.module-score-track { background: #e5ece7; border-radius: 99px; height: 6px; margin: 9px 0; overflow: hidden; }
+.module-score-track i { background: #237a57; display: block; height: 100%; }
+.module-role { color: #237a57; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.overview-field h3 { margin-top: 0; }
+.overview-one_sentence_conclusion { background: #f4f8f5; grid-column: 1 / -1; }
+.materials-section { border-top: 3px solid #d8e5dc; }
+.materials-group { border-top: 1px solid #edf1ee; margin-top: 16px; padding-top: 2px; }
+.materials-group:first-of-type { border-top: 0; }
+.parameter-table td:nth-child(2), .parameter-table td:nth-child(3) { white-space: nowrap; }
+.resource-links { display: flex; gap: 10px; margin-top: 16px; }
 .knowledge-list { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
 .knowledge-list li { border-left: 3px solid #b8c2cc; padding-left: 10px; }
 .knowledge-list span { display: block; }
@@ -102,4 +122,4 @@ article { white-space: pre-wrap; background: white; border: 1px solid #d8dee4; b
 .lightbox p { color: white; font-weight: 700; margin: 0; }
 .lightbox-close { align-self: flex-end; background: white; border: 0; border-radius: 999px; cursor: pointer; font-weight: 700; padding: 7px 12px; }
 .empty-state { color: #59636e; }
-@media (max-width: 700px) { table { display: block; overflow-x: auto; } .table-scroll table { display: table; overflow-x: visible; } nav { flex-wrap: wrap; } .metrics, .knowledge-grid, .claim-grid, .visual-grid, .argument-grid, .inline-visuals, .equation-grid { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { table { display: block; overflow-x: auto; } .table-scroll table { display: table; overflow-x: visible; } nav { flex-wrap: wrap; } .metrics, .knowledge-grid, .claim-grid, .visual-grid, .argument-grid, .inline-visuals, .equation-grid, .module-alignment-grid, .overview-field-grid { grid-template-columns: 1fr; } }

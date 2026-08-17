@@ -1,3 +1,8 @@
+---
+name: paper-deep-read
+description: Produce evidence-traceable bilingual deep-reading reports, including the six-block materials, electrochemistry, mechanics, and multiphysics paper structure.
+---
+
 # paper_deep_read
 
 Use the current Codex session to read one paper and write traceable deep-reading artifacts. Do not call arbitrary `codex exec` or spawn another model process from this skill. The model-backed exceptions are project CLI commands with bounded artifact contracts: `battery_lit read <bibkey> --vision-formulas` for selected formula pages, and, for multi-paper jobs routed through `paper_reread`, `battery_lit read-many` for controlled independent reader/reviewer paper jobs.
@@ -28,6 +33,7 @@ Read one paper at a time. Do not scan every paper directory or read every `deep_
 - Read `references/numeric-results.md` before extracting metrics or comparisons.
 - Read `references/visual-card.md` before adding figure/table evidence.
 - Read `references/output-contract.md` before writing artifacts.
+- For battery-material, electrochemical, mechanics, or multiphysics papers, read `references/materials-report-structure.md` and use its six-block reader structure instead of an algorithm-paper narrative.
 
 ## Outputs
 

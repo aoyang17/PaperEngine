@@ -112,6 +112,11 @@ def _report_view(report: dict[str, Any] | None, root: Path, current_page: str) -
     zh = _zh(report)
     view["reading_quality"] = _reading_quality_view(report.get("reading_quality"))
     view["one_sentence_summary_zh"] = _zh_text(zh.get("one_sentence_summary"), report.get("one_sentence_summary"))
+    view["research_overview"] = _research_overview_view(
+        report.get("research_overview"), source_index, zh.get("research_overview")
+    )
+    view["materials_sections"] = _materials_sections_view(report, source_index, zh)
+    view["materials_sections_complete"] = view["research_overview"]["has_content"] and len(view["materials_sections"]) == 5
     view["availability_rows"] = _availability_rows(report.get("availability"), zh.get("availability"))
     view["profile_badges"] = _profile_badges(report.get("paper_profile"))
     view["argument_rows"] = _argument_rows(report.get("argument_map"), source_index, zh.get("argument_map"))
@@ -170,6 +175,144 @@ def _profile_badges(value: Any) -> list[str]:
         badges.append(str(value["primary_type"]))
     badges.extend(str(item) for item in value.get("active_lenses") or [] if str(item).strip())
     return list(dict.fromkeys(badges))
+
+
+def _research_overview_view(value: Any, source_index: dict[str, dict[str, Any]], zh_value: Any = None) -> dict[str, Any]:
+    if not isinstance(value, dict):
+        return {"has_content": False, "identity": {}, "modules": [], "fields": []}
+    zh = zh_value if isinstance(zh_value, dict) else {}
+    identity = value.get("study_identity") if isinstance(value.get("study_identity"), dict) else {}
+    identity_zh = zh.get("study_identity") if isinstance(zh.get("study_identity"), dict) else {}
+    modules_zh = zh.get("module_alignment") if isinstance(zh.get("module_alignment"), list) else []
+    modules = []
+    for index, item in enumerate(value.get("module_alignment") or []):
+        if not isinstance(item, dict):
+            continue
+        translated = _list_item(modules_zh, index)
+        translated = translated if isinstance(translated, dict) else {}
+        modules.append({
+            "module_id": str(item.get("module_id") or ""),
+            "title": str(item.get("module_title") or ""),
+            "title_zh": _zh_text(translated.get("module_title"), item.get("module_title")),
+            "score": f"{float(item.get('score') or 0):.2f}",
+            "score_percent": round(float(item.get("score") or 0) * 100),
+            "role": str(item.get("role") or ""),
+            "role_zh": _zh_text(translated.get("role_label"), item.get("role")),
+            "rationale": str(item.get("rationale") or ""),
+            "rationale_zh": _zh_text(translated.get("rationale"), item.get("rationale")),
+            "source_refs": _evidence_labels([str(ref) for ref in item.get("source_refs") or []], source_index),
+        })
+    labels = [
+        ("One-sentence conclusion", "一句话结论", "one_sentence_conclusion"),
+        ("Why it is worth reading", "为什么值得读", "why_worth_reading"),
+        ("Research problem", "研究问题", "research_problem"),
+        ("Prior gap", "已有研究缺口", "prior_gap"),
+        ("Core contribution", "核心贡献", "core_contribution"),
+        ("Scope boundary", "结论与适用边界", "scope_boundary"),
+    ]
+    fields = []
+    for label, label_zh, key in labels:
+        if isinstance(value.get(key), dict):
+            row = _sourced_item_view(value[key], source_index, zh.get(key))
+            row.update({"label": label, "label_zh": label_zh, "key": key})
+            fields.append(row)
+    return {
+        "has_content": bool(identity or modules or fields),
+        "identity": {
+            "study_type": str(identity.get("study_type") or ""),
+            "study_type_zh": _zh_text(identity_zh.get("study_type_label"), identity.get("study_type")),
+            "domain": str(identity.get("domain") or ""),
+            "domain_zh": _zh_text(identity_zh.get("domain"), identity.get("domain")),
+            "evidence_mode": str(identity.get("evidence_mode") or ""),
+            "evidence_mode_zh": _zh_text(identity_zh.get("evidence_mode"), identity.get("evidence_mode")),
+            "source_refs": _evidence_labels([str(ref) for ref in identity.get("source_refs") or []], source_index),
+        },
+        "modules": modules,
+        "fields": fields,
+    }
+
+
+def _materials_sections_view(report: dict[str, Any], source_index: dict[str, dict[str, Any]], zh: dict[str, Any]) -> list[dict[str, Any]]:
+    contracts = [
+        ("research_system", "Research System and Problem Definition", "研究体系与问题定义", [
+            ("research_object", "Research object", "研究对象", "single"),
+            ("geometry_and_scale", "Geometry and scale", "几何与尺度", "items"),
+            ("phases_and_composition", "Phases and composition", "相与化学组成", "items"),
+            ("process_and_loading", "Process and loading", "过程与载荷", "items"),
+            ("state_variables", "State variables", "状态变量", "items"),
+            ("target_outputs", "Target outputs", "目标输出", "items"),
+        ]),
+        ("model_and_mechanisms", "Model and Physical Mechanisms", "模型与物理机制", [
+            ("framework", "Model framework", "模型框架", "single"),
+            ("assumptions", "Model assumptions", "模型假设", "items"),
+            ("free_energy", "Free energy and thermodynamics", "自由能与热力学框架", "items"),
+            ("governing_equations", "Governing equations", "控制方程", "equations"),
+            ("constitutive_relations", "Constitutive relations", "材料本构关系", "equations"),
+            ("coupling_logic", "Coupling logic", "耦合关系", "items"),
+        ]),
+        ("computational_reproducibility", "Computational Setup and Reproducibility", "计算设置与可复现性", [
+            ("parameters", "Model parameters", "模型参数", "parameters"),
+            ("initial_conditions", "Initial conditions", "初始条件", "items"),
+            ("boundary_conditions", "Boundary conditions", "边界条件", "items"),
+            ("numerical_implementation", "Numerical implementation", "数值实现", "items"),
+            ("reproducibility_check", "Reproducibility check", "可复现性检查", "items"),
+        ]),
+        ("results_validation_mechanisms", "Results, Validation, and Mechanisms", "结果、验证与机理", [
+            ("key_results", "Key results", "关键结果", "items"),
+            ("validation_and_comparison", "Validation and comparison", "验证与对比", "items"),
+            ("mechanistic_interpretation", "Mechanistic interpretation", "机理解释", "items"),
+            ("sensitivity_and_uncovered", "Sensitivity and uncovered questions", "参数敏感性与未覆盖问题", "items"),
+            ("experimental_correspondence", "Correspondence with experiments", "与实验的对应关系", "items"),
+        ]),
+        ("research_value_resources", "Research Value and Resources", "研究价值与资源", [
+            ("module_value", "Value to the four research modules", "对四个研究模块的价值", "items"),
+            ("reusable_elements", "Reusable elements", "可复用内容", "items"),
+            ("limitations_and_next_steps", "Limitations and next steps", "局限与下一步", "items"),
+            ("reproducibility_verdict", "Reproducibility verdict", "可复现性结论", "single"),
+        ]),
+    ]
+    sections: list[dict[str, Any]] = []
+    for section_index, (key, title, title_zh, groups_contract) in enumerate(contracts, start=2):
+        raw = report.get(key)
+        if not isinstance(raw, dict):
+            continue
+        translated = zh.get(key) if isinstance(zh.get(key), dict) else {}
+        groups = []
+        for field, label, label_zh, kind in groups_contract:
+            value = raw.get(field)
+            zh_value = translated.get(field)
+            group: dict[str, Any] = {"label": label, "label_zh": label_zh, "kind": kind, "items": [], "equations": [], "parameters": []}
+            if kind == "single":
+                group["single"] = _sourced_item_view(value, source_index, zh_value)
+            elif kind == "items":
+                group["items"] = [_sourced_item_view(item, source_index, _list_item(zh_value, i)) for i, item in enumerate(value or [])]
+            elif kind == "equations":
+                for i, item in enumerate(value or []):
+                    if not isinstance(item, dict):
+                        continue
+                    z = _list_item(zh_value, i)
+                    z = z if isinstance(z, dict) else {}
+                    group["equations"].append({
+                        "label": str(item.get("label") or ""), "label_zh": _zh_text(z.get("label"), item.get("label")),
+                        "equation": str(item.get("equation") or ""),
+                        "explanation": str(item.get("explanation") or ""), "explanation_zh": _zh_text(z.get("explanation"), item.get("explanation")),
+                        "source_refs": _evidence_labels([str(ref) for ref in item.get("source_refs") or []], source_index),
+                    })
+            elif kind == "parameters":
+                for i, item in enumerate(value or []):
+                    if not isinstance(item, dict):
+                        continue
+                    z = _list_item(zh_value, i)
+                    z = z if isinstance(z, dict) else {}
+                    group["parameters"].append({
+                        "name": str(item.get("name") or ""), "name_zh": _zh_text(z.get("name"), item.get("name")),
+                        "symbol": str(item.get("symbol") or ""), "value": str(item.get("value") or ""), "unit": str(item.get("unit") or ""),
+                        "role": str(item.get("role") or ""), "role_zh": _zh_text(z.get("role"), item.get("role")),
+                        "source_refs": _evidence_labels([str(ref) for ref in item.get("source_refs") or []], source_index),
+                    })
+            groups.append(group)
+        sections.append({"number": section_index, "key": key, "title": title, "title_zh": title_zh, "groups": groups})
+    return sections
 
 
 def _skim_view(

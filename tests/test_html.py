@@ -359,6 +359,39 @@ def test_paper_page_handles_missing_deep_read_report(tmp_path):
     assert "BibTeX" in text
 
 
+def test_materials_report_renders_six_sections_and_hides_algorithm_layout(tmp_path):
+    init_topic(tmp_path, title="Materials")
+    collect(tmp_path, fixture=fixture_path("search_results.json"))
+    acquire_pdf(tmp_path, "CAND-001", fixture_path("example.pdf"))
+    promote_candidate(tmp_path, "CAND-001")
+    report = json.loads(fixture_path("deep_read_report.json").read_text(encoding="utf-8"))
+    sourced = {"text": "Paper-specific physical interpretation with traceable evidence.", "source_refs": ["S001"]}
+    report["research_overview"] = {
+        "study_identity": {"study_type": "computational", "domain": "Coupled materials simulation", "evidence_mode": "Finite-element evidence", "source_refs": ["S001"]},
+        "module_alignment": [{"module_id": "m1", "module_title": "Module one", "score": 0.9, "role": "primary", "rationale": "Directly addresses the configured physical problem.", "source_refs": ["S001"]}],
+        "one_sentence_conclusion": sourced, "why_worth_reading": sourced, "research_problem": sourced,
+        "prior_gap": sourced, "core_contribution": sourced, "scope_boundary": sourced,
+    }
+    report["research_system"] = {"research_object": sourced, "geometry_and_scale": [sourced], "phases_and_composition": [sourced], "process_and_loading": [sourced], "state_variables": [sourced], "target_outputs": [sourced]}
+    report["model_and_mechanisms"] = {"framework": sourced, "assumptions": [sourced], "free_energy": [sourced], "governing_equations": [], "constitutive_relations": [], "coupling_logic": [sourced]}
+    report["computational_reproducibility"] = {"parameters": [], "initial_conditions": [sourced], "boundary_conditions": [sourced], "numerical_implementation": [sourced], "reproducibility_check": [sourced]}
+    report["results_validation_mechanisms"] = {"key_results": [sourced], "validation_and_comparison": [sourced], "mechanistic_interpretation": [sourced], "sensitivity_and_uncovered": [sourced], "experimental_correspondence": [sourced]}
+    report["research_value_resources"] = {"module_value": [sourced], "reusable_elements": [sourced], "limitations_and_next_steps": [sourced], "reproducibility_verdict": sourced}
+    report["translations"]["zh"].update({
+        "research_overview": {"study_identity": {"study_type_label": "计算建模研究", "domain": "材料耦合仿真", "evidence_mode": "有限元证据"}, "module_alignment": [{"module_title": "模块一", "role_label": "主模块", "rationale": "直接研究所配置的物理问题。"}], **{key: "具有原文证据的论文专属物理解读。" for key in ["one_sentence_conclusion", "why_worth_reading", "research_problem", "prior_gap", "core_contribution", "scope_boundary"]}},
+        "research_system": {}, "model_and_mechanisms": {}, "computational_reproducibility": {},
+        "results_validation_mechanisms": {}, "research_value_resources": {},
+    })
+    _write_reading_bundle(tmp_path, "Example2026A", report=report)
+    rebuild_note(tmp_path, "Example2026A")
+    build_html(tmp_path)
+    text = (tmp_path / "papers" / "Example2026A" / "reading_result.html").read_text(encoding="utf-8")
+    for heading in ["Paper Overview", "Research System and Problem Definition", "Model and Physical Mechanisms", "Computational Setup and Reproducibility", "Results, Validation, and Mechanisms", "Research Value and Resources"]:
+        assert heading in text
+    assert "Algorithm Steps" not in text
+    assert "Dataset / Benchmark Understanding" not in text
+
+
 def test_paper_page_formats_pseudocode_and_local_assets(tmp_path):
     init_topic(tmp_path, title="Pseudocode")
     collect(tmp_path, fixture=fixture_path("search_results.json"))

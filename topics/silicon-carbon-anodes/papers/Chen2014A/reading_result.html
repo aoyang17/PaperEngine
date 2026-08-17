@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="zh-CN" data-lang="zh">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,729 +22,694 @@
       <p class="meta-line">
         L. Chen, F. Fan, L. Hong, J. Chen, Y. Z. Ji, S. L. Zhang, T. Zhu, L. Q. Chen · 2014 · Journal of The Electrochemical Society
          · DOI 10.1149/2.0171411jes
-        
+
       </p>
       <p class="link-row">
         <a href="paper.pdf">PDF</a>
         <a href="note.md">Markdown note</a>
       </p>
-      
-      <div class="chips profile-chips">
-        <span>theory</span><span>method</span><span>application</span>
-      </div>
-      
+
     </header>
 
-    
-    
 
-    <section class="knowledge-panel full-width wide">
-      <h2><span class="lang-en">One-sentence summary</span><span class="lang-zh">一句话总结</span></h2>
-      <p class="summary-text"><span class="lang-en">Chen et al. couple a free-energy-based Cahn-Hilliard phase field to finite J2 elasto-plasticity, showing in a lithiating silicon nanowire that a stable nanoscale phase front and chemical expansion constrained by the lithiated outer shell drive the surface hoop stress from compression into late-stage tension, while plasticity limits and redistributes stress.</span><span class="lang-zh">Chen 等将基于自由能的 Cahn–Hilliard 相场与有限变形 J2 弹塑性耦合，针对硅纳米线锂化表明：稳定的纳米级相界面以及受已锂化外壳约束的化学膨胀会使表面环向应力由早期压缩转为后期拉伸，而塑性负责限制并重新分配应力。</span></p>
-    </section>
 
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Quick Read</span><span class="lang-zh">快速阅读</span></h2>
-      <ul class="knowledge-list">
 
-  <li>
-    <span><span class="lang-en">The state variable is normalized Li concentration c-hat; one conserved field simultaneously distinguishes Li-poor crystalline Si from Li-rich amorphous LixSi and tracks local lithiation.</span><span class="lang-zh">状态变量为归一化锂浓度 ĉ；同一个守恒场既区分贫锂晶态硅与富锂非晶 LixSi，也描述局部锂化程度。</span></span>
-    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</small>
-  </li>
 
-  <li>
-    <span><span class="lang-en">The governing transport law is a Cahn-Hilliard equation driven by chemical/gradient and elastic contributions to chemical potential; although the formal decomposition includes a plastic term, it vanishes because the paper assumes plastic energy is independent of normalized concentration. Multiplicative finite-deformation kinematics and J2 plasticity govern the mechanical response separately.</span><span class="lang-zh">输运方程是 Cahn–Hilliard 方程，化学势的有效驱动力来自化学/梯度项与弹性项；形式分解虽然包含塑性项，但由于论文假设塑性能与归一化浓度无关，μ_pl=0。乘法有限变形运动学与 J2 塑性则单独控制力学响应。</span></span>
-    <small>Evidence: Phase-Field Model, p.5 (equation); Problem Description and Constitutive Model, p.3 (body text) | confidence: high</small>
-  </li>
+    <section class="knowledge-panel full-width research-overview-panel">
+      <p class="section-kicker"><span class="lang-en">Section 1 of 6</span><span class="lang-zh">六大块 · 第一节</span></p>
+      <h2><span class="lang-en">Paper Overview</span><span class="lang-zh">论文概览</span></h2>
+      <div class="study-identity">
+        <span class="identity-type"><span class="lang-en">computational</span><span class="lang-zh">计算建模研究</span></span>
+        <span><span class="lang-en">Coupled phase-field, chemo-mechanics, and finite-deformation simulation of silicon lithiation</span><span class="lang-zh">硅锂化的相场—化学力学—有限变形耦合仿真</span></span>
+        <span><span class="lang-en">Thermodynamic formulation, finite-element case study, analytical interface-width check, and comparison with a prior diffusion model</span><span class="lang-zh">热力学建模、有限元算例、界面宽度解析校核及与既有扩散模型对比</span></span>
+        <small>Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text); Numerical Results, p.7 (figure); Numerical Results, p.8 (figure)</small>
+      </div>
+      <h3><span class="lang-en">Fit to the four research modules</span><span class="lang-zh">四个研究模块归属</span></h3>
+      <div class="module-alignment-grid">
 
-  <li>
-    <span><span class="lang-en">COMSOL solves the split second-order phase-field equations and mechanical equilibrium on a quarter-domain triangular mesh with implicit first-order time integration.</span><span class="lang-zh">COMSOL 在四分之一圆域的三角形网格上求解拆分后的二阶相场方程和力学平衡，时间积分采用一阶隐式格式。</span></span>
-    <small>Evidence: Numerical Implementation, p.5 (body text) | confidence: high</small>
-  </li>
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">CVD-deposited nanosilicon in micron-scale porous carbon</span><span class="lang-zh">微米级多孔碳中 CVD 沉积纳米硅</span></strong><b>12%</b></div>
+          <div class="module-score-track"><i style="width: 12%"></i></div>
+          <p class="module-role"><span class="lang-en">background</span><span class="lang-zh">背景参考</span></p>
+          <p><span class="lang-en">The paper studies an isolated silicon nanowire and contains neither porous-carbon geometry nor CVD deposition, so it contributes only transferable silicon-expansion mechanics.</span><span class="lang-zh">论文研究孤立硅纳米线，不包含多孔碳几何与 CVD 沉积；可迁移的信息仅限于硅膨胀的力学描述。</span></p>
+          <span class="item-meta">Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text)</span>
+        </article>
 
-  <li>
-    <span><span class="lang-en">The model predicts a sharp inward-moving front and a late switch of surface hoop stress from compression to tension because the lithiated shell constrains expansion at the moving front.</span><span class="lang-zh">模型给出向内推进的尖锐相界面；由于已锂化外壳约束内部移动界面处的继续膨胀，表面环向应力在后期由压缩转为拉伸。</span></span>
-    <small>Evidence: Numerical Results, p.6 (figure); Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
-  </li>
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">Phase transformation, crystallization, and mechanical conditions in lithiated silicon</span><span class="lang-zh">锂化硅相变、晶化与力学条件</span></strong><b>68%</b></div>
+          <div class="module-score-track"><i style="width: 68%"></i></div>
+          <p class="module-role"><span class="lang-en">cross_module</span><span class="lang-zh">跨模块相关</span></p>
+          <p><span class="lang-en">It directly couples crystalline-to-amorphous two-phase lithiation with stress and plasticity, but it does not model nucleation of a crystalline lithiated-silicon phase or derive a crystallization criterion.</span><span class="lang-zh">论文直接耦合晶态硅到非晶 LixSi 的两相锂化、应力与塑性，但没有模拟锂化硅晶相的形核，也没有给出晶化判据。</span></p>
+          <span class="item-meta">Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Conclusions and Scope, p.9 (body text)</span>
+        </article>
 
-  <li>
-    <span><span class="lang-en">Its strongest quantitative validation is the nearly constant diffuse-interface width around the 1.12 nm analytical value; stress validation is comparative rather than a direct fit to spatially resolved experiment.</span><span class="lang-zh">最有力的定量验证是弥散界面宽度始终接近 1.12 nm 的解析值；应力部分主要与既有模型比较，而非直接拟合空间分辨实验。</span></span>
-    <small>Evidence: Numerical Results, p.7 (equation); Numerical Results, p.8 (figure); Numerical Results, p.7 (figure) | confidence: high</small>
-  </li>
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">Phase-field–mechanics–electrochemistry simulation of phase-separating materials</span><span class="lang-zh">分相材料的相场—力学—电化学仿真</span></strong><b>98%</b></div>
+          <div class="module-score-track"><i style="width: 98%"></i></div>
+          <p class="module-role"><span class="lang-en">primary</span><span class="lang-zh">主模块</span></p>
+          <p><span class="lang-en">This is the paper&#39;s central contribution: a Cahn-Hilliard concentration phase field is coupled to finite chemical-elastic-plastic deformation and mechanical equilibrium.</span><span class="lang-zh">这是论文的核心贡献：将 Cahn–Hilliard 浓度相场与有限化学—弹性—塑性变形及力学平衡耦合。</span></p>
+          <span class="item-meta">Abstract and Introduction, p.2 (body text); Phase-Field Model, p.5 (equation); Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text)</span>
+        </article>
 
-</ul>
-    </section>
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">Multiscale simulation methods and cases</span><span class="lang-zh">多尺度仿真方法与案例</span></strong><b>32%</b></div>
+          <div class="module-score-track"><i style="width: 32%"></i></div>
+          <p class="module-role"><span class="lang-en">background</span><span class="lang-zh">背景参考</span></p>
+          <p><span class="lang-en">The model introduces a nanoscale diffuse-interface length inside a continuum FEM calculation, but no explicit parameter-transfer chain connects atomistic, particle, electrode, cell, and experimental scales.</span><span class="lang-zh">模型在连续体有限元中引入纳米级弥散界面长度，但没有建立从原子、颗粒、电极到电芯及实验的显式参数传递链。</span></p>
+          <span class="item-meta">Numerical Results, p.7 (equation); Numerical Implementation, p.5 (body text); Conclusions and Scope, p.9 (body text)</span>
+        </article>
 
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Argument Map</span><span class="lang-zh">论证地图</span></h2>
-      <div class="argument-grid">
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Gap</span><span class="lang-zh">问题缺口</span></strong>
-          <p><span class="lang-en">Existing large-deformation silicon models usually represented lithiation as single-phase diffusion, while earlier phase-field treatments used small-strain elasticity or lacked a demonstrated high-capacity-electrode implementation; neither combination reliably retained a physical phase-boundary thickness under large plastic swelling.</span><span class="lang-zh">既有大变形硅模型通常把锂化视为单相扩散，早期相场工作则多采用小应变弹性或缺少在高容量电极上的数值实现，因而难以在大塑性膨胀下同时保持具有物理意义的相界面厚度。</span></p>
-          <span class="item-meta">Evidence: Introduction, p.2 (body text) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Core contribution</span><span class="lang-zh">核心贡献</span></strong>
-          <p><span class="lang-en">The paper integrates a conserved concentration phase field, finite chemical-elastic-plastic kinematics, and quasi-static mechanics so that Li transport, phase-front motion, deformation, and stress evolve together in an arbitrary-geometry FEM framework.</span><span class="lang-zh">论文把守恒浓度相场、有限化学—弹性—塑性运动学和准静态力学平衡整合起来，使锂输运、相界面移动、形貌变形与应力能够在任意几何的有限元框架中共同演化。</span></p>
-          <span class="item-meta">Evidence: Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model, p.5 (equation); Numerical Implementation, p.5 (body text) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Method logic</span><span class="lang-zh">方法逻辑</span></strong>
-          <p><span class="lang-en">A double-well chemical energy selects Li-poor and Li-rich states, the gradient penalty sets interface energy and width, elastic energy makes chemical potential stress-sensitive, and J2 flow accommodates irreversible swelling; the variational potential then drives Cahn-Hilliard transport while mechanical equilibrium is solved at every time step.</span><span class="lang-zh">双阱化学能选择贫锂与富锂状态，梯度能规定界面能与宽度，弹性能使化学势受到应力影响，J2 流动则容纳不可逆膨胀；由变分得到的化学势驱动 Cahn–Hilliard 输运，每个时间步同时求解力学平衡。</span></p>
+      </div>
+      <div class="overview-field-grid">
+
+        <article class="overview-field overview-one_sentence_conclusion">
+          <h3><span class="lang-en">One-sentence conclusion</span><span class="lang-zh">一句话结论</span></h3>
+          <p><span class="lang-en">A free-energy-based phase-field model coupled to finite J2 elasto-plasticity preserves a stable nanoscale lithiation front and predicts that constrained chemical swelling drives the silicon-nanowire surface from early hoop compression to late hoop tension.</span><span class="lang-zh">基于自由能的相场模型与有限变形 J2 弹塑性耦合后，既能维持稳定的纳米级锂化界面，也预测受约束的化学膨胀会使硅纳米线表面环向应力由早期压缩转为后期拉伸。</span></p>
+          <span class="item-meta">Evidence: Abstract and Introduction, p.2 (body text); Phase-Field Model, p.5 (equation); Numerical Results, p.8 (figure) | confidence: high</span>
+        </article>
+
+        <article class="overview-field overview-why_worth_reading">
+          <h3><span class="lang-en">Why it is worth reading</span><span class="lang-zh">为什么值得读</span></h3>
+          <p><span class="lang-en">It provides a compact, reusable example of how to connect phase separation, stress-dependent chemical potential, large chemical expansion, plasticity, boundary conditions, and finite-element implementation in one thermodynamically consistent model.</span><span class="lang-zh">这篇文章给出了一个紧凑且可复用的范例：如何在同一套热力学一致模型中连接分相、应力相关化学势、大化学膨胀、塑性、边界条件和有限元实现。</span></p>
           <span class="item-meta">Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model, p.5 (equation); Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Implementation, p.5 (body text) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Decisive evidence</span><span class="lang-zh">关键证据</span></strong>
-          <p><span class="lang-en">The inward concentration front stays sharp and slows between later snapshots, demonstrating that the formulation represents two-phase propagation rather than smooth single-phase filling.</span><span class="lang-zh">浓度界面向内移动且始终尖锐，后期移动距离变小，说明模型描述的是两相界面推进而非平滑的单相填充。</span></p>
-          <span class="item-meta">Evidence: Numerical Results, p.6 (figure) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Decisive evidence</span><span class="lang-zh">关键证据</span></strong>
-          <p><span class="lang-en">Stress profiles broadly match the earlier nonlinear-diffusion calculation at two matched front positions, while the surface hoop stress reverses sign late in lithiation.</span><span class="lang-zh">在两个相同界面位置处，相场模型与非线性扩散模型的应力分布总体一致，同时表面环向应力在锂化后期发生符号反转。</span></p>
-          <span class="item-meta">Evidence: Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Decisive evidence</span><span class="lang-zh">关键证据</span></strong>
-          <p><span class="lang-en">The simulated interface width remains close to the 1.12 nm analytical estimate throughout lithiation, supporting the claimed intrinsic length scale.</span><span class="lang-zh">模拟界面宽度在整个锂化过程中接近 1.12 nm 的解析估计，支持模型具有内禀长度尺度。</span></p>
-          <span class="item-meta">Evidence: Numerical Results, p.7 (equation); Numerical Results, p.8 (figure) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Limitations</span><span class="lang-zh">局限性</span></strong>
-          <p><span class="lang-en">The demonstration assumes an isotropic circular nanowire, prescribed Li-rich concentration at the surface, zero potential flux, and a traction-free boundary; anisotropy, reaction control, and realistic contacts are absent.</span><span class="lang-zh">算例假设各向同性圆形纳米线、表面固定为富锂浓度、化学势零通量且外表面无牵引，未包含晶向、反应控制和真实接触。</span></p>
-          <span class="item-meta">Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Limitations</span><span class="lang-zh">局限性</span></strong>
-          <p><span class="lang-en">Yield and hardening parameters were chosen as typical values because plastic-range properties were unavailable, and the numerical stress curves retain small fluctuations.</span><span class="lang-zh">塑性区材料参数因缺少测量而采用典型值，数值应力曲线仍存在小幅波动。</span></p>
-          <span class="item-meta">Evidence: Numerical Results, p.6 (table); Numerical Results, p.7 (figure) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Future work</span><span class="lang-zh">未来工作</span></strong>
-          <p><span class="lang-en">The clearest next step is a systematic calculation of how stress modifies Li diffusion and interfacial reaction rates, which the authors explicitly leave outside this study.</span><span class="lang-zh">最直接的后续工作是系统量化应力对锂扩散和界面反应速率的影响，作者明确将其留待后续研究。</span></p>
-          <span class="item-meta">Evidence: Conclusions and Scope, p.9 (body text) | confidence: high</span>
-        </div>
-      
-        <div class="argument-card">
-          <strong><span class="lang-en">Future work</span><span class="lang-zh">未来工作</span></strong>
-          <p><span class="lang-en">The physical-space FEM formulation is positioned for complex electrode shapes and boundary conditions beyond the circular nanowire benchmark.</span><span class="lang-zh">物理空间中的有限元实现可进一步用于比圆形纳米线更复杂的电极几何和边界条件。</span></p>
-          <span class="item-meta">Evidence: Introduction, p.2 (body text); Numerical Implementation, p.5 (body text) | confidence: medium</span>
-        </div>
-      
+        </article>
+
+        <article class="overview-field overview-research_problem">
+          <h3><span class="lang-en">Research problem</span><span class="lang-zh">研究问题</span></h3>
+          <p><span class="lang-en">The paper asks how a sharp crystalline-Si/amorphous-LixSi lithiation front, roughly 300% local volume expansion, plastic flow, and evolving stress can be simulated together without losing a physical interface thickness under large deformation.</span><span class="lang-zh">论文要解决的问题是：在大变形条件下，如何同时模拟尖锐的晶态 Si/非晶 LixSi 锂化界面、约 300% 的局部体积膨胀、塑性流动与演化应力，并保持具有物理意义的界面厚度。</span></p>
+          <span class="item-meta">Evidence: Abstract and Introduction, p.2 (body text); Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table) | confidence: high</span>
+        </article>
+
+        <article class="overview-field overview-prior_gap">
+          <h3><span class="lang-en">Prior gap</span><span class="lang-zh">已有研究缺口</span></h3>
+          <p><span class="lang-en">Earlier large-deformation silicon models generally treated lithiation as single-phase diffusion, whereas earlier phase-field models used small-strain elasticity or lacked a demonstrated high-capacity-electrode implementation.</span><span class="lang-zh">既有硅大变形模型通常把锂化视为单相扩散，而早期相场模型多采用小应变弹性，或尚未在高容量电极上给出完整数值实现。</span></p>
+          <span class="item-meta">Evidence: Introduction, p.2 (body text) | confidence: high</span>
+        </article>
+
+        <article class="overview-field overview-core_contribution">
+          <h3><span class="lang-en">Core contribution</span><span class="lang-zh">核心贡献</span></h3>
+          <p><span class="lang-en">The authors derive and implement an arbitrary-geometry finite-element framework that combines a conserved concentration phase field, multiplicative chemical-elastic-plastic kinematics, concentration-dependent elasticity, J2 plasticity, and quasi-static mechanics.</span><span class="lang-zh">作者推导并实现了适用于任意几何的有限元框架，综合守恒浓度相场、化学—弹性—塑性乘法分解、浓度相关弹性、J2 塑性和准静态力学平衡。</span></p>
+          <span class="item-meta">Evidence: Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model, p.5 (equation); Numerical Implementation, p.5 (body text) | confidence: high</span>
+        </article>
+
+        <article class="overview-field overview-scope_boundary">
+          <h3><span class="lang-en">Scope boundary</span><span class="lang-zh">结论与适用边界</span></h3>
+          <p><span class="lang-en">The conclusions apply to an idealized isotropic, traction-free circular nanowire with prescribed surface lithiation and assumed plastic parameters; the study does not simulate fracture, reaction kinetics, anisotropy, porous carbon, CVD manufacture, or a cross-scale parameter-transfer workflow.</span><span class="lang-zh">结论基于各向同性、外表面无牵引、表面浓度给定的理想圆形纳米线，并采用假设的塑性参数；文中没有模拟断裂、界面反应动力学、各向异性、多孔碳、CVD 制造或跨尺度参数传递。</span></p>
+          <span class="item-meta">Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Results, p.6 (table); Conclusions and Scope, p.9 (body text) | confidence: high</span>
+        </article>
+
       </div>
     </section>
 
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Central Claims</span><span class="lang-zh">核心论点</span></h2>
-      <div class="claim-grid">
-      
-        <div class="claim-card">
-          <strong><span class="lang-en">A phase-field formulation can couple two-phase lithiation to large elasto-plastic deformation while preserving an intrinsic interface thickness.</span><span class="lang-zh">相场模型可在保持内禀界面厚度的同时，将两相锂化与大弹塑性变形耦合。</span></strong>
-          <p><span><span class="lang-en">Evidence</span><span class="lang-zh">证据</span></span><span class="lang-en">The free-energy gradient term supplies a length scale, and the computed boundary width remains near the analytical 1.12 nm estimate throughout the simulated lithiation history.</span><span class="lang-zh">自由能中的梯度项提供长度尺度，计算得到的界面宽度在整个锂化历程中保持在解析估计 1.12 nm 附近。</span></p>
-          <p><span><span class="lang-en">What it proves</span><span class="lang-zh">说明了什么</span></span><span class="lang-en">For the stated free energy, parameters, and nanowire problem, the discretized model maintains a physically interpretable, nearly stationary diffuse-interface width.</span><span class="lang-zh">对于文中自由能、参数与纳米线问题，离散模型能维持具有物理解释且近似恒定的弥散界面宽度。</span></p>
-          <p><span><span class="lang-en">Boundary</span><span class="lang-zh">边界</span></span><span class="lang-en">It does not establish that the same parameters or interface law quantitatively predict every silicon morphology, crystallographic orientation, or cycling condition.</span><span class="lang-zh">这并不说明同一组参数或界面定律可定量预测所有硅形貌、晶向和循环条件。</span></p>
-          <p><span><span class="lang-en">Open question</span><span class="lang-zh">开放问题</span></span><span class="lang-en">How should gradient energy and double-well parameters be calibrated independently for different silicon phases and temperatures?</span><span class="lang-zh">针对不同硅相和温度，梯度能系数与双阱参数应如何独立标定？</span></p>
-          <p class="item-meta">Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (equation); Numerical Results, p.8 (figure)</p>
-        </div>
-      
-        <div class="claim-card">
-          <strong><span class="lang-en">The cracking-relevant surface load path has two stages: early compression is partly accommodated by J2 yielding, then continued subsurface lithiation stretches the previously lithiated shell like a membrane and leaves it in hoop tension.</span><span class="lang-zh">与开裂相关的表面载荷历程分为两个阶段：早期压缩由 J2 屈服部分释放；随后表层以下继续锂化，使先前形成的富锂外壳像薄膜一样被拉伸，最终承受环向拉应力。</span></strong>
-          <p><span><span class="lang-en">Evidence</span><span class="lang-zh">证据</span></span><span class="lang-en">The surface stress begins compressive, plastically yields, and then becomes tensile as the already-lithiated shell constrains expansion at the advancing internal front.</span><span class="lang-zh">表面最初受压并发生塑性屈服，随后已锂化外壳约束内部推进界面处的膨胀，使环向应力转为拉伸。</span></p>
-          <p><span><span class="lang-en">What it proves</span><span class="lang-zh">说明了什么</span></span><span class="lang-en">The coupled model produces a mechanically plausible sign reversal under its axisymmetric loading and boundary conditions.</span><span class="lang-zh">在轴对称载荷和给定边界条件下，耦合模型能够产生力学上合理的应力符号反转。</span></p>
-          <p><span><span class="lang-en">Boundary</span><span class="lang-zh">边界</span></span><span class="lang-en">The calculation does not resolve crack nucleation or propagation and does not quantify a fracture threshold against a matched specimen.</span><span class="lang-zh">计算没有解析裂纹成核或扩展，也未针对匹配试样定量比较断裂阈值。</span></p>
-          <p><span><span class="lang-en">Open question</span><span class="lang-zh">开放问题</span></span><span class="lang-en">Does the predicted tensile history exceed measured fracture resistance when surface defects, oxide, and electrochemical reaction kinetics are included?</span><span class="lang-zh">若加入表面缺陷、氧化层和电化学反应动力学，预测的拉伸历程是否会超过实测断裂抗力？</span></p>
-          <p class="item-meta">Evidence: Numerical Results, p.7 (figure); Numerical Results, p.8 (figure); Abstract and Introduction, p.2 (body text)</p>
-        </div>
-      
+
+
+
+    <section class="knowledge-panel full-width materials-section materials-section-2">
+      <p class="section-kicker"><span class="lang-en">Section 2 of 6</span><span class="lang-zh">六大块 · 第 2 节</span></p>
+      <h2><span class="lang-en">Research System and Problem Definition</span><span class="lang-zh">研究体系与问题定义</span></h2>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Research object</span><span class="lang-zh">研究对象</span></h3>
+
+          <p class="summary-text"><span class="lang-en">The modeled object is the first lithiation of a crystalline silicon nanowire, where a Li-rich amorphous LixSi shell advances inward across a diffuse interface into a nearly unlithiated crystalline core.</span><span class="lang-zh">研究对象是晶态硅纳米线的首次锂化：富锂非晶 LixSi 壳层跨越弥散界面向近乎未锂化的晶态核心推进。</span></p>
+          <span class="item-meta">Evidence: Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (figure) | confidence: high</span>
+
       </div>
-    </section>
 
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Method Understanding</span><span class="lang-zh">方法理解</span></h2>
-      
-      <h3><span class="lang-en">Pipeline</span><span class="lang-zh">流程</span></h3>
-      <ul class="knowledge-list">
+      <div class="materials-group">
+        <h3><span class="lang-en">Geometry and scale</span><span class="lang-zh">几何与尺度</span></h3>
 
-  <li>
-    <span><span class="lang-en">Represent lithiation and the crystalline/amorphous distinction with the conserved normalized concentration c-hat, and prescribe a double-well chemical free energy whose Li-rich minimum is at 0.872.</span><span class="lang-zh">用守恒的归一化锂浓度 ĉ 同时表示锂化程度与晶态/非晶态，并设置富锂极小值为 0.872 的双阱化学自由能。</span></span>
-    <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</small>
-  </li>
-
-  <li>
-    <span><span class="lang-en">Decompose total deformation into chemical, plastic, and elastic factors; compute stress with concentration-dependent elasticity and evolve irreversible deformation using isotropic J2 flow with linear hardening.</span><span class="lang-zh">把总变形分解为化学、塑性和弹性部分；采用随浓度变化的弹性参数计算应力，并用带线性硬化的各向同性 J2 流动演化不可逆变形。</span></span>
-    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table) | confidence: high</small>
-  </li>
-
-  <li>
-    <span><span class="lang-en">Differentiate the total free energy to obtain chemical potential, use its gradient for Li flux, and combine flux with conservation to form the stress-coupled Cahn-Hilliard equation.</span><span class="lang-zh">对总自由能求变分得到化学势，以其梯度驱动锂通量，再与质量守恒结合形成应力耦合的 Cahn–Hilliard 方程。</span></span>
-    <small>Evidence: Phase-Field Model, p.5 (equation) | confidence: high</small>
-  </li>
-
-  <li>
-    <span><span class="lang-en">Split the fourth-order phase-field equation into two second-order equations and solve them with mechanical equilibrium by FEM at each implicit time step.</span><span class="lang-zh">将四阶相场方程拆成两个二阶方程，并在每个隐式时间步用有限元与力学平衡联立求解。</span></span>
-    <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
-  </li>
-
-</ul>
-      
-      <h3><span class="lang-en">Algorithm Steps</span><span class="lang-zh">算法步骤</span></h3>
-      <table class="compact-table algorithm-table">
-        <thead><tr><th>#</th><th><span class="lang-en">Action</span><span class="lang-zh">动作</span></th><th><span class="lang-en">Inputs</span><span class="lang-zh">输入</span></th><th><span class="lang-en">Outputs</span><span class="lang-zh">输出</span></th></tr></thead>
-        <tbody>
-        
-          <tr>
-            <td>1</td>
-            <td><span class="lang-en">Initialize the quarter-domain nanowire with the prescribed concentration profile and stress-free geometry.</span><span class="lang-zh">以给定浓度分布和无应力几何初始化四分之一纳米线域。</span><br><span class="item-meta">Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text); Numerical Results, p.6 (table)</span></td>
-            <td><span class="lang-en">Radius, initial c-hat, material and phase-field parameters</span><span class="lang-zh">半径、初始 ĉ、材料参数与相场参数</span></td>
-            <td><span class="lang-en">Initial concentration, displacement, and plastic state</span><span class="lang-zh">初始浓度、位移和塑性状态</span></td>
-          </tr>
-        
-          <tr>
-            <td>2</td>
-            <td><span class="lang-en">Apply saturated Li-rich concentration, zero potential flux, symmetry constraints, and traction-free exterior mechanics.</span><span class="lang-zh">施加富锂饱和浓度、化学势零通量、对称约束及外表面无牵引条件。</span><br><span class="item-meta">Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text)</span></td>
-            <td><span class="lang-en">Boundary values and domain normals</span><span class="lang-zh">边界值和域外法向</span></td>
-            <td><span class="lang-en">Phase-field and mechanical boundary-value problem</span><span class="lang-zh">相场—力学边值问题</span></td>
-          </tr>
-        
-          <tr>
-            <td>3</td>
-            <td><span class="lang-en">Solve chemical potential, concentration conservation, and mechanical equilibrium in weak form with constitutive plastic updates.</span><span class="lang-zh">以弱形式求解化学势、浓度守恒和力学平衡，并更新塑性本构。</span><br><span class="item-meta">Evidence: Phase-Field Model, p.5 (equation); Numerical Implementation, p.5 (body text)</span></td>
-            <td><span class="lang-en">Current concentration, deformation, and plastic history</span><span class="lang-zh">当前浓度、变形和塑性历史</span></td>
-            <td><span class="lang-en">Updated c-hat, chemical potential, displacement, and stress</span><span class="lang-zh">更新后的 ĉ、化学势、位移与应力</span></td>
-          </tr>
-        
-          <tr>
-            <td>4</td>
-            <td><span class="lang-en">Advance implicitly and extract front location, interface width, stress components, and accumulated plastic strain.</span><span class="lang-zh">采用隐式格式推进时间，并提取界面位置、界面宽度、应力分量和累积塑性应变。</span><br><span class="item-meta">Evidence: Numerical Results, p.6 (figure); Numerical Results, p.7 (figure); Numerical Results, p.8 (figure)</span></td>
-            <td><span class="lang-en">Converged field solution</span><span class="lang-zh">收敛的场解</span></td>
-            <td><span class="lang-en">Time-resolved phase, morphology, stress, and plasticity results</span><span class="lang-zh">随时间变化的相、形貌、应力和塑性结果</span></td>
-          </tr>
-        
-        </tbody>
-      </table>
-      
-      <h3><span class="lang-en">Engineering Derivation Sketch</span><span class="lang-zh">工程化推导理解</span></h3>
-      <p class="summary-text"><span class="lang-en">Start with a free energy that penalizes mixed compositions and concentration gradients while adding deformation-dependent elastic and plastic energies. Under the paper&#39;s assumption that plastic energy is independent of normalized concentration, its derivative contributes mu_pl=0; chemical/gradient and elastic terms therefore form the active Li potential. Onsager-type flux down that potential, combined with mass conservation, yields Cahn-Hilliard evolution. Multiplicative kinematics separately tracks chemical swelling, recoverable elasticity, and plastic flow without assuming small strain.</span><span class="lang-zh">从同时惩罚混合浓度与浓度梯度、并包含变形相关弹性能和塑性能的自由能出发。按照论文关于塑性能不依赖归一化浓度的假设，其导数给出 μ_pl=0，因此有效锂化学势由化学/梯度项和弹性项组成。化学势梯度驱动的 Onsager 型通量与质量守恒结合后得到 Cahn–Hilliard 演化；乘法运动学则分别追踪化学膨胀、可恢复弹性和塑性流动。</span></p>
-      <span class="item-meta">Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model, p.5 (equation) | confidence: high</span>
-      
-      <h3><span class="lang-en">Implementation Details</span><span class="lang-zh">实现细节</span></h3>
-      <ul class="knowledge-list">
-
-  <li>
-    <span><span class="lang-en">The implementation uses COMSOL, 2D three-node triangles, four nodal degrees of freedom (concentration, chemical potential, and two displacement components), and implicit first-order time integration.</span><span class="lang-zh">数值实现采用 COMSOL、二维三节点三角形单元，每个节点含浓度、化学势和两个位移共四个自由度，时间推进为一阶隐式格式。</span></span>
-    <small>Evidence: Numerical Implementation, p.5 (body text) | confidence: high</small>
-  </li>
-
-  <li>
-    <span><span class="lang-en">A quarter circular domain exploits symmetry; the reference radius is 70 nm and the physical time step is 2.45 s.</span><span class="lang-zh">利用圆对称性只计算四分之一圆域；参考半径为 70 nm，物理时间步为 2.45 s。</span></span>
-    <small>Evidence: Numerical Implementation, p.5 (body text); Numerical Results, p.6 (table) | confidence: high</small>
-  </li>
-
-</ul>
-      
-    </section>
-
-    
-    <section class="knowledge-panel full-width math-core-panel">
-      <h2><span class="lang-en">Mathematical Core</span><span class="lang-zh">数学核心</span></h2>
-      
-      <h3><span class="lang-en">Problem Formulation</span><span class="lang-zh">问题形式</span></h3>
-      <p class="summary-text"><span class="lang-en">The problem is to evolve a sharp but diffuse Li-rich/amorphous shell into a Li-poor/crystalline silicon nanowire core while accounting for approximately 300% local swelling, plastic flow, and stress-modified chemical potential.</span><span class="lang-zh">目标是在约 300% 局部膨胀、塑性流动和应力影响化学势的条件下，模拟富锂非晶壳向贫锂晶态硅纳米线核心推进的尖锐弥散界面。</span></p>
-      <span class="item-meta">Evidence: Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Results, p.6 (table) | confidence: high</span>
-      
-      
-      <h3><span class="lang-en">Key Equations</span><span class="lang-zh">关键公式</span></h3>
-      <div class="equation-grid">
-      
-        <div class="equation-card">
-          <strong><span class="lang-en">Stress-coupled Cahn-Hilliard evolution</span><span class="lang-zh">应力耦合 Cahn–Hilliard 演化</span></strong>
-          
-          <div class="equation-render"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>G</mi><mo>=</mo><mi>int</mi><mi>[</mi><mi>f</mi><mi></mi><mi>{</mi><mi>ch</mi><mi>}</mi><mo>(</mo><mi>hat</mi><mi>c</mi><mo>)</mo><mo>+</mo><mi>f</mi><mi></mi><mi>{</mi><mi>el</mi><mi>}</mi><mo>(</mo><mi>F</mi><mo>,</mo><mi>hat</mi><mi>c</mi><mo>)</mo><mo>+</mo><mi>f</mi><mi></mi><mi>{</mi><mi>pl</mi><mi>}</mi><mo>(</mo><mi>F</mi><mo>)</mo><mo>+</mo><mi>frac</mi><mi>{</mi><mi>kappa</mi><mi>}</mi><mi>{</mi><mn>2</mn><mi>}</mi><mi>|</mi><mi>nabla</mi><mi>hat</mi><mi>c</mi><mi>|</mi><mi></mi><mn>2</mn><mi>]</mi><mi>d</mi><msub><mi>Omega</mi><mi>0</mi></msub><mi>;</mi><mi>quad</mi><mi>μ</mi><mo>=</mo><mi>μ</mi><mi></mi><mi>{</mi><mi>ch</mi><mi>}</mi><mo>+</mo><mi>μ</mi><mi></mi><mi>{</mi><mi>el</mi><mi>}</mi><mo>+</mo><mi>μ</mi><mi></mi><mi>{</mi><mi>pl</mi><mi>}</mi><mo>,</mo><mi></mi><mi>;</mi><mi>μ</mi><mi></mi><mi>{</mi><mi>pl</mi><mi>}</mi><mo>=</mo><mi>partial</mi><mi>f</mi><mi></mi><mi>{</mi><mi>pl</mi><mi>}</mi><mo>/</mo><mi>partial</mi><mi>hat</mi><mi>c</mi><mo>=</mo><mn>0</mn><mi>;</mi><mi>quad</mi><msub><mi>partial</mi><mi>t</mi></msub><mi>hat</mi><mi>c</mi><mo>=</mo><mi>nabla</mi><mi>cdot</mi><mo>(</mo><mi>M</mi><mi></mi><mi>{</mi><mi>Li</mi><mi>}</mi><mo>(</mo><mi>hat</mi><mi>c</mi><mo>)</mo><mi>nabla</mi><mi>μ</mi><mo>)</mo></mrow></math></div>
-          
-          <pre class="equation-block">G=∫[f_ch(ĉ)+f_el(F,ĉ)+f_pl(F)+(κ/2)|∇ĉ|²]dΩ₀; μ=μ_ch+μ_el+μ_pl, μ_pl=∂f_pl/∂ĉ=0; ∂ĉ/∂t=∇·(M_Li(ĉ)∇μ)</pre>
-          <p><span class="lang-en">Chemical and gradient terms create two phases and a finite interface, while elastic energy makes μ stress-sensitive. Plastic energy appears in the formal free energy but does not directly drive transport here because its concentration derivative is assumed zero.</span><span class="lang-zh">化学项与梯度项产生两相和有限界面，弹性能使 μ 对应力敏感；塑性能虽出现在形式自由能中，但因其浓度导数被假设为零，在本文中不直接驱动输运。</span></p>
-          <span class="item-meta">Evidence: Phase-Field Model, p.5 (equation)</span>
-          
-          <p class="source-image-links">
-            
-              <a href="page_images/page-005.png">Phase-Field Model, p.5 (equation)</a>
-            
-          </p>
-          
-        </div>
-      
-        <div class="equation-card">
-          <strong><span class="lang-en">Diffuse-interface width</span><span class="lang-zh">弥散界面宽度</span></strong>
-          
-          <div class="equation-render"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>λ</mi><mo>=</mo><mo>(</mo><mi>hat</mi><mi>c</mi><mi></mi><mi>β</mi><mo>-</mo><mi>hat</mi><mi>c</mi><mi></mi><mi>α</mi><mo>)</mo><mi>sqrt</mi><mi>{</mi><mi>kappa</mi><mo>/</mo><mo>(</mo><mn>2</mn><mi>Delta</mi><mi>g</mi><mo>)</mo><mi>}</mi><mo>=</mo><mn>1.12</mn><mi></mi><mo>,</mo><mi>mathrm</mi><mi>{</mi><mi>nm</mi><mi>}</mi></mrow></math></div>
-          
-          <pre class="equation-block">λ=(ĉβ−ĉα)√[κ/(2Δg)]=1.12 nm</pre>
-          <p><span class="lang-en">The width is set by the competition between gradient penalty κ and the double-well barrier Δg; this supplies the material length scale missing from the comparison diffusion model.</span><span class="lang-zh">界面宽度由梯度能系数 κ 与双阱势垒 Δg 的竞争决定，提供对比扩散模型所缺少的材料长度尺度。</span></p>
-          <span class="item-meta">Evidence: Numerical Results, p.7 (equation)</span>
-          
-          <p class="source-image-links">
-            
-              <a href="page_images/page-007.png">Numerical Results, p.7 (equation)</a>
-            
-          </p>
-          
-        </div>
-      
-      </div>
-      
-      
-      <h3><span class="lang-en">Theorem / Principle Chain</span><span class="lang-zh">定理/原理链</span></h3>
-      <ol class="principle-chain">
-      
-        <li>
-          <strong><span class="lang-en">Variational thermodynamics</span><span class="lang-zh">变分热力学</span></strong>
-          <p><span class="lang-en">Defines chemical potential from the derivative of the total free energy.</span><span class="lang-zh">由总自由能的导数定义化学势。</span></p>
-          <p><span class="lang-en">Li moves in response to the energetic cost of composition gradients, phase preference, and mechanical loading rather than concentration alone.</span><span class="lang-zh">锂的迁移响应组分梯度、相偏好和机械载荷共同形成的能量代价，而非只响应浓度。</span></p>
-          <span class="item-meta">Evidence: Phase-Field Model, p.5 (equation)</span>
-        </li>
-      
-        <li>
-          <strong><span class="lang-en">Multiplicative finite-deformation kinematics</span><span class="lang-zh">乘法有限变形运动学</span></strong>
-          <p><span class="lang-en">Separates chemical swelling, plastic flow, and elastic distortion.</span><span class="lang-zh">分离化学膨胀、塑性流动与弹性畸变。</span></p>
-          <p><span class="lang-en">Large irreversible shape change can be represented without forcing the elastic strain itself to become unphysically large.</span><span class="lang-zh">这样可描述巨大的不可逆形变，而不迫使弹性应变本身变得不合理。</span></p>
-          <span class="item-meta">Evidence: Problem Description and Constitutive Model, p.3 (body text)</span>
-        </li>
-      
-        <li>
-          <strong><span class="lang-en">Gradient regularization</span><span class="lang-zh">梯度正则化</span></strong>
-          <p><span class="lang-en">Converts a sharp discontinuity into an energetically controlled diffuse interface.</span><span class="lang-zh">把尖锐间断转化为能量控制的弥散界面。</span></p>
-          <p><span class="lang-en">The gradient penalty prevents an arbitrarily thin numerical jump, while the double well favors the two bulk compositions.</span><span class="lang-zh">梯度惩罚避免数值上无限薄的跳变，双阱则稳定两个体相浓度。</span></p>
-          <span class="item-meta">Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (equation)</span>
-        </li>
-      
-      </ol>
-      
-      
-      <h3><span class="lang-en">Engineering Proof Sketch</span><span class="lang-zh">工程化证明理解</span></h3>
-      <p class="summary-text"><span class="lang-en">The non-convex chemical energy fixes two preferred concentrations, and the gradient term fixes the transition cost; their balance gives the analytical interface width. As Li-rich material forms at the outside, chemical swelling generates compression and plastic flow there. Continued inward advance expands material beneath an already swollen shell, turning the shell&#39;s circumferential stress tensile. Solving mechanics and chemical potential together makes this stress history alter the transport driving force.</span><span class="lang-zh">非凸化学能固定两个优选浓度，梯度项规定过渡代价，二者平衡给出解析界面宽度。富锂物质从外侧生成时，化学膨胀首先造成压缩和塑性流动；界面继续向内推进后，已膨胀外壳限制其下方材料扩张，从而使外壳环向受拉。力学与化学势联立求解，使这一应力历程进入输运驱动力。</span></p>
-      <span class="item-meta">Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (equation); Numerical Results, p.8 (figure); Problem Description and Constitutive Model, p.3 (body text) | confidence: high</span>
-      
-    </section>
-    
-
-    
-
-    
-
-    
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Theory Understanding</span><span class="lang-zh">理论理解</span></h2>
-      
-<div class="inline-visuals">
-  
-  <div class="inline-visual">
-    <strong><span class="lang-en">Page 8 view containing Figures 5 and 6</span><span class="lang-zh">第 8 页视图，包含 图 5 和图 6</span> · full_page_approximate</strong>
-    
-    <button class="visual-open" type="button" data-lightbox-src="page_images/page-008.png" data-lightbox-title="Page 8 view containing Figures 5 and 6"><img src="page_images/page-008.png" alt="Figures 5 and 6"></button>
-    
-    <p><span class="lang-en">Figure 5 isolates the compression-to-tension reversal and the stress-limiting role of plasticity; Figure 6 shows the simulated width hovering near the 1.12 nm analytical line, directly connecting mechanism and validation.</span><span class="lang-zh">图 5 展示压缩到拉伸的反转及塑性对应力的限制作用；图 6 显示模拟宽度在 1.12 nm 解析线附近波动，把机理与验证直接联系起来。</span></p>
-    <span class="item-meta">Evidence: Numerical Results, p.8 (caption); Numerical Results, p.8 (figure); Numerical Results, p.7 (equation)</span>
-  </div>
-  
-</div>
-
-      
-        <h3><span class="lang-en">Problem Formulation</span><span class="lang-zh">问题形式</span></h3>
-        
-          <p class="summary-text"><span class="lang-en">The problem is to evolve a sharp but diffuse Li-rich/amorphous shell into a Li-poor/crystalline silicon nanowire core while accounting for approximately 300% local swelling, plastic flow, and stress-modified chemical potential.</span><span class="lang-zh">目标是在约 300% 局部膨胀、塑性流动和应力影响化学势的条件下，模拟富锂非晶壳向贫锂晶态硅纳米线核心推进的尖锐弥散界面。</span></p>
-          <span class="item-meta">Evidence: Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Results, p.6 (table) | confidence: high</span>
-        
-      
-        <h3><span class="lang-en">Key Equations</span><span class="lang-zh">关键公式</span></h3>
-        
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en"></span><span class="lang-zh"></span></span>
-    <small>Evidence: Phase-Field Model, p.5 (equation) | confidence: high</small>
+    <span><span class="lang-en">The numerical case uses a circular nanowire cross-section with a 70 nm reference radius; symmetry reduces the calculation to a two-dimensional quarter-domain.</span><span class="lang-zh">数值算例采用参考半径 70 nm 的圆形纳米线截面，并利用对称性缩减为二维四分之一计算域。</span></span>
+    <small>Evidence: Numerical Implementation, p.5 (body text); Numerical Results, p.6 (table) | confidence: high</small>
   </li>
 
   <li>
-    <span><span class="lang-en"></span><span class="lang-zh"></span></span>
+    <span><span class="lang-en">The phase boundary is treated as a diffuse nanoscale interface whose analytical equilibrium width is 1.12 nm.</span><span class="lang-zh">相界面被处理为纳米尺度弥散界面，其解析平衡宽度为 1.12 nm。</span></span>
     <small>Evidence: Numerical Results, p.7 (equation) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
-        <h3><span class="lang-en">Theorem Or Principle Chain</span><span class="lang-zh">Theorem Or Principle Chain</span></h3>
-        
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Phases and composition</span><span class="lang-zh">相与化学组成</span></h3>
+
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en"></span><span class="lang-zh"></span></span>
-    <small>Evidence: Phase-Field Model, p.5 (equation) | confidence: high</small>
-  </li>
-
-  <li>
-    <span><span class="lang-en"></span><span class="lang-zh"></span></span>
-    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text) | confidence: high</small>
-  </li>
-
-  <li>
-    <span><span class="lang-en"></span><span class="lang-zh"></span></span>
-    <small>Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (equation) | confidence: high</small>
-  </li>
-
-</ul>
-        
-      
-        <h3><span class="lang-en">Assumptions</span><span class="lang-zh">Assumptions</span></h3>
-        
-          <ul class="knowledge-list">
-
-  <li>
-    <span><span class="lang-en">One scalar concentration field represents both composition and amorphous/crystalline state, despite the two quantities being conceptually distinct.</span><span class="lang-zh">一个标量浓度场同时表示组分与非晶/晶态结构。</span></span>
+    <span><span class="lang-en">A single normalized lithium concentration field distinguishes a Li-poor crystalline-Si state from a Li-rich amorphous LixSi state; the Li-rich free-energy minimum is set at c-hat = 0.872.</span><span class="lang-zh">单一归一化锂浓度场区分贫锂晶态硅与富锂非晶 LixSi，富锂自由能极小值设为 ĉ=0.872。</span></span>
     <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</small>
   </li>
 
   <li>
-    <span><span class="lang-en">Chemical expansion is isotropic, plastic flow is volume-preserving J2 plasticity with linear hardening, and stress relaxes quickly enough for mechanical equilibrium at every diffusion time.</span><span class="lang-zh">化学膨胀各向同性，塑性为体积不变的带线性硬化 J2 流动，扩散时间尺度上始终满足力学平衡。</span></span>
-    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text) | confidence: high</small>
-  </li>
-
-  <li>
-    <span><span class="lang-en">The outer surface remains saturated at the Li-rich concentration and traction-free, with zero normal potential flux.</span><span class="lang-zh">外表面保持富锂饱和浓度、无牵引且化学势法向通量为零。</span></span>
+    <span><span class="lang-en">The concentration field therefore represents both local composition and phase identity, rather than using a separate structural order parameter.</span><span class="lang-zh">因此浓度场同时表示局部化学组成和相身份，没有另外引入结构序参量。</span></span>
     <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
-        <h3><span class="lang-en">Key Results</span><span class="lang-zh">Key Results</span></h3>
-        
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Process and loading</span><span class="lang-zh">过程与载荷</span></h3>
+
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">The model produces a persistent core-shell phase morphology and an inward front whose motion slows at later time.</span><span class="lang-zh">模型产生持续的核壳两相形貌，向内推进的界面在后期减速。</span></span>
-    <small>Evidence: Numerical Results, p.6 (figure) | confidence: high</small>
+    <span><span class="lang-en">Lithium enters from the exterior surface, forming an expanding Li-rich shell whose interface moves radially toward the nanowire center.</span><span class="lang-zh">锂从外表面进入，形成膨胀的富锂壳层，相界面沿径向向纳米线中心推进。</span></span>
+    <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Results, p.6 (figure) | confidence: high</small>
   </li>
 
   <li>
-    <span><span class="lang-en">The interface width remains approximately 1.12 nm, whereas the comparison nonlinear-diffusion model lacks a stable material length scale.</span><span class="lang-zh">界面宽度约为 1.12 nm，而对比非线性扩散模型缺少稳定的材料长度尺度。</span></span>
-    <small>Evidence: Numerical Results, p.7 (equation); Numerical Results, p.8 (figure) | confidence: high</small>
+    <span><span class="lang-en">There is no externally applied mechanical load; stress develops internally from constrained chemical expansion under a traction-free outer boundary and symmetry constraints.</span><span class="lang-zh">模型没有施加外部机械载荷；应力来自化学膨胀的内部约束，外表面无牵引，切面施加对称约束。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">State variables</span><span class="lang-zh">状态变量</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Primary fields are normalized lithium concentration, chemical potential, and two displacement components; plastic deformation is retained as a history-dependent internal state.</span><span class="lang-zh">主要求解场为归一化锂浓度、化学势和两个位移分量；塑性变形作为具有历史依赖的内部状态保存。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
   </li>
 
   <li>
-    <span><span class="lang-en">The surface hoop stress reverses from compression to tension as the lithiated shell restrains interior expansion.</span><span class="lang-zh">已锂化外壳约束内部膨胀，使表面环向应力由压缩转为拉伸。</span></span>
+    <span><span class="lang-en">Derived quantities include deformation factors, radial and hoop stress, von Mises stress, accumulated plastic strain, interface position, and interface width.</span><span class="lang-zh">派生量包括变形分解、径向与环向应力、von Mises 应力、累积塑性应变、界面位置和界面宽度。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Target outputs</span><span class="lang-zh">目标输出</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Resolve the evolving core-shell concentration morphology and verify that the phase boundary retains a material-controlled thickness during large swelling.</span><span class="lang-zh">解析演化中的核壳浓度形貌，并验证大膨胀过程中相界面仍保持由材料参数控制的厚度。</span></span>
+    <small>Evidence: Numerical Results, p.6 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Predict how radial and hoop stresses and plastic strain evolve as the lithiation front advances, especially the late-stage surface hoop-tension relevant to cracking.</span><span class="lang-zh">预测锂化界面推进时径向应力、环向应力和塑性应变的演化，重点关注与开裂相关的后期表面环向拉应力。</span></span>
     <small>Evidence: Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
-        <h3><span class="lang-en">Engineering Proof Sketch</span><span class="lang-zh">Engineering Proof Sketch</span></h3>
-        
-          <p class="summary-text"><span class="lang-en">The non-convex chemical energy fixes two preferred concentrations, and the gradient term fixes the transition cost; their balance gives the analytical interface width. As Li-rich material forms at the outside, chemical swelling generates compression and plastic flow there. Continued inward advance expands material beneath an already swollen shell, turning the shell&#39;s circumferential stress tensile. Solving mechanics and chemical potential together makes this stress history alter the transport driving force.</span><span class="lang-zh">非凸化学能固定两个优选浓度，梯度项规定过渡代价，二者平衡给出解析界面宽度。富锂物质从外侧生成时，化学膨胀首先造成压缩和塑性流动；界面继续向内推进后，已膨胀外壳限制其下方材料扩张，从而使外壳环向受拉。力学与化学势联立求解，使这一应力历程进入输运驱动力。</span></p>
-          <span class="item-meta">Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (equation); Numerical Results, p.8 (figure); Problem Description and Constitutive Model, p.3 (body text) | confidence: high</span>
-        
-      
-        <h3><span class="lang-en">Limitations</span><span class="lang-zh">局限性</span></h3>
-        
+
+      </div>
+
+
+
+    </section>
+
+    <section class="knowledge-panel full-width materials-section materials-section-3">
+      <p class="section-kicker"><span class="lang-en">Section 3 of 6</span><span class="lang-zh">六大块 · 第 3 节</span></p>
+      <h2><span class="lang-en">Model and Physical Mechanisms</span><span class="lang-zh">模型与物理机制</span></h2>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Model framework</span><span class="lang-zh">模型框架</span></h3>
+
+          <p class="summary-text"><span class="lang-en">The formulation couples conserved Cahn-Hilliard phase evolution to finite chemical-elastic-plastic kinematics and quasi-static mechanical equilibrium in the reference configuration.</span><span class="lang-zh">模型在参考构形中将守恒 Cahn–Hilliard 相场演化、有限化学—弹性—塑性运动学与准静态力学平衡耦合。</span></p>
+          <span class="item-meta">Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model, p.5 (equation); Numerical Implementation, p.5 (body text) | confidence: high</span>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Model assumptions</span><span class="lang-zh">模型假设</span></h3>
+
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">The regular-solution expression is used only as a mathematical double well and is not claimed as a microscopic free energy for amorphous LixSi.</span><span class="lang-zh">规则溶液形式仅作为数学双阱，并未被宣称为非晶 LixSi 的微观自由能。</span></span>
+    <span><span class="lang-en">One scalar normalized concentration represents both lithium content and the crystalline/amorphous phase state.</span><span class="lang-zh">一个归一化浓度标量同时表示锂含量和晶态/非晶态相状态。</span></span>
     <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</small>
   </li>
 
   <li>
-    <span><span class="lang-en">Stress-dependent diffusion and reaction retardation are present in the framework but not systematically investigated in the reported calculations.</span><span class="lang-zh">框架包含应力相关输运，但文中未系统研究应力对扩散和反应的迟滞作用。</span></span>
-    <small>Evidence: Conclusions and Scope, p.9 (body text) | confidence: high</small>
+    <span><span class="lang-en">Chemical expansion is isotropic, elastic properties vary with concentration, and irreversible deformation follows volume-preserving isotropic J2 plasticity with linear hardening.</span><span class="lang-zh">化学膨胀各向同性，弹性性质随浓度变化，不可逆变形采用体积不变、线性硬化的各向同性 J2 塑性。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Mechanical relaxation is fast relative to diffusion, so quasi-static force balance holds at every transport time step; plastic free energy is assumed independent of concentration.</span><span class="lang-zh">力学松弛相对于扩散足够快，因此每个输运时间步都满足准静态平衡；塑性能被假设为与浓度无关。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model, p.5 (equation) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Free energy and thermodynamics</span><span class="lang-zh">自由能与热力学框架</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Total free energy combines a non-convex chemical double well, elastic strain energy, plastic energy, and a concentration-gradient penalty.</span><span class="lang-zh">总自由能由非凸化学双阱、弹性应变能、塑性能和浓度梯度惩罚项组成。</span></span>
+    <small>Evidence: Phase-Field Model, p.5 (equation) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The double well stabilizes Li-poor and Li-rich compositions, while the gradient coefficient and barrier height jointly determine interface energy and width; elastic energy makes chemical potential sensitive to deformation and stress.</span><span class="lang-zh">双阱稳定贫锂和富锂组成，梯度系数与势垒高度共同决定界面能和界面宽度；弹性能使化学势受到变形和应力影响。</span></span>
+    <small>Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (equation) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Governing equations</span><span class="lang-zh">控制方程</span></h3>
+
+          <div class="equation-grid">
+
+            <article class="equation-card">
+              <strong><span class="lang-en">Total free energy and chemical potential</span><span class="lang-zh">总自由能与化学势</span></strong>
+              <pre class="equation-block">G=∫[f_ch(ĉ)+f_el(F,ĉ)+f_pl(F)+(κ/2)|∇ĉ|²]dΩ₀;  μ=δG/δĉ=μ_ch+μ_el+μ_pl</pre>
+              <p><span class="lang-en">The variational derivative converts chemical, gradient, and mechanical energy changes into the lithium transport potential; under the stated assumption, μ_pl = 0.</span><span class="lang-zh">变分导数把化学能、梯度能和机械能变化转化为锂输运势；按照文中假设，μ_pl=0。</span></p>
+              <span class="item-meta">Phase-Field Model, p.5 (equation)</span>
+            </article>
+
+            <article class="equation-card">
+              <strong><span class="lang-en">Conserved phase-field evolution</span><span class="lang-zh">守恒相场演化</span></strong>
+              <pre class="equation-block">∂ĉ/∂t = ∇·[M_Li(ĉ)∇μ]</pre>
+              <p><span class="lang-en">Mass conservation and mobility-driven flux give a Cahn-Hilliard equation for inward motion of the two-phase lithiation front.</span><span class="lang-zh">质量守恒与迁移率驱动通量共同给出 Cahn–Hilliard 方程，用于描述两相锂化界面向内推进。</span></p>
+              <span class="item-meta">Phase-Field Model, p.5 (equation)</span>
+            </article>
+
+            <article class="equation-card">
+              <strong><span class="lang-en">Mechanical equilibrium</span><span class="lang-zh">力学平衡</span></strong>
+              <pre class="equation-block">∇₀·P = 0</pre>
+              <p><span class="lang-en">The first Piola stress satisfies quasi-static balance in the reference configuration at every time step.</span><span class="lang-zh">第一 Piola 应力在参考构形中满足准静态平衡，并在每个时间步求解。</span></p>
+              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text)</span>
+            </article>
+
+          </div>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Constitutive relations</span><span class="lang-zh">材料本构关系</span></h3>
+
+          <div class="equation-grid">
+
+            <article class="equation-card">
+              <strong><span class="lang-en">Multiplicative deformation split</span><span class="lang-zh">变形梯度乘法分解</span></strong>
+              <pre class="equation-block">F = Fᵉ Fᵖ Fᶜ</pre>
+              <p><span class="lang-en">Chemical swelling, plastic flow, and recoverable elastic distortion are separated so very large lithiation deformation does not imply unrealistically large elastic strain.</span><span class="lang-zh">分别描述化学膨胀、塑性流动和可恢复弹性畸变，从而避免把巨大锂化变形错误地解释为巨大弹性应变。</span></p>
+              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text)</span>
+            </article>
+
+            <article class="equation-card">
+              <strong><span class="lang-en">Isotropic chemical expansion</span><span class="lang-zh">各向同性化学膨胀</span></strong>
+              <pre class="equation-block">Fᶜ = (1+Ωc)^(1/3) I</pre>
+              <p><span class="lang-en">Lithium concentration produces an isotropic volumetric eigen-deformation calibrated to the assumed fully lithiated volume increase.</span><span class="lang-zh">锂浓度产生各向同性体积本征变形，其幅值按完全锂化的假定体积增量标定。</span></p>
+              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table)</span>
+            </article>
+
+            <article class="equation-card">
+              <strong><span class="lang-en">J2 plasticity with linear hardening</span><span class="lang-zh">线性硬化 J2 塑性</span></strong>
+              <pre class="equation-block">f_y = σ_eq − (σ_y + H ε̄ᵖ) ≤ 0</pre>
+              <p><span class="lang-en">Deviatoric yielding limits the stress generated by chemical swelling, while accumulated plastic strain raises the subsequent yield threshold.</span><span class="lang-zh">偏应力屈服限制化学膨胀产生的应力，累积塑性应变则提高后续屈服阈值。</span></p>
+              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table)</span>
+            </article>
+
+          </div>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Coupling logic</span><span class="lang-zh">耦合关系</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Concentration changes chemical free energy, mobility, elastic properties, and chemical expansion; deformation changes elastic energy and therefore the chemical potential that drives lithium flux.</span><span class="lang-zh">浓度改变化学自由能、迁移率、弹性性质和化学膨胀；变形改变弹性能，进而改变驱动锂通量的化学势。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model, p.5 (equation) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Lithium transport advances the phase front, local expansion generates stress and plastic flow, and the resulting elastic state feeds back into transport through μ_el.</span><span class="lang-zh">锂输运推动相界面，局部膨胀产生应力和塑性流动，新的弹性状态再通过 μ_el 反馈到输运过程。</span></span>
+    <small>Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+
+
     </section>
-    
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Application Understanding</span><span class="lang-zh">应用理解</span></h2>
-      
-<div class="inline-visuals">
-  
-  <div class="inline-visual">
-    <strong><span class="lang-en">Page 6 view containing Figure 3</span><span class="lang-zh">第 6 页视图，包含 图 3</span> · full_page_approximate</strong>
-    
-    <button class="visual-open" type="button" data-lightbox-src="page_images/page-006.png" data-lightbox-title="Page 6 view containing Figure 3"><img src="page_images/page-006.png" alt="Figure 3"></button>
-    
-    <p><span class="lang-en">Track the steep red, green, and black fronts moving from the surface toward the center; the smaller late displacement visualizes the slowing front while the plateau values remain tied to the two free-energy wells.</span><span class="lang-zh">观察红、绿、黑三条陡峭界面从表面向中心推进；后期位移减小体现界面减速，而平台浓度仍由自由能的两个势阱约束。</span></p>
-    <span class="item-meta">Evidence: Numerical Results, p.6 (caption); Numerical Results, p.6 (figure)</span>
-  </div>
-  
-</div>
 
-      
-        <h3><span class="lang-en">Task Context</span><span class="lang-zh">Task Context</span></h3>
-        
+    <section class="knowledge-panel full-width materials-section materials-section-4">
+      <p class="section-kicker"><span class="lang-en">Section 4 of 6</span><span class="lang-zh">六大块 · 第 4 节</span></p>
+      <h2><span class="lang-en">Computational Setup and Reproducibility</span><span class="lang-zh">计算设置与可复现性</span></h2>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Model parameters</span><span class="lang-zh">模型参数</span></h3>
+
+          <div class="table-scroll" tabindex="0"><table class="compact-table parameter-table">
+            <thead><tr><th><span class="lang-en">Parameter</span><span class="lang-zh">参数</span></th><th><span class="lang-en">Symbol</span><span class="lang-zh">符号</span></th><th><span class="lang-en">Value</span><span class="lang-zh">数值</span></th><th><span class="lang-en">Role</span><span class="lang-zh">作用</span></th></tr></thead>
+            <tbody><tr><td><span class="lang-en">Reference nanowire radius</span><span class="lang-zh">纳米线参考半径</span></td><td>R₀</td><td>70 nm</td><td><span class="lang-en">Sets the particle geometry and radial diffusion distance.</span><span class="lang-zh">规定颗粒几何和径向扩散距离。</span><br><span class="item-meta">Numerical Results, p.6 (table); Numerical Implementation, p.5 (body text)</span></td></tr><tr><td><span class="lang-en">Li-rich normalized concentration</span><span class="lang-zh">富锂归一化浓度</span></td><td>ĉβ</td><td>0.872 —</td><td><span class="lang-en">Defines the lithiated free-energy minimum and imposed surface composition.</span><span class="lang-zh">规定富锂自由能极小值和表面施加的组成。</span><br><span class="item-meta">Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Results, p.6 (table)</span></td></tr><tr><td><span class="lang-en">Analytical interface width</span><span class="lang-zh">解析界面宽度</span></td><td>λ</td><td>1.12 nm</td><td><span class="lang-en">Provides the intrinsic-length validation target for the phase-field solution.</span><span class="lang-zh">作为相场解内禀长度的验证目标。</span><br><span class="item-meta">Numerical Results, p.7 (equation); Numerical Results, p.8 (figure)</span></td></tr><tr><td><span class="lang-en">Fully lithiated volume ratio</span><span class="lang-zh">完全锂化体积比</span></td><td>V/V₀</td><td>4.0 —</td><td><span class="lang-en">Represents a 300% volume increase caused by chemical expansion.</span><span class="lang-zh">表示化学膨胀导致的 300% 体积增量。</span><br><span class="item-meta">Numerical Results, p.6 (table)</span></td></tr><tr><td><span class="lang-en">Yield strength</span><span class="lang-zh">屈服强度</span></td><td>σy</td><td>1.5 GPa</td><td><span class="lang-en">Controls the onset of irreversible deformation in the lithiated silicon.</span><span class="lang-zh">控制锂化硅开始发生不可逆变形的条件。</span><br><span class="item-meta">Numerical Results, p.6 (table)</span></td></tr><tr><td><span class="lang-en">Linear hardening modulus</span><span class="lang-zh">线性硬化模量</span></td><td>H</td><td>1.0 GPa</td><td><span class="lang-en">Controls the growth of flow resistance with accumulated plastic strain.</span><span class="lang-zh">控制流动阻力随累积塑性应变的增长。</span><br><span class="item-meta">Numerical Results, p.6 (table)</span></td></tr><tr><td><span class="lang-en">Physical time step</span><span class="lang-zh">物理时间步长</span></td><td>Δt</td><td>2.45 s</td><td><span class="lang-en">Sets the implicit temporal discretization used in the reported simulation.</span><span class="lang-zh">规定文中隐式时间离散的推进尺度。</span><br><span class="item-meta">Numerical Implementation, p.5 (body text); Numerical Results, p.6 (table)</span></td></tr></tbody>
+          </table></div>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Initial conditions</span><span class="lang-zh">初始条件</span></h3>
+
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">The application targets first lithiation of a crystalline silicon nanowire, where an amorphous Li3.75Si-rich shell advances into a nearly unlithiated crystalline core across an approximately nanometer-scale boundary.</span><span class="lang-zh">应用对象是晶态硅纳米线首次锂化：富锂非晶 Li3.75Si 壳层跨越约纳米厚界面向近乎未锂化的晶态核心推进。</span></span>
-    <small>Evidence: Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text) | confidence: high</small>
+    <span><span class="lang-en">The quarter nanowire begins nearly Li-poor and stress-free, with the prescribed initial concentration profile and undeformed reference geometry.</span><span class="lang-zh">四分之一纳米线起始时近似贫锂且无应力，采用给定的初始浓度分布和未变形参考几何。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
-        <h3><span class="lang-en">Experimental Setup</span><span class="lang-zh">Experimental Setup</span></h3>
-        
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Boundary conditions</span><span class="lang-zh">边界条件</span></h3>
+
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">The numerical benchmark uses a 70 nm-radius circular cross section and compares concentration-front behavior with in-situ observations and stress fields with a prior nonlinear concentration-dependent diffusion model.</span><span class="lang-zh">数值算例采用半径 70 nm 的圆形截面，并把浓度界面行为与原位核壳观察比较，把应力场与既有非线性浓度相关扩散模型比较。</span></span>
-    <small>Evidence: Numerical Results, p.6 (table); Numerical Results, p.6 (figure); Numerical Results, p.7 (figure) | confidence: high</small>
+    <span><span class="lang-en">The exterior concentration is fixed at the Li-rich value, while the normal chemical-potential flux is zero.</span><span class="lang-zh">外表面浓度固定为富锂值，同时化学势法向通量为零。</span></span>
+    <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text) | confidence: high</small>
   </li>
 
   <li>
-    <span><span class="lang-en">The Li-rich composition is set to c-hat=0.872, elasticity softens with lithiation, and the model uses 1.5 GPa yield strength and 1.0 GPa hardening modulus.</span><span class="lang-zh">富锂组分设为 ĉ=0.872，弹性模量随锂化软化，屈服强度与硬化模量分别取 1.5 GPa 和 1.0 GPa。</span></span>
-    <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Results, p.6 (table) | confidence: high</small>
+    <span><span class="lang-en">The outer mechanical surface is traction-free and the two cut faces use displacement symmetry conditions for the quarter-domain.</span><span class="lang-zh">外部机械表面无牵引，四分之一域的两个切面施加位移对称条件。</span></span>
+    <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
-        <h3><span class="lang-en">Constraints</span><span class="lang-zh">Constraints</span></h3>
-        
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Numerical implementation</span><span class="lang-zh">数值实现</span></h3>
+
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">Axisymmetry, isotropy, uniform surface saturation, and traction-free mechanics suppress crystallographic, reaction-front, contact, and defect heterogeneity.</span><span class="lang-zh">轴对称、各向同性、表面均匀饱和和无牵引条件排除了晶向、反应界面、接触及缺陷非均匀性。</span></span>
-    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
+    <span><span class="lang-en">COMSOL solves a split form of the fourth-order phase-field equation as two second-order equations coupled to mechanical equilibrium.</span><span class="lang-zh">COMSOL 将四阶相场方程拆为两个二阶方程，并与力学平衡联立求解。</span></span>
+    <small>Evidence: Numerical Implementation, p.5 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The spatial discretization uses two-dimensional three-node triangular elements with four nodal degrees of freedom: concentration, chemical potential, and two displacements.</span><span class="lang-zh">空间离散采用二维三节点三角形单元，每个节点具有浓度、化学势和两个位移共四个自由度。</span></span>
+    <small>Evidence: Numerical Implementation, p.5 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Time advancement uses a first-order implicit scheme, and the converged fields are postprocessed for front position, interface width, stresses, and plastic strain.</span><span class="lang-zh">时间推进采用一阶隐式格式，收敛场用于提取界面位置、界面宽度、应力和塑性应变。</span></span>
+    <small>Evidence: Numerical Implementation, p.5 (body text); Numerical Results, p.6 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
-        <h3><span class="lang-en">Transfer Limits</span><span class="lang-zh">Transfer Limits</span></h3>
-        
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Reproducibility check</span><span class="lang-zh">可复现性检查</span></h3>
+
           <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">The equations can be extended to other high-capacity phase-changing electrodes, but the silicon-specific free energy, mobility, plastic parameters, and boundary conditions require recalibration before quantitative transfer.</span><span class="lang-zh">方程可推广至其他发生相变的高容量电极，但若要定量迁移，必须重新标定特定材料的自由能、迁移率、塑性参数和边界条件。</span></span>
-    <small>Evidence: Numerical Results, p.6 (table); Conclusions and Scope, p.9 (body text) | confidence: high</small>
+    <span><span class="lang-en">The paper provides the governing formulation, principal parameters, geometry, boundary conditions, element type, degrees of freedom, software, and time step, which is sufficient to reconstruct the benchmark in principle.</span><span class="lang-zh">论文给出了控制框架、主要参数、几何、边界条件、单元类型、自由度、软件和时间步，原则上足以重建基准算例。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Implementation, p.5 (body text); Numerical Results, p.6 (table) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Exact mesh density, nonlinear-solver tolerances, complete weak-form implementation, input files, and downloadable COMSOL model are not available, preventing bitwise reproduction.</span><span class="lang-zh">论文未提供精确网格密度、非线性求解容差、完整弱形式实现、输入文件和可下载 COMSOL 模型，因此无法逐位复现结果。</span></span>
+    <small>Evidence: Numerical Implementation, p.5 (body text); External availability, p.0 (external) | confidence: high</small>
   </li>
 
 </ul>
-        
-      
+
+      </div>
+
+
+
     </section>
-    
 
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Evaluation</span><span class="lang-zh">实验评估</span></h2>
-      
-<div class="inline-visuals">
-  
-  <div class="inline-visual">
-    <strong><span class="lang-en">Page 7 view containing Figure 4</span><span class="lang-zh">第 7 页视图，包含 图 4</span> · full_page_approximate</strong>
-    
-    <button class="visual-open" type="button" data-lightbox-src="page_images/page-007.png" data-lightbox-title="Page 7 view containing Figure 4"><img src="page_images/page-007.png" alt="Figure 4"></button>
-    
-    <p><span class="lang-en">Compare panels (a,b) with (c,d): both approaches show similar stress organization around the front, and the late-stage hoop-stress curve is tensile near the outer surface even though it is compressive early.</span><span class="lang-zh">对比 (a,b) 与 (c,d)：两种方法在界面附近呈现相似的应力组织，且后期环向应力在外表面为拉伸，而早期为压缩。</span></p>
-    <span class="item-meta">Evidence: Numerical Results, p.7 (caption); Numerical Results, p.7 (figure)</span>
-  </div>
-  
-</div>
+    <section class="knowledge-panel full-width materials-section materials-section-5">
+      <p class="section-kicker"><span class="lang-en">Section 5 of 6</span><span class="lang-zh">六大块 · 第 5 节</span></p>
+      <h2><span class="lang-en">Results, Validation, and Mechanisms</span><span class="lang-zh">结果、验证与机理</span></h2>
 
-      
-      
-      
-      <h3><span class="lang-en">Datasets</span><span class="lang-zh">数据集</span></h3>
-      <ul class="knowledge-list">
+      <div class="materials-group">
+        <h3><span class="lang-en">Key results</span><span class="lang-zh">关键结果</span></h3>
+
+          <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">No dataset is introduced; validation uses an idealized 70 nm silicon-nanowire calculation, qualitative in-situ core-shell observations, an analytical interface-width estimate, and a prior nonlinear-diffusion simulation.</span><span class="lang-zh">论文未发布数据集；验证对象包括理想化 70 nm 硅纳米线计算、原位实验所见的核壳形貌、解析界面宽度估计以及既有非线性扩散模拟。</span></span>
-    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table); Numerical Results, p.6 (figure); Numerical Results, p.7 (figure); Numerical Results, p.7 (equation) | confidence: high</small>
-  </li>
-
-</ul>
-      
-      
-      
-      
-      <h3><span class="lang-en">Metrics</span><span class="lang-zh">指标</span></h3>
-      <ul class="knowledge-list">
-
-  <li>
-    <span><span class="lang-en">Evaluation examines phase-front position and sharpness, interface width, radial/hoop/von Mises stresses, stress sign history, and accumulated plastic strain.</span><span class="lang-zh">评价量包括相界面位置与尖锐程度、界面宽度、径向/环向/von Mises 应力、应力符号随时间的变化以及累积塑性应变。</span></span>
-    <small>Evidence: Numerical Results, p.6 (figure); Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
-  </li>
-
-</ul>
-      
-      
-      
-      
-      <h3><span class="lang-en">Main Results</span><span class="lang-zh">主要结果</span></h3>
-      <ul class="knowledge-list">
-
-  <li>
-    <span><span class="lang-en">The phase field sustains a sharp core-shell front, reproduces stress-profile trends from the nonlinear-diffusion model, and predicts surface hoop tension at late lithiation.</span><span class="lang-zh">相场模型维持尖锐核壳界面，再现非线性扩散模型的应力分布趋势，并预测锂化后期的表面环向拉应力。</span></span>
-    <small>Evidence: Numerical Results, p.6 (figure); Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
+    <span><span class="lang-en">A sharp Li-rich shell advances inward while the unlithiated crystalline core shrinks; the front slows during later lithiation.</span><span class="lang-zh">尖锐的富锂壳层向内推进，未锂化晶态核心逐渐缩小，界面在锂化后期减速。</span></span>
+    <small>Evidence: Numerical Results, p.6 (figure) | confidence: high</small>
   </li>
 
   <li>
-    <span><span class="lang-en">The computed interface width stays close to its analytical value over time instead of broadening severalfold as reported for the comparison diffusion formulation.</span><span class="lang-zh">计算界面宽度随时间保持在解析值附近，而不是像对比扩散模型那样增宽数倍。</span></span>
+    <span><span class="lang-en">Plastic yielding limits and redistributes stress, and the outer-surface hoop stress changes from early compression to late tension.</span><span class="lang-zh">塑性屈服限制并重新分配应力，外表面环向应力由早期压缩转为后期拉伸。</span></span>
+    <small>Evidence: Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The simulated diffuse-interface width remains close to the 1.12 nm analytical value throughout lithiation.</span><span class="lang-zh">模拟弥散界面宽度在整个锂化过程中保持接近 1.12 nm 的解析值。</span></span>
     <small>Evidence: Numerical Results, p.7 (equation); Numerical Results, p.8 (figure) | confidence: high</small>
   </li>
 
 </ul>
-      
-      
-      
-      
-      <h3><span class="lang-en">Ablation / Comparison Takeaways</span><span class="lang-zh">消融/对比结论</span></h3>
-      <ul class="knowledge-list">
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Validation and comparison</span><span class="lang-zh">验证与对比</span></h3>
+
+          <ul class="knowledge-list">
 
   <li>
-    <span><span class="lang-en">Elastic versus elasto-plastic curves show that yielding strongly limits stress magnitudes and changes their time evolution, making plasticity essential for the large-swelling silicon case.</span><span class="lang-zh">纯弹性与弹塑性曲线的比较表明，屈服显著限制应力幅值并改变其时间历程，因此对大膨胀硅不可忽略塑性。</span></span>
-    <small>Evidence: Numerical Results, p.8 (figure); Numerical Results, p.8 (caption) | confidence: high</small>
+    <span><span class="lang-en">The computed core-shell concentration morphology is qualitatively consistent with in-situ observations of two-phase lithiation in crystalline silicon nanowires.</span><span class="lang-zh">计算所得核壳浓度形貌与晶态硅纳米线两相锂化的原位观察定性一致。</span></span>
+    <small>Evidence: Abstract and Introduction, p.2 (body text); Numerical Results, p.6 (figure) | confidence: medium</small>
   </li>
 
   <li>
-    <span><span class="lang-en">Residual differences from the nonlinear-diffusion stress profiles are attributed to different plasticity laws, mesh density, and geometry; small phase-field stress fluctuations remain.</span><span class="lang-zh">与非线性扩散模型的剩余差异可能来自塑性定律、网格密度和几何设置，相场应力曲线仍有小幅数值波动。</span></span>
+    <span><span class="lang-en">At matched front positions, radial and hoop stress profiles broadly agree with a prior nonlinear concentration-dependent diffusion calculation, although small numerical fluctuations remain.</span><span class="lang-zh">在匹配的界面位置上，径向和环向应力分布与既有非线性浓度相关扩散计算总体一致，但仍存在小幅数值波动。</span></span>
     <small>Evidence: Numerical Results, p.7 (figure) | confidence: high</small>
   </li>
 
+  <li>
+    <span><span class="lang-en">The strongest internal quantitative check is agreement between the simulated interface width and the analytical phase-field estimate; there is no matched spatially resolved experimental stress validation.</span><span class="lang-zh">最强的内部定量校核是模拟界面宽度与相场解析估计一致；文中没有针对匹配试样的空间分辨应力实验验证。</span></span>
+    <small>Evidence: Numerical Results, p.7 (equation); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
 </ul>
-      
-      
-      
-      <h3><span class="lang-en">Numeric Results</span><span class="lang-zh">关键数值结果</span></h3>
-      <table class="compact-table">
-        <thead><tr><th><span class="lang-en">Task</span><span class="lang-zh">任务</span></th><th><span class="lang-en">Metric</span><span class="lang-zh">指标</span></th><th><span class="lang-en">Value</span><span class="lang-zh">数值</span></th><th><span class="lang-en">Comparison</span><span class="lang-zh">对比</span></th><th><span class="lang-en">Interpretation</span><span class="lang-zh">解读</span></th></tr></thead>
-        <tbody>
-        
-          <tr>
-            <td><span class="lang-en">Two-phase lithiation of a 70 nm-radius silicon nanowire</span><span class="lang-zh">半径 70 nm 硅纳米线的两相锂化</span></td>
-            <td><span class="lang-en">Analytical phase-boundary width</span><span class="lang-zh">解析相界面宽度</span></td>
-            <td><strong>1.12nm</strong></td>
-            <td>Analytical estimate from gradient energy and double-well barrier -&gt; Phase-field width remains close throughout lithiation</td>
-            <td><span class="lang-en">The diffuse interface retains the intended nanoscale material length rather than spreading continuously with time.</span><span class="lang-zh">弥散界面保持预期的纳米级材料长度，而不会随时间持续扩散。</span><br><span class="item-meta"><span class="lang-en">does not prove: Agreement with the internal analytical estimate is not an independent calibration of κ or Δg for all silicon electrodes.</span><span class="lang-zh">不能说明：与内部解析估计一致并不能独立标定所有硅电极适用的 κ 或 Δg。</span> · Evidence: Numerical Results, p.7 (equation); Numerical Results, p.8 (figure)</span></td>
-          </tr>
-        
-          <tr>
-            <td><span class="lang-en">Constitutive setup for fully lithiated silicon</span><span class="lang-zh">完全锂化硅的本构设置</span></td>
-            <td><span class="lang-en">Final-to-initial volume ratio implied by 300% volume increase</span><span class="lang-zh">由 300% 体积增量换算的终态/初态体积比</span></td>
-            <td><strong>4dimensionless</strong></td>
-            <td>Initial unlithiated volume = 1 -&gt; Used to set chemical expansion coefficient beta=0.5874</td>
-            <td><span class="lang-en">The finite-deformation formulation is exercised at four times the initial material-point volume, the large-swelling regime relevant to silicon lithiation.</span><span class="lang-zh">有限变形模型在材料点体积达到初始值 4 倍的大膨胀区间内得到检验。</span><br><span class="item-meta"><span class="lang-en">does not prove: A prescribed expansion does not validate the constitutive law or its path dependence against a specific experiment.</span><span class="lang-zh">不能说明：预设膨胀量不能验证本构定律及其路径依赖是否符合某一具体实验。</span> · Evidence: Numerical Results, p.6 (table)</span></td>
-          </tr>
-        
-        </tbody>
-      </table>
-      
-    </section>
 
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Visual Cards</span><span class="lang-zh">图表卡片</span></h2>
-      <div class="visual-grid">
-      
-        <div class="visual-card">
-          <strong><span class="lang-en">Page 6 view containing Figure 3</span><span class="lang-zh">第 6 页视图，包含 图 3</span> · main_result</strong>
-          
-          <button class="visual-open" type="button" data-lightbox-src="page_images/page-006.png" data-lightbox-title="Page 6 view containing Figure 3"><img src="page_images/page-006.png" alt="Figure 3"></button>
-          
-          
-          <p><span><span class="lang-en">Caption</span><span class="lang-zh">图表说明</span></span><span class="lang-en">Radial distribution of normalized Li concentration at three lithiation times.</span><span class="lang-zh">三个锂化时刻的归一化锂浓度径向分布。</span></p>
-          <p><span><span class="lang-en">Reading note</span><span class="lang-zh">阅读提示</span></span><span class="lang-en">Track the steep red, green, and black fronts moving from the surface toward the center; the smaller late displacement visualizes the slowing front while the plateau values remain tied to the two free-energy wells.</span><span class="lang-zh">观察红、绿、黑三条陡峭界面从表面向中心推进；后期位移减小体现界面减速，而平台浓度仍由自由能的两个势阱约束。</span></p>
-          <p class="item-meta">Evidence: Numerical Results, p.6 (caption); Numerical Results, p.6 (figure)</p>
-          <span class="status-pill">full_page_approximate</span>
-        </div>
-      
-        <div class="visual-card">
-          <strong><span class="lang-en">Page 7 view containing Figure 4</span><span class="lang-zh">第 7 页视图，包含 图 4</span> · main_result</strong>
-          
-          <button class="visual-open" type="button" data-lightbox-src="page_images/page-007.png" data-lightbox-title="Page 7 view containing Figure 4"><img src="page_images/page-007.png" alt="Figure 4"></button>
-          
-          
-          <p><span><span class="lang-en">Caption</span><span class="lang-zh">图表说明</span></span><span class="lang-en">Phase-field and nonlinear-diffusion radial stress profiles at early and late matched front positions.</span><span class="lang-zh">早期和后期相同界面位置处，相场模型与非线性扩散模型的径向应力分布。</span></p>
-          <p><span><span class="lang-en">Reading note</span><span class="lang-zh">阅读提示</span></span><span class="lang-en">Compare panels (a,b) with (c,d): both approaches show similar stress organization around the front, and the late-stage hoop-stress curve is tensile near the outer surface even though it is compressive early.</span><span class="lang-zh">对比 (a,b) 与 (c,d)：两种方法在界面附近呈现相似的应力组织，且后期环向应力在外表面为拉伸，而早期为压缩。</span></p>
-          <p class="item-meta">Evidence: Numerical Results, p.7 (caption); Numerical Results, p.7 (figure)</p>
-          <span class="status-pill">full_page_approximate</span>
-        </div>
-      
-        <div class="visual-card">
-          <strong><span class="lang-en">Page 8 view containing Figures 5 and 6</span><span class="lang-zh">第 8 页视图，包含 图 5 和图 6</span> · mechanism_and_validation</strong>
-          
-          <button class="visual-open" type="button" data-lightbox-src="page_images/page-008.png" data-lightbox-title="Page 8 view containing Figures 5 and 6"><img src="page_images/page-008.png" alt="Figures 5 and 6"></button>
-          
-          
-          <p><span><span class="lang-en">Caption</span><span class="lang-zh">图表说明</span></span><span class="lang-en">Hoop-stress histories at surface and center, plus analytical and phase-field interface-width histories.</span><span class="lang-zh">表面与中心的环向应力历程，以及解析与相场界面宽度历程。</span></p>
-          <p><span><span class="lang-en">Reading note</span><span class="lang-zh">阅读提示</span></span><span class="lang-en">Figure 5 isolates the compression-to-tension reversal and the stress-limiting role of plasticity; Figure 6 shows the simulated width hovering near the 1.12 nm analytical line, directly connecting mechanism and validation.</span><span class="lang-zh">图 5 展示压缩到拉伸的反转及塑性对应力的限制作用；图 6 显示模拟宽度在 1.12 nm 解析线附近波动，把机理与验证直接联系起来。</span></p>
-          <p class="item-meta">Evidence: Numerical Results, p.8 (caption); Numerical Results, p.8 (figure); Numerical Results, p.7 (equation)</p>
-          <span class="status-pill">full_page_approximate</span>
-        </div>
-      
       </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Mechanistic interpretation</span><span class="lang-zh">机理解释</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">When the surface first lithiates, its chemical expansion is constrained by the inner core, producing hoop compression and plastic flow in the outer shell.</span><span class="lang-zh">表面最初锂化时，其化学膨胀受到内部核心约束，使外壳产生环向压应力和塑性流动。</span></span>
+    <small>Evidence: Numerical Results, p.7 (figure); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">As lithiation continues beneath the already expanded shell, the advancing interior expansion stretches that shell circumferentially, reversing the surface hoop stress into tension.</span><span class="lang-zh">锂化继续向已膨胀外壳下方推进时，内部新增膨胀沿环向拉伸外壳，使表面环向应力反转为拉伸。</span></span>
+    <small>Evidence: Numerical Results, p.8 (figure); Abstract and Introduction, p.2 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The balance between the double-well barrier and gradient penalty prevents numerical spreading of the phase boundary and gives the model a stable intrinsic length scale.</span><span class="lang-zh">双阱势垒与梯度惩罚的平衡抑制相界面的数值扩散，为模型提供稳定的内禀长度尺度。</span></span>
+    <small>Evidence: Phase-Field Model, p.5 (equation); Numerical Results, p.7 (equation); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Sensitivity and uncovered questions</span><span class="lang-zh">参数敏感性与未覆盖问题</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Plastic-range parameters were selected as representative values because measurements were unavailable; the paper compares elastic and elastoplastic responses but does not systematically sweep yield strength, hardening, mobility, gradient energy, or mesh size.</span><span class="lang-zh">由于缺少测量，塑性区参数采用代表性数值；论文比较了纯弹性与弹塑性响应，但没有系统扫描屈服强度、硬化、迁移率、梯度能或网格尺寸。</span></span>
+    <small>Evidence: Numerical Results, p.6 (table); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The study does not resolve fracture, surface oxide, defects, crystallographic anisotropy, electrochemical reaction kinetics, contact constraints, cycling, or porous composite architecture.</span><span class="lang-zh">研究未解析断裂、表面氧化层、缺陷、晶向各向异性、电化学反应动力学、接触约束、循环过程或多孔复合结构。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Conclusions and Scope, p.9 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Correspondence with experiments</span><span class="lang-zh">与实验的对应关系</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The predicted moving crystalline-core/amorphous-shell morphology corresponds qualitatively to reported in-situ nanowire observations.</span><span class="lang-zh">预测的移动晶态核心/非晶壳层形貌与已有纳米线原位观察定性对应。</span></span>
+    <small>Evidence: Abstract and Introduction, p.2 (body text); Numerical Results, p.6 (figure) | confidence: medium</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The late tensile surface state supplies a plausible cracking mechanism, but the model neither propagates a crack nor compares the stress history with a measured fracture threshold for a matched specimen.</span><span class="lang-zh">后期表面拉伸状态提供了合理的开裂机理，但模型没有扩展裂纹，也没有与匹配试样的实测断裂阈值比较。</span></span>
+    <small>Evidence: Numerical Results, p.8 (figure); Conclusions and Scope, p.9 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+
+
     </section>
 
-    <section class="knowledge-panel full-width">
-      <h2><span class="lang-en">Availability</span><span class="lang-zh">可用性</span></h2>
-      <table class="compact-table">
-        <tbody>
-        
-          <tr>
-            <th><span class="lang-en">Code</span><span class="lang-zh">代码</span></th>
-            <td>
-              <strong><span class="lang-en">not_verified</span><span class="lang-zh">not_verified</span></strong>
-              <br><span class="item-meta"><span class="lang-en">No code repository is identified in the local article, and the single permitted DOI landing-page check was blocked before an official external artifact could be assessed. | The paper names COMSOL as the implementation platform but does not provide source code in the inspected local text.</span><span class="lang-zh">本地论文未给出代码仓库；唯一允许的 DOI 落地页查询在评估官方外部资源前即被阻止。 | 论文说明使用 COMSOL 实现，但在检查的本地文本中没有提供源代码。</span></span>
-            </td>
-          </tr>
-        
-          <tr>
-            <th><span class="lang-en">Data</span><span class="lang-zh">数据</span></th>
-            <td>
-              <strong><span class="lang-en">not_applicable_or_not_verified</span><span class="lang-zh">not_applicable_or_not_verified</span></strong>
-              <br><span class="item-meta"><span class="lang-en">The work reports simulation curves rather than a released research dataset; no official data package could be checked because the DOI page was inaccessible to the lookup. | Parameters are printed in Table I, but reusable input or output files were not identified.</span><span class="lang-zh">论文报告的是模拟曲线而非发布的数据集；由于 DOI 页面无法访问，未能核实官方数据包。 | 表 I 给出了参数，但未发现可复用的输入或输出文件。</span></span>
-            </td>
-          </tr>
-        
-          <tr>
-            <th><span class="lang-en">Models</span><span class="lang-zh">模型</span></th>
-            <td>
-              <strong><span class="lang-en">not_verified</span><span class="lang-zh">not_verified</span></strong>
-              <br><span class="item-meta"><span class="lang-en">The mathematical model is documented in the paper, but no downloadable COMSOL model or other executable model artifact was verified. | The external DOI lookup was blocked by robots.txt.</span><span class="lang-zh">论文完整描述了数学模型，但未核实到可下载的 COMSOL 模型或其他可执行模型文件。 | 外部 DOI 查询受到 robots.txt 限制。</span></span>
-            </td>
-          </tr>
-        
-        </tbody>
-      </table>
+    <section class="knowledge-panel full-width materials-section materials-section-6">
+      <p class="section-kicker"><span class="lang-en">Section 6 of 6</span><span class="lang-zh">六大块 · 第 6 节</span></p>
+      <h2><span class="lang-en">Research Value and Resources</span><span class="lang-zh">研究价值与资源</span></h2>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Value to the four research modules</span><span class="lang-zh">对四个研究模块的价值</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">For CVD nanosilicon in porous carbon, the reusable part is the finite-deformation silicon constitutive framework; pore geometry, carbon constraint, interface adhesion, and deposition morphology must be added.</span><span class="lang-zh">对于多孔碳中 CVD 纳米硅，有限变形硅本构可以复用，但必须加入孔结构、碳约束、界面黏结或滑移以及沉积厚度分布。</span></span>
+    <small>Evidence: Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">For lithiated-silicon phase mechanics, the paper shows how stress and plasticity interact with a crystalline-to-amorphous front, but it does not establish the mechanical conditions for nucleating a crystalline lithiated phase.</span><span class="lang-zh">对于锂化硅相变力学，论文展示了应力和塑性如何作用于晶态到非晶态界面，但没有给出锂化硅晶相的形核力学条件。</span></span>
+    <small>Evidence: Abstract and Introduction, p.2 (body text); Problem Description and Constitutive Model, p.3 (body text); Conclusions and Scope, p.9 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">For phase-field–mechanics–electrochemistry simulation, it is a central reference because it gives the free energy, governing transport, finite-deformation kinematics, plastic law, coupling path, boundary conditions, and FEM realization in one example.</span><span class="lang-zh">对于相场—力学—电化学仿真，这是一篇核心参考，因为它在同一算例中给出了自由能、输运方程、有限变形运动学、塑性定律、耦合路径、边界条件和有限元实现。</span></span>
+    <small>Evidence: Phase-Field Model, p.5 (equation); Problem Description and Constitutive Model, p.3 (body text); Phase-Field Model and Boundary Conditions, p.5 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">For multiscale simulation, the intrinsic interface length can serve as a lower-scale-informed continuum parameter, but a full atomistic-to-particle-to-electrode-to-cell transfer and experimental closure are absent.</span><span class="lang-zh">对于多尺度仿真，内禀界面长度可以作为低尺度信息进入连续体模型的参数，但文中没有原子—颗粒—电极—电芯的完整传递和实验闭环。</span></span>
+    <small>Evidence: Numerical Results, p.7 (equation); Conclusions and Scope, p.9 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Reusable elements</span><span class="lang-zh">可复用内容</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Reusable model elements include the total free-energy decomposition, stress-sensitive chemical potential, split Cahn-Hilliard implementation, multiplicative chemical-elastic-plastic kinematics, and J2 plastic update.</span><span class="lang-zh">可复用的模型内容包括总自由能分解、应力相关化学势、拆分式 Cahn–Hilliard 实现、化学—弹性—塑性乘法分解和 J2 塑性更新。</span></span>
+    <small>Evidence: Phase-Field Model, p.5 (equation); Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Reusable verification cases include the analytical 1.12 nm interface-width check, the quarter-circle symmetry benchmark, and comparison of elastic versus elastoplastic surface-stress histories.</span><span class="lang-zh">可复用的验证算例包括 1.12 nm 解析界面宽度校核、四分之一圆域对称基准，以及纯弹性与弹塑性表面应力历程对比。</span></span>
+    <small>Evidence: Numerical Results, p.7 (equation); Numerical Results, p.8 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Limitations and next steps</span><span class="lang-zh">局限与下一步</span></h3>
+
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Extend the domain to silicon deposited inside a resolved porous-carbon skeleton, including Si-C contact, adhesion or slip, pore confinement, and spatially varying deposition thickness.</span><span class="lang-zh">把计算域扩展到解析的多孔碳骨架内部沉积硅，加入 Si—C 接触、黏结或滑移、孔隙约束及空间变化的沉积厚度。</span></span>
+    <small>Evidence: Numerical Implementation, p.5 (body text); Conclusions and Scope, p.9 (body text) | confidence: medium</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Replace prescribed surface concentration with reaction kinetics and electrolyte transport, calibrate constitutive and phase-field parameters against experiments or lower-scale calculations, and add fracture and cycling damage.</span><span class="lang-zh">用界面反应动力学和电解液输运替代表面定浓度，通过实验或低尺度计算标定本构与相场参数，并加入断裂和循环损伤。</span></span>
+    <small>Evidence: Phase-Field Model and Boundary Conditions, p.5 (body text); Conclusions and Scope, p.9 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Perform mesh and time-step convergence and parameter sensitivity studies before using predicted stresses quantitatively for design.</span><span class="lang-zh">在把预测应力用于定量设计前，需要完成网格与时间步收敛以及参数敏感性研究。</span></span>
+    <small>Evidence: Numerical Implementation, p.5 (body text); Numerical Results, p.6 (table); Numerical Results, p.7 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+
+      </div>
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Reproducibility verdict</span><span class="lang-zh">可复现性结论</span></h3>
+
+          <p class="summary-text"><span class="lang-en">The paper is conceptually reproducible and suitable for rebuilding the benchmark, but only partially computationally reproducible because executable model files, complete solver settings, mesh-convergence evidence, and calibrated plastic data are unavailable.</span><span class="lang-zh">该论文在概念层面可复现，适合重建基准算例；但由于缺少可执行模型、完整求解设置、网格收敛证据和标定后的塑性数据，计算层面只能部分复现。</span></p>
+          <span class="item-meta">Evidence: Numerical Implementation, p.5 (body text); Numerical Results, p.6 (table); External availability, p.0 (external) | confidence: high</span>
+
+      </div>
+
+
+
+      <div class="materials-group">
+        <h3><span class="lang-en">Key figures and tables</span><span class="lang-zh">关键图表</span></h3>
+        <div class="visual-grid">
+
+          <article class="visual-card">
+            <strong><span class="lang-en">Page 6 view containing Figure 3</span><span class="lang-zh">第 6 页视图，包含 图 3</span></strong>
+            <button class="visual-open" type="button" data-lightbox-src="page_images/page-006.png" data-lightbox-title="Page 6 view containing Figure 3"><img src="page_images/page-006.png" alt="Figure 3"></button>
+            <p><span class="lang-en">Track the steep red, green, and black fronts moving from the surface toward the center; the smaller late displacement visualizes the slowing front while the plateau values remain tied to the two free-energy wells.</span><span class="lang-zh">观察红、绿、黑三条陡峭界面从表面向中心推进；后期位移减小体现界面减速，而平台浓度仍由自由能的两个势阱约束。</span></p>
+            <span class="item-meta">Numerical Results, p.6 (caption); Numerical Results, p.6 (figure)</span>
+          </article>
+
+          <article class="visual-card">
+            <strong><span class="lang-en">Page 7 view containing Figure 4</span><span class="lang-zh">第 7 页视图，包含 图 4</span></strong>
+            <button class="visual-open" type="button" data-lightbox-src="page_images/page-007.png" data-lightbox-title="Page 7 view containing Figure 4"><img src="page_images/page-007.png" alt="Figure 4"></button>
+            <p><span class="lang-en">Compare panels (a,b) with (c,d): both approaches show similar stress organization around the front, and the late-stage hoop-stress curve is tensile near the outer surface even though it is compressive early.</span><span class="lang-zh">对比 (a,b) 与 (c,d)：两种方法在界面附近呈现相似的应力组织，且后期环向应力在外表面为拉伸，而早期为压缩。</span></p>
+            <span class="item-meta">Numerical Results, p.7 (caption); Numerical Results, p.7 (figure)</span>
+          </article>
+
+          <article class="visual-card">
+            <strong><span class="lang-en">Page 8 view containing Figures 5 and 6</span><span class="lang-zh">第 8 页视图，包含 图 5 和图 6</span></strong>
+            <button class="visual-open" type="button" data-lightbox-src="page_images/page-008.png" data-lightbox-title="Page 8 view containing Figures 5 and 6"><img src="page_images/page-008.png" alt="Figures 5 and 6"></button>
+            <p><span class="lang-en">Figure 5 isolates the compression-to-tension reversal and the stress-limiting role of plasticity; Figure 6 shows the simulated width hovering near the 1.12 nm analytical line, directly connecting mechanism and validation.</span><span class="lang-zh">图 5 展示压缩到拉伸的反转及塑性对应力的限制作用；图 6 显示模拟宽度在 1.12 nm 解析线附近波动，把机理与验证直接联系起来。</span></p>
+            <span class="item-meta">Numerical Results, p.8 (caption); Numerical Results, p.8 (figure); Numerical Results, p.7 (equation)</span>
+          </article>
+
+        </div>
+      </div>
+      <div class="materials-group">
+        <h3><span class="lang-en">Code, data, and model availability</span><span class="lang-zh">代码、数据与模型资源</span></h3>
+        <table class="compact-table"><tbody><tr><th><span class="lang-en">Code</span><span class="lang-zh">代码</span></th><td><strong><span class="lang-en">not_verified</span><span class="lang-zh">not_verified</span></strong><br><span class="item-meta"><span class="lang-en">No code repository is identified in the local article, and the single permitted DOI landing-page check was blocked before an official external artifact could be assessed. | The paper names COMSOL as the implementation platform but does not provide source code in the inspected local text.</span><span class="lang-zh">本地论文未给出代码仓库；唯一允许的 DOI 落地页查询在评估官方外部资源前即被阻止。 | 论文说明使用 COMSOL 实现，但在检查的本地文本中没有提供源代码。</span></span></td></tr><tr><th><span class="lang-en">Data</span><span class="lang-zh">数据</span></th><td><strong><span class="lang-en">not_applicable_or_not_verified</span><span class="lang-zh">not_applicable_or_not_verified</span></strong><br><span class="item-meta"><span class="lang-en">The work reports simulation curves rather than a released research dataset; no official data package could be checked because the DOI page was inaccessible to the lookup. | Parameters are printed in Table I, but reusable input or output files were not identified.</span><span class="lang-zh">论文报告的是模拟曲线而非发布的数据集；由于 DOI 页面无法访问，未能核实官方数据包。 | 表 I 给出了参数，但未发现可复用的输入或输出文件。</span></span></td></tr><tr><th><span class="lang-en">Models</span><span class="lang-zh">模型</span></th><td><strong><span class="lang-en">not_verified</span><span class="lang-zh">not_verified</span></strong><br><span class="item-meta"><span class="lang-en">The mathematical model is documented in the paper, but no downloadable COMSOL model or other executable model artifact was verified. | The external DOI lookup was blocked by robots.txt.</span><span class="lang-zh">论文完整描述了数学模型，但未核实到可下载的 COMSOL 模型或其他可执行模型文件。 | 外部 DOI 查询受到 robots.txt 限制。</span></span></td></tr></tbody></table>
+      </div>
+      <p class="resource-links"><a href="paper.pdf">PDF</a> <a href="note.md"><span class="lang-en">Reading note</span><span class="lang-zh">阅读笔记</span></a></p>
+
     </section>
 
-    <details class="knowledge-panel full-width extraction-details">
-      <summary><span class="lang-en">Extraction Quality Notes</span><span class="lang-zh">提取质量说明</span></summary>
-      <table class="compact-table">
-        <tbody>
-        
-          <tr><th><span class="lang-en">Parser Limitations</span><span class="lang-zh">Parser Limitations</span></th><td><span class="lang-en">The paper index assigns many body paragraphs to page 1, so visual page numbers were verified against rendered page images.; Several displayed equations are omitted or degraded in parsed text; governing relations were checked against page 5 and the interface-width equation against page 7.</span><span class="lang-zh">论文索引把许多正文段落误标为第 1 页，因此图示页码依据渲染页面重新核对。; 若干行间公式在解析文本中缺失或损坏；控制关系对照第 5 页图像检查，界面宽度公式对照第 7 页图像检查。</span></td></tr>
-        
-          <tr><th><span class="lang-en">Missing Sections</span><span class="lang-zh">Missing Sections</span></th><td><span class="lang-en">No dedicated fracture calculation or experimental methods section is present because cracking is interpreted from computed stress rather than simulated directly.</span><span class="lang-zh">论文没有独立的断裂计算或实验方法部分，因为开裂仅由计算应力解释，并未直接模拟。</span></td></tr>
-        
-          <tr><th><span class="lang-en">Low Confidence Equations</span><span class="lang-zh">Low Confidence Equations</span></th><td><span class="lang-en">The compact free-energy equation summarizes the paper&#39;s displayed functional and does not reproduce every Jacobian factor in its reference-configuration expansion.</span><span class="lang-zh">自由能的紧凑表达概括了文中的泛函，没有逐项复现参考构形展开中的全部 Jacobian 因子。</span></td></tr>
-        
-          <tr><th><span class="lang-en">Visual Crop Limitations</span><span class="lang-zh">Visual Crop Limitations</span></th><td><span class="lang-en">Only full-page renderings were available, so all visual cards are approximate page views rather than tight figure crops.</span><span class="lang-zh">现有图像均为整页渲染，因此视觉卡展示的是近似整页视图而非紧裁剪图。</span></td></tr>
-        
-          <tr><th><span class="lang-en">External Info Used</span><span class="lang-zh">External Info Used</span></th><td><span class="lang-en">A direct lookup of DOI 10.1149/2.0171411jes was attempted on 2026-08-17 and blocked by robots.txt; no external availability claim was inferred beyond that result.</span><span class="lang-zh">2026-08-17 直接查询 DOI 10.1149/2.0171411jes 时受到 robots.txt 限制；除此结果外未推断任何外部可用性信息。</span></td></tr>
-        
-        </tbody>
-      </table>
-    </details>
-    
+
+
+
+
 
     <section class="knowledge-panel full-width">
       <h2>BibTeX</h2>
@@ -771,7 +736,7 @@
         document.documentElement.dataset.lang = lang;
         try { localStorage.setItem("battery-paper-lang", lang); } catch (error) {}
       }
-      setLang(localStorage.getItem("battery-paper-lang") || "en");
+      setLang(localStorage.getItem("battery-paper-lang") || "zh");
       document.querySelectorAll("[data-lang-button]").forEach(function (button) {
         button.addEventListener("click", function () { setLang(button.dataset.langButton); });
       });

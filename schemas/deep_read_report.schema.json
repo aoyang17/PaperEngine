@@ -28,6 +28,12 @@
     "parsed_markdown_path": {"type": "string"},
     "source_map_path": {"type": "string"},
     "one_sentence_summary": {"type": "string"},
+    "research_overview": {"$ref": "#/$defs/researchOverview"},
+    "research_system": {"$ref": "#/$defs/researchSystem"},
+    "model_and_mechanisms": {"$ref": "#/$defs/modelAndMechanisms"},
+    "computational_reproducibility": {"$ref": "#/$defs/computationalReproducibility"},
+    "results_validation_mechanisms": {"$ref": "#/$defs/resultsValidationMechanisms"},
+    "research_value_resources": {"$ref": "#/$defs/researchValueResources"},
     "translations": {
       "type": "object",
       "required": ["zh"],
@@ -245,6 +251,121 @@
       },
       "additionalProperties": false
     },
+    "researchOverview": {
+      "type": "object",
+      "required": ["study_identity", "module_alignment", "one_sentence_conclusion", "why_worth_reading", "research_problem", "prior_gap", "core_contribution", "scope_boundary"],
+      "properties": {
+        "study_identity": {
+          "type": "object",
+          "required": ["study_type", "domain", "evidence_mode", "source_refs"],
+          "properties": {
+            "study_type": {"type": "string", "enum": ["experimental", "computational", "theoretical", "review", "mixed"]},
+            "domain": {"type": "string"},
+            "evidence_mode": {"type": "string"},
+            "source_refs": {"$ref": "#/$defs/sourceRefs"}
+          },
+          "additionalProperties": false
+        },
+        "module_alignment": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["module_id", "module_title", "score", "role", "rationale", "source_refs"],
+            "properties": {
+              "module_id": {"type": "string"},
+              "module_title": {"type": "string"},
+              "score": {"type": "number", "minimum": 0, "maximum": 1},
+              "role": {"type": "string", "enum": ["primary", "cross_module", "background", "not_applicable"]},
+              "rationale": {"type": "string"},
+              "source_refs": {"$ref": "#/$defs/sourceRefs"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "one_sentence_conclusion": {"$ref": "#/$defs/sourcedText"},
+        "why_worth_reading": {"$ref": "#/$defs/sourcedText"},
+        "research_problem": {"$ref": "#/$defs/sourcedText"},
+        "prior_gap": {"$ref": "#/$defs/sourcedText"},
+        "core_contribution": {"$ref": "#/$defs/sourcedText"},
+        "scope_boundary": {"$ref": "#/$defs/sourcedText"}
+      },
+      "additionalProperties": false
+    },
+    "researchSystem": {
+      "type": "object",
+      "required": ["research_object", "geometry_and_scale", "phases_and_composition", "process_and_loading", "state_variables", "target_outputs"],
+      "properties": {
+        "research_object": {"$ref": "#/$defs/sourcedText"},
+        "geometry_and_scale": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "phases_and_composition": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "process_and_loading": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "state_variables": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "target_outputs": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "modelAndMechanisms": {
+      "type": "object",
+      "required": ["framework", "assumptions", "free_energy", "governing_equations", "constitutive_relations", "coupling_logic"],
+      "properties": {
+        "framework": {"$ref": "#/$defs/sourcedText"},
+        "assumptions": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "free_energy": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "governing_equations": {"type": "array", "items": {"$ref": "#/$defs/keyEquation"}},
+        "constitutive_relations": {"type": "array", "items": {"$ref": "#/$defs/keyEquation"}},
+        "coupling_logic": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "computationalReproducibility": {
+      "type": "object",
+      "required": ["parameters", "initial_conditions", "boundary_conditions", "numerical_implementation", "reproducibility_check"],
+      "properties": {
+        "parameters": {"type": "array", "items": {"$ref": "#/$defs/materialParameter"}},
+        "initial_conditions": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "boundary_conditions": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "numerical_implementation": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "reproducibility_check": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "resultsValidationMechanisms": {
+      "type": "object",
+      "required": ["key_results", "validation_and_comparison", "mechanistic_interpretation", "sensitivity_and_uncovered", "experimental_correspondence"],
+      "properties": {
+        "key_results": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "validation_and_comparison": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "mechanistic_interpretation": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "sensitivity_and_uncovered": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "experimental_correspondence": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}}
+      },
+      "additionalProperties": false
+    },
+    "researchValueResources": {
+      "type": "object",
+      "required": ["module_value", "reusable_elements", "limitations_and_next_steps", "reproducibility_verdict"],
+      "properties": {
+        "module_value": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "reusable_elements": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "limitations_and_next_steps": {"type": "array", "items": {"$ref": "#/$defs/sourcedText"}},
+        "reproducibility_verdict": {"$ref": "#/$defs/sourcedText"}
+      },
+      "additionalProperties": false
+    },
+    "materialParameter": {
+      "type": "object",
+      "required": ["name", "symbol", "value", "unit", "role", "source_refs"],
+      "properties": {
+        "name": {"type": "string"},
+        "symbol": {"type": "string"},
+        "value": {"type": "string"},
+        "unit": {"type": "string"},
+        "role": {"type": "string"},
+        "source_refs": {"$ref": "#/$defs/sourceRefs"}
+      },
+      "additionalProperties": false
+    },
     "keyEquation": {
       "type": "object",
       "required": ["label", "equation", "explanation", "source_refs"],
@@ -312,6 +433,12 @@
       ],
       "properties": {
         "one_sentence_summary": {"type": "string"},
+        "research_overview": {"type": "object", "additionalProperties": true},
+        "research_system": {"type": "object", "additionalProperties": true},
+        "model_and_mechanisms": {"type": "object", "additionalProperties": true},
+        "computational_reproducibility": {"type": "object", "additionalProperties": true},
+        "results_validation_mechanisms": {"type": "object", "additionalProperties": true},
+        "research_value_resources": {"type": "object", "additionalProperties": true},
         "quick_read": {"type": "array", "items": {"type": "string"}},
         "argument_map": {"type": "object", "additionalProperties": true},
         "central_claims": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
