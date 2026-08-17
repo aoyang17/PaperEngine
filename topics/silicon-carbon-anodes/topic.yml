@@ -1,7 +1,7 @@
 schema_version: v2
 title: "Silicon-Carbon Anodes for Traction Batteries"
-direction: "Systematic review of silicon-carbon negative-electrode materials, interfaces, manufacturing, degradation, safety, and practical full-cell validation for high-energy traction batteries"
-user_description_raw: "Systematic review of silicon-carbon negative-electrode materials, interfaces, manufacturing, degradation, safety, and practical full-cell validation for high-energy traction batteries"
+direction: "微米级多孔碳中通过 CVD 沉积纳米硅的硅碳负极材料；锂化硅晶相形成的力学条件；分相材料的相场—力学—电化学耦合仿真；从第一性原理和微观颗粒模型到系统层级并与实验对照的多尺度仿真方法与案例。"
+user_description_raw: "围绕四个模块开展文献调研：微米级多孔碳中通过 CVD 沉积纳米硅的硅碳负极材料；锂化硅形成晶相的力学条件；分相材料的相场—力学—电化学仿真；从第一性原理或微观颗粒模拟出发、逐层传递到系统层级并与实验结果对照的多尺度仿真方法与案例。"
 seed_papers: []
 refinement_questions_answered: []
 ui:
