@@ -94,8 +94,19 @@ article { white-space: pre-wrap; background: white; border: 1px solid #d8dee4; b
 .equation-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .equation-card { background: #fbfcfe; border: 1px solid #dce4ea; border-radius: 6px; padding: 12px; }
 .equation-card p { line-height: 1.5; margin: 8px 0 0; }
-.equation-render { background: #fff; border: 1px solid #d6e0e8; border-radius: 6px; color: #172026; margin: 10px 0; overflow-x: auto; padding: 12px; }
-.equation-render math { font-size: 1.18rem; min-width: max-content; }
+.materials-section-3 .equation-grid { grid-template-columns: 1fr; }
+.equation-card-head { align-items: center; display: flex; gap: 10px; justify-content: space-between; }
+.equation-tag { background: #eef3ff; border-radius: 999px; color: #40568f; font-size: 11px; font-weight: 700; padding: 3px 7px; }
+.equation-display { background: #fff; border: 1px solid #d6e0e8; border-radius: 6px; color: #111820; font-family: "STIX Two Math", "Cambria Math", "Times New Roman", serif; font-size: 1.12rem; line-height: 1.55; margin: 8px 0; overflow-x: auto; padding: 9px 12px; white-space: pre-wrap; }
+.equation-render { background: #fff; border: 1px solid #d6e0e8; border-radius: 6px; color: #172026; margin: 8px 0; overflow-x: auto; padding: 9px 12px; }
+.equation-render math { font-size: 1.12rem; min-width: max-content; }
+.equation-meaning { align-items: baseline; display: grid; gap: 10px; grid-template-columns: 92px 1fr; }
+.equation-meaning b { color: #59636e; font-size: 12px; }
+.equation-meaning p { margin: 0; }
+.equation-footer { align-items: end; border-top: 1px solid #e8ecef; display: flex; gap: 12px; justify-content: space-between; margin-top: 9px; padding-top: 7px; }
+.latex-source { font-size: 12px; max-width: 55%; }
+.latex-source summary { color: #40568f; cursor: pointer; font-weight: 700; text-align: right; }
+.latex-source code { background: #111820; border-radius: 4px; color: #edf4f7; display: block; margin-top: 5px; max-width: 100%; overflow-x: auto; padding: 7px; white-space: pre; }
 .equation-block { background: #111820; border-radius: 6px; color: #edf4f7; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; line-height: 1.5; margin: 10px 0; overflow-x: auto; padding: 12px; white-space: pre-wrap; }
 .source-image-links { display: flex; flex-wrap: wrap; gap: 8px; }
 .source-image-links a { background: #eef3ff; border: 1px solid #c8d6fb; border-radius: 999px; color: #2f4a9a; font-size: 12px; font-weight: 700; padding: 4px 8px; text-decoration: none; }

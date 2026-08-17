@@ -296,24 +296,24 @@
           <div class="equation-grid">
 
             <article class="equation-card">
-              <strong><span class="lang-en">Total free energy and chemical potential</span><span class="lang-zh">总自由能与化学势</span></strong>
-              <pre class="equation-block">G=∫[f_ch(ĉ)+f_el(F,ĉ)+f_pl(F)+(κ/2)|∇ĉ|²]dΩ₀;  μ=δG/δĉ=μ_ch+μ_el+μ_pl</pre>
-              <p><span class="lang-en">The variational derivative converts chemical, gradient, and mechanical energy changes into the lithium transport potential; under the stated assumption, μ_pl = 0.</span><span class="lang-zh">变分导数把化学能、梯度能和机械能变化转化为锂输运势；按照文中假设，μ_pl=0。</span></p>
-              <span class="item-meta">Phase-Field Model, p.5 (equation)</span>
+              <header class="equation-card-head"><strong><span class="lang-en">Total free energy and chemical potential</span><span class="lang-zh">总自由能与化学势</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-display" role="math" aria-label="Total free energy and chemical potential">G=∫[f_ch(ĉ)+f_el(F,ĉ)+f_pl(F)+(κ/2)|∇ĉ|²]dΩ₀;  μ=δG/δĉ=μ_ch+μ_el+μ_pl</div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">The variational derivative converts chemical, gradient, and mechanical energy changes into the lithium transport potential; under the stated assumption, μ_pl = 0.</span><span class="lang-zh">变分导数把化学能、梯度能和机械能变化转化为锂输运势；按照文中假设，μ_pl=0。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Phase-Field Model, p.5 (equation)</span><details class="latex-source"><summary>LaTeX</summary><code>G=\int[f_{ch}(\hat c)+f_{el}(F,\hat c)+f_{pl}(F)+\frac{\kappa}{2}|\nabla\hat c|^2]d\Omega_0</code></details></div>
             </article>
 
             <article class="equation-card">
-              <strong><span class="lang-en">Conserved phase-field evolution</span><span class="lang-zh">守恒相场演化</span></strong>
-              <pre class="equation-block">∂ĉ/∂t = ∇·[M_Li(ĉ)∇μ]</pre>
-              <p><span class="lang-en">Mass conservation and mobility-driven flux give a Cahn-Hilliard equation for inward motion of the two-phase lithiation front.</span><span class="lang-zh">质量守恒与迁移率驱动通量共同给出 Cahn–Hilliard 方程，用于描述两相锂化界面向内推进。</span></p>
-              <span class="item-meta">Phase-Field Model, p.5 (equation)</span>
+              <header class="equation-card-head"><strong><span class="lang-en">Conserved phase-field evolution</span><span class="lang-zh">守恒相场演化</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-display" role="math" aria-label="Conserved phase-field evolution">∂ĉ/∂t = ∇·[M_Li(ĉ)∇μ]</div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Mass conservation and mobility-driven flux give a Cahn-Hilliard equation for inward motion of the two-phase lithiation front.</span><span class="lang-zh">质量守恒与迁移率驱动通量共同给出 Cahn–Hilliard 方程，用于描述两相锂化界面向内推进。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Phase-Field Model, p.5 (equation)</span><details class="latex-source"><summary>LaTeX</summary><code>\partial_t\hat c=\nabla\cdot[M_{Li}(\hat c)\nabla\mu]</code></details></div>
             </article>
 
             <article class="equation-card">
-              <strong><span class="lang-en">Mechanical equilibrium</span><span class="lang-zh">力学平衡</span></strong>
-              <pre class="equation-block">∇₀·P = 0</pre>
-              <p><span class="lang-en">The first Piola stress satisfies quasi-static balance in the reference configuration at every time step.</span><span class="lang-zh">第一 Piola 应力在参考构形中满足准静态平衡，并在每个时间步求解。</span></p>
-              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text)</span>
+              <header class="equation-card-head"><strong><span class="lang-en">Mechanical equilibrium</span><span class="lang-zh">力学平衡</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-display" role="math" aria-label="Mechanical equilibrium">∇₀·P = 0</div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">The first Piola stress satisfies quasi-static balance in the reference configuration at every time step.</span><span class="lang-zh">第一 Piola 应力在参考构形中满足准静态平衡，并在每个时间步求解。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Implementation, p.5 (body text)</span><details class="latex-source"><summary>LaTeX</summary><code>\nabla_0\cdot P=0</code></details></div>
             </article>
 
           </div>
@@ -326,24 +326,24 @@
           <div class="equation-grid">
 
             <article class="equation-card">
-              <strong><span class="lang-en">Multiplicative deformation split</span><span class="lang-zh">变形梯度乘法分解</span></strong>
-              <pre class="equation-block">F = Fᵉ Fᵖ Fᶜ</pre>
-              <p><span class="lang-en">Chemical swelling, plastic flow, and recoverable elastic distortion are separated so very large lithiation deformation does not imply unrealistically large elastic strain.</span><span class="lang-zh">分别描述化学膨胀、塑性流动和可恢复弹性畸变，从而避免把巨大锂化变形错误地解释为巨大弹性应变。</span></p>
-              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text)</span>
+              <header class="equation-card-head"><strong><span class="lang-en">Multiplicative deformation split</span><span class="lang-zh">变形梯度乘法分解</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-display" role="math" aria-label="Multiplicative deformation split">F = Fᵉ Fᵖ Fᶜ</div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Chemical swelling, plastic flow, and recoverable elastic distortion are separated so very large lithiation deformation does not imply unrealistically large elastic strain.</span><span class="lang-zh">分别描述化学膨胀、塑性流动和可恢复弹性畸变，从而避免把巨大锂化变形错误地解释为巨大弹性应变。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Problem Description and Constitutive Model, p.3 (body text)</span><details class="latex-source"><summary>LaTeX</summary><code>F=F^eF^pF^c</code></details></div>
             </article>
 
             <article class="equation-card">
-              <strong><span class="lang-en">Isotropic chemical expansion</span><span class="lang-zh">各向同性化学膨胀</span></strong>
-              <pre class="equation-block">Fᶜ = (1+Ωc)^(1/3) I</pre>
-              <p><span class="lang-en">Lithium concentration produces an isotropic volumetric eigen-deformation calibrated to the assumed fully lithiated volume increase.</span><span class="lang-zh">锂浓度产生各向同性体积本征变形，其幅值按完全锂化的假定体积增量标定。</span></p>
-              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table)</span>
+              <header class="equation-card-head"><strong><span class="lang-en">Isotropic chemical expansion</span><span class="lang-zh">各向同性化学膨胀</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-display" role="math" aria-label="Isotropic chemical expansion">Fᶜ = (1+Ωc)^(1/3) I</div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Lithium concentration produces an isotropic volumetric eigen-deformation calibrated to the assumed fully lithiated volume increase.</span><span class="lang-zh">锂浓度产生各向同性体积本征变形，其幅值按完全锂化的假定体积增量标定。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table)</span><details class="latex-source"><summary>LaTeX</summary><code>F^c=(1+\Omega c)^{1/3}I</code></details></div>
             </article>
 
             <article class="equation-card">
-              <strong><span class="lang-en">J2 plasticity with linear hardening</span><span class="lang-zh">线性硬化 J2 塑性</span></strong>
-              <pre class="equation-block">f_y = σ_eq − (σ_y + H ε̄ᵖ) ≤ 0</pre>
-              <p><span class="lang-en">Deviatoric yielding limits the stress generated by chemical swelling, while accumulated plastic strain raises the subsequent yield threshold.</span><span class="lang-zh">偏应力屈服限制化学膨胀产生的应力，累积塑性应变则提高后续屈服阈值。</span></p>
-              <span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table)</span>
+              <header class="equation-card-head"><strong><span class="lang-en">J2 plasticity with linear hardening</span><span class="lang-zh">线性硬化 J2 塑性</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-display" role="math" aria-label="J2 plasticity with linear hardening">f_y = σ_eq − (σ_y + H ε̄ᵖ) ≤ 0</div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Deviatoric yielding limits the stress generated by chemical swelling, while accumulated plastic strain raises the subsequent yield threshold.</span><span class="lang-zh">偏应力屈服限制化学膨胀产生的应力，累积塑性应变则提高后续屈服阈值。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Problem Description and Constitutive Model, p.3 (body text); Numerical Results, p.6 (table)</span><details class="latex-source"><summary>LaTeX</summary><code>f_y=\sigma_{eq}-(\sigma_y+H\bar\varepsilon^p)\leq0</code></details></div>
             </article>
 
           </div>

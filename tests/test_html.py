@@ -373,7 +373,7 @@ def test_materials_report_renders_six_sections_and_hides_algorithm_layout(tmp_pa
         "prior_gap": sourced, "core_contribution": sourced, "scope_boundary": sourced,
     }
     report["research_system"] = {"research_object": sourced, "geometry_and_scale": [sourced], "phases_and_composition": [sourced], "process_and_loading": [sourced], "state_variables": [sourced], "target_outputs": [sourced]}
-    report["model_and_mechanisms"] = {"framework": sourced, "assumptions": [sourced], "free_energy": [sourced], "governing_equations": [], "constitutive_relations": [], "coupling_logic": [sourced]}
+    report["model_and_mechanisms"] = {"framework": sourced, "assumptions": [sourced], "free_energy": [sourced], "governing_equations": [{"label": "Mass balance", "equation": "∂c/∂t = −∇·J", "latex": "\\partial_t c=-\\nabla\\cdot J", "explanation": "Tracks conserved species.", "source_refs": ["S001"]}], "constitutive_relations": [], "coupling_logic": [sourced]}
     report["computational_reproducibility"] = {"parameters": [], "initial_conditions": [sourced], "boundary_conditions": [sourced], "numerical_implementation": [sourced], "reproducibility_check": [sourced]}
     report["results_validation_mechanisms"] = {"key_results": [sourced], "validation_and_comparison": [sourced], "mechanistic_interpretation": [sourced], "sensitivity_and_uncovered": [sourced], "experimental_correspondence": [sourced]}
     report["research_value_resources"] = {"module_value": [sourced], "reusable_elements": [sourced], "limitations_and_next_steps": [sourced], "reproducibility_verdict": sourced}
@@ -388,6 +388,9 @@ def test_materials_report_renders_six_sections_and_hides_algorithm_layout(tmp_pa
     text = (tmp_path / "papers" / "Example2026A" / "reading_result.html").read_text(encoding="utf-8")
     for heading in ["Paper Overview", "Research System and Problem Definition", "Model and Physical Mechanisms", "Computational Setup and Reproducibility", "Results, Validation, and Mechanisms", "Research Value and Resources"]:
         assert heading in text
+    assert 'class="equation-display"' in text
+    assert "∂c/∂t = −∇·J" in text
+    assert 'class="latex-source"' in text
     assert "Algorithm Steps" not in text
     assert "Dataset / Benchmark Understanding" not in text
 

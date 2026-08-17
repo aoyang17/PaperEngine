@@ -115,7 +115,7 @@ def _report_view(report: dict[str, Any] | None, root: Path, current_page: str) -
     view["research_overview"] = _research_overview_view(
         report.get("research_overview"), source_index, zh.get("research_overview")
     )
-    view["materials_sections"] = _materials_sections_view(report, source_index, zh)
+    view["materials_sections"] = _materials_sections_view(report, source_index, zh, root, current_page)
     view["materials_sections_complete"] = view["research_overview"]["has_content"] and len(view["materials_sections"]) == 5
     view["availability_rows"] = _availability_rows(report.get("availability"), zh.get("availability"))
     view["profile_badges"] = _profile_badges(report.get("paper_profile"))
@@ -232,7 +232,13 @@ def _research_overview_view(value: Any, source_index: dict[str, dict[str, Any]],
     }
 
 
-def _materials_sections_view(report: dict[str, Any], source_index: dict[str, dict[str, Any]], zh: dict[str, Any]) -> list[dict[str, Any]]:
+def _materials_sections_view(
+    report: dict[str, Any],
+    source_index: dict[str, dict[str, Any]],
+    zh: dict[str, Any],
+    root: Path,
+    current_page: str,
+) -> list[dict[str, Any]]:
     contracts = [
         ("research_system", "Research System and Problem Definition", "研究体系与问题定义", [
             ("research_object", "Research object", "研究对象", "single"),
@@ -292,12 +298,7 @@ def _materials_sections_view(report: dict[str, Any], source_index: dict[str, dic
                         continue
                     z = _list_item(zh_value, i)
                     z = z if isinstance(z, dict) else {}
-                    group["equations"].append({
-                        "label": str(item.get("label") or ""), "label_zh": _zh_text(z.get("label"), item.get("label")),
-                        "equation": str(item.get("equation") or ""),
-                        "explanation": str(item.get("explanation") or ""), "explanation_zh": _zh_text(z.get("explanation"), item.get("explanation")),
-                        "source_refs": _evidence_labels([str(ref) for ref in item.get("source_refs") or []], source_index),
-                    })
+                    group["equations"].append(_equation_view(item, source_index, root, current_page, z))
             elif kind == "parameters":
                 for i, item in enumerate(value or []):
                     if not isinstance(item, dict):
@@ -629,6 +630,7 @@ def _equation_view(value: Any, source_index: dict[str, dict[str, Any]], root: Pa
         "label": str(value.get("label") or ""),
         "label_zh": _zh_text(zh.get("label"), value.get("label")),
         "equation": equation,
+        "latex": latex,
         "equation_mathml": _equation_mathml(latex or equation),
         "explanation": str(value.get("explanation") or ""),
         "explanation_zh": _zh_text(zh.get("explanation"), value.get("explanation")),

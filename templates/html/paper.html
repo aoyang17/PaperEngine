@@ -143,10 +143,10 @@
           <div class="equation-grid">
           {% for row in group.equations %}
             <article class="equation-card">
-              <strong><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></strong>
-              <pre class="equation-block">{{ row.equation }}</pre>
-              <p><span class="lang-en">{{ row.explanation }}</span><span class="lang-zh">{{ row.explanation_zh }}</span></p>
-              <span class="item-meta">{{ row.source_refs }}</span>
+              <header class="equation-card-head"><strong><span class="lang-en">{{ row.label }}</span><span class="lang-zh">{{ row.label_zh }}</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-display" role="math" aria-label="{{ row.label }}">{{ row.equation }}</div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">{{ row.explanation }}</span><span class="lang-zh">{{ row.explanation_zh }}</span></p></div>
+              <div class="equation-footer"><span class="item-meta">{{ row.source_refs }}</span>{% if row.latex %}<details class="latex-source"><summary>LaTeX</summary><code>{{ row.latex }}</code></details>{% endif %}</div>
             </article>
           {% endfor %}
           </div>
