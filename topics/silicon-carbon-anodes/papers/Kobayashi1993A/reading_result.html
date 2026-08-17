@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobayashi1993A</title>
+  <link rel="stylesheet" href="../../html/style.css">
+</head>
+<body>
+  <nav>
+    <a href="../../html/dashboard.html">Dashboard</a>
+    <a href="../../html/candidates.html">Candidates</a>
+    <a href="../../html/library.html">Library</a>
+    <span class="nav-spacer"></span>
+    <button class="language-toggle" type="button" data-lang-button="en">EN</button>
+    <button class="language-toggle" type="button" data-lang-button="zh">中文</button>
+  </nav>
+  <main class="paper-detail">
+    <header class="paper-hero">
+      <p class="eyebrow">Kobayashi1993A</p>
+      <h1>Modeling and numerical simulations of dendritic crystal growth</h1>
+      <p class="meta-line">
+        Ryo Kobayashi · 1993 · Physica D: Nonlinear Phenomena
+         · DOI 10.1016/0167-2789(93)90120-P
+        
+      </p>
+      <p class="link-row">
+        <a href="paper.pdf">PDF</a>
+        <a href="note.md">Markdown note</a>
+      </p>
+      
+    </header>
+
+    
+    
+
+    
+    <section class="knowledge-panel full-width research-overview-panel">
+      <p class="section-kicker"><span class="lang-en">Section 1 of 6</span><span class="lang-zh">六大块 · 第一节</span></p>
+      <h2><span class="lang-en">Paper Overview</span><span class="lang-zh">论文概览</span></h2>
+      <div class="study-identity">
+        <span class="identity-type"><span class="lang-en">computational</span><span class="lang-zh">计算建模研究</span></span>
+        <span><span class="lang-en">Anisotropic phase-field simulation of pure-melt dendritic solidification</span><span class="lang-zh">纯物质熔体枝晶凝固的各向异性相场仿真</span></span>
+        <span><span class="lang-en">Free-energy formulation, sharp-interface asymptotics, and qualitative two-dimensional parameter studies</span><span class="lang-zh">自由能建模、尖锐界面渐近分析与二维定性参数研究</span></span>
+        <small>Abstract and Introduction, p.1 (body text); Model, p.2 (equation); Model, p.3 (equation); Dendrite growth, p.8 (figure)</small>
+      </div>
+      <h3><span class="lang-en">Fit to the four research modules</span><span class="lang-zh">四个研究模块归属</span></h3>
+      <div class="module-alignment-grid">
+      
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">CVD-deposited nanosilicon in micron-scale porous carbon</span><span class="lang-zh">微米级多孔碳中 CVD 沉积纳米硅</span></strong><b>3%</b></div>
+          <div class="module-score-track"><i style="width: 3%"></i></div>
+          <p class="module-role"><span class="lang-en">not_applicable</span><span class="lang-zh">不适用</span></p>
+          <p><span class="lang-en">The paper contains neither silicon, carbon pores, chemical vapor deposition, nor battery electrochemistry; only its generic diffuse-interface numerics could be reused.</span><span class="lang-zh">论文不包含硅、多孔碳、化学气相沉积或电池电化学；只有通用弥散界面数值思想可借鉴。</span></p>
+          <span class="item-meta">Abstract and Introduction, p.1 (body text); Ice dendrites, p.10 (body text)</span>
+        </article>
+      
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">Phase transformation, crystallization, and mechanical conditions in lithiated silicon</span><span class="lang-zh">锂化硅相变、晶化与力学条件</span></strong><b>14%</b></div>
+          <div class="module-score-track"><i style="width: 14%"></i></div>
+          <p class="module-role"><span class="lang-en">background</span><span class="lang-zh">背景参考</span></p>
+          <p><span class="lang-en">It treats liquid-solid crystallization and interfacial anisotropy, but excludes mechanics and has no lithium-bearing phase or mechanically controlled crystallization criterion.</span><span class="lang-zh">论文研究液—固晶化与界面各向异性，但没有力学场、含锂相或力学控制的晶化判据。</span></p>
+          <span class="item-meta">Abstract and Introduction, p.1 (body text); Model, p.2 (body text)</span>
+        </article>
+      
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">Phase-field–mechanics–electrochemistry simulation of phase-separating materials</span><span class="lang-zh">分相材料的相场—力学—电化学仿真</span></strong><b>72%</b></div>
+          <div class="module-score-track"><i style="width: 72%"></i></div>
+          <p class="module-role"><span class="lang-en">cross_module</span><span class="lang-zh">跨模块相关</span></p>
+          <p><span class="lang-en">It is a foundational phase-field example for moving interfaces, free energy, anisotropy, and diffusion coupling, but it contains thermal rather than electrochemical transport and no force balance or constitutive mechanics.</span><span class="lang-zh">这是移动界面、自由能、各向异性和扩散耦合的基础相场案例，但输运场是温度而非电化学变量，也没有力学平衡与本构关系。</span></p>
+          <span class="item-meta">Model, p.2 (equation); Model, p.3 (equation); Model, p.4 (equation); Model, p.2 (body text)</span>
+        </article>
+      
+        <article class="module-alignment-card">
+          <div class="module-alignment-head"><strong><span class="lang-en">Multiscale simulation methods and cases</span><span class="lang-zh">多尺度仿真方法与案例</span></strong><b>38%</b></div>
+          <div class="module-score-track"><i style="width: 38%"></i></div>
+          <p class="module-role"><span class="lang-en">background</span><span class="lang-zh">背景参考</span></p>
+          <p><span class="lang-en">The sharp-interface limit links diffuse-interface and interfacial descriptions, yet there is no atomistic parameterization, scale-by-scale property transfer, system model, or experimental closure.</span><span class="lang-zh">尖锐界面极限连接了弥散界面与界面描述，但没有原子尺度参数化、逐级尺度传递、系统模型或实验闭环。</span></p>
+          <span class="item-meta">Model, p.3 (equation); Discussions, p.13 (body text)</span>
+        </article>
+      
+      </div>
+      <div class="overview-field-grid">
+      
+        <article class="overview-field overview-one_sentence_conclusion">
+          <h3><span class="lang-en">One-sentence conclusion</span><span class="lang-zh">一句话结论</span></h3>
+          <p><span class="lang-en">A minimal anisotropic phase-field/temperature model can reproduce a wide range of dendritic morphologies qualitatively, but its quantitative fidelity is limited by diffuse-interface thickness and the available spatial and temporal resolution.</span><span class="lang-zh">一个最简的各向异性相场—温度模型可以定性再现多类枝晶形貌，但其定量可信度受弥散界面厚度及空间、时间分辨率限制。</span></p>
+          <span class="item-meta">Evidence: Discussions, p.12 (body text); Discussions, p.13 (body text) | confidence: high</span>
+        </article>
+      
+        <article class="overview-field overview-why_worth_reading">
+          <h3><span class="lang-en">Why it is worth reading</span><span class="lang-zh">为什么值得读</span></h3>
+          <p><span class="lang-en">This is a compact foundational case showing how free energy, angular interface anisotropy, latent-heat coupling, sharp-interface interpretation, perturbations, and numerical resolution jointly determine emergent branching morphology.</span><span class="lang-zh">这是一篇紧凑的奠基性案例，清楚展示自由能、角向界面各向异性、潜热耦合、尖锐界面解释、扰动与数值分辨率如何共同决定涌现的分枝形貌。</span></p>
+          <span class="item-meta">Evidence: Model, p.2 (equation); Model, p.3 (equation); Model, p.4 (equation); Dendrite growth, p.8 (figure); Discussions, p.13 (body text) | confidence: high</span>
+        </article>
+      
+        <article class="overview-field overview-research_problem">
+          <h3><span class="lang-en">Research problem</span><span class="lang-zh">研究问题</span></h3>
+          <p><span class="lang-en">The work asks for the smallest whole-domain field model that can handle changing solid-liquid topology and generate realistic dendritic patterns without explicitly storing and moving the interface.</span><span class="lang-zh">研究要寻找一个定义在全域上的最小场模型，使其无需显式保存和移动界面，也能处理固液拓扑变化并生成真实感枝晶形貌。</span></p>
+          <span class="item-meta">Evidence: Abstract and Introduction, p.1 (body text); Introduction, p.2 (body text) | confidence: high</span>
+        </article>
+      
+        <article class="overview-field overview-prior_gap">
+          <h3><span class="lang-en">Prior gap</span><span class="lang-zh">已有研究缺口</span></h3>
+          <p><span class="lang-en">Explicit moving-boundary methods require difficult interface bookkeeping when fronts merge or detach and are hard to extend to three dimensions; existing isotropic phase-field models do not by themselves explain strongly oriented dendrites.</span><span class="lang-zh">显式移动边界方法在界面合并或脱离时需要复杂的界面管理，也难以推广到三维；单纯各向同性相场又不足以解释强定向枝晶。</span></p>
+          <span class="item-meta">Evidence: Introduction, p.2 (body text); Model, p.3 (body text) | confidence: high</span>
+        </article>
+      
+        <article class="overview-field overview-core_contribution">
+          <h3><span class="lang-en">Core contribution</span><span class="lang-zh">核心贡献</span></h3>
+          <p><span class="lang-en">The paper formulates an orientation-dependent Allen-Cahn-type phase field coupled to an enthalpy heat equation, relates it asymptotically to an anisotropic curvature law, and maps morphology changes against latent heat, anisotropy mode and strength, and noise.</span><span class="lang-zh">论文建立了方向相关的 Allen–Cahn 型相场与焓形式热方程，渐近联系到各向异性曲率定律，并分析形貌随潜热、各向异性模态/强度和噪声的变化。</span></p>
+          <span class="item-meta">Evidence: Model, p.2 (equation); Model, p.3 (equation); Model, p.4 (equation); Dendrite growth, p.8 (figure); Discussions, p.12 (body text) | confidence: high</span>
+        </article>
+      
+        <article class="overview-field overview-scope_boundary">
+          <h3><span class="lang-en">Scope boundary</span><span class="lang-zh">结论与适用边界</span></h3>
+          <p><span class="lang-en">The model is for pure one-component melt growth with equal thermal diffusivity in solid and liquid; it omits fluid flow, transformation mechanics, solute transport, electrochemical reactions, and quantitative convergence, and its snowflake-like patterns are not vapor-growth snowflakes.</span><span class="lang-zh">模型针对热扩散率相同的单组分纯熔体，忽略流动、相变力学、溶质输运、电化学反应和定量收敛；其中类雪花图案也不代表气相生长雪晶。</span></p>
+          <span class="item-meta">Evidence: Abstract and Introduction, p.1 (body text); Ice dendrites, p.10 (body text); Discussions, p.13 (body text) | confidence: high</span>
+        </article>
+      
+      </div>
+    </section>
+    
+
+    
+    
+    <section class="knowledge-panel full-width materials-section materials-section-2">
+      <p class="section-kicker"><span class="lang-en">Section 2 of 6</span><span class="lang-zh">六大块 · 第 2 节</span></p>
+      <h2><span class="lang-en">Research System and Problem Definition</span><span class="lang-zh">研究体系与问题定义</span></h2>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Research object</span><span class="lang-zh">研究对象</span></h3>
+        
+          <p class="summary-text"><span class="lang-en">A pure one-component melt solidifies into a crystal whose solid-liquid boundary can become cellular or dendritic under thermal driving.</span><span class="lang-zh">研究对象是纯单组分熔体在热驱动下凝固为晶体，固液界面可失稳形成胞状或枝晶形貌。</span></p>
+          <span class="item-meta">Evidence: Abstract and Introduction, p.1 (body text); Model, p.2 (body text) | confidence: high</span>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Geometry and scale</span><span class="lang-zh">几何与尺度</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">All reported calculations are two-dimensional, using either a 9×9 square domain or a 12×3 rectangular channel with a diffuse interface of characteristic thickness controlled by epsilon.</span><span class="lang-zh">全部算例为二维，采用 9×9 方域或 12×3 长方形通道；弥散界面特征厚度由 ε 控制。</span></span>
+    <small>Evidence: Simulations, p.4 (body text); Model, p.2 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Phases and composition</span><span class="lang-zh">相与化学组成</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The order parameter p equals 0 in liquid and 1 in solid; the steep transition between them is the interface. There is no composition field because the modeled material is a pure melt.</span><span class="lang-zh">序参量 p=0 表示液体，p=1 表示固体，中间陡峭过渡层就是界面；纯熔体模型没有组成场。</span></span>
+    <small>Evidence: Model, p.2 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Process and loading</span><span class="lang-zh">过程与载荷</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Thermal undercooling drives solidification, heat diffusion removes or redistributes latent heat, interfacial energy smooths curvature, anisotropy selects preferred directions, and small random perturbations seed side branches.</span><span class="lang-zh">热过冷驱动凝固，热扩散搬运潜热，界面能平滑曲率，各向异性选择优先生长方向，小随机扰动触发侧枝。</span></span>
+    <small>Evidence: Model, p.3 (body text); Model, p.4 (equation); Simulations, p.4 (body text); Discussions, p.12 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">State variables</span><span class="lang-zh">状态变量</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The solved fields are phase p(r,t) and nondimensional temperature T(r,t); interface orientation theta, normal velocity V, curvature kappa, and capillary function d0(theta) are derived quantities.</span><span class="lang-zh">求解变量是相场 p(r,t) 和无量纲温度 T(r,t)；界面方向 θ、法向速度 V、曲率 κ 和毛细函数 d₀(θ) 为派生量。</span></span>
+    <small>Evidence: Model, p.2 (body text); Model, p.3 (equation) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Target outputs</span><span class="lang-zh">目标输出</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The calculations target crystal-interface morphology, dendrite-tip and side-branch evolution, branch competition and screening, corner formation, and their qualitative dependence on K, delta, j, and noise amplitude.</span><span class="lang-zh">目标输出包括界面形貌、枝晶尖端与侧枝演化、分枝竞争与屏蔽、尖角形成，以及它们对 K、δ、j 和噪声幅值的定性依赖。</span></span>
+    <small>Evidence: Dendrite growth, p.8 (figure); Discussions, p.12 (figure); Discussions, p.12 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+
+      
+    </section>
+    
+    <section class="knowledge-panel full-width materials-section materials-section-3">
+      <p class="section-kicker"><span class="lang-en">Section 3 of 6</span><span class="lang-zh">六大块 · 第 3 节</span></p>
+      <h2><span class="lang-en">Model and Physical Mechanisms</span><span class="lang-zh">模型与物理机制</span></h2>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Model framework</span><span class="lang-zh">模型框架</span></h3>
+        
+          <p class="summary-text"><span class="lang-en">A non-conserved Ginzburg-Landau phase field with orientation-dependent gradient energy is coupled bidirectionally to a heat-diffusion equation through temperature-dependent driving and latent-heat release.</span><span class="lang-zh">模型将方向相关梯度能的非守恒 Ginzburg–Landau 相场与热扩散方程双向耦合：温度控制相变驱动力，相变速率释放潜热。</span></p>
+          <span class="item-meta">Evidence: Model, p.2 (equation); Model, p.3 (equation); Model, p.4 (equation); Model, p.3 (body text) | confidence: high</span>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Model assumptions</span><span class="lang-zh">模型假设</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The material is a pure melt and one thermal diffusion field limits growth; convection, Marangoni flow, and transformation expansion or shrinkage are neglected.</span><span class="lang-zh">材料为纯熔体，唯一限制生长的体场是热扩散；忽略对流、Marangoni 流及相变膨胀或收缩。</span></span>
+    <small>Evidence: Abstract and Introduction, p.1 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Thermal diffusivity is identical in solid and liquid, and the bulk phase minima remain fixed at p=0 and p=1 so latent heat is released only where the interface passes.</span><span class="lang-zh">固液热扩散率相同，体相稳定值固定为 p=0 和 p=1，使潜热只在界面经过时释放。</span></span>
+    <small>Evidence: Model, p.2 (body text); Model, p.4 (equation) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The diffuse interface is thin relative to resolved morphology, while stochastic forcing is localized by p(1-p) and therefore acts mainly near the interface.</span><span class="lang-zh">弥散界面应远薄于待解析形貌，随机项乘以 p(1−p)，因此主要作用于界面附近。</span></span>
+    <small>Evidence: Simulations, p.4 (body text); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Free energy and thermodynamics</span><span class="lang-zh">自由能与热力学框架</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The Ginzburg-Landau functional combines a gradient penalty with a quartic double-well potential whose stable minima are liquid p=0 and solid p=1.</span><span class="lang-zh">Ginzburg–Landau 泛函由梯度惩罚和四次双阱势组成，双阱在液相 p=0 与固相 p=1 处稳定。</span></span>
+    <small>Evidence: Model, p.2 (equation); Model, p.2 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The potential-depth difference is proportional to m, so m supplies thermodynamic phase preference; orientation dependence in epsilon converts interfacial energy into anisotropic capillarity.</span><span class="lang-zh">势阱深度差与 m 成正比，m 提供相的热力学偏好；ε 的方向依赖把界面能转化为各向异性毛细作用。</span></span>
+    <small>Evidence: Model, p.2 (equation); Model, p.3 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Governing equations</span><span class="lang-zh">控制方程</span></h3>
+        
+          <div class="equation-grid">
+          
+            <article class="equation-card">
+              <header class="equation-card-head"><strong><span class="lang-en">Ginzburg-Landau free energy</span><span class="lang-zh">Ginzburg–Landau 自由能</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-render paper-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>Φ</mi><mo>[</mo><mi>p</mi><mo>;</mo><mi>m</mi><mo>]</mo><mo>=</mo><munder><mo>∫</mo><mi>Ω</mi></munder><mrow><mo>[</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>ε</mi><mn>2</mn></msup><msup><mrow><mo>|</mo><mo>∇</mo><mi>p</mi><mo>|</mo></mrow><mn>2</mn></msup><mo>+</mo><mi>F</mi><mo>(</mo><mi>p</mi><mo>;</mo><mi>m</mi><mo>)</mo><mo>]</mo></mrow><mi>d</mi><mi mathvariant="bold">r</mi></math></div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">The gradient term assigns a finite cost and thickness to the interface, while the double well stabilizes bulk liquid and solid states and biases one phase through m.</span><span class="lang-zh">梯度项赋予界面有限能量与厚度，双阱稳定液体和固体，并通过 m 偏置相稳定性。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Model, p.2 (equation)</span><details class="latex-source"><summary>LaTeX</summary><code>\Phi[p;m]=\int_\Omega\left[\frac12\epsilon^2|\nabla p|^2+F(p;m)\right]\,d\mathbf r</code></details></div>
+            </article>
+          
+            <article class="equation-card">
+              <header class="equation-card-head"><strong><span class="lang-en">Anisotropic phase-field evolution</span><span class="lang-zh">各向异性相场演化</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-render paper-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>τ</mi><mi>frac</mi><mi>{</mi><mi>partial</mi><mi>p</mi><mi>}</mi><mi>{</mi><mi>partial</mi><mi>t</mi><mi>}</mi><mo>=</mo><mo>-</mo><mi>frac</mi><mi>{</mi><mi>partial</mi><mi>}</mi><mi>{</mi><mi>partial</mi><mi>x</mi><mi>}</mi><mo>(</mo><mi>epsilon</mi><mi>epsilon</mi><mi>&#x27;</mi><mi>frac</mi><mi>{</mi><mi>partial</mi><mi>p</mi><mi>}</mi><mi>{</mi><mi>partial</mi><mi>y</mi><mi>}</mi><mo>)</mo><mo>+</mo><mi>frac</mi><mi>{</mi><mi>partial</mi><mi>}</mi><mi>{</mi><mi>partial</mi><mi>y</mi><mi>}</mi><mo>(</mo><mi>epsilon</mi><mi>epsilon</mi><mi>&#x27;</mi><mi>frac</mi><mi>{</mi><mi>partial</mi><mi>p</mi><mi>}</mi><mi>{</mi><mi>partial</mi><mi>x</mi><mi>}</mi><mo>)</mo><mo>+</mo><mi>nabla</mi><mi>cdot</mi><mo>(</mo><msup><mi>epsilon</mi><mi>2</mi></msup><mi>nabla</mi><mi>p</mi><mo>)</mo><mo>+</mo><mi>p</mi><mo>(</mo><mn>1</mn><mo>-</mo><mi>p</mi><mo>)</mo><mo>(</mo><mi>p</mi><mo>-</mo><mi>frac</mi><mn>12</mn><mo>+</mo><mi>m</mi><mo>)</mo></mrow></math></div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Variational relaxation moves the diffuse interface; angular derivatives of epsilon add anisotropic capillarity, diffusion regularizes the interface, and the local polynomial supplies phase conversion and thermal driving.</span><span class="lang-zh">变分松弛移动弥散界面；ε 的角向导数引入各向异性毛细效应，扩散项正则化界面，局部多项式控制相变和热驱动。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Model, p.3 (equation)</span><details class="latex-source"><summary>LaTeX</summary><code>\tau\frac{\partial p}{\partial t}=-\frac{\partial}{\partial x}(\epsilon\epsilon&#39;\frac{\partial p}{\partial y})+\frac{\partial}{\partial y}(\epsilon\epsilon&#39;\frac{\partial p}{\partial x})+\nabla\cdot(\epsilon^2\nabla p)+p(1-p)(p-\frac12+m)</code></details></div>
+            </article>
+          
+            <article class="equation-card">
+              <header class="equation-card-head"><strong><span class="lang-en">Latent-heat diffusion</span><span class="lang-zh">潜热扩散</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-render paper-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mfrac><mrow><mo>∂</mo><mi>T</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mo>=</mo><msup><mo>∇</mo><mn>2</mn></msup><mi>T</mi><mo>+</mo><mi>K</mi><mfrac><mrow><mo>∂</mo><mi>p</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac></math></div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Temperature diffuses and receives a source only where p changes; K measures latent heat relative to cooling strength and couples interface motion back to the thermal field.</span><span class="lang-zh">温度扩散并只在 p 变化处获得热源；K 表示潜热相对于冷却强度的大小，把界面运动反馈给温度场。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Model, p.4 (equation)</span><details class="latex-source"><summary>LaTeX</summary><code>\frac{\partial T}{\partial t}=\nabla^2T+K\frac{\partial p}{\partial t}</code></details></div>
+            </article>
+          
+            <article class="equation-card">
+              <header class="equation-card-head"><strong><span class="lang-en">Sharp-interface interpretation</span><span class="lang-zh">尖锐界面解释</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-render paper-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>b</mi><mi>V</mi><mo>=</mo><mi>σ</mi><mo>(</mo><mi>θ</mi><mo>)</mo><mo>[</mo><mi>f</mi><mo>−</mo><msub><mi>d</mi><mn>0</mn></msub><mo>(</mo><mi>θ</mi><mo>)</mo><mi>κ</mi><mo>]</mo></math></div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">In the thin-interface limit, normal velocity balances thermodynamic driving f against orientation-dependent capillary resistance d0 kappa, linking the diffuse model to a moving-boundary law.</span><span class="lang-zh">薄界面极限下，法向速度由热力学生长驱动力与方向相关毛细阻力 d₀κ 的竞争决定。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Model, p.3 (equation); Discussions, p.12 (figure)</span><details class="latex-source"><summary>LaTeX</summary><code>bV=\sigma(\theta)[f-d_0(\theta)\kappa]</code></details></div>
+            </article>
+          
+          </div>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Constitutive relations</span><span class="lang-zh">材料本构关系</span></h3>
+        
+          <div class="equation-grid">
+          
+            <article class="equation-card">
+              <header class="equation-card-head"><strong><span class="lang-en">Temperature-dependent driving</span><span class="lang-zh">温度相关驱动力</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-render paper-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mo>(</mo><mi>T</mi><mo>)</mo><mo>=</mo><mi>frac</mi><mi>{</mi><mi>α</mi><mi>}</mi><mi>{</mi><mi>pi</mi><mi>}</mi><mi>tan</mi><mi></mi><mi>{</mi><mo>-</mo><mn>1</mn><mi>}</mi><mi>[</mi><mi>γ</mi><mo>(</mo><msub><mi>T</mi><mi>e</mi></msub><mo>-</mo><mi>T</mi><mo>)</mo><mi>]</mi></mrow></math></div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Supercooling increases the solidification drive while the arctangent keeps |m| below one half.</span><span class="lang-zh">过冷度增大固化驱动力，反正切函数同时保证 |m| 小于二分之一。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Model, p.3 (body text)</span><details class="latex-source"><summary>LaTeX</summary><code>m(T)=\frac{\alpha}{\pi}\tan^{-1}[\gamma(T_e-T)]</code></details></div>
+            </article>
+          
+            <article class="equation-card">
+              <header class="equation-card-head"><strong><span class="lang-en">Angular anisotropy</span><span class="lang-zh">角向各向异性</span></strong><span class="equation-tag"><span class="lang-en">Equation</span><span class="lang-zh">方程</span></span></header>
+              <div class="equation-render paper-equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>σ</mi><mo>(</mo><mi>θ</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>+</mo><mi>delta</mi><mi>cos</mi><mi>[</mi><mi>j</mi><mo>(</mo><mi>θ</mi><mo>-</mo><msub><mi>theta</mi><mi>0</mi></msub><mo>)</mo><mi>]</mi></mrow></math></div>
+              <div class="equation-meaning"><b><span class="lang-en">Physical meaning</span><span class="lang-zh">物理含义</span></b><p><span class="lang-en">Delta sets anisotropy strength, j sets rotational mode, and theta0 rotates the preferred growth directions.</span><span class="lang-zh">δ 控制各向异性强度，j 控制旋转模态，θ₀ 旋转优先生长方向。</span></p></div>
+              <div class="equation-footer"><span class="item-meta">Model, p.3 (body text)</span><details class="latex-source"><summary>LaTeX</summary><code>\sigma(\theta)=1+\delta\cos[j(\theta-\theta_0)]</code></details></div>
+            </article>
+          
+          </div>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Coupling logic</span><span class="lang-zh">耦合关系</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Temperature controls m(T), which biases phase conversion; changing p releases latent heat through K partial-t p, which changes T and closes the thermal feedback loop.</span><span class="lang-zh">温度通过 m(T) 控制相变；p 的变化通过 K∂ₜp 释放潜热并改变温度，从而形成热反馈闭环。</span></span>
+    <small>Evidence: Model, p.3 (body text); Model, p.3 (equation); Model, p.4 (equation) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Interface orientation controls epsilon and capillarity, thereby selecting branch directions, while curvature smooths small features and noise breaks symmetry among competing branches.</span><span class="lang-zh">界面方向控制 ε 和毛细作用并选择分枝方向，曲率平滑小尺度结构，噪声则打破竞争侧枝间的对称性。</span></span>
+    <small>Evidence: Model, p.3 (equation); Dendrite growth, p.8 (figure); Discussions, p.12 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+
+      
+    </section>
+    
+    <section class="knowledge-panel full-width materials-section materials-section-4">
+      <p class="section-kicker"><span class="lang-en">Section 4 of 6</span><span class="lang-zh">六大块 · 第 4 节</span></p>
+      <h2><span class="lang-en">Computational Setup and Reproducibility</span><span class="lang-zh">计算设置与可复现性</span></h2>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Model parameters</span><span class="lang-zh">模型参数</span></h3>
+        
+          <div class="table-scroll" tabindex="0"><table class="compact-table parameter-table">
+            <thead><tr><th><span class="lang-en">Parameter</span><span class="lang-zh">参数</span></th><th><span class="lang-en">Symbol</span><span class="lang-zh">符号</span></th><th><span class="lang-en">Value</span><span class="lang-zh">数值</span></th><th><span class="lang-en">Role</span><span class="lang-zh">作用</span></th></tr></thead>
+            <tbody><tr><td><span class="lang-en">Square domain</span><span class="lang-zh">方形计算域</span></td><td>Lx×Ly</td><td>9×9 dimensionless</td><td><span class="lang-en">Domain for centered or wall-driven solidification cases.</span><span class="lang-zh">用于中心形核或壁面驱动凝固。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Rectangular domain</span><span class="lang-zh">长方形计算域</span></td><td>Lx×Ly</td><td>12×3 dimensionless</td><td><span class="lang-en">Channel for directional-solidification cases.</span><span class="lang-zh">用于定向凝固通道算例。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Square mesh</span><span class="lang-zh">方域网格</span></td><td>Nx×Ny</td><td>300×300 nodes</td><td><span class="lang-en">Spatial resolution for square cases.</span><span class="lang-zh">方域算例的空间分辨率。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Rectangular mesh</span><span class="lang-zh">通道网格</span></td><td>Nx×Ny</td><td>400×100 nodes</td><td><span class="lang-en">Spatial resolution for channel cases.</span><span class="lang-zh">通道算例的空间分辨率。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Mean interface thickness</span><span class="lang-zh">平均界面厚度</span></td><td>ε̄</td><td>0.01 dimensionless</td><td><span class="lang-en">Controls diffuse-interface thickness and approximation to the sharp front.</span><span class="lang-zh">控制弥散界面厚度及其对尖锐前沿的逼近。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Phase relaxation time</span><span class="lang-zh">相场松弛时间</span></td><td>τ</td><td>0.0003 dimensionless</td><td><span class="lang-en">Controls phase-field kinetic response and explicit stability demand.</span><span class="lang-zh">控制相场动力学响应和显式格式稳定性要求。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Driving saturation</span><span class="lang-zh">驱动力饱和值</span></td><td>α</td><td>0.9 dimensionless</td><td><span class="lang-en">Bounds the temperature-dependent phase driving.</span><span class="lang-zh">限制温度相关相变驱动力的幅值。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Driving slope</span><span class="lang-zh">驱动力斜率</span></td><td>γ</td><td>10.0 dimensionless</td><td><span class="lang-en">Controls sensitivity of m(T) near equilibrium.</span><span class="lang-zh">控制 m(T) 在平衡温度附近的敏感度。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Noise amplitude</span><span class="lang-zh">噪声幅值</span></td><td>a</td><td>0.01 dimensionless</td><td><span class="lang-en">Seeds interface perturbations in the baseline simulations.</span><span class="lang-zh">为基准算例提供界面扰动。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr><tr><td><span class="lang-en">Time step</span><span class="lang-zh">时间步</span></td><td>Δt</td><td>0.0002 dimensionless</td><td><span class="lang-en">Time mesh used for the explicit phase and implicit heat updates.</span><span class="lang-zh">相场显式更新与热场隐式更新所用时间离散。</span><br><span class="item-meta">Simulations, p.4 (body text)</span></td></tr></tbody>
+          </table></div>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Initial conditions</span><span class="lang-zh">初始条件</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Cases include equilibrium-temperature liquid cooled from walls, uniformly supercooled liquid with a prescribed nucleus, or a perturbed planar solid-liquid front; the exact case-dependent setup is described alongside each figure.</span><span class="lang-zh">算例包括由壁面冷却的平衡温度液体、带预设晶核的均匀过冷液体或受扰动的平面固液前沿；具体初态随图中算例变化。</span></span>
+    <small>Evidence: Simulations, p.4 (body text); Dendrite growth, p.8 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Boundary conditions</span><span class="lang-zh">边界条件</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The phase field always uses zero normal flux. Thermal boundaries vary by case: cooled walls, a cooled left wall with other walls insulated, or fully adiabatic boundaries for supercooled solidification.</span><span class="lang-zh">相场始终采用法向零通量；热边界按算例采用四壁冷却、仅左壁冷却其余绝热，或过冷凝固的全绝热边界。</span></span>
+    <small>Evidence: Simulations, p.4 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Numerical implementation</span><span class="lang-zh">数值实现</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Equation (3) is advanced with a simple explicit scheme and the heat equation with a simple implicit scheme on uniform two-dimensional meshes; no special interface-tracking technique is used.</span><span class="lang-zh">在均匀二维网格上用简单显式格式推进式 (3)，用简单隐式格式推进热方程，不使用专门的界面追踪。</span></span>
+    <small>Evidence: Simulations, p.4 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Uniform random noise X in [−1/2,1/2] enters as a p(1−p)X, localizing perturbations around the diffuse interface.</span><span class="lang-zh">均匀随机数 X∈[−1/2,1/2] 以 ap(1−p)X 进入，使扰动局部化于弥散界面。</span></span>
+    <small>Evidence: Simulations, p.4 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Reproducibility check</span><span class="lang-zh">可复现性检查</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The paper reports governing equations, main parameters, mesh sizes, time step, boundary-condition families, and temporal schemes, so representative qualitative cases can be rebuilt.</span><span class="lang-zh">论文给出控制方程、主要参数、网格、时间步、边界条件类别和推进格式，因而可以重建代表性的定性算例。</span></span>
+    <small>Evidence: Model, p.3 (equation); Model, p.4 (equation); Simulations, p.4 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Exact update stencils, linear-solver details, stopping criteria, random seeds, initial nuclei for every panel, and original code are absent; the author also states that the reported resolution is not quantitatively converged for interface velocity.</span><span class="lang-zh">缺少精确差分模板、线性求解器、终止条件、随机种子、每个图的完整初始晶核及原始代码；作者也明确说明界面速度未达到定量收敛。</span></span>
+    <small>Evidence: Simulations, p.4 (body text); Discussions, p.13 (body text); External availability, p.0 (external) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+
+      
+    </section>
+    
+    <section class="knowledge-panel full-width materials-section materials-section-5">
+      <p class="section-kicker"><span class="lang-en">Section 5 of 6</span><span class="lang-zh">六大块 · 第 5 节</span></p>
+      <h2><span class="lang-en">Results, Validation, and Mechanisms</span><span class="lang-zh">结果、验证与机理</span></h2>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Key results</span><span class="lang-zh">关键结果</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Increasing four-fold anisotropy from zero to 0.050 reorganizes growth from isotropic finger splitting to oriented dendrites with increasingly strong branch screening and preferred directions.</span><span class="lang-zh">四重各向异性从 0 增至 0.050 时，形貌从各向同性指进逐渐转为强定向枝晶，分枝屏蔽和择优方向明显增强。</span></span>
+    <small>Evidence: Dendrite growth, p.8 (figure) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Increasing K destabilizes planar or compact fronts and produces cells, slits, tip splitting, and progressively thinner branching patterns in the sampled thermal regimes.</span><span class="lang-zh">K 增大使平面或紧致前沿失稳，在研究区间内依次出现胞状、狭缝、尖端分裂和更细的分枝形貌。</span></span>
+    <small>Evidence: Simulations, p.4 (body text); Dendrite growth, p.8 (figure) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Noise amplitude strongly changes side-branch selection for non-oscillating tips, whereas oscillatory tip growth makes branching less noise-sensitive.</span><span class="lang-zh">在非振荡尖端条件下，噪声幅值显著改变侧枝选择；尖端振荡存在时，分枝对噪声较不敏感。</span></span>
+    <small>Evidence: Discussions, p.12 (body text); Discussions, p.12 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Validation and comparison</span><span class="lang-zh">验证与对比</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Validation is primarily qualitative: simulated shapes resemble familiar dendrites and reproduce expected smoothing, instability, preferred-direction, screening, and side-branch phenomena.</span><span class="lang-zh">验证主要是定性的：模拟形貌类似常见枝晶，并再现平滑、失稳、择优方向、屏蔽和侧枝等预期现象。</span></span>
+    <small>Evidence: Dendrite growth, p.8 (figure); Discussions, p.12 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The asymptotic sharp-interface law provides theoretical consistency between the diffuse equation and thermodynamic driving plus anisotropic curvature, but no grid-converged velocity comparison is reported.</span><span class="lang-zh">尖锐界面渐近式为弥散方程与热力学驱动力/各向异性曲率之间提供理论一致性，但没有网格收敛的速度对比。</span></span>
+    <small>Evidence: Model, p.3 (equation); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">No direct fit to a named material experiment, measured tip velocity, branch spacing, or thermal history is provided.</span><span class="lang-zh">论文没有拟合具体材料实验，也没有比较实测尖端速度、分枝间距或温度历程。</span></span>
+    <small>Evidence: Discussions, p.12 (body text); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Mechanistic interpretation</span><span class="lang-zh">机理解释</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Anisotropic capillary derivatives magnify even small angular modulation, selecting branch orientation and permitting corners when d0(theta) becomes negative.</span><span class="lang-zh">各向异性毛细函数中的角向导数会放大很小的调制，从而选择分枝方向；当 d₀(θ) 变负时可形成尖角。</span></span>
+    <small>Evidence: Discussions, p.12 (figure); Discussions, p.12 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Latent heat reduces local supercooling and couples neighboring tips through the temperature field, creating competition and screening for access to cooling.</span><span class="lang-zh">潜热降低局部过冷度，并通过温度场耦合相邻尖端，使其围绕散热能力发生竞争和屏蔽。</span></span>
+    <small>Evidence: Model, p.4 (equation); Discussions, p.12 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Noise does not set the main-tip velocity in the non-oscillating case but biases which young side branches survive competition; a deterministic tip oscillation can instead dominate branch production.</span><span class="lang-zh">非振荡情形下噪声不控制主尖端速度，却会偏置年轻侧枝的存活；确定性尖端振荡则可成为更强的分枝来源。</span></span>
+    <small>Evidence: Discussions, p.12 (body text); Discussions, p.12 (figure) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Sensitivity and uncovered questions</span><span class="lang-zh">参数敏感性与未覆盖问题</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The study varies K, anisotropy strength delta, anisotropy mode j, and noise amplitude, but explores only a small parameter subset and does not provide systematic convergence or uncertainty analysis.</span><span class="lang-zh">研究改变 K、各向异性强度 δ、模态 j 与噪声幅值，但只覆盖很小的参数子集，也没有系统的收敛或不确定性分析。</span></span>
+    <small>Evidence: Simulations, p.4 (body text); Discussions, p.12 (body text); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Uncovered physics include convection, mechanical stress and deformation, solute or charge transport, electrochemical interfacial kinetics, multiphase composite boundaries, and vapor-growth facets.</span><span class="lang-zh">未覆盖对流、机械应力与变形、溶质或电荷输运、电化学界面动力学、多相复合边界和气相生长晶面。</span></span>
+    <small>Evidence: Abstract and Introduction, p.1 (body text); Ice dendrites, p.10 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Correspondence with experiments</span><span class="lang-zh">与实验的对应关系</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">The correspondence is morphological rather than quantitative: the simulations generate visually realistic dendrite classes, but they are not calibrated against a specific material specimen or measured field.</span><span class="lang-zh">与实验的对应仅停留在形貌层面：模型生成视觉上合理的枝晶类别，但没有针对具体材料试样或测量场进行标定。</span></span>
+    <small>Evidence: Discussions, p.12 (body text); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Snowflake-like six-fold patterns are explicitly bounded to supercooled-water solidification and cannot be interpreted as validation for vapor-grown snow crystals.</span><span class="lang-zh">六重类雪花图案被作者明确限定为过冷水凝固，不能视为对气相雪晶生长的验证。</span></span>
+    <small>Evidence: Ice dendrites, p.10 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+
+      
+    </section>
+    
+    <section class="knowledge-panel full-width materials-section materials-section-6">
+      <p class="section-kicker"><span class="lang-en">Section 6 of 6</span><span class="lang-zh">六大块 · 第 6 节</span></p>
+      <h2><span class="lang-en">Research Value and Resources</span><span class="lang-zh">研究价值与资源</span></h2>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Value to the four research modules</span><span class="lang-zh">对四个研究模块的价值</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">For porous-carbon CVD silicon, this paper supplies only generic moving-interface numerics; it does not inform deposition chemistry, porous architecture, silicon-carbon contact, or battery performance.</span><span class="lang-zh">对多孔碳中 CVD 纳米硅而言，论文只提供通用移动界面数值方法，不涉及沉积化学、孔结构、硅碳接触或电池性能。</span></span>
+    <small>Evidence: Abstract and Introduction, p.1 (body text); Model, p.2 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">For lithiated-silicon phase mechanics, the angular interfacial-energy treatment may inspire crystalline anisotropy models, but lithium thermodynamics, stress, plasticity, and crystallization criteria must be added independently.</span><span class="lang-zh">对锂化硅相变力学而言，角向界面能可启发晶体各向异性建模，但锂热力学、应力、塑性与晶化判据都需另行加入。</span></span>
+    <small>Evidence: Model, p.3 (body text); Model, p.3 (equation) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">For phase-field–mechanics–electrochemistry, the paper is valuable as a clean template for order parameter, double-well free energy, diffuse interface, transport coupling, boundary conditions, anisotropy, perturbations, and resolution limits; thermal coupling must be replaced or extended with electrochemical and mechanical fields.</span><span class="lang-zh">对相场—力学—电化学而言，论文可作为序参量、双阱自由能、弥散界面、输运耦合、边界条件、各向异性、扰动和分辨率限制的清晰模板；热耦合必须替换或扩展为电化学与力学场。</span></span>
+    <small>Evidence: Model, p.2 (equation); Model, p.3 (equation); Model, p.4 (equation); Simulations, p.4 (body text); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">For multiscale simulation, the diffuse-to-sharp-interface asymptotics demonstrate one cross-description link, but no bottom-up parameter transfer or system-level experimental closure is present.</span><span class="lang-zh">对多尺度仿真而言，弥散到尖锐界面的渐近分析展示了一种跨描述连接，但没有自下而上的参数传递或系统级实验闭环。</span></span>
+    <small>Evidence: Model, p.3 (equation); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Reusable elements</span><span class="lang-zh">可复用内容</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">Reusable elements include the quartic double well, orientation-dependent gradient coefficient, bounded temperature driving, latent-heat source, sharp-interface capillary interpretation, interface-localized noise, and morphology-based parameter studies.</span><span class="lang-zh">可复用内容包括四次双阱、方向相关梯度系数、有界温度驱动力、潜热源、尖锐界面毛细解释、界面局部噪声和形貌参数研究。</span></span>
+    <small>Evidence: Model, p.2 (equation); Model, p.3 (equation); Model, p.4 (equation); Simulations, p.4 (body text) | confidence: high</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">The explicit author warning that interface width must remain below the morphology scale is directly reusable as a mesh and model-resolution acceptance criterion.</span><span class="lang-zh">作者关于界面宽度必须小于形貌尺度的明确警告，可直接转化为网格和模型分辨率验收准则。</span></span>
+    <small>Evidence: Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Limitations and next steps</span><span class="lang-zh">局限与下一步</span></h3>
+        
+          <ul class="knowledge-list">
+
+  <li>
+    <span><span class="lang-en">For battery applications, replace temperature-only driving with concentration and electrochemical potential, add stress-dependent free energy and mechanical equilibrium, and define reaction and flux conditions at active interfaces.</span><span class="lang-zh">面向电池时，应以浓度和电化学势替代单纯温度驱动，加入应力相关自由能与力学平衡，并在活性界面定义反应和通量条件。</span></span>
+    <small>Evidence: Abstract and Introduction, p.1 (body text); Model, p.2 (equation); Model, p.4 (equation) | confidence: medium</small>
+  </li>
+
+  <li>
+    <span><span class="lang-en">Use grid/time convergence, thin-interface analysis, calibrated parameters, and direct experimental observables before interpreting velocities or branch spacings quantitatively.</span><span class="lang-zh">在定量解释速度或分枝间距前，需要网格/时间收敛、薄界面修正、参数标定和直接实验观测量。</span></span>
+    <small>Evidence: Model, p.3 (equation); Discussions, p.13 (body text) | confidence: high</small>
+  </li>
+
+</ul>
+        
+      </div>
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Reproducibility verdict</span><span class="lang-zh">可复现性结论</span></h3>
+        
+          <p class="summary-text"><span class="lang-en">The qualitative benchmark is substantially reconstructable from the printed equations and settings, and a later independent deal.II implementation exists for an isotropic directional-solidification subset; exact reproduction of the 1993 panels is incomplete because original code, seeds, stencils, and full case files are unavailable.</span><span class="lang-zh">依据文中方程和设置可以较充分重建定性基准；deal.II 后续还提供了各向同性定向凝固子集的独立实现，但由于原始代码、随机种子、差分模板和完整算例文件缺失，无法精确复现 1993 年全部图像。</span></p>
+          <span class="item-meta">Evidence: Simulations, p.4 (body text); Discussions, p.13 (body text); External availability, p.0 (external) | confidence: high</span>
+        
+      </div>
+      
+
+      
+      <div class="materials-group">
+        <h3><span class="lang-en">Key figures and tables</span><span class="lang-zh">关键图表</span></h3>
+        <div class="visual-grid">
+        
+          <article class="visual-card">
+            <strong><span class="lang-en">Page 2 view containing Figures 1-2</span><span class="lang-zh">第 2 页视图，包含 图 1–2</span></strong>
+            <button class="visual-open" type="button" data-lightbox-src="page_images/page-002.png" data-lightbox-title="Page 2 view containing Figures 1-2"><img src="page_images/page-002.png" alt="Figures 1-2"></button>
+            <p><span class="lang-en">Read the steep p transition as the replacement for an explicitly tracked front, then compare how m tilts the two phase minima.</span><span class="lang-zh">把 p 的陡峭过渡看作显式前沿的替代，再比较 m 如何倾斜两个相势阱。</span></p>
+            <span class="item-meta">Model, p.2 (body text); Model, p.2 (equation)</span>
+          </article>
+        
+          <article class="visual-card">
+            <strong><span class="lang-en">Page 8 view containing Figure 7</span><span class="lang-zh">第 8 页视图，包含 图 7</span></strong>
+            <button class="visual-open" type="button" data-lightbox-src="page_images/page-008.png" data-lightbox-title="Page 8 view containing Figure 7"><img src="page_images/page-008.png" alt="Figure 7"></button>
+            <p><span class="lang-en">Compare rows rather than individual frames: increasing anisotropy converts distributed fingering into strongly oriented trunks and branches.</span><span class="lang-zh">应按行比较：各向异性增强使分散指进逐步转为强定向主干和侧枝。</span></p>
+            <span class="item-meta">Dendrite growth, p.8 (figure)</span>
+          </article>
+        
+          <article class="visual-card">
+            <strong><span class="lang-en">Page 12 view containing Figures 10-11</span><span class="lang-zh">第 12 页视图，包含 图 10–11</span></strong>
+            <button class="visual-open" type="button" data-lightbox-src="page_images/page-012.png" data-lightbox-title="Page 12 view containing Figures 10-11"><img src="page_images/page-012.png" alt="Figures 10-11"></button>
+            <p><span class="lang-en">The lower morphology row separates noise-sensitive side branching, while the upper angular plots explain when anisotropic capillarity permits corners.</span><span class="lang-zh">下方形貌图区分噪声敏感侧枝，上方角向曲线解释各向异性毛细作用何时允许尖角。</span></p>
+            <span class="item-meta">Discussions, p.12 (figure); Discussions, p.12 (body text)</span>
+          </article>
+        
+          <article class="visual-card">
+            <strong><span class="lang-en">Page 13 view containing Discussion and Appendix</span><span class="lang-zh">第 13 页视图，包含 讨论与附录</span></strong>
+            <button class="visual-open" type="button" data-lightbox-src="page_images/page-013.png" data-lightbox-title="Page 13 view containing Discussion and Appendix"><img src="page_images/page-013.png" alt="Discussion and Appendix"></button>
+            <p><span class="lang-en">The left column is essential: the author states that sub-interface features are lost and the reported mesh is not intended for precise velocity.</span><span class="lang-zh">左栏非常关键：作者明确指出亚界面尺度结构会丢失，所用网格并非用于精确速度。</span></p>
+            <span class="item-meta">Discussions, p.13 (body text); Model, p.3 (equation)</span>
+          </article>
+        
+        </div>
+      </div>
+      <div class="materials-group">
+        <h3><span class="lang-en">Code, data, and model availability</span><span class="lang-zh">代码、数据与模型资源</span></h3>
+        <table class="compact-table"><tbody><tr><th><span class="lang-en">Code</span><span class="lang-zh">代码</span></th><td><strong><span class="lang-en">available_independent_reimplementation</span><span class="lang-zh">available_independent_reimplementation</span></strong><br><span class="item-meta"><span class="lang-en">The accessible implementation is a later deal.II benchmark derived from Kobayashi&#39;s formulation; the publication page itself does not expose the program used to generate the 1993 figures. | https://www.dealii.org/current/doxygen/deal.II/code_gallery_Crystal_Growth_Phase_Field_Model.html | Treat the deal.II example as a reproducible derivative benchmark, not as the original simulation source.</span><span class="lang-zh">1993 年论文记录没有作者代码链接，但 deal.II 官方代码库提供了基于该模型的各向同性定向凝固子集独立实现。 | https://www.dealii.org/current/doxygen/deal.II/code_gallery_Crystal_Growth_Phase_Field_Model.html | deal.II 示例是后续可复现派生基准，不是原始仿真源码。</span></span></td></tr><tr><th><span class="lang-en">Data</span><span class="lang-zh">数据</span></th><td><strong><span class="lang-en">not_applicable_or_not_verified</span><span class="lang-zh">not_applicable_or_not_verified</span></strong><br><span class="item-meta"><span class="lang-en">The article reports generated morphology panels rather than a released dataset, and the official record does not identify a data deposit. | Figure sequences can be digitized only approximately; original field arrays were not verified.</span><span class="lang-zh">论文报告生成的形貌图而非发布数据集，官方记录没有数据存档。 | 只能近似数字化图像，未核实到原始场数据。</span></span></td></tr><tr><th><span class="lang-en">Models</span><span class="lang-zh">模型</span></th><td><strong><span class="lang-en">not_verified</span><span class="lang-zh">not_verified</span></strong><br><span class="item-meta"><span class="lang-en">The mathematical model is fully described in print, but no original executable model or archived case files were verified. | The independent deal.II implementation covers only a subset and is listed under code availability.</span><span class="lang-zh">数学模型在论文中完整描述，但未核实到原始可执行模型或算例归档。 | deal.II 独立实现只覆盖一个子集，已列在代码资源中。</span></span></td></tr></tbody></table>
+      </div>
+      <p class="resource-links"><a href="paper.pdf">PDF</a> <a href="note.md"><span class="lang-en">Reading note</span><span class="lang-zh">阅读笔记</span></a></p>
+      
+    </section>
+    
+    
+
+    
+    
+
+    <section class="knowledge-panel full-width">
+      <h2>BibTeX</h2>
+      <pre class="bibtex">@article{Kobayashi1993A,
+  author = {Ryo Kobayashi},
+  title = {Modeling and numerical simulations of dendritic crystal growth},
+  year = {1993},
+  journal = {Physica D: Nonlinear Phenomena},
+  volume = {63},
+  number = {3--4},
+  pages = {410--423},
+  doi = {10.1016/0167-2789(93)90120-P},
+  url = {https://doi.org/10.1016/0167-2789(93)90120-P},
+  file = {papers/Kobayashi1993A/paper.pdf},
+  batteryverifiedsource = {https://www.sciencedirect.com/science/article/pii/016727899390120P},
+}</pre>
+    </section>
+  </main>
+  <div class="lightbox" data-lightbox hidden>
+    <button class="lightbox-close" type="button" data-lightbox-close>Close</button>
+    <p data-lightbox-title></p>
+    <img data-lightbox-image alt="">
+  </div>
+  <script>
+    (function () {
+      function setLang(lang) {
+        document.documentElement.dataset.lang = lang;
+        try { localStorage.setItem("battery-paper-lang", lang); } catch (error) {}
+      }
+      setLang(localStorage.getItem("battery-paper-lang") || "zh");
+      document.querySelectorAll("[data-lang-button]").forEach(function (button) {
+        button.addEventListener("click", function () { setLang(button.dataset.langButton); });
+      });
+      var lightbox = document.querySelector("[data-lightbox]");
+      var image = document.querySelector("[data-lightbox-image]");
+      var title = document.querySelector("[data-lightbox-title]");
+      document.querySelectorAll("[data-lightbox-src]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          image.src = button.dataset.lightboxSrc;
+          title.textContent = button.dataset.lightboxTitle || "";
+          lightbox.hidden = false;
+        });
+      });
+      document.querySelector("[data-lightbox-close]").addEventListener("click", function () {
+        lightbox.hidden = true;
+        image.removeAttribute("src");
+      });
+    })();
+  </script>
+</body>
+</html>

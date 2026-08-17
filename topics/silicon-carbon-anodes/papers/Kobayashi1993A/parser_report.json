@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "parser": "pymupdf4llm",
+  "parser_error": null,
+  "parsed": "papers/Kobayashi1993A/parsed.md",
+  "paper_index": "papers/Kobayashi1993A/paper_index.json",
+  "math_index": "papers/Kobayashi1993A/math_index.json",
+  "math_parse_quality": "fair",
+  "math_parse_reasons": [],
+  "visual_ok": true,
+  "page_count": 14,
+  "visual_pages_rendered": 14,
+  "visual_pages_truncated": false,
+  "visual_index": "papers/Kobayashi1993A/visual_index.md",
+  "contact_sheet": "papers/Kobayashi1993A/page_images/contact_sheet.jpg",
+  "page_images": [
+    "papers/Kobayashi1993A/page_images/page-001.png",
+    "papers/Kobayashi1993A/page_images/page-002.png",
+    "papers/Kobayashi1993A/page_images/page-003.png",
+    "papers/Kobayashi1993A/page_images/page-004.png",
+    "papers/Kobayashi1993A/page_images/page-005.png",
+    "papers/Kobayashi1993A/page_images/page-006.png",
+    "papers/Kobayashi1993A/page_images/page-007.png",
+    "papers/Kobayashi1993A/page_images/page-008.png",
+    "papers/Kobayashi1993A/page_images/page-009.png",
+    "papers/Kobayashi1993A/page_images/page-010.png",
+    "papers/Kobayashi1993A/page_images/page-011.png",
+    "papers/Kobayashi1993A/page_images/page-012.png",
+    "papers/Kobayashi1993A/page_images/page-013.png",
+    "papers/Kobayashi1993A/page_images/page-014.png"
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": "v3-math-index-2026-06",
+  "parse_quality": {
+    "quality": "fair",
+    "reasons": [],
+    "metrics": {
+      "section_count": 14,
+      "paragraph_count": 138,
+      "body_chars": 34072,
+      "private_use_chars": 0,
+      "suspicious_section_count": 0,
+      "equation_like_line_count": 50,
+      "math_term_hits": 37
+    }
+  },
+  "selected_pages": [
+    3,
+    2,
+    4,
+    9,
+    12,
+    5
+  ],
+  "math_page_images": [
+    "papers/Kobayashi1993A/math_pages/page-003.png",
+    "papers/Kobayashi1993A/math_pages/page-002.png",
+    "papers/Kobayashi1993A/math_pages/page-004.png",
+    "papers/Kobayashi1993A/math_pages/page-009.png",
+    "papers/Kobayashi1993A/math_pages/page-012.png",
+    "papers/Kobayashi1993A/math_pages/page-005.png"
+  ],
+  "text_candidates": [
+    {
+      "id": "M001",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0016"
+      ],
+      "source_kind": "equation",
+      "raw_text": "The model includes two variables; one is a phase field _p(r, t)_ and the other is a temperature field _T(r, t)._ The variable _p(r, t)_ is an ordering parameter at the position r and the time t, p = 0 means being liquid and p = 1 solid. And the solid/liquid interface is expressed by the steep layer of p connecting the values 0 and 1. Fig. 1 shows how the shape of crystal is described by the phase field p. In order to keep the profile of p such form and to move it reasonably, we consider the following Ginzburg-Landau type free energy including m as a parameter:",
+      "cleaned_equation": "The model includes two variables; one is a phase field _p(r, t)_ and the other is a temperature field _T(r, t)._ The variable _p(r, t)_ is an ordering parameter at the position r and the time t, p = 0 means being liquid and p = 1 solid. And the solid/liquid interface is expressed by the steep layer of p connecting the values 0 and 1. Fig. 1 shows how the shape of crystal is described by the phase field p. In order to keep the profile of p such form and to move it reasonably, we consider the following Ginzburg-Landau type free energy including m as a parameter:",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M002",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0017"
+      ],
+      "source_kind": "equation",
+      "raw_text": "@[p; rn] = f IE2[~p[2 -['- _F(p; m) dr,_",
+      "cleaned_equation": "@[p; rn] = f IE2[~p[2 -['- _F(p; m) dr,_",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M003",
+      "label": "Optimal-control objective",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0018"
+      ],
+      "source_kind": "equation",
+      "raw_text": "where e is a small parameter which determines the thickness of the layer. It is a microscopic interaction length and it also controls the mobility of the interface. F is a double-well potential which has local minimums at p = 0 and 1 for each m. Here we take the specific form of F as follows:",
+      "cleaned_equation": "where e is a small parameter which determines the thickness of the layer. It is a microscopic interaction length and it also controls the mobility of the interface. F is a double-well potential which has local minimums at p = 0 and 1 for each m. Here we take the specific form of F as follows:",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M004",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0019"
+      ],
+      "source_kind": "equation",
+      "raw_text": "_F(p; rn) = \u00bc_ p4 _- (~ - ~m)p_ 1 3 _+ ( ~4 - ~m)p ,_ 1 2 Liquid P O(e) O(e)",
+      "cleaned_equation": "_F(p; rn) = \u00bc_ p4 _- (~ - ~m)p_ 1 3 _+ ( ~4 - ~m)p ,_ 1 2 Liquid P O(e) O(e)",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M005",
+      "label": "Optimal-control objective",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0022"
+      ],
+      "source_kind": "equation",
+      "raw_text": "where I ml< \u00bd. The profile of F and its dependency on m are shown in fig. 2. The difference of the two minimum values is proportional to m, which gives a difference of chemical potentials of both the phases.",
+      "cleaned_equation": "where I ml< \u00bd. The profile of F and its dependency on m are shown in fig. 2. The difference of the two minimum values is proportional to m, which gives a difference of chemical potentials of both the phases.",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M006",
+      "label": "Optimal-control objective",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0023"
+      ],
+      "source_kind": "equation",
+      "raw_text": "Anisotropy can be introduced by assuming that e depends on the direction of the outer normal vector at the interface. So e is represented as a function of the vector v = (vi) satisfying e(Av)= _e(v)_ for A>0. The outer normal vector is represented by -Vp at the interface. Thus we consider",
+      "cleaned_equation": "Anisotropy can be introduced by assuming that e depends on the direction of the outer normal vector at the interface. So e is represented as a function of the vector v = (vi) satisfying e(Av)= _e(v)_ for A>0. The outer normal vector is represented by -Vp at the interface. Thus we consider",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M007",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0024"
+      ],
+      "source_kind": "equation",
+      "raw_text": "From the formula _r 3p/Ot =-8~/8p,_ we have the following evolution equation:",
+      "cleaned_equation": "From the formula _r 3p/Ot =-8~/8p,_ we have the following evolution equation:",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M008",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0025"
+      ],
+      "source_kind": "equation",
+      "raw_text": "where r is a small positive constant and 0e/ _Ov=(Oe/3vi) i._ The parameter m gives a thermodynamical driving force. Especially in two dimensional space, we can take e = e(0) where 0 is an angle between v and a certain direction (for example the positive direction of the x-axis). Thus we have",
+      "cleaned_equation": "where r is a small positive constant and 0e/ _Ov=(Oe/3vi) i._ The parameter m gives a thermodynamical driving force. Especially in two dimensional space, we can take e = e(0) where 0 is an angle between v and a certain direction (for example the positive direction of the x-axis). Thus we have",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M009",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0026"
+      ],
+      "source_kind": "equation",
+      "raw_text": "<!-- Start of picture text -->",
+      "cleaned_equation": "<!-- Start of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M010",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0026"
+      ],
+      "source_kind": "equation",
+      "raw_text": "F  F  F<br>ra>0  m=0  m<0<br><!-- End of picture text -->",
+      "cleaned_equation": "F F F<br>ra>0 m=0 m<0<br><!-- End of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M011",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0027"
+      ],
+      "source_kind": "equation",
+      "raw_text": "Fig. **2. Double-well potential F controlled by the** parameter m. AF= F(0; m) - F(1; m) = _m/6._",
+      "cleaned_equation": "Fig. **2. Double-well potential F controlled by the** parameter m. AF= F(0; m) - F(1; m) = _m/6._",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M012",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0029"
+      ],
+      "source_kind": "equation",
+      "raw_text": "In order to understand intuitively how eq. (3) moves the interface, let us derive the singular limit equation in two dimensional case. Put e = g~r(0) where g is a mean value of e and ~r(0) represents anisotropy. Taking r = bg and _m = gf/V~,_ we obtain an interface equation in the limit of g tending to zero, as follows (See appendix):",
+      "cleaned_equation": "In order to understand intuitively how eq. (3) moves the interface, let us derive the singular limit equation in two dimensional case. Put e = g~r(0) where g is a mean value of e and ~r(0) represents anisotropy. Taking r = bg and _m = gf/V~,_ we obtain an interface equation in the limit of g tending to zero, as follows (See appendix):",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    }
+  ],
+  "vision_fallback": {
+    "needed": false,
+    "status": "not_needed",
+    "reasons": [],
+    "image_paths": [
+      "papers/Kobayashi1993A/math_pages/page-003.png",
+      "papers/Kobayashi1993A/math_pages/page-002.png",
+      "papers/Kobayashi1993A/math_pages/page-004.png",
+      "papers/Kobayashi1993A/math_pages/page-009.png",
+      "papers/Kobayashi1993A/math_pages/page-012.png",
+      "papers/Kobayashi1993A/math_pages/page-005.png"
+    ],
+    "instruction": "Run `battery_lit read <bibkey> --vision-formulas` when parsed text cannot safely recover key equations. The command attaches these page images to Codex through a bounded image-input runner. Transcribe only visible formulas, keep uncertainty, and do not invent notation from domain memory."
+  }
+}
