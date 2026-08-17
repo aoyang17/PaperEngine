@@ -1,0 +1,32 @@
+title: 'A Phase-Field Model Coupled with Large Elasto-Plastic Deformation: Application
+  to Lithiated Silicon Electrodes'
+authors:
+- L. Chen
+- F. Fan
+- L. Hong
+- J. Chen
+- Y. Z. Ji
+- S. L. Zhang
+- T. Zhu
+- L. Q. Chen
+year: 2014
+venue: Journal of The Electrochemical Society
+doi: 10.1149/2.0171411jes
+arxiv_id: null
+openalex_id: null
+semantic_scholar_id: null
+dblp_key: null
+issn: null
+isbn: null
+url: https://doi.org/10.1149/2.0171411jes
+pdf_url: null
+verified_sources:
+- fixture:chen2014_manual_intake.json
+source_metadata:
+  arxiv_id: null
+  doi: 10.1149/2.0171411jes
+  title: 'A Phase-Field Model Coupled with Large Elasto-Plastic Deformation: Application
+    to Lithiated Silicon Electrodes'
+  year: 2014
+bibkey: Chen2014A
+file: papers/Chen2014A/paper.pdf

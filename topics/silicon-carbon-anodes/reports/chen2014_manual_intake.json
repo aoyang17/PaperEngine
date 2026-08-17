@@ -1,0 +1,14 @@
+{
+  "results": [
+    {
+      "title": "A Phase-Field Model Coupled with Large Elasto-Plastic Deformation: Application to Lithiated Silicon Electrodes",
+      "authors": ["L. Chen", "F. Fan", "L. Hong", "J. Chen", "Y. Z. Ji", "S. L. Zhang", "T. Zhu", "L. Q. Chen"],
+      "year": 2014,
+      "venue": "Journal of The Electrochemical Society",
+      "abstract": "A phase-field model accounting for large elasto-plastic deformation is developed to study phase, morphology, and stress evolution in crystalline silicon electrodes during lithium insertion. Lithium concentration and deformation are co-evolved with coupled phase-field and mechanics equations solved by finite elements. The model is compared with a nonlinear concentration-dependent diffusion model and predicts a surface-layer hoop-stress transition from compression to tension that may explain experimentally observed cracking.",
+      "doi": "10.1149/2.0171411jes",
+      "url": "https://doi.org/10.1149/2.0171411jes",
+      "source": "user-provided open-access PDF"
+    }
+  ]
+}

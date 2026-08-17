@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "query": "\u5fae\u7c73\u7ea7\u591a\u5b54\u78b3\u4e2d\u901a\u8fc7 CVD \u6c89\u79ef\u7eb3\u7c73\u7845\u7684\u7845\u78b3\u8d1f\u6781\u6750\u6599\uff1b\u9502\u5316\u7845\u6676\u76f8\u5f62\u6210\u7684\u529b\u5b66\u6761\u4ef6\uff1b\u5206\u76f8\u6750\u6599\u7684\u76f8\u573a\u2014\u529b\u5b66\u2014\u7535\u5316\u5b66\u8026\u5408\u4eff\u771f\uff1b\u4ece\u7b2c\u4e00\u6027\u539f\u7406\u548c\u5fae\u89c2\u9897\u7c92\u6a21\u578b\u5230\u7cfb\u7edf\u5c42\u7ea7\u5e76\u4e0e\u5b9e\u9a8c\u5bf9\u7167\u7684\u591a\u5c3a\u5ea6\u4eff\u771f\u65b9\u6cd5\u4e0e\u6848\u4f8b\u3002",
+  "seen": 1,
+  "added": 1,
+  "skipped_invalid": 0,
+  "skipped_library_duplicates": 0,
+  "duplicates_merged": 0,
+  "duplicates_removed": 0,
+  "duplicate_groups": [],
+  "score_threshold": null,
+  "score_filter_applied": false,
+  "semantic_pdf_enrichment_attempted": 0,
+  "semantic_pdf_enrichment_updated": 0,
+  "semantic_pdf_enrichment_failed": 0
+}

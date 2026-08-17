@@ -1,0 +1,60 @@
+{
+  "schema_version": "v3-note-plan-2026-06",
+  "primary_type": "theory",
+  "active_lenses": ["theory", "method", "application"],
+  "type_rationale": "The paper derives a thermodynamically consistent stress-coupled Cahn-Hilliard formulation with finite elasto-plastic kinematics, implements it by FEM, and applies it to two-phase lithiation of a circular silicon nanowire.",
+  "must_cover": [
+    "Multiplicative chemical-plastic-elastic deformation and quasi-static mechanical equilibrium",
+    "Single conserved normalized Li concentration as both lithiation and phase indicator",
+    "Free-energy-derived chemical potential and stress-coupled Cahn-Hilliard transport",
+    "COMSOL weak-form implementation and boundary conditions",
+    "Sharp inward-moving phase front, stress reversal, and plasticity effects",
+    "Constant interface-width validation and stated coupling limitation"
+  ],
+  "key_numbers": [
+    "Li-rich normalized concentration 3.75/4.4 = 0.872",
+    "300% full-lithiation volume increase",
+    "70 nm initial nanowire radius",
+    "1.12 nm analytical phase-boundary width",
+    "Young's modulus 160 to 40 GPa; yield strength 1.5 GPa; hardening modulus 1.0 GPa",
+    "Inter-diffusion coefficient 2e-17 m2/s"
+  ],
+  "central_claims": [
+    "The coupled phase-field/finite-plasticity model preserves a material interface length scale while resolving large deformation.",
+    "Late-stage surface tensile hoop stress emerges because the lithiated outer shell constrains expansion at the inward-moving front.",
+    "The computed stress fields are broadly consistent with a prior nonlinear concentration-dependent diffusion model."
+  ],
+  "claim_boundaries": [
+    "The application is an idealized circular, isotropic nanowire under prescribed surface saturation and traction-free mechanics.",
+    "Plastic parameters are representative values fitted reasonably to experiments rather than directly measured for the modeled system.",
+    "A systematic kinetic study of stress feedback on diffusion and reaction is deferred."
+  ],
+  "mechanism_result_map": [
+    "Double-well chemical energy plus gradient penalty -> stable Li-poor/Li-rich diffuse interface -> nearly constant 1.12 nm width.",
+    "Chemical swelling plus J2 plasticity -> redistribution and limiting of stresses -> early compression and late surface tension.",
+    "Variational chemical potential including elastic contribution -> stress-sensitive Li transport -> co-evolved concentration and geometry."
+  ],
+  "comparative_positioning": [
+    "Unlike single-phase nonlinear diffusion, the phase-field formulation supplies an intrinsic interface thickness.",
+    "Unlike small-strain elastic phase-field models, it admits approximately 300% local volume expansion and plastic flow.",
+    "Stress-profile comparison uses the authors' prior nonlinear diffusion model rather than a new experimental field measurement."
+  ],
+  "negative_or_limiting_results": [
+    "Small stress fluctuations remain in the phase-field solution, with mesh density, geometry, and plasticity law cited as possible causes.",
+    "The paper does not systematically quantify stress-induced retardation of transport or reaction kinetics.",
+    "The single concentration field collapses composition and crystalline/amorphous structure into one variable."
+  ],
+  "visual_plan": [
+    "Figure 3 for inward migration and slowdown of the concentration front",
+    "Figure 4 for phase-field versus nonlinear-diffusion stress profiles",
+    "Figures 5-6 on page 8 for stress reversal/plasticity and interface-width validation"
+  ],
+  "section_plan": [
+    "One-sentence summary and quick read",
+    "Argument and central claims",
+    "Coupled formulation and numerical pipeline",
+    "Theory equations and assumptions",
+    "Silicon-nanowire application and results",
+    "Visual evidence, limits, and availability"
+  ]
+}

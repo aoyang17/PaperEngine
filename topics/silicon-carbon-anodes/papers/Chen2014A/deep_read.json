@@ -1,0 +1,242 @@
+{
+  "schema_version": "v3-deep-read-2026-06",
+  "bibkey": "Chen2014A",
+  "title": "A Phase-Field Model Coupled with Large Elasto-Plastic Deformation: Application to Lithiated Silicon Electrodes",
+  "authors": ["L. Chen", "F. Fan", "L. Hong", "J. Chen", "Y. Z. Ji", "S. L. Zhang", "T. Zhu", "L. Q. Chen"],
+  "year": 2014,
+  "venue": "Journal of The Electrochemical Society",
+  "pdf_path": "papers/Chen2014A/paper.pdf",
+  "parsed_markdown_path": "papers/Chen2014A/parsed.md",
+  "source_map_path": "papers/Chen2014A/source_map.json",
+  "one_sentence_summary": "Chen et al. couple a free-energy-based Cahn-Hilliard phase field to finite J2 elasto-plasticity, showing in a lithiating silicon nanowire that a stable nanoscale phase front and chemical expansion constrained by the lithiated outer shell drive the surface hoop stress from compression into late-stage tension, while plasticity limits and redistributes stress.",
+  "paper_profile": {
+    "primary_type": "theory",
+    "active_lenses": ["theory", "method", "application"],
+    "confidence": "high",
+    "rationale": "The central contribution is a thermodynamically derived coupled formulation; its finite-element realization is a reusable method, and silicon-nanowire lithiation supplies the engineering application."
+  },
+  "argument_map": {
+    "gap": {"text": "Existing large-deformation silicon models usually represented lithiation as single-phase diffusion, while earlier phase-field treatments used small-strain elasticity or lacked a demonstrated high-capacity-electrode implementation; neither combination reliably retained a physical phase-boundary thickness under large plastic swelling.", "source_refs": ["S002"], "confidence": "high"},
+    "core_contribution": {"text": "The paper integrates a conserved concentration phase field, finite chemical-elastic-plastic kinematics, and quasi-static mechanics so that Li transport, phase-front motion, deformation, and stress evolve together in an arbitrary-geometry FEM framework.", "source_refs": ["S001", "S003", "M001", "S005"], "confidence": "high"},
+    "method_logic": {"text": "A double-well chemical energy selects Li-poor and Li-rich states, the gradient penalty sets interface energy and width, elastic energy makes chemical potential stress-sensitive, and J2 flow accommodates irreversible swelling; the variational potential then drives Cahn-Hilliard transport while mechanical equilibrium is solved at every time step.", "source_refs": ["S003", "M001", "S004", "S005"], "confidence": "high"},
+    "decisive_evidence": [
+      {"text": "The inward concentration front stays sharp and slows between later snapshots, demonstrating that the formulation represents two-phase propagation rather than smooth single-phase filling.", "source_refs": ["F001"], "confidence": "high"},
+      {"text": "Stress profiles broadly match the earlier nonlinear-diffusion calculation at two matched front positions, while the surface hoop stress reverses sign late in lithiation.", "source_refs": ["F002", "F003"], "confidence": "high"},
+      {"text": "The simulated interface width remains close to the 1.12 nm analytical estimate throughout lithiation, supporting the claimed intrinsic length scale.", "source_refs": ["M002", "F004"], "confidence": "high"}
+    ],
+    "limitations": [
+      {"text": "The demonstration assumes an isotropic circular nanowire, prescribed Li-rich concentration at the surface, zero potential flux, and a traction-free boundary; anisotropy, reaction control, and realistic contacts are absent.", "source_refs": ["S003", "S004"], "confidence": "high"},
+      {"text": "Yield and hardening parameters were chosen as typical values because plastic-range properties were unavailable, and the numerical stress curves retain small fluctuations.", "source_refs": ["T001", "F002"], "confidence": "high"}
+    ],
+    "future_work": [
+      {"text": "The clearest next step is a systematic calculation of how stress modifies Li diffusion and interfacial reaction rates, which the authors explicitly leave outside this study.", "source_refs": ["S006"], "confidence": "high"},
+      {"text": "The physical-space FEM formulation is positioned for complex electrode shapes and boundary conditions beyond the circular nanowire benchmark.", "source_refs": ["S002", "S005"], "confidence": "medium"}
+    ]
+  },
+  "quick_read": [
+    {"text": "The state variable is normalized Li concentration c-hat; one conserved field simultaneously distinguishes Li-poor crystalline Si from Li-rich amorphous LixSi and tracks local lithiation.", "source_refs": ["S003", "S004"], "confidence": "high"},
+    {"text": "The governing transport law is a Cahn-Hilliard equation driven by chemical/gradient and elastic contributions to chemical potential; although the formal decomposition includes a plastic term, it vanishes because the paper assumes plastic energy is independent of normalized concentration. Multiplicative finite-deformation kinematics and J2 plasticity govern the mechanical response separately.", "source_refs": ["M001", "S003"], "confidence": "high"},
+    {"text": "COMSOL solves the split second-order phase-field equations and mechanical equilibrium on a quarter-domain triangular mesh with implicit first-order time integration.", "source_refs": ["S005"], "confidence": "high"},
+    {"text": "The model predicts a sharp inward-moving front and a late switch of surface hoop stress from compression to tension because the lithiated shell constrains expansion at the moving front.", "source_refs": ["F001", "F002", "F003"], "confidence": "high"},
+    {"text": "Its strongest quantitative validation is the nearly constant diffuse-interface width around the 1.12 nm analytical value; stress validation is comparative rather than a direct fit to spatially resolved experiment.", "source_refs": ["M002", "F004", "F002"], "confidence": "high"}
+  ],
+  "central_claims": [
+    {
+      "claim": "A phase-field formulation can couple two-phase lithiation to large elasto-plastic deformation while preserving an intrinsic interface thickness.",
+      "evidence_summary": "The free-energy gradient term supplies a length scale, and the computed boundary width remains near the analytical 1.12 nm estimate throughout the simulated lithiation history.",
+      "source_refs": ["M001", "M002", "F004"],
+      "what_it_proves": "For the stated free energy, parameters, and nanowire problem, the discretized model maintains a physically interpretable, nearly stationary diffuse-interface width.",
+      "what_it_does_not_prove": "It does not establish that the same parameters or interface law quantitatively predict every silicon morphology, crystallographic orientation, or cycling condition.",
+      "open_question": "How should gradient energy and double-well parameters be calibrated independently for different silicon phases and temperatures?",
+      "confidence": "high"
+    },
+    {
+      "claim": "The cracking-relevant surface load path has two stages: early compression is partly accommodated by J2 yielding, then continued subsurface lithiation stretches the previously lithiated shell like a membrane and leaves it in hoop tension.",
+      "evidence_summary": "The surface stress begins compressive, plastically yields, and then becomes tensile as the already-lithiated shell constrains expansion at the advancing internal front.",
+      "source_refs": ["F002", "F003", "S001"],
+      "what_it_proves": "The coupled model produces a mechanically plausible sign reversal under its axisymmetric loading and boundary conditions.",
+      "what_it_does_not_prove": "The calculation does not resolve crack nucleation or propagation and does not quantify a fracture threshold against a matched specimen.",
+      "open_question": "Does the predicted tensile history exceed measured fracture resistance when surface defects, oxide, and electrochemical reaction kinetics are included?",
+      "confidence": "high"
+    }
+  ],
+  "method_understanding": {
+    "pipeline": [
+      {"text": "Represent lithiation and the crystalline/amorphous distinction with the conserved normalized concentration c-hat, and prescribe a double-well chemical free energy whose Li-rich minimum is at 0.872.", "source_refs": ["S004"], "confidence": "high"},
+      {"text": "Decompose total deformation into chemical, plastic, and elastic factors; compute stress with concentration-dependent elasticity and evolve irreversible deformation using isotropic J2 flow with linear hardening.", "source_refs": ["S003", "T001"], "confidence": "high"},
+      {"text": "Differentiate the total free energy to obtain chemical potential, use its gradient for Li flux, and combine flux with conservation to form the stress-coupled Cahn-Hilliard equation.", "source_refs": ["M001"], "confidence": "high"},
+      {"text": "Split the fourth-order phase-field equation into two second-order equations and solve them with mechanical equilibrium by FEM at each implicit time step.", "source_refs": ["S004", "S005"], "confidence": "high"}
+    ],
+    "algorithm_pseudocode": "Initialize c-hat and deformation on a quarter nanowire.\nAt each time step, solve the split concentration/potential equations and quasi-static displacement equilibrium with constitutive updates.\nAdvance c-hat and plastic state; record phase-front position, geometry, and stresses.",
+    "algorithm_steps": [
+      {"step": 1, "action": "Initialize the quarter-domain nanowire with the prescribed concentration profile and stress-free geometry.", "inputs": "Radius, initial c-hat, material and phase-field parameters", "outputs": "Initial concentration, displacement, and plastic state", "source_refs": ["S003", "S005", "T001"], "confidence": "high"},
+      {"step": 2, "action": "Apply saturated Li-rich concentration, zero potential flux, symmetry constraints, and traction-free exterior mechanics.", "inputs": "Boundary values and domain normals", "outputs": "Phase-field and mechanical boundary-value problem", "source_refs": ["S004"], "confidence": "high"},
+      {"step": 3, "action": "Solve chemical potential, concentration conservation, and mechanical equilibrium in weak form with constitutive plastic updates.", "inputs": "Current concentration, deformation, and plastic history", "outputs": "Updated c-hat, chemical potential, displacement, and stress", "source_refs": ["M001", "S005"], "confidence": "high"},
+      {"step": 4, "action": "Advance implicitly and extract front location, interface width, stress components, and accumulated plastic strain.", "inputs": "Converged field solution", "outputs": "Time-resolved phase, morphology, stress, and plasticity results", "source_refs": ["F001", "F002", "F003", "F004"], "confidence": "high"}
+    ],
+    "engineering_derivation_sketch": {"text": "Start with a free energy that penalizes mixed compositions and concentration gradients while adding deformation-dependent elastic and plastic energies. Under the paper's assumption that plastic energy is independent of normalized concentration, its derivative contributes mu_pl=0; chemical/gradient and elastic terms therefore form the active Li potential. Onsager-type flux down that potential, combined with mass conservation, yields Cahn-Hilliard evolution. Multiplicative kinematics separately tracks chemical swelling, recoverable elasticity, and plastic flow without assuming small strain.", "source_refs": ["S003", "M001"], "confidence": "high"},
+    "implementation_details": [
+      {"text": "The implementation uses COMSOL, 2D three-node triangles, four nodal degrees of freedom (concentration, chemical potential, and two displacement components), and implicit first-order time integration.", "source_refs": ["S005"], "confidence": "high"},
+      {"text": "A quarter circular domain exploits symmetry; the reference radius is 70 nm and the physical time step is 2.45 s.", "source_refs": ["S005", "T001"], "confidence": "high"}
+    ]
+  },
+  "theory_understanding": {
+    "problem_formulation": {"text": "The problem is to evolve a sharp but diffuse Li-rich/amorphous shell into a Li-poor/crystalline silicon nanowire core while accounting for approximately 300% local swelling, plastic flow, and stress-modified chemical potential.", "source_refs": ["S001", "S003", "S004", "T001"], "confidence": "high"},
+    "key_equations": [
+      {"label": "Stress-coupled Cahn-Hilliard evolution", "equation": "G=∫[f_ch(ĉ)+f_el(F,ĉ)+f_pl(F)+(κ/2)|∇ĉ|²]dΩ₀; μ=μ_ch+μ_el+μ_pl, μ_pl=∂f_pl/∂ĉ=0; ∂ĉ/∂t=∇·(M_Li(ĉ)∇μ)", "latex": "G=\\int[f_{ch}(\\hat c)+f_{el}(F,\\hat c)+f_{pl}(F)+\\frac{\\kappa}{2}|\\nabla\\hat c|^2]d\\Omega_0;\\quad \\mu=\\mu_{ch}+\\mu_{el}+\\mu_{pl},\\;\\mu_{pl}=\\partial f_{pl}/\\partial\\hat c=0;\\quad \\partial_t\\hat c=\\nabla\\cdot(M_{Li}(\\hat c)\\nabla\\mu)", "explanation": "Chemical and gradient terms create two phases and a finite interface, while elastic energy makes μ stress-sensitive. Plastic energy appears in the formal free energy but does not directly drive transport here because its concentration derivative is assumed zero.", "source_refs": ["M001"], "confidence": "high"},
+      {"label": "Diffuse-interface width", "equation": "λ=(ĉβ−ĉα)√[κ/(2Δg)]=1.12 nm", "latex": "\\lambda=(\\hat c_\\beta-\\hat c_\\alpha)\\sqrt{\\kappa/(2\\Delta g)}=1.12\\,\\mathrm{nm}", "explanation": "The width is set by the competition between gradient penalty κ and the double-well barrier Δg; this supplies the material length scale missing from the comparison diffusion model.", "source_refs": ["M002"], "confidence": "high"}
+    ],
+    "theorem_or_principle_chain": [
+      {"principle": "Variational thermodynamics", "role": "Defines chemical potential from the derivative of the total free energy.", "intuition": "Li moves in response to the energetic cost of composition gradients, phase preference, and mechanical loading rather than concentration alone.", "source_refs": ["M001"], "confidence": "high"},
+      {"principle": "Multiplicative finite-deformation kinematics", "role": "Separates chemical swelling, plastic flow, and elastic distortion.", "intuition": "Large irreversible shape change can be represented without forcing the elastic strain itself to become unphysically large.", "source_refs": ["S003"], "confidence": "high"},
+      {"principle": "Gradient regularization", "role": "Converts a sharp discontinuity into an energetically controlled diffuse interface.", "intuition": "The gradient penalty prevents an arbitrarily thin numerical jump, while the double well favors the two bulk compositions.", "source_refs": ["M001", "M002"], "confidence": "high"}
+    ],
+    "assumptions": [
+      {"text": "One scalar concentration field represents both composition and amorphous/crystalline state, despite the two quantities being conceptually distinct.", "source_refs": ["S004"], "confidence": "high"},
+      {"text": "Chemical expansion is isotropic, plastic flow is volume-preserving J2 plasticity with linear hardening, and stress relaxes quickly enough for mechanical equilibrium at every diffusion time.", "source_refs": ["S003"], "confidence": "high"},
+      {"text": "The outer surface remains saturated at the Li-rich concentration and traction-free, with zero normal potential flux.", "source_refs": ["S004"], "confidence": "high"}
+    ],
+    "key_results": [
+      {"text": "The model produces a persistent core-shell phase morphology and an inward front whose motion slows at later time.", "source_refs": ["F001"], "confidence": "high"},
+      {"text": "The interface width remains approximately 1.12 nm, whereas the comparison nonlinear-diffusion model lacks a stable material length scale.", "source_refs": ["M002", "F004"], "confidence": "high"},
+      {"text": "The surface hoop stress reverses from compression to tension as the lithiated shell restrains interior expansion.", "source_refs": ["F002", "F003"], "confidence": "high"}
+    ],
+    "engineering_proof_sketch": {"text": "The non-convex chemical energy fixes two preferred concentrations, and the gradient term fixes the transition cost; their balance gives the analytical interface width. As Li-rich material forms at the outside, chemical swelling generates compression and plastic flow there. Continued inward advance expands material beneath an already swollen shell, turning the shell's circumferential stress tensile. Solving mechanics and chemical potential together makes this stress history alter the transport driving force.", "source_refs": ["M001", "M002", "F003", "S003"], "confidence": "high"},
+    "limitations": [
+      {"text": "The regular-solution expression is used only as a mathematical double well and is not claimed as a microscopic free energy for amorphous LixSi.", "source_refs": ["S004"], "confidence": "high"},
+      {"text": "Stress-dependent diffusion and reaction retardation are present in the framework but not systematically investigated in the reported calculations.", "source_refs": ["S006"], "confidence": "high"}
+    ]
+  },
+  "application_understanding": {
+    "task_context": [
+      {"text": "The application targets first lithiation of a crystalline silicon nanowire, where an amorphous Li3.75Si-rich shell advances into a nearly unlithiated crystalline core across an approximately nanometer-scale boundary.", "source_refs": ["S001", "S003"], "confidence": "high"}
+    ],
+    "experimental_setup": [
+      {"text": "The numerical benchmark uses a 70 nm-radius circular cross section and compares concentration-front behavior with in-situ observations and stress fields with a prior nonlinear concentration-dependent diffusion model.", "source_refs": ["T001", "F001", "F002"], "confidence": "high"},
+      {"text": "The Li-rich composition is set to c-hat=0.872, elasticity softens with lithiation, and the model uses 1.5 GPa yield strength and 1.0 GPa hardening modulus.", "source_refs": ["S004", "T001"], "confidence": "high"}
+    ],
+    "constraints": [
+      {"text": "Axisymmetry, isotropy, uniform surface saturation, and traction-free mechanics suppress crystallographic, reaction-front, contact, and defect heterogeneity.", "source_refs": ["S003", "S004", "S005"], "confidence": "high"}
+    ],
+    "transfer_limits": [
+      {"text": "The equations can be extended to other high-capacity phase-changing electrodes, but the silicon-specific free energy, mobility, plastic parameters, and boundary conditions require recalibration before quantitative transfer.", "source_refs": ["T001", "S006"], "confidence": "high"}
+    ]
+  },
+  "evaluation": {
+    "datasets": [
+      {"text": "No dataset is introduced; validation uses an idealized 70 nm silicon-nanowire calculation, qualitative in-situ core-shell observations, an analytical interface-width estimate, and a prior nonlinear-diffusion simulation.", "source_refs": ["S003", "T001", "F001", "F002", "M002"], "confidence": "high"}
+    ],
+    "metrics": [
+      {"text": "Evaluation examines phase-front position and sharpness, interface width, radial/hoop/von Mises stresses, stress sign history, and accumulated plastic strain.", "source_refs": ["F001", "F002", "F003", "F004"], "confidence": "high"}
+    ],
+    "main_results": [
+      {"text": "The phase field sustains a sharp core-shell front, reproduces stress-profile trends from the nonlinear-diffusion model, and predicts surface hoop tension at late lithiation.", "source_refs": ["F001", "F002", "F003"], "confidence": "high"},
+      {"text": "The computed interface width stays close to its analytical value over time instead of broadening severalfold as reported for the comparison diffusion formulation.", "source_refs": ["M002", "F004"], "confidence": "high"}
+    ],
+    "ablation_or_comparison_takeaways": [
+      {"text": "Elastic versus elasto-plastic curves show that yielding strongly limits stress magnitudes and changes their time evolution, making plasticity essential for the large-swelling silicon case.", "source_refs": ["F003", "C003"], "confidence": "high"},
+      {"text": "Residual differences from the nonlinear-diffusion stress profiles are attributed to different plasticity laws, mesh density, and geometry; small phase-field stress fluctuations remain.", "source_refs": ["F002"], "confidence": "high"}
+    ],
+    "numeric_results": [
+      {"dataset_or_task": "Two-phase lithiation of a 70 nm-radius silicon nanowire", "metric": "Analytical phase-boundary width", "value": 1.12, "unit": "nm", "baseline": "Analytical estimate from gradient energy and double-well barrier", "comparison": "Phase-field width remains close throughout lithiation", "higher_is_better": null, "source_refs": ["M002", "F004"], "interpretation": "The diffuse interface retains the intended nanoscale material length rather than spreading continuously with time.", "what_it_does_not_prove": "Agreement with the internal analytical estimate is not an independent calibration of κ or Δg for all silicon electrodes."},
+      {"dataset_or_task": "Constitutive setup for fully lithiated silicon", "metric": "Final-to-initial volume ratio implied by 300% volume increase", "value": 4, "unit": "dimensionless", "baseline": "Initial unlithiated volume = 1", "comparison": "Used to set chemical expansion coefficient beta=0.5874", "higher_is_better": null, "source_refs": ["T001"], "interpretation": "The finite-deformation formulation is exercised at four times the initial material-point volume, the large-swelling regime relevant to silicon lithiation.", "what_it_does_not_prove": "A prescribed expansion does not validate the constitutive law or its path dependence against a specific experiment."}
+    ]
+  },
+  "visual_cards": [
+    {"label": "Figure 3", "kind": "main_result", "page": 6, "image_path": "papers/Chen2014A/page_images/page-006.png", "source_caption": "Radial distribution of normalized Li concentration at three lithiation times.", "placement_section": "application_understanding", "placed_near": "F001", "reading_note": "Track the steep red, green, and black fronts moving from the surface toward the center; the smaller late displacement visualizes the slowing front while the plateau values remain tied to the two free-energy wells.", "crop_status": "full_page_approximate", "source_refs": ["C001", "F001"]},
+    {"label": "Figure 4", "kind": "main_result", "page": 7, "image_path": "papers/Chen2014A/page_images/page-007.png", "source_caption": "Phase-field and nonlinear-diffusion radial stress profiles at early and late matched front positions.", "placement_section": "evaluation", "placed_near": "F002", "reading_note": "Compare panels (a,b) with (c,d): both approaches show similar stress organization around the front, and the late-stage hoop-stress curve is tensile near the outer surface even though it is compressive early.", "crop_status": "full_page_approximate", "source_refs": ["C002", "F002"]},
+    {"label": "Figures 5 and 6", "kind": "mechanism_and_validation", "page": 8, "image_path": "papers/Chen2014A/page_images/page-008.png", "source_caption": "Hoop-stress histories at surface and center, plus analytical and phase-field interface-width histories.", "placement_section": "theory_understanding", "placed_near": "F003", "reading_note": "Figure 5 isolates the compression-to-tension reversal and the stress-limiting role of plasticity; Figure 6 shows the simulated width hovering near the 1.12 nm analytical line, directly connecting mechanism and validation.", "crop_status": "full_page_approximate", "source_refs": ["C003", "F003", "F004", "M002"]}
+  ],
+  "availability": {
+    "code": {"status": "not_verified", "url": null, "evidence": "No code repository is identified in the local article, and the single permitted DOI landing-page check was blocked before an official external artifact could be assessed.", "source_refs": ["S005", "E001"], "notes": "The paper names COMSOL as the implementation platform but does not provide source code in the inspected local text."},
+    "data": {"status": "not_applicable_or_not_verified", "url": null, "evidence": "The work reports simulation curves rather than a released research dataset; no official data package could be checked because the DOI page was inaccessible to the lookup.", "source_refs": ["T001", "F001", "F002", "E001"], "notes": "Parameters are printed in Table I, but reusable input or output files were not identified."},
+    "models": {"status": "not_verified", "url": null, "evidence": "The mathematical model is documented in the paper, but no downloadable COMSOL model or other executable model artifact was verified.", "source_refs": ["M001", "S005", "E001"], "notes": "The external DOI lookup was blocked by robots.txt."}
+  },
+  "extraction_notes": {
+    "parser_limitations": ["The paper index assigns many body paragraphs to page 1, so visual page numbers were verified against rendered page images.", "Several displayed equations are omitted or degraded in parsed text; governing relations were checked against page 5 and the interface-width equation against page 7."],
+    "missing_sections": ["No dedicated fracture calculation or experimental methods section is present because cracking is interpreted from computed stress rather than simulated directly."],
+    "low_confidence_equations": ["The compact free-energy equation summarizes the paper's displayed functional and does not reproduce every Jacobian factor in its reference-configuration expansion."],
+    "visual_crop_limitations": ["Only full-page renderings were available, so all visual cards are approximate page views rather than tight figure crops."],
+    "external_info_used": ["A direct lookup of DOI 10.1149/2.0171411jes was attempted on 2026-08-17 and blocked by robots.txt; no external availability claim was inferred beyond that result."]
+  },
+  "translations": {
+    "zh": {
+      "one_sentence_summary": "Chen 等将基于自由能的 Cahn–Hilliard 相场与有限变形 J2 弹塑性耦合，针对硅纳米线锂化表明：稳定的纳米级相界面以及受已锂化外壳约束的化学膨胀会使表面环向应力由早期压缩转为后期拉伸，而塑性负责限制并重新分配应力。",
+      "quick_read": [
+        "状态变量为归一化锂浓度 ĉ；同一个守恒场既区分贫锂晶态硅与富锂非晶 LixSi，也描述局部锂化程度。",
+        "输运方程是 Cahn–Hilliard 方程，化学势的有效驱动力来自化学/梯度项与弹性项；形式分解虽然包含塑性项，但由于论文假设塑性能与归一化浓度无关，μ_pl=0。乘法有限变形运动学与 J2 塑性则单独控制力学响应。",
+        "COMSOL 在四分之一圆域的三角形网格上求解拆分后的二阶相场方程和力学平衡，时间积分采用一阶隐式格式。",
+        "模型给出向内推进的尖锐相界面；由于已锂化外壳约束内部移动界面处的继续膨胀，表面环向应力在后期由压缩转为拉伸。",
+        "最有力的定量验证是弥散界面宽度始终接近 1.12 nm 的解析值；应力部分主要与既有模型比较，而非直接拟合空间分辨实验。"
+      ],
+      "argument_map": {
+        "gap": "既有大变形硅模型通常把锂化视为单相扩散，早期相场工作则多采用小应变弹性或缺少在高容量电极上的数值实现，因而难以在大塑性膨胀下同时保持具有物理意义的相界面厚度。",
+        "core_contribution": "论文把守恒浓度相场、有限化学—弹性—塑性运动学和准静态力学平衡整合起来，使锂输运、相界面移动、形貌变形与应力能够在任意几何的有限元框架中共同演化。",
+        "method_logic": "双阱化学能选择贫锂与富锂状态，梯度能规定界面能与宽度，弹性能使化学势受到应力影响，J2 流动则容纳不可逆膨胀；由变分得到的化学势驱动 Cahn–Hilliard 输运，每个时间步同时求解力学平衡。",
+        "decisive_evidence": ["浓度界面向内移动且始终尖锐，后期移动距离变小，说明模型描述的是两相界面推进而非平滑的单相填充。", "在两个相同界面位置处，相场模型与非线性扩散模型的应力分布总体一致，同时表面环向应力在锂化后期发生符号反转。", "模拟界面宽度在整个锂化过程中接近 1.12 nm 的解析估计，支持模型具有内禀长度尺度。"],
+        "limitations": ["算例假设各向同性圆形纳米线、表面固定为富锂浓度、化学势零通量且外表面无牵引，未包含晶向、反应控制和真实接触。", "塑性区材料参数因缺少测量而采用典型值，数值应力曲线仍存在小幅波动。"],
+        "future_work": ["最直接的后续工作是系统量化应力对锂扩散和界面反应速率的影响，作者明确将其留待后续研究。", "物理空间中的有限元实现可进一步用于比圆形纳米线更复杂的电极几何和边界条件。"]
+      },
+      "central_claims": [
+        {"claim": "相场模型可在保持内禀界面厚度的同时，将两相锂化与大弹塑性变形耦合。", "evidence_summary": "自由能中的梯度项提供长度尺度，计算得到的界面宽度在整个锂化历程中保持在解析估计 1.12 nm 附近。", "what_it_proves": "对于文中自由能、参数与纳米线问题，离散模型能维持具有物理解释且近似恒定的弥散界面宽度。", "what_it_does_not_prove": "这并不说明同一组参数或界面定律可定量预测所有硅形貌、晶向和循环条件。", "open_question": "针对不同硅相和温度，梯度能系数与双阱参数应如何独立标定？"},
+        {"claim": "与开裂相关的表面载荷历程分为两个阶段：早期压缩由 J2 屈服部分释放；随后表层以下继续锂化，使先前形成的富锂外壳像薄膜一样被拉伸，最终承受环向拉应力。", "evidence_summary": "表面最初受压并发生塑性屈服，随后已锂化外壳约束内部推进界面处的膨胀，使环向应力转为拉伸。", "what_it_proves": "在轴对称载荷和给定边界条件下，耦合模型能够产生力学上合理的应力符号反转。", "what_it_does_not_prove": "计算没有解析裂纹成核或扩展，也未针对匹配试样定量比较断裂阈值。", "open_question": "若加入表面缺陷、氧化层和电化学反应动力学，预测的拉伸历程是否会超过实测断裂抗力？"}
+      ],
+      "method_understanding": {
+        "pipeline": ["用守恒的归一化锂浓度 ĉ 同时表示锂化程度与晶态/非晶态，并设置富锂极小值为 0.872 的双阱化学自由能。", "把总变形分解为化学、塑性和弹性部分；采用随浓度变化的弹性参数计算应力，并用带线性硬化的各向同性 J2 流动演化不可逆变形。", "对总自由能求变分得到化学势，以其梯度驱动锂通量，再与质量守恒结合形成应力耦合的 Cahn–Hilliard 方程。", "将四阶相场方程拆成两个二阶方程，并在每个隐式时间步用有限元与力学平衡联立求解。"],
+        "algorithm_pseudocode": "在四分之一纳米线域上初始化 ĉ 与变形。\n每个时间步联立求解拆分后的浓度/化学势方程与准静态位移平衡，并更新本构塑性变量。\n推进 ĉ 和塑性状态，记录相界面位置、几何形貌及应力。",
+        "algorithm_steps": [
+          {"step": 1, "action": "以给定浓度分布和无应力几何初始化四分之一纳米线域。", "inputs": "半径、初始 ĉ、材料参数与相场参数", "outputs": "初始浓度、位移和塑性状态"},
+          {"step": 2, "action": "施加富锂饱和浓度、化学势零通量、对称约束及外表面无牵引条件。", "inputs": "边界值和域外法向", "outputs": "相场—力学边值问题"},
+          {"step": 3, "action": "以弱形式求解化学势、浓度守恒和力学平衡，并更新塑性本构。", "inputs": "当前浓度、变形和塑性历史", "outputs": "更新后的 ĉ、化学势、位移与应力"},
+          {"step": 4, "action": "采用隐式格式推进时间，并提取界面位置、界面宽度、应力分量和累积塑性应变。", "inputs": "收敛的场解", "outputs": "随时间变化的相、形貌、应力和塑性结果"}
+        ],
+        "engineering_derivation_sketch": "从同时惩罚混合浓度与浓度梯度、并包含变形相关弹性能和塑性能的自由能出发。按照论文关于塑性能不依赖归一化浓度的假设，其导数给出 μ_pl=0，因此有效锂化学势由化学/梯度项和弹性项组成。化学势梯度驱动的 Onsager 型通量与质量守恒结合后得到 Cahn–Hilliard 演化；乘法运动学则分别追踪化学膨胀、可恢复弹性和塑性流动。",
+        "implementation_details": ["数值实现采用 COMSOL、二维三节点三角形单元，每个节点含浓度、化学势和两个位移共四个自由度，时间推进为一阶隐式格式。", "利用圆对称性只计算四分之一圆域；参考半径为 70 nm，物理时间步为 2.45 s。"]
+      },
+      "evaluation": {
+        "datasets": ["论文未发布数据集；验证对象包括理想化 70 nm 硅纳米线计算、原位实验所见的核壳形貌、解析界面宽度估计以及既有非线性扩散模拟。"],
+        "metrics": ["评价量包括相界面位置与尖锐程度、界面宽度、径向/环向/von Mises 应力、应力符号随时间的变化以及累积塑性应变。"],
+        "main_results": ["相场模型维持尖锐核壳界面，再现非线性扩散模型的应力分布趋势，并预测锂化后期的表面环向拉应力。", "计算界面宽度随时间保持在解析值附近，而不是像对比扩散模型那样增宽数倍。"],
+        "ablation_or_comparison_takeaways": ["纯弹性与弹塑性曲线的比较表明，屈服显著限制应力幅值并改变其时间历程，因此对大膨胀硅不可忽略塑性。", "与非线性扩散模型的剩余差异可能来自塑性定律、网格密度和几何设置，相场应力曲线仍有小幅数值波动。"],
+        "numeric_results": [
+          {"dataset_or_task": "半径 70 nm 硅纳米线的两相锂化", "metric": "解析相界面宽度", "interpretation": "弥散界面保持预期的纳米级材料长度，而不会随时间持续扩散。", "what_it_does_not_prove": "与内部解析估计一致并不能独立标定所有硅电极适用的 κ 或 Δg。"},
+          {"dataset_or_task": "完全锂化硅的本构设置", "metric": "由 300% 体积增量换算的终态/初态体积比", "interpretation": "有限变形模型在材料点体积达到初始值 4 倍的大膨胀区间内得到检验。", "what_it_does_not_prove": "预设膨胀量不能验证本构定律及其路径依赖是否符合某一具体实验。"}
+        ]
+      },
+      "visual_cards": [
+        {"label": "图 3", "source_caption": "三个锂化时刻的归一化锂浓度径向分布。", "reading_note": "观察红、绿、黑三条陡峭界面从表面向中心推进；后期位移减小体现界面减速，而平台浓度仍由自由能的两个势阱约束。"},
+        {"label": "图 4", "source_caption": "早期和后期相同界面位置处，相场模型与非线性扩散模型的径向应力分布。", "reading_note": "对比 (a,b) 与 (c,d)：两种方法在界面附近呈现相似的应力组织，且后期环向应力在外表面为拉伸，而早期为压缩。"},
+        {"label": "图 5 和图 6", "source_caption": "表面与中心的环向应力历程，以及解析与相场界面宽度历程。", "reading_note": "图 5 展示压缩到拉伸的反转及塑性对应力的限制作用；图 6 显示模拟宽度在 1.12 nm 解析线附近波动，把机理与验证直接联系起来。"}
+      ],
+      "type_sections": {
+        "theory_understanding": {
+          "problem_formulation": "目标是在约 300% 局部膨胀、塑性流动和应力影响化学势的条件下，模拟富锂非晶壳向贫锂晶态硅纳米线核心推进的尖锐弥散界面。",
+          "key_equations": [{"label": "应力耦合 Cahn–Hilliard 演化", "explanation": "化学项与梯度项产生两相和有限界面，弹性能使 μ 对应力敏感；塑性能虽出现在形式自由能中，但因其浓度导数被假设为零，在本文中不直接驱动输运。"}, {"label": "弥散界面宽度", "explanation": "界面宽度由梯度能系数 κ 与双阱势垒 Δg 的竞争决定，提供对比扩散模型所缺少的材料长度尺度。"}],
+          "theorem_or_principle_chain": [{"principle": "变分热力学", "role": "由总自由能的导数定义化学势。", "intuition": "锂的迁移响应组分梯度、相偏好和机械载荷共同形成的能量代价，而非只响应浓度。"}, {"principle": "乘法有限变形运动学", "role": "分离化学膨胀、塑性流动与弹性畸变。", "intuition": "这样可描述巨大的不可逆形变，而不迫使弹性应变本身变得不合理。"}, {"principle": "梯度正则化", "role": "把尖锐间断转化为能量控制的弥散界面。", "intuition": "梯度惩罚避免数值上无限薄的跳变，双阱则稳定两个体相浓度。"}],
+          "assumptions": ["一个标量浓度场同时表示组分与非晶/晶态结构。", "化学膨胀各向同性，塑性为体积不变的带线性硬化 J2 流动，扩散时间尺度上始终满足力学平衡。", "外表面保持富锂饱和浓度、无牵引且化学势法向通量为零。"],
+          "key_results": ["模型产生持续的核壳两相形貌，向内推进的界面在后期减速。", "界面宽度约为 1.12 nm，而对比非线性扩散模型缺少稳定的材料长度尺度。", "已锂化外壳约束内部膨胀，使表面环向应力由压缩转为拉伸。"],
+          "engineering_proof_sketch": "非凸化学能固定两个优选浓度，梯度项规定过渡代价，二者平衡给出解析界面宽度。富锂物质从外侧生成时，化学膨胀首先造成压缩和塑性流动；界面继续向内推进后，已膨胀外壳限制其下方材料扩张，从而使外壳环向受拉。力学与化学势联立求解，使这一应力历程进入输运驱动力。",
+          "limitations": ["规则溶液形式仅作为数学双阱，并未被宣称为非晶 LixSi 的微观自由能。", "框架包含应力相关输运，但文中未系统研究应力对扩散和反应的迟滞作用。"]
+        },
+        "application_understanding": {
+          "task_context": ["应用对象是晶态硅纳米线首次锂化：富锂非晶 Li3.75Si 壳层跨越约纳米厚界面向近乎未锂化的晶态核心推进。"],
+          "experimental_setup": ["数值算例采用半径 70 nm 的圆形截面，并把浓度界面行为与原位核壳观察比较，把应力场与既有非线性浓度相关扩散模型比较。", "富锂组分设为 ĉ=0.872，弹性模量随锂化软化，屈服强度与硬化模量分别取 1.5 GPa 和 1.0 GPa。"],
+          "constraints": ["轴对称、各向同性、表面均匀饱和和无牵引条件排除了晶向、反应界面、接触及缺陷非均匀性。"],
+          "transfer_limits": ["方程可推广至其他发生相变的高容量电极，但若要定量迁移，必须重新标定特定材料的自由能、迁移率、塑性参数和边界条件。"]
+        }
+      },
+      "availability": {
+        "code": {"status": "未核实", "evidence": "本地论文未给出代码仓库；唯一允许的 DOI 落地页查询在评估官方外部资源前即被阻止。", "notes": "论文说明使用 COMSOL 实现，但在检查的本地文本中没有提供源代码。"},
+        "data": {"status": "不适用或未核实", "evidence": "论文报告的是模拟曲线而非发布的数据集；由于 DOI 页面无法访问，未能核实官方数据包。", "notes": "表 I 给出了参数，但未发现可复用的输入或输出文件。"},
+        "models": {"status": "未核实", "evidence": "论文完整描述了数学模型，但未核实到可下载的 COMSOL 模型或其他可执行模型文件。", "notes": "外部 DOI 查询受到 robots.txt 限制。"}
+      },
+      "extraction_notes": {
+        "parser_limitations": ["论文索引把许多正文段落误标为第 1 页，因此图示页码依据渲染页面重新核对。", "若干行间公式在解析文本中缺失或损坏；控制关系对照第 5 页图像检查，界面宽度公式对照第 7 页图像检查。"],
+        "missing_sections": ["论文没有独立的断裂计算或实验方法部分，因为开裂仅由计算应力解释，并未直接模拟。"],
+        "low_confidence_equations": ["自由能的紧凑表达概括了文中的泛函，没有逐项复现参考构形展开中的全部 Jacobian 因子。"],
+        "visual_crop_limitations": ["现有图像均为整页渲染，因此视觉卡展示的是近似整页视图而非紧裁剪图。"],
+        "external_info_used": ["2026-08-17 直接查询 DOI 10.1149/2.0171411jes 时受到 robots.txt 限制；除此结果外未推断任何外部可用性信息。"]
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "parser": "pymupdf4llm",
+  "parser_error": null,
+  "parsed": "papers/Chen2014A/parsed.md",
+  "paper_index": "papers/Chen2014A/paper_index.json",
+  "math_index": "papers/Chen2014A/math_index.json",
+  "math_parse_quality": "fair",
+  "math_parse_reasons": [],
+  "visual_ok": true,
+  "page_count": 10,
+  "visual_pages_rendered": 10,
+  "visual_pages_truncated": false,
+  "visual_index": "papers/Chen2014A/visual_index.md",
+  "contact_sheet": "papers/Chen2014A/page_images/contact_sheet.jpg",
+  "page_images": [
+    "papers/Chen2014A/page_images/page-001.png",
+    "papers/Chen2014A/page_images/page-002.png",
+    "papers/Chen2014A/page_images/page-003.png",
+    "papers/Chen2014A/page_images/page-004.png",
+    "papers/Chen2014A/page_images/page-005.png",
+    "papers/Chen2014A/page_images/page-006.png",
+    "papers/Chen2014A/page_images/page-007.png",
+    "papers/Chen2014A/page_images/page-008.png",
+    "papers/Chen2014A/page_images/page-009.png",
+    "papers/Chen2014A/page_images/page-010.png"
+  ]
+}

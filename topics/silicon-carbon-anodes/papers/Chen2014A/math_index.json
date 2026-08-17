@@ -1,0 +1,228 @@
+{
+  "schema_version": "v3-math-index-2026-06",
+  "parse_quality": {
+    "quality": "fair",
+    "reasons": [],
+    "metrics": {
+      "section_count": 13,
+      "paragraph_count": 189,
+      "body_chars": 50198,
+      "private_use_chars": 0,
+      "suspicious_section_count": 0,
+      "equation_like_line_count": 50,
+      "math_term_hits": 54
+    }
+  },
+  "selected_pages": [
+    5,
+    6,
+    4,
+    3,
+    7,
+    8
+  ],
+  "math_page_images": [
+    "papers/Chen2014A/math_pages/page-005.png",
+    "papers/Chen2014A/math_pages/page-006.png",
+    "papers/Chen2014A/math_pages/page-004.png",
+    "papers/Chen2014A/math_pages/page-003.png",
+    "papers/Chen2014A/math_pages/page-007.png",
+    "papers/Chen2014A/math_pages/page-008.png"
+  ],
+  "text_candidates": [
+    {
+      "id": "M001",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:unknown",
+      "paragraph_ids": [
+        "p:0002"
+      ],
+      "source_kind": "equation",
+      "raw_text": "<!-- Start of picture text -->",
+      "cleaned_equation": "<!-- Start of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M002",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:unknown",
+      "paragraph_ids": [
+        "p:0002"
+      ],
+      "source_kind": "equation",
+      "raw_text": "EESBe ectroceriel Society<br><!-- End of picture text -->",
+      "cleaned_equation": "EESBe ectroceriel Society<br><!-- End of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M003",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:unknown",
+      "paragraph_ids": [
+        "p:0002"
+      ],
+      "source_kind": "equation",
+      "raw_text": "<!-- Start of picture text -->",
+      "cleaned_equation": "<!-- Start of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M004",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:unknown",
+      "paragraph_ids": [
+        "p:0002"
+      ],
+      "source_kind": "equation",
+      "raw_text": "<!-- Start of picture text -->",
+      "cleaned_equation": "<!-- Start of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M005",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:003",
+      "paragraph_ids": [
+        "p:0014"
+      ],
+      "source_kind": "equation",
+      "raw_text": "|<br><!-- End of picture text -->",
+      "cleaned_equation": "|<br><!-- End of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M006",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:unknown",
+      "paragraph_ids": [
+        "p:0002"
+      ],
+      "source_kind": "equation",
+      "raw_text": "<!-- Start of picture text -->",
+      "cleaned_equation": "<!-- Start of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M007",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:004",
+      "paragraph_ids": [
+        "p:0032"
+      ],
+      "source_kind": "equation",
+      "raw_text": "(a) Current configuration (b)<br>2< a<br>eal VAY<br>configuration Intermediate . 7<br>\" configuration a \u201cs<br><!-- End of picture text -->",
+      "cleaned_equation": "(a) Current configuration (b)<br>2< a<br>eal VAY<br>configuration Intermediate . 7<br>\" configuration a \u201cs<br><!-- End of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M008",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:006",
+      "paragraph_ids": [
+        "p:0037"
+      ],
+      "source_kind": "equation",
+      "raw_text": "where **x** is the position of the material point at time _t_ and **X** is the initial position at _t_ = 0. The deformation gradient is defined as **F** ( **X** _, t_ ) = \u2207 **Xx** , where \u2207 **X** is the gradient operator with respect to **X** .",
+      "cleaned_equation": "where **x** is the position of the material point at time _t_ and **X** is the initial position at _t_ = 0. The deformation gradient is defined as **F** ( **X** _, t_ ) = \u2207 **Xx** , where \u2207 **X** is the gradient operator with respect to **X** .",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M009",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:unknown",
+      "paragraph_ids": [
+        "p:0002"
+      ],
+      "source_kind": "equation",
+      "raw_text": "<!-- Start of picture text -->",
+      "cleaned_equation": "<!-- Start of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M010",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:006",
+      "paragraph_ids": [
+        "p:0041"
+      ],
+      "source_kind": "equation",
+      "raw_text": "Initial state Current state Experiment observation<br>@ ) \u00a9<br>ee a\u2014Li,Si+ LiO<br>g boundaryPhase 4iesOO, 3 a\u2014Li,Si<br>a ie AC!<br>phase a<br>. Li-tich is<br>phase es<br>Initial aS<br>profile Be<br><!-- End of picture text -->",
+      "cleaned_equation": "Initial state Current state Experiment observation<br>@ ) \u00a9<br>ee a\u2014Li,Si+ LiO<br>g boundaryPhase 4iesOO, 3 a\u2014Li,Si<br>a ie AC!<br>phase a<br>. Li-tich is<br>phase es<br>Initial aS<br>profile Be<br><!-- End of picture text -->",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M011",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:006",
+      "paragraph_ids": [
+        "p:0047"
+      ],
+      "source_kind": "equation",
+      "raw_text": "where _Deq_<sup>_p_=</sup> \ufffd2 **D**<sup>_p_</sup> : **D**<sup>_p_</sup> _/_ 3 is the equivalent plastic stretch rate. The lithiated Si electrode is modeled as an isotropic elasto-plastic material with a simple linear hardening rule",
+      "cleaned_equation": "where _Deq_<sup>_p_=</sup> \ufffd2 **D**<sup>_p_</sup> : **D**<sup>_p_</sup> _/_ 3 is the equivalent plastic stretch rate. The lithiated Si electrode is modeled as an isotropic elasto-plastic material with a simple linear hardening rule",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    },
+    {
+      "id": "M012",
+      "label": "Equation candidate",
+      "page": 1,
+      "section_id": "sec:006",
+      "paragraph_ids": [
+        "p:0053"
+      ],
+      "source_kind": "equation",
+      "raw_text": "We denote _c_ and _c_ max as the current and maximum true Li concentration in the lithiated Si, respectively. The normalized Li concentration is defined as _c_ \u02c6 = _c/c_ max. Note that _c_ \u02c6 represents the fraction of lithiation at a material point relative to its fully lithiated state, which is independent of the deformation gradient **F** of the associated material point. For brevity, \u02c6 _c_ will still be called the Li concentration in the rest of this paper.",
+      "cleaned_equation": "We denote _c_ and _c_ max as the current and maximum true Li concentration in the lithiated Si, respectively. The normalized Li concentration is defined as _c_ \u02c6 = _c/c_ max. Note that _c_ \u02c6 represents the fraction of lithiation at a material point relative to its fully lithiated state, which is independent of the deformation gradient **F** of the associated material point. For brevity, \u02c6 _c_ will still be called the Li concentration in the rest of this paper.",
+      "confidence": "medium",
+      "backend": "parsed_text",
+      "notes": "Candidate equation-like line from parsed text."
+    }
+  ],
+  "vision_fallback": {
+    "needed": false,
+    "status": "not_needed",
+    "reasons": [],
+    "image_paths": [
+      "papers/Chen2014A/math_pages/page-005.png",
+      "papers/Chen2014A/math_pages/page-006.png",
+      "papers/Chen2014A/math_pages/page-004.png",
+      "papers/Chen2014A/math_pages/page-003.png",
+      "papers/Chen2014A/math_pages/page-007.png",
+      "papers/Chen2014A/math_pages/page-008.png"
+    ],
+    "instruction": "Run `battery_lit read <bibkey> --vision-formulas` when parsed text cannot safely recover key equations. The command attaches these page images to Codex through a bounded image-input runner. Transcribe only visible formulas, keep uncertainty, and do not invent notation from domain memory."
+  }
+}

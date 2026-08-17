@@ -1,0 +1,211 @@
+{
+  "schema_version": "v3-source-map-2026-06",
+  "paper": {
+    "bibkey": "Chen2014A",
+    "title": "A Phase-Field Model Coupled with Large Elasto-Plastic Deformation: Application to Lithiated Silicon Electrodes",
+    "source_type": "local_pdf",
+    "pdf_path": "papers/Chen2014A/paper.pdf",
+    "parsed_markdown_path": "papers/Chen2014A/parsed.md"
+  },
+  "blocks": [
+    {
+      "id": "S001",
+      "page": 2,
+      "section": "Abstract and Introduction",
+      "section_id": "sec:004",
+      "paragraph_ids": ["p:0020", "p:0022"],
+      "type": "contribution",
+      "source_kind": "body_text",
+      "source_text": "The authors develop a phase-field model with large elasto-plastic deformation for crystalline Si lithiation. The model co-evolves Li concentration and deformation and links the late-stage reversal of surface hoop stress from compression to tension to experimentally observed cracking. The physical motivation is the approximately 1 nm amorphous-crystalline boundary and the severe strain inhomogeneity associated with the two-phase mechanism.",
+      "confidence": "high"
+    },
+    {
+      "id": "S002",
+      "page": 2,
+      "section": "Introduction",
+      "section_id": "sec:004",
+      "paragraph_ids": ["p:0023", "p:0025", "p:0030", "p:0031"],
+      "type": "research_gap",
+      "source_kind": "body_text",
+      "source_text": "Earlier models either treated stress coupling mainly in the elastic regime, represented lithiation as single-phase nonlinear diffusion without a stable characteristic interface thickness, or did not concurrently simulate bulk diffusion and interfacial reaction. The proposed formulation combines thermodynamically consistent phase-field evolution with finite elasto-plastic equilibrium in physical space and naturally captures the Li-poor/Li-rich boundary.",
+      "confidence": "high"
+    },
+    {
+      "id": "S003",
+      "page": 3,
+      "section": "Problem Description and Constitutive Model",
+      "section_id": "sec:006",
+      "paragraph_ids": ["p:0035", "p:0037", "p:0039", "p:0047", "p:0049", "p:0053"],
+      "type": "model_formulation",
+      "source_kind": "body_text",
+      "source_text": "The benchmark is a circular Si nanowire whose Li-rich amorphous shell advances into a crystalline core. Total deformation is multiplicatively decomposed into chemical, plastic, and elastic parts; plasticity uses isotropic J2 flow with linear hardening, mechanical equilibrium is assumed quasi-static, and normalized concentration c-hat=c/c_max measures local lithiation independently of deformation.",
+      "confidence": "high"
+    },
+    {
+      "id": "M001",
+      "page": 5,
+      "section": "Phase-Field Model",
+      "section_id": "sec:007",
+      "paragraph_ids": ["p:0058", "p:0061", "p:0071", "p:0073", "p:0075", "p:0076", "p:0077", "p:0087"],
+      "type": "governing_equations",
+      "source_kind": "equation",
+      "source_text": "The total free energy formally contains chemical, elastic, plastic, and concentration-gradient contributions. The Li chemical potential is its variational derivative, but the paper assumes plastic energy is independent of normalized concentration, making mu_pl zero; active transport driving terms are therefore chemical/gradient and elastic. Flux follows the negative potential gradient, and mass conservation gives a stress-coupled Cahn-Hilliard equation.",
+      "latex": "G=\\int_{\\Omega_0}[f_{ch}(\\hat c)+f_{el}(F,\\hat c)+f_{pl}(F)+\\frac{\\kappa}{2}|\\nabla\\hat c|^2]d\\Omega_0;\\quad \\mu=\\delta G/\\delta\\hat c=\\mu_{ch}+\\mu_{el}+\\mu_{pl},\\;\\mu_{pl}=\\partial f_{pl}/\\partial\\hat c=0;\\quad \\partial_t\\hat c=\\nabla\\cdot(M_{Li}(\\hat c)\\nabla\\mu)",
+      "image_path": "papers/Chen2014A/page_images/page-005.png",
+      "backend": "parsed_text_and_page_visual",
+      "confidence": "high",
+      "notes": "Equations 22-31 are visible on PDF page 5; the compact expression preserves their governing relation rather than every expanded term."
+    },
+    {
+      "id": "M002",
+      "page": 7,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0117", "p:0118", "p:0125", "p:0126"],
+      "type": "analytical_validation",
+      "source_kind": "equation",
+      "source_text": "The diffuse-interface width is estimated from the concentration difference between the Li-rich and Li-poor wells, the gradient coefficient, and the double-well barrier. For the chosen parameters the analytical estimate is 1.12 nm, and the simulated width remains close to it during lithiation.",
+      "latex": "\\lambda=(\\hat c_\\beta-\\hat c_\\alpha)\\sqrt{\\kappa/(2\\Delta g)}=1.12\\,\\mathrm{nm}",
+      "image_path": "papers/Chen2014A/page_images/page-007.png",
+      "backend": "page_visual",
+      "confidence": "high"
+    },
+    {
+      "id": "S004",
+      "page": 5,
+      "section": "Phase-Field Model and Boundary Conditions",
+      "section_id": "sec:007",
+      "paragraph_ids": ["p:0054", "p:0064", "p:0078", "p:0080", "p:0081", "p:0083", "p:0084", "p:0085"],
+      "type": "assumptions_and_boundary_conditions",
+      "source_kind": "body_text",
+      "source_text": "A single conserved normalized Li concentration represents both lithiation degree and crystalline-to-amorphous state. A non-convex double-well free energy places the Li-rich well at c-hat=3.75/4.4=0.872. The fourth-order equation is split into two second-order equations; the exterior concentration is fixed at the Li-rich value, potential flux is zero, and the nanowire surface is traction-free.",
+      "confidence": "high"
+    },
+    {
+      "id": "S005",
+      "page": 5,
+      "section": "Numerical Implementation",
+      "section_id": "sec:008",
+      "paragraph_ids": ["p:0088", "p:0089", "p:0090"],
+      "type": "implementation",
+      "source_kind": "body_text",
+      "source_text": "The coupled equations are solved in COMSOL using finite elements. Circular symmetry reduces the domain to one quarter of the nanowire; 2D three-node triangular elements carry concentration, chemical potential, and two displacement components, and time stepping is implicit first order.",
+      "confidence": "high"
+    },
+    {
+      "id": "T001",
+      "page": 6,
+      "section": "Numerical Results",
+      "section_id": "sec:008",
+      "paragraph_ids": ["p:0095", "p:0096", "p:0099", "p:0101", "p:0103", "p:0104"],
+      "type": "parameter_table",
+      "source_kind": "table",
+      "source_text": "Table I specifies a 70 nm radius, beta=0.5874 for 300% full-lithiation volume increase, kappa=2.0e-9 J/m, D=2e-17 m2/s, Young's modulus decreasing from 160 to 40 GPa, Poisson ratio from 0.24 to 0.22, yield strength 1.5 GPa, hardening modulus 1.0 GPa, and a 2.45 s step.",
+      "confidence": "high"
+    },
+    {
+      "id": "C001",
+      "page": 6,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0105"],
+      "type": "figure_caption",
+      "source_kind": "caption",
+      "source_text": "Figure 3. Radial distribution of normalized Li concentration at different lithiation times.",
+      "confidence": "high"
+    },
+    {
+      "id": "F001",
+      "page": 6,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0096", "p:0105"],
+      "type": "concentration_front_result",
+      "source_kind": "figure",
+      "source_text": "Figure 3 shows a sharp Li-rich/Li-poor concentration front moving inward at t=500, 5000, and 9000 time steps; the later displacement is smaller, consistent with self-limiting lithiation.",
+      "image_path": "papers/Chen2014A/page_images/page-006.png",
+      "confidence": "high"
+    },
+    {
+      "id": "C002",
+      "page": 7,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0109"],
+      "type": "figure_caption",
+      "source_kind": "caption",
+      "source_text": "Figure 4 compares radial, hoop, and von Mises stress distributions from the phase-field and nonlinear diffusion models at phase-boundary positions R/A approximately 0.85 and 0.5.",
+      "confidence": "high"
+    },
+    {
+      "id": "F002",
+      "page": 7,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0098", "p:0100", "p:0110", "p:0112", "p:0113", "p:0114"],
+      "type": "stress_comparison_result",
+      "source_kind": "figure",
+      "source_text": "Figure 4 gives broadly consistent phase-field and nonlinear-diffusion stress profiles. At late lithiation the surface-layer hoop stress becomes tensile after being compressive early, while the traction-free radial surface stress stays zero; the authors note small numerical fluctuations and model differences.",
+      "image_path": "papers/Chen2014A/page_images/page-007.png",
+      "confidence": "high"
+    },
+    {
+      "id": "C003",
+      "page": 8,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0122", "p:0124", "p:0129"],
+      "type": "figure_captions",
+      "source_kind": "caption",
+      "source_text": "Figures 5-7 show hoop-stress histories at the surface and center, analytical versus simulated interface width, and elastic versus elasto-plastic radial stress distributions.",
+      "confidence": "high"
+    },
+    {
+      "id": "F003",
+      "page": 8,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0115", "p:0116", "p:0122"],
+      "type": "stress_mechanism",
+      "source_kind": "figure",
+      "source_text": "Figure 5 shows that plastic flow limits stress magnitude and changes the stress history. The already-lithiated outer shell constrains expansion at the inward-moving front, producing late-stage tensile hoop stress at the surface like an inflated membrane.",
+      "image_path": "papers/Chen2014A/page_images/page-008.png",
+      "confidence": "high"
+    },
+    {
+      "id": "F004",
+      "page": 8,
+      "section": "Numerical Results",
+      "section_id": "sec:009",
+      "paragraph_ids": ["p:0124", "p:0125", "p:0126"],
+      "type": "interface_width_validation",
+      "source_kind": "figure",
+      "source_text": "Figure 6 compares the phase-field interface width with the 1.12 nm analytical estimate; the simulated width fluctuates slightly around the estimate and remains approximately constant rather than growing with lithiation.",
+      "image_path": "papers/Chen2014A/page_images/page-008.png",
+      "confidence": "high"
+    },
+    {
+      "id": "S006",
+      "page": 9,
+      "section": "Conclusions and Scope",
+      "section_id": "sec:012",
+      "paragraph_ids": ["p:0134", "p:0155", "p:0156", "p:0157", "p:0158"],
+      "type": "conclusion_and_limit",
+      "source_kind": "body_text",
+      "source_text": "The model concurrently treats insertion, phase change, large elasto-plastic swelling, and a nearly fixed diffuse-interface width. Its demonstrated application is a circular Si electrode; systematic study of stress effects on diffusion and reaction kinetics is explicitly deferred.",
+      "confidence": "high"
+    },
+    {
+      "id": "E001",
+      "page": 0,
+      "section": "External availability",
+      "section_id": "external_availability",
+      "paragraph_ids": [],
+      "type": "availability_lookup",
+      "source_kind": "external",
+      "source_text": "The DOI landing-page lookup could not be opened because automated access was denied by robots.txt; therefore no official external code, data, or model artifact could be verified in the permitted lookup.",
+      "confidence": "high",
+      "notes": "Page title: DOI 10.1149/2.0171411jes; URL: https://doi.org/10.1149/2.0171411jes; accessed: 2026-08-17; query or lookup: direct DOI resolution."
+    }
+  ]
+}
