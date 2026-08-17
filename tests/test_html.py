@@ -5,7 +5,7 @@ import json
 from conftest import fixture_path
 from battery_lit.acquire import acquire_pdf
 from battery_lit.bib import promote_candidate
-from battery_lit.html import build_html
+from battery_lit.html import build_html, export_standalone_html
 from battery_lit.read import rebuild_note
 from battery_lit.search import collect
 from battery_lit.topic import init_topic
@@ -43,6 +43,33 @@ def test_empty_topic_builds_core_pages(tmp_path):
     assert result["ok"] is True
     for name in ["dashboard.html", "candidates.html", "library.html", "style.css"]:
         assert (tmp_path / "html" / name).exists()
+
+
+def test_export_standalone_html_inlines_styles_images_and_pdf(tmp_path):
+    paper_dir = tmp_path / "papers" / "Example2026A"
+    html_dir = tmp_path / "html"
+    paper_dir.joinpath("page_images").mkdir(parents=True)
+    html_dir.mkdir()
+    html_dir.joinpath("style.css").write_text("body { color: navy; }", encoding="utf-8")
+    paper_dir.joinpath("page_images", "figure.png").write_bytes(b"fake-png")
+    paper_dir.joinpath("paper.pdf").write_bytes(b"fake-pdf")
+    paper_dir.joinpath("reading_result.html").write_text(
+        '<link rel="stylesheet" href="../../html/style.css">'
+        '<a href="../../html/library.html">Library</a>'
+        '<a href="paper.pdf">PDF</a>'
+        '<img src="page_images/figure.png" data-lightbox-src="page_images/figure.png">',
+        encoding="utf-8",
+    )
+
+    result = export_standalone_html(tmp_path, "Example2026A")
+    text = (tmp_path / "exports" / "Example2026A_offline.html").read_text(encoding="utf-8")
+
+    assert result["self_contained"] is True
+    assert "<style>" in text
+    assert "data:image/png;base64," in text
+    assert "data:application/pdf;base64," in text
+    assert 'href="#"' in text
+    assert "../../html/style.css" not in text
 
 
 def test_populated_topic_builds_library_and_paper_page(tmp_path):

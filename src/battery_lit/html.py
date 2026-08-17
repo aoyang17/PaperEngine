@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import base64
 import json
 import os
 import html as html_lib
+import mimetypes
 import re
 from pathlib import Path
 from typing import Any
@@ -992,3 +994,45 @@ def build_html(root: str | Path) -> dict[str, Any]:
     (paths.html / "candidates.html").write_text(env.get_template("candidates.html").render(candidates=candidates), encoding="utf-8")
     (paths.html / "library.html").write_text(env.get_template("library.html").render(papers=papers), encoding="utf-8")
     return {"ok": True, "html": str(paths.html), "pages": 3 + len(papers)}
+
+
+def export_standalone_html(root: str | Path, bibkey: str, output: str | Path | None = None) -> dict[str, Any]:
+    """Export one reading result as a self-contained, shareable HTML file."""
+    paths = TopicPaths.from_root(root)
+    paper_dir = paths.paper_dir(bibkey)
+    source = paper_dir / READING_RESULT_NAME
+    if not source.exists():
+        raise FileNotFoundError(f"reading result not found for {bibkey}: {source}")
+    destination = Path(output).expanduser().resolve() if output else paths.root / "exports" / f"{bibkey}_offline.html"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    document = source.read_text(encoding="utf-8")
+    stylesheet = (paths.html / "style.css").read_text(encoding="utf-8")
+    document = re.sub(
+        r'<link rel="stylesheet" href="[^"]*style\.css">',
+        f"<style>\n{stylesheet}\n</style>",
+        document,
+        count=1,
+    )
+
+    def inline_reference(match: re.Match[str]) -> str:
+        attribute, value = match.group(1), match.group(2)
+        if value.startswith(("data:", "http://", "https://", "#")):
+            return match.group(0)
+        target = (paper_dir / value).resolve()
+        if not _is_relative_to(target, paths.root) or not target.is_file():
+            if attribute == "href" and value.startswith("../../html/"):
+                return f'{attribute}="#"'
+            return match.group(0)
+        mime = mimetypes.guess_type(target.name)[0] or "application/octet-stream"
+        encoded = base64.b64encode(target.read_bytes()).decode("ascii")
+        return f'{attribute}="data:{mime};base64,{encoded}"'
+
+    document = re.sub(r'(src|data-lightbox-src|href)="([^"]+)"', inline_reference, document)
+    destination.write_text(document, encoding="utf-8")
+    return {
+        "ok": True,
+        "bibkey": bibkey,
+        "output": str(destination),
+        "bytes": destination.stat().st_size,
+        "self_contained": True,
+    }

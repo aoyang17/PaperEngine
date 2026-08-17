@@ -242,6 +242,10 @@ def build_parser() -> argparse.ArgumentParser:
     hsub = p_html.add_subparsers(dest="html_command", required=True)
     p_hbuild = hsub.add_parser("build")
     _root_arg(p_hbuild)
+    p_hexport = hsub.add_parser("export")
+    _root_arg(p_hexport)
+    p_hexport.add_argument("bibkey")
+    p_hexport.add_argument("--output")
 
     p_web = sub.add_parser("web")
     wsub = p_web.add_subparsers(dest="web_command", required=True)
@@ -566,6 +570,12 @@ def run(args: argparse.Namespace) -> int:
         from .html import build_html
 
         emit(build_html(args.root))
+        return 0
+
+    if args.command == "html" and args.html_command == "export":
+        from .html import export_standalone_html
+
+        emit(export_standalone_html(args.root, args.bibkey, args.output))
         return 0
 
     if args.command == "web" and args.web_command == "serve":
