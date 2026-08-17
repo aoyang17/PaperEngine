@@ -10,6 +10,19 @@
   <main>
     <h1>{{ title }}</h1>
     <p>{{ direction }}</p>
+{% if scope_guidance %}
+    <section>
+      <h2>{{ scope_guidance.reference_groups.title_zh }}</h2>
+      <ul>{% for item in scope_guidance.reference_groups["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+      <h2>{{ scope_guidance.reference_journals.title_zh }}</h2>
+      <ul>{% for item in scope_guidance.reference_journals["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+      <h2>{{ scope_guidance.focus_areas.title_zh }}</h2>
+      <h3>{{ scope_guidance.focus_areas.simulation.label_zh }}</h3>
+      <ul>{% for item in scope_guidance.focus_areas.simulation["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+      <h3>{{ scope_guidance.focus_areas.experiment.label_zh }}</h3>
+      <ul>{% for item in scope_guidance.focus_areas.experiment["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+    </section>
+{% endif %}
     <section class="metrics">
       <div><strong>{{ candidate_count }}</strong><span>Candidates</span></div>
       <div><strong>{{ paper_count }}</strong><span>Papers</span></div>
@@ -18,4 +31,3 @@
   </main>
 </body>
 </html>
-

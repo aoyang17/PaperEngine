@@ -127,6 +127,7 @@ def web_context(root: str | Path) -> dict[str, Any]:
         "root": str(paths.root),
         "title": topic.get("title") or paths.root.name,
         "direction": topic.get("direction") or "",
+        "scope_guidance": topic.get("scope_guidance") or {},
         "status": status,
         "candidates": candidates,
         "papers": papers,

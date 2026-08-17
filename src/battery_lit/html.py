@@ -982,6 +982,7 @@ def build_html(root: str | Path) -> dict[str, Any]:
         env.get_template("dashboard.html").render(
             title=topic.get("title") or paths.root.name,
             direction=topic.get("direction") or "",
+            scope_guidance=topic.get("scope_guidance") or {},
             candidate_count=len(candidates),
             paper_count=len(papers),
             pdf_count=pdf_count,

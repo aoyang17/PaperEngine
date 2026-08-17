@@ -7,6 +7,41 @@ refinement_questions_answered: []
 ui:
   default_language: "zh"
   available_languages: ["zh", "en"]
+scope_guidance:
+  reference_groups:
+    title_zh: "参考课题组"
+    title_en: "Reference Research Groups"
+    items:
+      - "Jeff Dahn（达尔豪斯大学）"
+      - "郭玉国（中国科学院化学研究所）"
+      - "杨勇（厦门大学）"
+      - "崔屹 / Yi Cui（斯坦福大学）"
+      - "其他在硅负极、电池电化学与多尺度模拟方向具有代表性的课题组"
+  reference_journals:
+    title_zh: "参考学术期刊"
+    title_en: "Reference Journals"
+    items:
+      - "Nature Materials"
+      - "Nature Computational Science"
+      - "Nature Synthesis"
+      - "Nature Communications"
+      - "Advanced Materials"
+      - "Nano Letters"
+      - "Journal of Power Sources"
+      - "Journal of The Electrochemical Society"
+      - "Royal Society of Chemistry 旗下相关期刊"
+      - "Elsevier 旗下相关电池、材料与计算期刊"
+  focus_areas:
+    title_zh: "重点关注"
+    title_en: "Priority Evidence"
+    simulation:
+      label_zh: "模拟仿真方面"
+      label_en: "Modeling and Simulation"
+      items: ["模型方法", "控制方程", "材料本构关系", "模型参数", "边界条件"]
+    experiment:
+      label_zh: "实验方面"
+      label_en: "Experimental Studies"
+      items: ["材料化学组成", "几何结构", "表征方法", "提出的机理解释", "主要结论"]
 research_modules:
   - id: "cvd_porous_carbon_silicon"
     order: 1

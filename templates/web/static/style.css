@@ -181,6 +181,53 @@ html[lang="en"] .lang-zh {
   background: #fff;
 }
 
+.scope-guidance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.scope-guidance-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  background: var(--surface-soft);
+}
+
+.scope-guidance-card h3,
+.scope-guidance-card h4 {
+  margin: 0 0 10px;
+}
+
+.scope-guidance-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.scope-guidance-card.focus-card {
+  grid-column: 1 / -1;
+}
+
+.focus-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 760px) {
+  .scope-guidance-grid,
+  .focus-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .scope-guidance-card.focus-card {
+    grid-column: auto;
+  }
+}
+
 .module-metrics div {
   border-radius: var(--radius-sm);
   padding: 9px 10px;

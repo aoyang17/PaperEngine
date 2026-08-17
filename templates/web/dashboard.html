@@ -77,6 +77,29 @@
 <section class="panel topic-summary">
   <h2 data-i18n="topic_scope">Topic</h2>
   <p>{{ direction }}</p>
+  {% if scope_guidance %}
+    <div class="scope-guidance-grid">
+      <section class="scope-guidance-card">
+        <h3><span class="lang-zh">{{ scope_guidance.reference_groups.title_zh }}</span><span class="lang-en">{{ scope_guidance.reference_groups.title_en }}</span></h3>
+        <ul>{% for item in scope_guidance.reference_groups["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+      </section>
+      <section class="scope-guidance-card">
+        <h3><span class="lang-zh">{{ scope_guidance.reference_journals.title_zh }}</span><span class="lang-en">{{ scope_guidance.reference_journals.title_en }}</span></h3>
+        <ul>{% for item in scope_guidance.reference_journals["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+      </section>
+      <section class="scope-guidance-card focus-card">
+        <h3><span class="lang-zh">{{ scope_guidance.focus_areas.title_zh }}</span><span class="lang-en">{{ scope_guidance.focus_areas.title_en }}</span></h3>
+        <div class="focus-columns">
+          {% for focus in [scope_guidance.focus_areas.simulation, scope_guidance.focus_areas.experiment] %}
+            <div>
+              <h4><span class="lang-zh">{{ focus.label_zh }}</span><span class="lang-en">{{ focus.label_en }}</span></h4>
+              <ul>{% for item in focus["items"] %}<li>{{ item }}</li>{% endfor %}</ul>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  {% endif %}
   {% if status.errors %}
     <ul class="warn-list">
       {% for error in status.errors %}<li>{{ error }}</li>{% endfor %}
