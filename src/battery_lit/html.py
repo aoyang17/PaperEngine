@@ -626,12 +626,13 @@ def _equation_view(value: Any, source_index: dict[str, dict[str, Any]], root: Pa
     refs = [str(ref) for ref in value.get("source_refs") or []]
     equation = str(value.get("equation") or "")
     latex = str(value.get("latex") or "").strip()
+    authored_mathml = str(value.get("mathml") or "").strip()
     return {
         "label": str(value.get("label") or ""),
         "label_zh": _zh_text(zh.get("label"), value.get("label")),
         "equation": equation,
         "latex": latex,
-        "equation_mathml": _equation_mathml(latex or equation),
+        "equation_mathml": _authored_mathml(authored_mathml) or _equation_mathml(latex or equation),
         "explanation": str(value.get("explanation") or ""),
         "explanation_zh": _zh_text(zh.get("explanation"), value.get("explanation")),
         "source_refs": _evidence_labels(refs, source_index),
@@ -651,6 +652,18 @@ def _equation_mathml(value: str) -> Markup | str:
     if not rows:
         return ""
     return Markup('<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">' + "".join(rows) + "</math>")
+
+
+def _authored_mathml(value: str) -> Markup | str:
+    if not value.startswith("<math") or not value.endswith("</math>"):
+        return ""
+    if re.search(r"<(?:script|style|iframe)|\bon\w+\s*=|\b(?:href|src)\s*=|javascript:", value, flags=re.IGNORECASE):
+        return ""
+    allowed = {"math", "mtable", "mtr", "mtd", "mrow", "mi", "mn", "mo", "mfrac", "msub", "msup", "msubsup", "mover", "munder", "munderover", "msqrt", "mroot", "mtext", "mspace"}
+    tags = re.findall(r"</?\s*([A-Za-z0-9]+)", value)
+    if any(tag.lower() not in allowed for tag in tags):
+        return ""
+    return Markup(value)
 
 
 def _formula_expression(value: str) -> str:

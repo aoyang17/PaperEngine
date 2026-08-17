@@ -373,6 +373,7 @@
         "label": {"type": "string"},
         "equation": {"type": "string"},
         "latex": {"type": "string"},
+        "mathml": {"type": "string"},
         "explanation": {"type": "string"},
         "source_refs": {"$ref": "#/$defs/sourceRefs"},
         "confidence": {"type": "string"}

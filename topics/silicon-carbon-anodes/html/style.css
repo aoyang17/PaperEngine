@@ -100,6 +100,9 @@ article { white-space: pre-wrap; background: white; border: 1px solid #d8dee4; b
 .equation-display { background: #fff; border: 1px solid #d6e0e8; border-radius: 6px; color: #111820; font-family: "STIX Two Math", "Cambria Math", "Times New Roman", serif; font-size: 1.12rem; line-height: 1.55; margin: 8px 0; overflow-x: auto; padding: 9px 12px; white-space: pre-wrap; }
 .equation-render { background: #fff; border: 1px solid #d6e0e8; border-radius: 6px; color: #172026; margin: 8px 0; overflow-x: auto; padding: 9px 12px; }
 .equation-render math { font-size: 1.12rem; min-width: max-content; }
+.paper-equation { display: flex; justify-content: center; }
+.paper-equation math { font-family: "STIX Two Math", "Cambria Math", "Times New Roman", serif; font-size: 1.2rem; }
+.paper-equation mtd { padding: 3px 7px; }
 .equation-meaning { align-items: baseline; display: grid; gap: 10px; grid-template-columns: 92px 1fr; }
 .equation-meaning b { color: #59636e; font-size: 12px; }
 .equation-meaning p { margin: 0; }

@@ -388,8 +388,8 @@ def test_materials_report_renders_six_sections_and_hides_algorithm_layout(tmp_pa
     text = (tmp_path / "papers" / "Example2026A" / "reading_result.html").read_text(encoding="utf-8")
     for heading in ["Paper Overview", "Research System and Problem Definition", "Model and Physical Mechanisms", "Computational Setup and Reproducibility", "Results, Validation, and Mechanisms", "Research Value and Resources"]:
         assert heading in text
-    assert 'class="equation-display"' in text
-    assert "∂c/∂t = −∇·J" in text
+    assert 'class="equation-render paper-equation"' in text
+    assert "<math" in text
     assert 'class="latex-source"' in text
     assert "Algorithm Steps" not in text
     assert "Dataset / Benchmark Understanding" not in text
