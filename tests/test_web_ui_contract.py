@@ -161,6 +161,14 @@ def test_frontend_bounds_codex_console_messages_and_polling(tmp_path):
     assert "sessionPollInFlight = false;" in js
 
 
+def test_frontend_formats_structured_codex_errors(tmp_path):
+    js = WebApp(_topic(tmp_path)).handle("/static/app.js").body
+
+    assert "function formatSessionMessage(value)" in js
+    assert "JSON.stringify(value, null, 2)" in js
+    assert 'event.kind === "connection_warning"' in js
+
+
 def test_frontend_filters_routine_codex_read_progress(tmp_path):
     js = WebApp(_topic(tmp_path)).handle("/static/app.js").body
 

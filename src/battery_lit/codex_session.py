@@ -541,9 +541,14 @@ class AppServerCodexSessionManager:
             turn = data.get("turn")
             if isinstance(turn, dict) and turn.get("id") == self.active_turn_id:
                 self.active_turn_id = None
+        elif method == "error" and _is_transient_stream_disconnect(data):
+            # The app-server emits these while it retries the response stream.
+            # They are informational unless a later turn/failed notification arrives.
+            self._append("connection_warning", message=_format_notification_error(data), details=data)
+            return
         elif method in {"turn/failed", "error"}:
             self.status = "failed"
-            self.blocker = str(data.get("message") or data.get("error") or method)
+            self.blocker = _format_notification_error(data, fallback=method)
         self._append(method, **data)
 
     def _update_context_left(self, data: dict[str, object]) -> None:
@@ -582,6 +587,33 @@ class AppServerCodexSessionManager:
         self.blocker = message
         self._append("blocker", error=message)
         return self.state() | {"ok": False}
+
+
+def _is_transient_stream_disconnect(data: dict[str, object]) -> bool:
+    payload = data.get("error") if isinstance(data.get("error"), dict) else data
+    assert isinstance(payload, dict)
+    info = payload.get("codexErrorInfo")
+    disconnected = isinstance(info, dict) and "responseStreamDisconnected" in info
+    message = str(payload.get("message") or "").strip().lower()
+    return disconnected and message.startswith("reconnecting")
+
+
+def _format_notification_error(data: dict[str, object], fallback: str = "") -> str:
+    if isinstance(data.get("error"), dict):
+        return _format_notification_error(data["error"], fallback=fallback)
+    primary = data.get("message") or data.get("error")
+    details = data.get("additionalDetails")
+    def render(value: object) -> str:
+        if isinstance(value, (dict, list)):
+            return json.dumps(value, ensure_ascii=False, sort_keys=True)
+        return str(value).strip()
+
+    parts = [render(value) for value in (primary, details) if value and render(value)]
+    if parts:
+        return " — ".join(dict.fromkeys(parts))
+    if data:
+        return json.dumps(data, ensure_ascii=False, sort_keys=True)
+    return fallback
 
 
 def _transcript_from_events(events: list[dict[str, object]], state: dict[str, object]) -> dict[str, object]:
@@ -625,8 +657,8 @@ def _transcript_from_events(events: list[dict[str, object]], state: dict[str, ob
                 messages.append({"author": "codex", "message": message, "cursor": cursor})
         elif kind == "action":
             messages.append({"author": "you", "message": str(event.get("action") or "action"), "cursor": cursor})
-        elif kind in {"blocker", "error"}:
-            messages.append({"author": "system", "message": str(event.get("error") or event.get("message") or "blocked"), "cursor": cursor})
+        elif kind in {"blocker", "error", "connection_warning"}:
+            messages.append({"author": "system", "message": _format_notification_error(event, fallback="blocked"), "cursor": cursor})
         elif kind == "turn/failed":
             messages.append({"author": "system", "message": str(event.get("message") or event.get("error") or "turn failed"), "cursor": cursor})
     flush_delta()

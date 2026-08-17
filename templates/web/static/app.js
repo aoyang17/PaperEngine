@@ -447,9 +447,9 @@
       appendAssistantDelta(event);
     } else if (event.kind === "turn/completed" || event.kind === "turn/failed" || event.kind === "turn_stopped") {
       activeAssistantMessage = null;
-    } else if (event.kind === "blocker" || event.kind === "error") {
+    } else if (event.kind === "blocker" || event.kind === "error" || event.kind === "connection_warning") {
       activeAssistantMessage = null;
-      appendSessionMessage("system", event.error || event.message || "blocked");
+      appendSessionMessage("system", event.error || event.message || event.details || "blocked");
     }
   }
 
@@ -492,14 +492,29 @@
 
   function appendSessionMessage(author, message, options = {}) {
     const transcript = document.querySelector("[data-session-events]");
-    if (!transcript || (!message && !options.empty)) return null;
+    const displayMessage = formatSessionMessage(message);
+    if (!transcript || (!displayMessage && !options.empty)) return null;
     const node = document.createElement("article");
     node.className = `chat-message ${author === "you" ? "user" : author === "codex" ? "assistant" : "system"}`;
-    node.innerHTML = `<span>${escapeHtml(author)}</span><p>${escapeHtml(message)}</p>`;
+    node.innerHTML = `<span>${escapeHtml(author)}</span><p>${escapeHtml(displayMessage)}</p>`;
     transcript.appendChild(node);
     trimSessionMessages();
     transcript.scrollTop = transcript.scrollHeight;
     return node;
+  }
+
+  function formatSessionMessage(value) {
+    if (value == null) return "";
+    if (typeof value === "string") return value;
+    if (typeof value !== "object") return String(value);
+    const summary = [value.message, value.error, value.additionalDetails]
+      .filter((part) => typeof part === "string" && part.trim());
+    if (summary.length) return [...new Set(summary)].join(" — ");
+    try {
+      return JSON.stringify(value, null, 2);
+    } catch (_error) {
+      return String(value);
+    }
   }
 
   function trimSessionMessages() {

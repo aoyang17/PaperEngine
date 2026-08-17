@@ -6,7 +6,7 @@ import time
 import pytest
 
 from battery_lit.codex_worker import CodexRunnerError, SubprocessCodexRunner
-from battery_lit.codex_session import FakeCodexSessionManager
+from battery_lit.codex_session import AppServerCodexSessionManager, FakeCodexSessionManager
 from battery_lit.topic import init_topic
 
 
@@ -214,6 +214,67 @@ def test_fake_session_reports_failed_and_blocked_states(tmp_path):
     blocked.ensure_session(tmp_path, model=None, effort=None)
     assert blocked.state()["status"] == "blocked"
     assert blocked.state()["blocker"] == "codex app-server unavailable"
+
+
+def test_app_server_reconnect_warning_does_not_poison_completed_turn(tmp_path):
+    manager = AppServerCodexSessionManager(codex_bin="/usr/bin/false", project_root=tmp_path)
+    manager.status = "running"
+    manager.active_turn_id = "turn-1"
+
+    manager._record_notification(
+        {
+            "method": "error",
+            "params": {
+                "message": "Reconnecting... 2/5",
+                "codexErrorInfo": {"responseStreamDisconnected": {"httpStatusCode": None}},
+                "additionalDetails": "request timed out",
+            },
+        }
+    )
+
+    assert manager.state()["status"] == "running"
+    assert manager.state()["blocker"] is None
+    warning = manager.events_since(0)["events"][-1]
+    assert warning["kind"] == "connection_warning"
+    assert warning["message"] == "Reconnecting... 2/5 — request timed out"
+
+    manager._record_notification({"method": "turn/completed", "params": {"turn": {"id": "turn-1"}}})
+
+    assert manager.state()["status"] == "idle"
+    assert manager.state()["blocker"] is None
+    assert manager.transcript()["ok"] is True
+
+
+def test_app_server_recognizes_nested_reconnect_payload(tmp_path):
+    manager = AppServerCodexSessionManager(codex_bin="/usr/bin/false", project_root=tmp_path)
+    manager.status = "running"
+
+    manager._record_notification(
+        {
+            "method": "error",
+            "params": {
+                "error": {
+                    "message": "Reconnecting... 4/5",
+                    "codexErrorInfo": {"responseStreamDisconnected": {"httpStatusCode": None}},
+                    "additionalDetails": "request timed out",
+                }
+            },
+        }
+    )
+
+    assert manager.state()["status"] == "running"
+    assert manager.state()["blocker"] is None
+    assert manager.events_since(0)["events"][-1]["message"] == "Reconnecting... 4/5 — request timed out"
+
+
+def test_app_server_terminal_error_remains_blocking(tmp_path):
+    manager = AppServerCodexSessionManager(codex_bin="/usr/bin/false", project_root=tmp_path)
+    manager.status = "running"
+
+    manager._record_notification({"method": "error", "params": {"error": {"code": "fatal"}}})
+
+    assert manager.state()["status"] == "failed"
+    assert manager.state()["blocker"] == '{"code": "fatal"}'
 
 
 def test_fake_session_does_not_write_business_artifacts(tmp_path):
