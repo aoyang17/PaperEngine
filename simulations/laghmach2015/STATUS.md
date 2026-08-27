@@ -20,6 +20,7 @@ metrics are recorded.
 | Reference surface-energy fit | `A=7.81e-4`, `B=0.222`, `R2=0.841`; A passes, B and R2 fail | FAIL |
 | COMSOL Java compilation | COMSOL 6.4 Build 293 compile + smoke passed; prodargs parameter injection audited | PASS |
 | COMSOL segregated formulation | Automatic segregated sequence (phase/topology; mechanics/pressure) compiles and converges in 0.05τ₁ smoke run; MPH/CSV archived under `tmp/runs/comsol/laghmach2015/segsmoke` | PASS |
+| Long-run checkpoint | Jobs 38157/38158 completed core solve for 5 nm, 5τ₁ baseline/control; solved MPH saved before optional export and copied to an external local archive | CHECKPOINT |
 | COMSOL baseline solve | Full 1 nm/150τ₁ coupled runs fail at early nonlinear/DAE singularity; 5 nm prescribed-strain coarse MPH/CSV succeeds | PARTIAL |
 | COMSOL grid/time convergence | Full coupled matrix failed before paired outputs; fine-grid run cancelled after prolonged Newton factorization | BLOCKED |
 | COMSOL parameter sweep / surface fit | Full threshold/surface jobs fail early; stable coarse topology-on 0.2τ₁ result archived | PARTIAL |
@@ -29,3 +30,8 @@ Verified COMSOL artifacts are under `tmp/runs/comsol/laghmach2015/coarse*` and
 `tmp/runs/comsol/laghmach2015/segsmoke`. The segregated sequence is now the
 default solver formulation; long, fine-grid quantitative acceptance runs still
 remain to be executed.
+
+Migration checkpoint (2026-08-27): long-run jobs 38157 (topology on) and 38158
+(topology off) were stopped after solved MPH persistence. The baseline and
+control MPH files are archived outside this repository; the remote workspace is
+retained on the configured COMSOL host.

@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>distributedECM 分布式等效电路模型仿真总结报告</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5d687a;
+      --line: #d9e0ea;
+      --panel: #f6f8fb;
+      --blue: #2457a7;
+      --blue-soft: #eaf1fb;
+      --orange: #b65317;
+      --orange-soft: #fff0e6;
+      --green: #16724a;
+      --green-soft: #e9f7f0;
+      --red: #a63838;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef2f7;
+      font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      line-height: 1.65;
+    }
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 28px auto;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(30, 48, 80, .08);
+      overflow: hidden;
+    }
+    header {
+      padding: 48px 56px 38px;
+      color: white;
+      background: linear-gradient(125deg, #173769, #2457a7 58%, #277a87);
+    }
+    header h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 44px); line-height: 1.2; }
+    header p { margin: 6px 0; max-width: 850px; color: #e9f1ff; }
+    .meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 9px; }
+    .tag {
+      padding: 5px 11px;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      font-size: 13px;
+    }
+    article { padding: 30px 56px 56px; }
+    nav {
+      margin: 0 0 32px;
+      padding: 15px 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+    nav a, a { color: var(--blue); text-decoration: none; }
+    nav a:hover, a:hover { text-decoration: underline; }
+    nav a { margin-right: 18px; white-space: nowrap; }
+    h2 { margin: 42px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--blue-soft); }
+    h3 { margin: 26px 0 10px; }
+    .lead { font-size: 18px; color: #354158; }
+    .callout {
+      margin: 20px 0;
+      padding: 16px 18px;
+      border-left: 4px solid var(--blue);
+      border-radius: 4px 9px 9px 4px;
+      background: var(--blue-soft);
+    }
+    .callout.good { border-color: var(--green); background: var(--green-soft); }
+    .callout.warn { border-color: var(--orange); background: var(--orange-soft); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .card {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: white;
+    }
+    .card .label { color: var(--muted); font-size: 13px; }
+    .card .value { margin-top: 4px; color: var(--blue); font-size: 25px; font-weight: 720; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-variant-numeric: tabular-nums; }
+    th, td { padding: 10px 12px; border: 1px solid var(--line); text-align: right; vertical-align: top; }
+    th { background: var(--panel); }
+    th:first-child, td:first-child { text-align: left; }
+    code {
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #713c0d;
+      background: #f5efe8;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+    .equation {
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--panel);
+      font-family: "STIX Two Math", "Times New Roman", serif;
+      text-align: center;
+      overflow-x: auto;
+    }
+    figure {
+      margin: 24px 0 32px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: white;
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption { padding: 10px 4px 0; color: var(--muted); font-size: 14px; }
+    .status-pass { color: var(--green); font-weight: 700; }
+    .status-reject { color: var(--red); font-weight: 700; }
+    ul, ol { padding-left: 24px; }
+    .files li { margin: 7px 0; }
+    footer {
+      padding: 22px 56px;
+      color: var(--muted);
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    @media (max-width: 760px) {
+      main { width: 100%; margin: 0; border: 0; border-radius: 0; }
+      header, article, footer { padding-left: 22px; padding-right: 22px; }
+      .grid { grid-template-columns: 1fr; }
+      table { font-size: 13px; }
+      th, td { padding: 7px; }
+    }
+    @media print {
+      body { background: white; }
+      main { width: 100%; margin: 0; border: 0; box-shadow: none; }
+      nav { display: none; }
+      figure { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>distributedECM 仿真总结报告</h1>
+    <p>平面分布式等效电路电芯层 + Boundary ODE + 三维集流体 Electric Currents</p>
+    <p>目标：分析空间非均匀阻抗对 60 Ah 电芯电流分布、端电压与局部 SOC 演化的影响。</p>
+    <div class="meta">
+      <span class="tag">COMSOL 6.4.0.293</span>
+      <span class="tag">Slurm 38126</span>
+      <span class="tag">60 A / 1C</span>
+      <span class="tag">0–500 s</span>
+      <span class="tag">2026-08-27</span>
+    </div>
+  </header>
+
+  <article>
+    <nav>
+      <a href="#summary">摘要</a>
+      <a href="#model">模型</a>
+      <a href="#debug">调试</a>
+      <a href="#results">结果</a>
+      <a href="#validation">验证</a>
+      <a href="#limits">局限</a>
+      <a href="#files">文件</a>
+    </nav>
+
+    <section id="summary">
+      <h2>1. 执行摘要</h2>
+      <p class="lead">
+        模型已经从原先不稳定的电压状态方程重构为可收敛的分布式 ECM：
+        Boundary ODE 逐点推进平面电芯层的 <code>SOCb</code>，三维铝、铜集流体由
+        Electric Currents 求解，二者通过面积比阻抗形式的 Robin 电流—电压关系耦合。
+      </p>
+      <div class="callout good">
+        <strong>最终结论：</strong>阻抗因子从 0.2 到 1.8 的线性非均匀分布，使 500 s
+        时电流变异系数从 0.1401 增加到 1.0849（约 7.75 倍），局部峰值倍率从
+        1.125 C 增加到 5.153 C，并使局部 SOC 范围扩大到 0.0016–0.7699。
+      </div>
+      <div class="grid">
+        <div class="card"><div class="label">非均匀/均匀电流 CV</div><div class="value">7.745×</div></div>
+        <div class="card"><div class="label">非均匀峰值局部倍率</div><div class="value">5.153 C</div></div>
+        <div class="card"><div class="label">端电压变化</div><div class="value">+0.1186 V</div></div>
+      </div>
+    </section>
+
+    <section id="model">
+      <h2>2. 模型与工况</h2>
+      <h3>2.1 多尺度降阶结构</h3>
+      <ul>
+        <li><strong>电芯层：</strong>降阶为三维结构中的二维界面（boundary 9）。</li>
+        <li><strong>状态演化：</strong>Boundary ODE 求解局部无量纲状态 <code>SOCb</code>。</li>
+        <li><strong>集流体：</strong>铝、铜域使用 Electric Currents 求解三维电势和电流。</li>
+        <li><strong>跨层映射：</strong>线性挤出算子在两个集流体界面之间映射电势与电流。</li>
+      </ul>
+
+      <p>局部状态方程为：</p>
+      <div class="equation">∂SOCb/∂t = C<sub>rate,loc</sub> / 3600 s</div>
+      <p>稳定后的电芯界面关系为：</p>
+      <div class="equation">n·J = (V<sub>upper</sub> − V<sub>lower</sub> − OCV(SOCb)) / R<sub>area</sub></div>
+      <p>
+        <code>R_area</code> 包含空间欧姆阻抗和在 1C 工作点线性化的活化阻抗。
+        该降阶版本将浓差过电位设为零，不再求解颗粒扩散。
+      </p>
+
+      <h3>2.2 对比工况</h3>
+      <table>
+        <thead><tr><th>参数</th><th>均匀阻抗</th><th>非均匀阻抗</th></tr></thead>
+        <tbody>
+          <tr><td>额定容量</td><td colspan="2">60 Ah</td></tr>
+          <tr><td>施加电流</td><td colspan="2">60 A（1C）</td></tr>
+          <tr><td>仿真时间</td><td colspan="2">0–500 s</td></tr>
+          <tr><td>负载爬升</td><td colspan="2">1 s</td></tr>
+          <tr><td>阻抗非均匀幅值</td><td>0</td><td>0.8</td></tr>
+          <tr><td>空间阻抗因子</td><td>1.0</td><td>0.2–1.8，沿 y 线性变化</td></tr>
+          <tr><td>铝电导率</td><td colspan="2">3.77×10<sup>7</sup> S/m</td></tr>
+          <tr><td>铜电导率</td><td colspan="2">5.998×10<sup>7</sup> S/m</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="debug">
+      <h2>3. 调试与模型重构</h2>
+      <table>
+        <thead><tr><th>问题</th><th>诊断</th><th>处理结果</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Java 类名与文件名不一致、Windows 模型路径</td>
+            <td>远端编译及运行环境不兼容</td>
+            <td>统一为 <code>distributeECM</code>，模型路径改为当前工作目录</td>
+          </tr>
+          <tr>
+            <td>初值不一致、首步非线性失败</td>
+            <td>电流瞬时加载和电势初值不一致</td>
+            <td>加入 1 s 线性负载爬升，并设置集流体 OCV 初值</td>
+          </tr>
+          <tr>
+            <td>端电压出现约 ±30 kV 假解</td>
+            <td>局部电压 <code>V2</code> 被错误地作为动态状态积分，代数约束未被正确执行</td>
+            <td>移除动态电压状态，Boundary ODE 仅推进 <code>SOCb</code></td>
+          </tr>
+          <tr>
+            <td>电流依赖的电势强约束导致矩阵奇异</td>
+            <td>边界反力电流用于同一强 Dirichlet 约束，形成病态 DAE</td>
+            <td>改为面积比阻抗 Robin 界面关系，时间推进稳定</td>
+          </tr>
+          <tr>
+            <td>1200 s 时局部 SOC 超出 OCV 表范围</td>
+            <td>强阻抗非均匀性导致约 5–6C 热点，长期外推不再物理可信</td>
+            <td>拒绝 1200 s 结果，最终比较窗口设为 500 s</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        1200 s 诊断任务在数值上收敛，但非均匀算例局部 SOC 最大值约 1.97，
+        已超出 OCV 插值的 [0,1] 有效范围，因此被明确标记为
+        <span class="status-reject">不接受</span>，不用于最终结论。
+      </div>
+    </section>
+
+    <section id="results">
+      <h2>4. 最终结果</h2>
+      <table>
+        <thead><tr><th>500 s 指标</th><th>均匀阻抗</th><th>非均匀阻抗</th><th>解释</th></tr></thead>
+        <tbody>
+          <tr><td>积分边界电流</td><td>60.000003 A</td><td>60.000000 A</td><td>与施加的 60 A 一致</td></tr>
+          <tr><td>电流守恒相对误差</td><td>4.44×10<sup>−8</sup></td><td>4.61×10<sup>−9</sup></td><td>远低于 10<sup>−6</sup></td></tr>
+          <tr><td>平均局部倍率</td><td>1.00054 C</td><td>1.03770 C</td><td>非均匀工况存在局部反向/低电流区，绝对值平均略高</td></tr>
+          <tr><td>最小/最大局部倍率</td><td>0.00272 / 1.12538 C</td><td>0.00005 / 5.15255 C</td><td>非均匀阻抗产生强热点</td></tr>
+          <tr><td>电流变异系数</td><td>0.14008</td><td>1.08489</td><td>提高约 7.745 倍</td></tr>
+          <tr><td>端电压</td><td>3.00499 V</td><td>3.12363 V</td><td>变化 +0.11864 V</td></tr>
+          <tr><td>平均层电压</td><td>2.67421 V</td><td>2.77510 V</td><td>包含 SOC/OCV 空间分化影响</td></tr>
+          <tr><td>平均 SOC</td><td>0.13885</td><td>0.14516</td><td>均保持在 OCV 表范围内</td></tr>
+          <tr><td>局部 SOC 范围</td><td>0.00664–0.15838</td><td>0.00159–0.76993</td><td>非均匀工况离散度显著增大</td></tr>
+        </tbody>
+      </table>
+
+      <figure>
+        <img src="analysis/current_distribution.svg" alt="均匀和非均匀阻抗算例的电流分布可视化">
+        <figcaption>图 1：最终时刻电流分布空间诊断。非均匀阻抗将电流集中到低阻区域。</figcaption>
+      </figure>
+      <figure>
+        <img src="analysis/current_profile.svg" alt="电流分布空间剖面对比">
+        <figcaption>图 2：空间剖面对比。阻抗梯度与局部倍率分布呈明显关联。</figcaption>
+      </figure>
+
+      <h3>4.1 结果解释</h3>
+      <ol>
+        <li>即使阻抗完全均匀，集流体片内电阻和极耳位置仍会产生一定电流不均匀性，因此均匀算例的电流 CV 不为零。</li>
+        <li>阻抗因子 0.2–1.8 引入后，低阻区域获得远高于平均值的电流，局部峰值超过 5C。</li>
+        <li>局部倍率差异随时间累积为显著 SOC 分化；这说明仅观察总电流或平均 SOC 会掩盖局部老化与安全风险。</li>
+        <li>端电压差异同时受到局部阻抗、集流体压降以及 SOC—OCV 空间反馈影响，不能只解释为单一串联电阻变化。</li>
+      </ol>
+    </section>
+
+    <section id="validation">
+      <h2>5. 数值验证与可复现性</h2>
+      <table>
+        <thead><tr><th>检查项</th><th>结果</th></tr></thead>
+        <tbody>
+          <tr><td>Slurm 最终作业</td><td><span class="status-pass">COMPLETED</span>，作业号 38126，退出码 0:0</td></tr>
+          <tr><td>COMSOL 时间推进</td><td><span class="status-pass">Time-stepping completed</span>；两算例各约 49 s</td></tr>
+          <tr><td>模型产物</td><td>均匀 39,770,114 bytes；非均匀 39,770,278 bytes</td></tr>
+          <tr><td>SHA-256</td><td>solved MPH、built MPH、全局 CSV、场 CSV 与远端清单一致</td></tr>
+          <tr><td>电流守恒</td><td>两算例相对误差均小于 10<sup>−6</sup></td></tr>
+          <tr><td>SOC 有效范围</td><td>最终两算例均满足 0 ≤ SOC ≤ 1</td></tr>
+          <tr><td>本地后处理</td><td>Python 编译通过；JSON 指标均有限；SVG XML 解析通过</td></tr>
+        </tbody>
+      </table>
+      <p>最终模型源码 SHA-256：</p>
+      <p><code>5eb46c10f7e85376c7beff610d531dea1b2d46c242cdeda71f9d73d2f3c26797</code></p>
+    </section>
+
+    <section id="limits">
+      <h2>6. 模型适用范围与局限</h2>
+      <ul>
+        <li>当前是降阶分布式 ECM，不包含完整多孔电极、电解液传质或颗粒扩散。</li>
+        <li>浓差过电位设为零；活化阻抗在 1C 工作点线性化。因此超过数 C 的局部热点更适合用于识别风险区域，而非精确预测高倍率极化。</li>
+        <li>阻抗非均匀幅值 0.8 是强对比诊断工况，并非来自特定实测电芯的标定结果。</li>
+        <li>极值可能受网格角点和极耳边缘影响；工程判断应同时参考电流 CV、空间图和面积平均值。</li>
+        <li>若需模拟更长时间，应增加 SOC 上下限事件、重新标定阻抗随 SOC 的关系，或恢复稳定的颗粒/浓差动态模型。</li>
+      </ul>
+    </section>
+
+    <section id="files">
+      <h2>7. 交付文件</h2>
+      <ul class="files">
+        <li><a href="distributeECM.java">修复后的 COMSOL Java 模型</a></li>
+        <li><a href="COMSOL_HANDOFF.md">模型架构与复现说明</a></li>
+        <li><a href="analysis/analysis_summary.md">Markdown 定量摘要</a></li>
+        <li><a href="analysis/summary.json">机器可读指标 JSON</a></li>
+        <li><a href="results/uniform/uniform_solved.mph">均匀阻抗 solved MPH</a></li>
+        <li><a href="results/heterogeneous/heterogeneous_solved.mph">非均匀阻抗 solved MPH</a></li>
+        <li><a href="results/uniform/uniform_global.csv">均匀阻抗全局时间序列</a></li>
+        <li><a href="results/heterogeneous/heterogeneous_global.csv">非均匀阻抗全局时间序列</a></li>
+        <li><a href="results/uniform/uniform_comsol_batch.log">均匀阻抗 COMSOL 日志</a></li>
+        <li><a href="results/heterogeneous/heterogeneous_comsol_batch.log">非均匀阻抗 COMSOL 日志</a></li>
+      </ul>
+    </section>
+  </article>
+
+  <footer>
+    PaperEngine distributedECM experiment report · Final audited run: Slurm 38126 · COMSOL 6.4.0.293
+  </footer>
+</main>
+</body>
+</html>
