@@ -1,0 +1,49 @@
+source:
+  figure: 6b
+  page_label: 244905-9
+  paper: Laghmach et al. 2015
+curve:
+  temperature_K: 303
+  stretch_lambda: 4
+  color: green diamonds
+calibration:
+  image: parser page-010.png
+  image_size_px: [908, 1210]
+  x_axis:
+    pixel_left: 109
+    pixel_right: 420
+    value_left_tau1: 0
+    value_right_tau1: 500
+  y_axis:
+    pixel_R10: 587
+    pixel_R25: 389
+    value_bottom_nm: 10
+    value_top_nm: 25
+method:
+  color_segmentation: "green channel >100, >1.4 red, >1.3 blue"
+  component: largest 8-connected component in main panel crop
+  sampling: median curve pixel within +/-3 px of calibrated time coordinate
+estimated_uncertainty:
+  radius_nm: 0.15
+  time_tau1: 5
+notes:
+  - Values are digitized reference data, not solver output.
+  - Curve RMSE must account for the nonzero digitization uncertainty.
+stress_inset:
+  csv: figure6b_T303K_lambda4_stress.csv
+  calibration:
+    pixel_left: 263
+    pixel_right: 420
+    value_left_tau1: 0
+    value_right_tau1: 250
+    pixel_top: 476
+    pixel_bottom: 600
+    value_top_MPa: 2.5
+    value_bottom_MPa: 1.0
+  method:
+    color_segmentation: "green channel >70, >1.25 red, >1.15 blue"
+    sampling: "75th percentile curve pixel within +/-3 px; favors the solid relaxation curve below the overlapping dashed pre-growth line"
+  estimated_uncertainty:
+    stress_MPa: 0.025
+    time_tau1: 5
+  normalization: "stress NRMSE uses mean absolute reference stress; range normalization is ill-conditioned for this nearly flat, low-resolution inset"

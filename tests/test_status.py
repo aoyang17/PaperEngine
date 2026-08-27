@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from battery_lit.candidates import append_candidates, update_candidate
-from battery_lit.status import topic_status
-from battery_lit.topic import init_topic
+from paper_engine.candidates import append_candidates, update_candidate
+from paper_engine.status import topic_status
+from paper_engine.topic import init_topic
 
 
 def test_total_papers_counts_only_library_entries(tmp_path):

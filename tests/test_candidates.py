@@ -6,9 +6,9 @@ import subprocess
 import pytest
 
 from conftest import ROOT
-from battery_lit.candidates import append_candidates, get_candidate, load_candidates, mark_candidate, normalize_candidate, remove_candidate_by_record_id, remove_candidates_by_bibkey, repair_candidate_records
-from battery_lit.util import write_jsonl
-from battery_lit.topic import init_topic
+from paper_engine.candidates import append_candidates, get_candidate, load_candidates, mark_candidate, normalize_candidate, remove_candidate_by_record_id, remove_candidates_by_bibkey, repair_candidate_records
+from paper_engine.util import write_jsonl
+from paper_engine.topic import init_topic
 
 
 def test_candidate_jsonl_append_show_and_mark(tmp_path):
@@ -223,7 +223,7 @@ def test_remove_candidates_by_bibkey_cli_json_and_exit_codes(tmp_path):
     )
 
     removed = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "candidates", "remove-by-bibkey", "--root", str(tmp_path), "Example2026Useful", "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "candidates", "remove-by-bibkey", "--root", str(tmp_path), "Example2026Useful", "--json"],
         text=True,
         capture_output=True,
         check=False,
@@ -237,7 +237,7 @@ def test_remove_candidates_by_bibkey_cli_json_and_exit_codes(tmp_path):
     assert payload["matched_candidate_ids"] == ["CAND-001"]
 
     missing = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "candidates", "remove-by-bibkey", "--root", str(tmp_path), "Example2026Useful", "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "candidates", "remove-by-bibkey", "--root", str(tmp_path), "Example2026Useful", "--json"],
         text=True,
         capture_output=True,
         check=False,

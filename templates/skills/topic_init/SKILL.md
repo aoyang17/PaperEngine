@@ -4,7 +4,7 @@ Use this skill to initialize or refine a literature topic. The goal is to turn a
 
 ## Do Not Explore Before Init
 
-First contact rule: when initializing a topic from the repository root, use `bin/battery_lit init` directly. Do not search for local examples or similar topics first.
+First contact rule: when initializing a topic from the repository root, use `bin/paper_engine init` directly. Do not search for local examples or similar topics first.
 
 Ordinary init does not require confirming conventions from local folders. Do not run `ls <base-dir>`, do not run `find .agents .codex`, and do not read sibling topics, old outputs, hidden directories, or local agent configuration.
 
@@ -18,11 +18,11 @@ Ask only for missing information:
 2. one-sentence, one-paragraph, or keyword description of the research direction
 3. optional seed papers
 
-Do not require the user to prepare YAML. Do not call `battery_lit init` with missing title or direction.
+Do not require the user to prepare YAML. Do not call `paper_engine init` with missing title or direction.
 
 ## Topic Folder Name
 
-If the user provides a base directory but not a full topic root, derive the folder name from the title with `battery_lit init --base-dir <base> --title "<title>"`. The CLI slugifies the title: lowercase ASCII, spaces and special characters become `-`, and path-unsafe punctuation is removed. Do not use the raw title as a folder name.
+If the user provides a base directory but not a full topic root, derive the folder name from the title with `paper_engine init --base-dir <base> --title "<title>"`. The CLI slugifies the title: lowercase ASCII, spaces and special characters become `-`, and path-unsafe punctuation is removed. Do not use the raw title as a folder name.
 
 ## Clean-room Init Boundary
 
@@ -66,7 +66,7 @@ Use the style of the superpowers brainstorming pattern: clarify intent before co
 
 ## Optional Search Preview
 
-If the backend is available and the user is not blocked on speed, run one or two small previews with `battery_lit tool search --query "..." --json` using 5-10 likely results per query. Use the result titles/venues to calibrate the topic, not to fill the library.
+If the backend is available and the user is not blocked on speed, run one or two small previews with `paper_engine tool search --query "..." --json` using 5-10 likely results per query. Use the result titles/venues to calibrate the topic, not to fill the library.
 
 Search previews may include Semantic Scholar PDF/arXiv completion for OpenAlex hits. Use those signals only to judge whether the topic is collectable; do not admit preview records into the queue during init.
 
@@ -86,4 +86,4 @@ Record answered refinements in `topic.yml` under `refinement_questions_answered`
 
 ## After Init
 
-Run `battery_lit init`, then immediately enter the new topic with `skills/topic_enter/SKILL.md`: read `AGENTS.md`, `policy.yml`, `topic.yml`, and `preferences.yml`, then run policy check and status.
+Run `paper_engine init`, then immediately enter the new topic with `skills/topic_enter/SKILL.md`: read `AGENTS.md`, `policy.yml`, `topic.yml`, and `preferences.yml`, then run policy check and status.

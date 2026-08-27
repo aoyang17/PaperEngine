@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from battery_lit.candidates import append_candidates, get_candidate
-from battery_lit.metadata import apply_semantic_pdf_enrichment, enrich_candidate, metadata_from_candidate
-from battery_lit.topic import init_topic
+from paper_engine.candidates import append_candidates, get_candidate
+from paper_engine.metadata import apply_semantic_pdf_enrichment, enrich_candidate, metadata_from_candidate
+from paper_engine.topic import init_topic
 
 
 def test_metadata_from_candidate_preserves_unknown_venue(tmp_path):
@@ -26,7 +26,7 @@ def test_doi_enrichment_updates_candidate(monkeypatch, tmp_path):
     def fake_enrich_by_doi(doi):
         return {"title": "New", "authors": ["Ada Example"], "year": 2026, "venue": "ICLR", "doi": doi, "verified_sources": ["crossref"]}
 
-    monkeypatch.setattr("battery_lit.metadata.enrich_by_doi", fake_enrich_by_doi)
+    monkeypatch.setattr("paper_engine.metadata.enrich_by_doi", fake_enrich_by_doi)
     meta = enrich_candidate(tmp_path, "CAND-001", live=True)
     assert meta["venue"] == "ICLR"
     candidate = get_candidate(tmp_path, "CAND-001")
@@ -47,7 +47,7 @@ def test_arxiv_enrichment_path(monkeypatch, tmp_path):
     )
 
     monkeypatch.setattr(
-        "battery_lit.metadata.enrich_by_arxiv",
+        "paper_engine.metadata.enrich_by_arxiv",
         lambda arxiv_id: {"title": "Arxiv Paper", "authors": ["Ada Example"], "year": 2026, "venue": "arXiv", "arxiv_id": arxiv_id, "pdf_url": "https://arxiv.org/pdf/2601.00001.pdf", "verified_sources": ["arxiv"]},
     )
     meta = enrich_candidate(tmp_path, "CAND-001", live=True)
@@ -64,7 +64,7 @@ def test_title_enrichment_path_keeps_unknown_when_no_match(monkeypatch, tmp_path
         tmp_path,
         [{"title": "Title Only", "authors": ["A B"], "year": 2020, "venue": "unknown", "abstract": "", "source": "fixture"}],
     )
-    monkeypatch.setattr("battery_lit.metadata.enrich_by_openalex_title", lambda title: None)
+    monkeypatch.setattr("paper_engine.metadata.enrich_by_openalex_title", lambda title: None)
     meta = enrich_candidate(tmp_path, "CAND-001", live=True)
     assert meta["venue"] == "unknown"
 
@@ -83,7 +83,7 @@ def test_semantic_pdf_enrichment_adds_pdf_and_arxiv_for_openalex(monkeypatch):
             "openAccessPdf": {"url": "https://arxiv.org/pdf/2601.12345.pdf"},
         }
 
-    monkeypatch.setattr("battery_lit.metadata._get_json", fake_get_json)
+    monkeypatch.setattr("paper_engine.metadata._get_json", fake_get_json)
     enriched, changed = apply_semantic_pdf_enrichment(
         {
             "title": "OpenAlex Paper",
@@ -103,7 +103,7 @@ def test_semantic_pdf_enrichment_adds_pdf_and_arxiv_for_openalex(monkeypatch):
 
 def test_semantic_pdf_enrichment_rejects_title_year_mismatch(monkeypatch):
     monkeypatch.setattr(
-        "battery_lit.metadata._get_json",
+        "paper_engine.metadata._get_json",
         lambda url: {
             "paperId": "SEM-999",
             "title": "Different Paper",
@@ -126,7 +126,7 @@ def test_openalex_title_enrichment_also_adds_semantic_pdf(monkeypatch, tmp_path)
         [{"title": "Title Only", "authors": ["A B"], "year": 2020, "venue": "unknown", "abstract": "", "source": "fixture"}],
     )
     monkeypatch.setattr(
-        "battery_lit.metadata.enrich_by_openalex_title",
+        "paper_engine.metadata.enrich_by_openalex_title",
         lambda title: {
             "title": "Canonical OpenAlex Paper",
             "authors": ["Ada Example"],
@@ -138,7 +138,7 @@ def test_openalex_title_enrichment_also_adds_semantic_pdf(monkeypatch, tmp_path)
         },
     )
     monkeypatch.setattr(
-        "battery_lit.metadata._get_json",
+        "paper_engine.metadata._get_json",
         lambda url: {
             "paperId": "SEM-123",
             "title": "Canonical OpenAlex Paper",

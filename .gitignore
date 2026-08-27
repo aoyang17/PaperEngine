@@ -14,9 +14,30 @@ dist/
 .tmp/
 tmp/
 /reports/
+.paper_engine/jobs/
+.paper_engine/active_job.json
+.paper_engine/jobs.jsonl
+# Legacy PaperEngine state directories created before the rename.
 .battery/jobs/
 .battery/active_job.json
 .battery/jobs.jsonl
 
 *.log
 .DS_Store
+
+# Local Codex/session state.
+:memory:.ses
+
+# Source papers are local inputs; keep metadata, notes, and rendered reports in Git.
+/paper/*.pdf
+/simulations/**/source/*.pdf
+
+# Reproducible simulation build/run outputs. Keep scripts, case definitions,
+# reference data, reports, checksums, metrics, and compact figures in Git.
+/simulations/**/results/
+/simulations/**/workflow/stages/04_experiment/raw/
+/simulations/**/workflow/stages/04_experiment/final_mph/
+/simulations/**/workflow/stages/04_experiment/submitted_jobs.json
+*.class
+slurm.*.out
+slurm.*.err

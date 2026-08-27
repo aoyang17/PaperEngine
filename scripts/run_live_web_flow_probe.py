@@ -16,8 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from battery_lit.topic import root_from_title  # noqa: E402
-from battery_lit.web_app import WebApp  # noqa: E402
+from paper_engine.topic import root_from_title  # noqa: E402
+from paper_engine.web_app import WebApp  # noqa: E402
 
 
 def _free_port() -> int:
@@ -64,7 +64,7 @@ def _wait_for(path: Path, timeout: float = 180.0) -> bool:
 
 
 def _wait_for_successful_summary(base_dir: Path, timeout: float = 180.0) -> bool:
-    jobs_dir = base_dir / ".battery_serverlet" / "jobs"
+    jobs_dir = base_dir / ".paper_engine_serverlet" / "jobs"
     start = time.time()
     while time.time() - start < timeout:
         for summary in jobs_dir.glob("*/summary.json"):
@@ -85,8 +85,8 @@ def main() -> int:
     parser.add_argument("--keep", action="store_true", help="Keep the temporary topic directory")
     args = parser.parse_args()
 
-    if os.environ.get("BATTERY_LIT_LIVE_CODEX") != "1":
-        print(json.dumps({"ok": False, "skipped": True, "reason": "set BATTERY_LIT_LIVE_CODEX=1"}))
+    if os.environ.get("PAPER_ENGINE_LIVE_CODEX") != "1":
+        print(json.dumps({"ok": False, "skipped": True, "reason": "set PAPER_ENGINE_LIVE_CODEX=1"}))
         return 0
 
     try:
@@ -95,7 +95,7 @@ def main() -> int:
         print(json.dumps({"ok": False, "error": f"playwright is required: {exc}"}))
         return 1
 
-    base_dir = Path(tempfile.mkdtemp(prefix="battery-live-web-"))
+    base_dir = Path(tempfile.mkdtemp(prefix="paper-engine-live-web-"))
     title = "Live Web Flow Probe Topic"
     expected_root = root_from_title(base_dir, title)
     server, url = _serve(WebApp(base_dir=base_dir, project_root=ROOT))

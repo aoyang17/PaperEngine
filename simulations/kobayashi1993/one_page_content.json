@@ -1,0 +1,132 @@
+{
+  "schema_version": "paper-engine-one-page-v1",
+  "generated_on": "2026-08-26",
+  "paper": {
+    "title": "Kobayashi 1993：各向异性枝晶生长的 COMSOL 复现",
+    "citation": "R. Kobayashi, Modeling and numerical simulations of dendritic crystal growth, Physica D 63 (1993) 410–423"
+  },
+  "contribution": {
+    "one_sentence": "复现成立：两场相场模型以界面各向异性选择四重枝晶；COMSOL 6.4 重现“δ 增大 → 主枝更快、方向性更强”的核心结论。",
+    "core_contributions": [
+      {
+        "text": "用相场 p 与温度 T 的最小耦合模型，避免显式追踪固液界面；ε(θ) 把晶体各向异性直接写入界面通量。",
+        "source_refs": ["M001", "M002"]
+      },
+      {
+        "text": "把潜热写成 K·∂p/∂t，并用局域噪声 a·p(1−p)χ 触发侧枝；模型重点是形貌机制而非材料 SI 标定。",
+        "source_refs": ["M003", "M004"]
+      }
+    ],
+    "core_conclusions": [
+      {
+        "text": "四重各向异性强度 δ 控制枝晶选择：δ 越大，主枝推进越快，枝化结构对 δ 高度敏感。",
+        "source_refs": ["C001"]
+      },
+      {
+        "text": "原论文网格只支持定性形貌；小于界面厚度的细枝不应被解释为可靠物理结构。",
+        "source_refs": ["C002", "C003"]
+      }
+    ]
+  },
+  "model": {
+    "framework": "COMSOL General Form PDE：ea·uₜₜ + da·uₜ + ∇·Γ = f；边界 −n·Γ=g−q·u。本复现变量顺序固定为 [p,T]，全部边界 g=q=0，无 h/r。",
+    "source_refs": ["M001", "M003"],
+    "governing_equations": [
+      {
+        "label": "相场 p｜论文 Eq.(3) → COMSOL",
+        "equation": "ea=0; da=τ\nΓx=εεθ·p_y−ε²·p_x\nΓy=−εεθ·p_x−ε²·p_y\nf=p(1−p)[p−1/2+m(T)] + a·p(1−p)χ",
+        "meaning": "m(T)=(α/π)atan[γ(1−T)]；ε=ε̄[1+δcos(j(θ−θ₀))]；εθ=−ε̄δj sin(j(θ−θ₀))；θ=atan2(−p_y,−p_x)。",
+        "source_refs": ["M001", "M002", "M004"]
+      },
+      {
+        "label": "温度 T｜论文 Eq.(5) → COMSOL",
+        "equation": "ea=0; da=1\nΓ=(−D·T_x, −D·T_y)\nf=K·d(p,t)",
+        "meaning": "D=1；等价于 T_t=∇²T+Kp_t。绝热零通量下 H=∫(T−Kp)dΩ 守恒，用于数值健康审计。",
+        "source_refs": ["M003"]
+      },
+      {
+        "label": "Fig.7 冻结参数",
+        "equation": "Ω=9×9; ε̄=.01; τ=.0003; α=.9; γ=10; K=2; j=4\nδ={0,.005,.01,.02,.05}; h=.03; Δtmax=.0002",
+        "meaning": "p=0 液、p=1 固；T₀=0。底边中央光滑半圆晶核 R₀=.15 为明示假设，并以 .12/.18 做敏感性检验。",
+        "source_refs": ["F001", "S001"]
+      }
+    ]
+  },
+  "results": {
+    "key_findings": [
+      {
+        "text": "11/11 COMSOL 6.4 作业成功，日志错误 0；最终 MPH 1.659 GB，SHA256 已与远端清单一致。",
+        "source_refs": ["F001"]
+      },
+      {
+        "text": "δ=.05/.00 主枝长度比 1.851；δ=.05 纵/横尺度比 2.014，重现各向异性增强主枝与四重方向选择。",
+        "source_refs": ["C001", "F001"]
+      },
+      {
+        "text": "Fig.7 平均 IoU=.328，归一化 Chamfer=.0262；网格差 .354%，晶核半径敏感性 .211%，12/12 门槛通过。",
+        "source_refs": ["F001", "C003"]
+      }
+    ],
+    "visuals": [
+      {
+        "label": "Fig.7 原论文（左）vs COMSOL p≥0.5（右）",
+        "path": "workflow/stages/04_experiment/figures/fig7_paper_vs_comsol.png",
+        "caption": "δ=0→0.05、t=0.2/0.8/1.4 的形貌对照；目标是趋势与轮廓类一致，不宣称逐像素同一。",
+        "source_refs": ["F001"]
+      }
+    ]
+  },
+  "reproduction": {
+    "goal": "可审计最短链：论文证据 → 方程拆分 → COMSOL Java/MPH → 扫参与对照 → 定量验收；权威产物为含解的 delta020_solved.mph。",
+    "source_refs": ["M001", "M003", "F001"],
+    "workflow": [
+      {
+        "title": "Research",
+        "text": "锁定 Eq.(3)/(5)、Fig.7、参数与未报告项；冻结 PDF 哈希。",
+        "source_refs": ["M001", "M003", "F001"]
+      },
+      {
+        "title": "Theory",
+        "text": "按 ea/da/Γ/f/g/q/h/r 拆式，固定 [p,T]、符号、单位与验收门槛。",
+        "source_refs": ["M001", "M003"]
+      },
+      {
+        "title": "Implementation",
+        "text": "Java API 建两套 General Form PDE、映射全部参数，先 smoke 再保存 MPH。",
+        "source_refs": ["M001", "M003"]
+      },
+      {
+        "title": "Experiment",
+        "text": "跑 5 个 δ、2 个无噪声对照、网格/步长/晶核敏感性并导出场数据。",
+        "source_refs": ["F001"]
+      },
+      {
+        "title": "Review",
+        "text": "核对作业/日志/哈希、守恒、收敛、Fig.7 轮廓；12/12 后接受。",
+        "source_refs": ["C003", "F001"]
+      }
+    ]
+  },
+  "limitations": [
+    {
+      "text": "R₀、随机种子与噪声更新频率原文未给；本复现采用公开假设、固定 hash 噪声和无噪声对照。",
+      "source_refs": ["S002"]
+    },
+    {
+      "text": "L₀/t₀ 是计算单位；结果证明定性形貌机制与数值可复现性，不是具体材料的物理 SI 预测。",
+      "source_refs": ["C003"]
+    }
+  ],
+  "evidence": [
+    {"id": "M001", "page": 3, "quote": "", "note": "论文 Eq.(3)：各向异性相场方程"},
+    {"id": "M002", "page": 3, "quote": "", "note": "ε=ε̄σ(θ)，σ(θ)=1+δcos[j(θ−θ₀)]"},
+    {"id": "M003", "page": 4, "quote": "", "note": "论文 Eq.(5)：T_t=∇²T+Kp_t"},
+    {"id": "M004", "page": 4, "quote": "", "note": "界面局域均匀随机噪声 a·p(1−p)χ"},
+    {"id": "F001", "page": 8, "quote": "", "note": "Fig.7：K=2、四重各向异性、五个 δ 与三个时刻"},
+    {"id": "C001", "page": 9, "quote": "", "note": "δ 增大时主枝速度增加，枝化结构对 δ 敏感"},
+    {"id": "C002", "page": 12, "quote": "", "note": "相场不能解析不大于界面厚度的结构"},
+    {"id": "C003", "page": 13, "quote": "", "note": "原论文网格/步长选择服务于定性形貌"},
+    {"id": "S001", "page": 4, "quote": "", "note": "9×9、300×300、ε̄、τ、α、γ、噪声与时间步参数"},
+    {"id": "S002", "page": 7, "quote": "", "note": "晶核位于底边中心但未给半径；随机序列也未给"}
+  ]
+}

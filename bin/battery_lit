@@ -1,30 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-if [[ -n "${BATTERY_LIT_PYTHON:-}" ]]; then
-  PYTHON_BIN="${BATTERY_LIT_PYTHON}"
-elif [[ -x /usr/bin/python3.10 ]]; then
-  PYTHON_BIN=/usr/bin/python3.10
-else
-  PYTHON_BIN="$(command -v python3)"
+
+if [[ -n "${BATTERY_LIT_PYTHON:-}" && -z "${PAPER_ENGINE_PYTHON:-}" ]]; then
+  export PAPER_ENGINE_PYTHON="${BATTERY_LIT_PYTHON}"
 fi
 
-if [[ ! -x "${PYTHON_BIN}" ]]; then
-  echo "battery_lit: Python interpreter is not executable: ${PYTHON_BIN}" >&2
-  exit 1
-fi
-
-USER_SITE="$("${PYTHON_BIN}" - <<'PY'
-import site
-print(site.getusersitepackages())
-PY
-)"
-
-if [[ -d "${USER_SITE}" ]]; then
-  export PYTHONPATH="${ROOT_DIR}/src:${USER_SITE}:${PYTHONPATH:-}"
-else
-  export PYTHONPATH="${ROOT_DIR}/src:${PYTHONPATH:-}"
-fi
-
-exec "${PYTHON_BIN}" -m battery_lit.cli "$@"
+echo "warning: battery_lit is deprecated; use paper_engine" >&2
+exec "${SCRIPT_DIR}/paper_engine" "$@"

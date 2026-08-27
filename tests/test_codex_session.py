@@ -5,9 +5,9 @@ import time
 
 import pytest
 
-from battery_lit.codex_worker import CodexRunnerError, SubprocessCodexRunner
-from battery_lit.codex_session import AppServerCodexSessionManager, FakeCodexSessionManager
-from battery_lit.topic import init_topic
+from paper_engine.codex_worker import CodexRunnerError, SubprocessCodexRunner
+from paper_engine.codex_session import AppServerCodexSessionManager, FakeCodexSessionManager
+from paper_engine.topic import init_topic
 
 
 def test_fake_session_binds_one_topic_root(tmp_path):
@@ -28,7 +28,7 @@ def test_fake_session_binds_one_topic_root(tmp_path):
 
 
 def test_subprocess_codex_runner_can_use_controlled_bypass(monkeypatch, tmp_path):
-    monkeypatch.setenv("BATTERY_LIT_CODEX_BYPASS_SANDBOX", "1")
+    monkeypatch.setenv("PAPER_ENGINE_CODEX_BYPASS_SANDBOX", "1")
 
     command = SubprocessCodexRunner(codex_bin="/usr/bin/codex").command(tmp_path)
 

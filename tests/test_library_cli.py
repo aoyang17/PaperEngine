@@ -4,9 +4,9 @@ import json
 import subprocess
 
 from conftest import ROOT
-from battery_lit.candidates import append_candidates, load_candidates
-from battery_lit.citation_guard import check_bib
-from battery_lit.topic import init_topic
+from paper_engine.candidates import append_candidates, load_candidates
+from paper_engine.citation_guard import check_bib
+from paper_engine.topic import init_topic
 
 
 def _write_library(root):
@@ -48,7 +48,7 @@ def test_library_list_returns_bounded_summaries(tmp_path):
     _write_library(tmp_path)
 
     proc = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "library", "list", "--root", str(tmp_path), "--limit", "2", "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "library", "list", "--root", str(tmp_path), "--limit", "2", "--json"],
         text=True,
         capture_output=True,
         check=True,
@@ -74,7 +74,7 @@ def test_library_find_matches_summary_fields(tmp_path):
     _write_library(tmp_path)
 
     proc = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "library", "find", "--root", str(tmp_path), "--query", "2501.00001", "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "library", "find", "--root", str(tmp_path), "--query", "2501.00001", "--json"],
         text=True,
         capture_output=True,
         check=True,
@@ -127,7 +127,7 @@ def test_library_update_metadata_renames_bibkey_and_marks_unverified(tmp_path):
 
     proc = subprocess.run(
         [
-            str(ROOT / "bin" / "battery_lit"),
+            str(ROOT / "bin" / "paper_engine"),
             "library",
             "update-metadata",
             "--root",
@@ -160,8 +160,8 @@ def test_library_update_metadata_renames_bibkey_and_marks_unverified(tmp_path):
     assert "@article{Alpha2025Corrected," in bib
     assert "@article{Alpha2024Agent," not in bib
     assert "Corrected Agentic Discovery Systems" in bib
-    assert "batteryMetadataStatus = {unverified}" in bib
-    assert "batteryMetadataNote = {agent checked Crossref and arXiv search results before writing this file}" in bib
+    assert "paperEngineMetadataStatus = {unverified}" in bib
+    assert "paperEngineMetadataNote = {agent checked Crossref and arXiv search results before writing this file}" in bib
     assert "file = {papers/Alpha2025Corrected/paper.pdf}" in bib
     assert load_candidates(tmp_path)[0]["bibkey"] == "Alpha2025Corrected"
     assert check_bib(tmp_path)["ok"] is True
@@ -182,7 +182,7 @@ def test_library_update_metadata_rejects_existing_new_bibkey_without_changes(tmp
 
     proc = subprocess.run(
         [
-            str(ROOT / "bin" / "battery_lit"),
+            str(ROOT / "bin" / "paper_engine"),
             "library",
             "update-metadata",
             "--root",
@@ -214,7 +214,7 @@ def test_library_update_metadata_rejects_ungrounded_metadata_without_identifier(
 
     proc = subprocess.run(
         [
-            str(ROOT / "bin" / "battery_lit"),
+            str(ROOT / "bin" / "paper_engine"),
             "library",
             "update-metadata",
             "--root",
@@ -256,7 +256,7 @@ def test_library_update_metadata_accepts_openalex_without_doi_or_arxiv(tmp_path)
 
     proc = subprocess.run(
         [
-            str(ROOT / "bin" / "battery_lit"),
+            str(ROOT / "bin" / "paper_engine"),
             "library",
             "update-metadata",
             "--root",
@@ -280,6 +280,6 @@ def test_library_update_metadata_accepts_openalex_without_doi_or_arxiv(tmp_path)
     assert "eprint =" not in bib.split("@article{Alpha2024Agent,", 1)[1].split("\n}", 1)[0]
     assert "openalexId = {https://openalex.org/W123456789}" in bib
     assert "issn = {1234-5678}" in bib
-    assert "batteryMetadataStatus = {unverified}" in bib
-    assert "batteryMetadataNote = {agent checked OpenAlex work record and publisher page before writing this file}" in bib
+    assert "paperEngineMetadataStatus = {unverified}" in bib
+    assert "paperEngineMetadataNote = {agent checked OpenAlex work record and publisher page before writing this file}" in bib
     assert check_bib(tmp_path)["ok"] is True

@@ -3,10 +3,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.jobs import JobManager
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.jobs import JobManager
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
 
 
 def _finished_job(root: Path) -> str:
@@ -16,7 +16,7 @@ def _finished_job(root: Path) -> str:
             CodexEvent(kind="result", payload={"ok": True, "summary": "finished"}),
         ]
     )
-    result = JobManager(root, runner=runner, project_root=Path("/project/battery")).run_job("Health check", action="health")
+    result = JobManager(root, runner=runner, project_root=Path("/project/paper-engine")).run_job("Health check", action="health")
     return str(result["job_id"])
 
 
@@ -53,7 +53,7 @@ def test_job_events_api_returns_bounded_events(tmp_path):
 def test_job_events_api_reads_only_tail(tmp_path, monkeypatch):
     init_topic(tmp_path, "Many Events Topic", "job events")
     job_id = "20260101T000000Z-deadbeef"
-    job_dir = tmp_path / ".battery" / "jobs" / job_id
+    job_dir = tmp_path / ".paper_engine" / "jobs" / job_id
     job_dir.mkdir(parents=True)
     with (job_dir / "events.jsonl").open("w", encoding="utf-8") as handle:
         for index in range(500):

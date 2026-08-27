@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from battery_lit.citation_guard import CitationGuardError, check_bib, guard_metadata
-from battery_lit.topic import init_topic
+from paper_engine.citation_guard import CitationGuardError, check_bib, guard_metadata
+from paper_engine.topic import init_topic
 
 
 def test_guard_metadata_blocks_unverified_identifier():

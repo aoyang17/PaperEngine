@@ -12,10 +12,10 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.jobs import JobAlreadyActive, JobManager
-from battery_lit.sidecars import SidecarTempWorkspace, merge_score_shards, split_shards
-from battery_lit.topic import init_topic
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.jobs import JobAlreadyActive, JobManager
+from paper_engine.sidecars import SidecarTempWorkspace, merge_score_shards, split_shards
+from paper_engine.topic import init_topic
 
 
 class BlockingRunner:
@@ -54,13 +54,13 @@ def check_topic_job_lock(work_dir: Path) -> dict[str, Any]:
     finally:
         runner.release.set()
         for _ in range(100):
-            if not (topic / ".battery" / "active_job.json").exists():
+            if not (topic / ".paper_engine" / "active_job.json").exists():
                 break
             time.sleep(0.02)
 
     return _check(
         "topic_job_lock",
-        blocked and runner.calls == 1 and not (topic / ".battery" / "active_job.json").exists(),
+        blocked and runner.calls == 1 and not (topic / ".paper_engine" / "active_job.json").exists(),
         {"parallel_write_blocked": blocked, "runner_calls": runner.calls},
     )
 
@@ -132,7 +132,7 @@ def check_readonly_findings_isolation(work_dir: Path) -> dict[str, Any]:
 
 
 def run_probe(*, keep_work_dir: bool = False) -> dict[str, Any]:
-    workspace = SidecarTempWorkspace.create(prefix="battery-v3-subagent-adversarial-", keep=keep_work_dir)
+    workspace = SidecarTempWorkspace.create(prefix="paper-engine-subagent-adversarial-", keep=keep_work_dir)
     result: dict[str, Any] = {
         "ok": False,
         "work_dir": str(workspace.root),

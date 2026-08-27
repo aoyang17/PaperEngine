@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import json
 
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
-from battery_lit.web_views import render_web_page
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
+from paper_engine.web_views import render_web_page
 
 
 def _library_topic(root):
@@ -37,7 +37,7 @@ def _library_topic(root):
 
 
 def _prompt(root, job_id):
-    return (root / ".battery" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
+    return (root / ".paper_engine" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
 
 
 def test_library_and_paper_pages_use_session_action_routes(tmp_path):
@@ -175,4 +175,4 @@ def test_library_read_accepts_multiple_selected_bibkeys(tmp_path):
     assert "Smith2024Paper" in prompt
     assert "Lee2025Result" in prompt
     assert "Do not start arbitrary nested Codex processes" in prompt
-    assert "battery_lit read-many" in prompt
+    assert "paper_engine read-many" in prompt

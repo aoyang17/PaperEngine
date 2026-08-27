@@ -5,7 +5,7 @@
   <p><span data-i18n="admitted_candidates_intro">Admitted candidates only</span> · {{ candidates|length }} <span data-i18n="candidates_lower">candidates</span></p>
 </section>
 
-<section class="toolbar table-tabs candidate-toolbar" data-battery-table-controls="candidates">
+<section class="toolbar table-tabs candidate-toolbar" data-paper-engine-table-controls="candidates">
   <div class="tab-group">
     <button type="button" data-tab-filter="new" data-filter-table="candidates" data-filter-field="status" data-filter-value="new" data-i18n="queue">Queue</button>
     <button type="button" data-tab-filter="all" data-filter-table="candidates" data-filter-field="status" data-filter-value="" data-i18n="all">All</button>
@@ -25,7 +25,7 @@
 </section>
 
 <div class="table-scroll candidate-list-shell">
-  <table class="paper-list-table candidate-list-table" data-battery-table="candidates">
+  <table class="paper-list-table candidate-list-table" data-paper-engine-table="candidates">
     <thead>
       <tr>
         <th class="select-column"><label><input type="checkbox" data-select-all="candidates"> <span data-i18n="select">Select</span></label></th>

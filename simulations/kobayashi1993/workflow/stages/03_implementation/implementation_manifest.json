@@ -1,0 +1,63 @@
+{
+  "solver": "COMSOL Multiphysics",
+  "solver_version": "6.4 Build 293",
+  "physics_interface": "two scalar General Form PDE interfaces",
+  "dependent_variable_order": ["p", "T"],
+  "equation_mapping": [
+    {
+      "paper": "Eq. (3)",
+      "comsol_interface": "gp",
+      "feature": "gfeq1",
+      "ea": "0",
+      "da": "tau",
+      "Gamma": ["GammaPx", "GammaPy"],
+      "f": "phaseSource",
+      "boundary": {"g": "0", "q": "0", "h": null, "r": null}
+    },
+    {
+      "paper": "Eq. (5)",
+      "comsol_interface": "gT",
+      "feature": "gfeq1",
+      "ea": "0",
+      "da": "1",
+      "Gamma": ["-D*Tx", "-D*Ty"],
+      "f": "Klatent*d(p,t)",
+      "boundary": {"g": "0", "q": "0", "h": null, "r": null}
+    }
+  ],
+  "model_files": [
+    "comsol/Kobayashi1993.java",
+    "comsol/run_case.sh",
+    "comsol/comsol_case.slurm",
+    "comsol/submit_cases.sh",
+    "comsol/cases/smoke.properties",
+    "comsol/cases/delta000.properties",
+    "comsol/cases/delta005.properties",
+    "comsol/cases/delta010.properties",
+    "comsol/cases/delta020.properties",
+    "comsol/cases/delta050.properties",
+    "comsol/cases/control_delta000.properties",
+    "comsol/cases/control_delta020.properties",
+    "comsol/cases/mesh_coarse.properties",
+    "comsol/cases/mesh_fine.properties",
+    "comsol/cases/timestep_coarse.properties",
+    "comsol/cases/timestep_fine.properties",
+    "comsol/cases/seed_small.properties",
+    "comsol/cases/seed_large.properties",
+    "extract_fig7_reference.py",
+    "fields_to_masks.py",
+    "compare_fig7_masks.py",
+    "postprocess_suite.py",
+    "remote_smoke.json"
+  ],
+  "remote_agent": {
+    "config": "/home/aobo/.paperengine/comsol_remote.json",
+    "credential_policy": "external mode-0600 password file; never copied into repository or run artifacts",
+    "operations": ["probe", "upload", "submit", "status", "verify", "download"]
+  },
+  "declared_assumptions": [
+    "R0=0.15 with 0.12/0.18 sensitivity because the paper omits nucleus size",
+    "fixed hash pseudo-uniform noise because the paper omits random seed and update cadence",
+    "COMSOL m and s carry nondimensional L0 and t0 rather than physical SI scales"
+  ]
+}

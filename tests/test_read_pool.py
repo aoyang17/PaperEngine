@@ -5,8 +5,8 @@ import threading
 import time
 from pathlib import Path
 
-from battery_lit import cli
-from battery_lit.read_pool import (
+from paper_engine import cli
+from paper_engine.read_pool import (
     DATASET_PATCH_NAME,
     DEFAULT_READ_POOL_PARALLEL,
     MAX_READ_POOL_PARALLEL,
@@ -20,7 +20,7 @@ from battery_lit.read_pool import (
     _validate_dataset_patch,
     run_read_pool,
 )
-from battery_lit.topic import init_topic
+from paper_engine.topic import init_topic
 
 
 class _FakePoolAgent:
@@ -167,14 +167,14 @@ def _factory(shared: dict[str, object]):
 
 
 def _patch_gates(monkeypatch, finalize=None) -> None:
-    monkeypatch.setattr("battery_lit.read_pool._ensure_parse", lambda root, bibkey, force_reread: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool._ensure_parse", lambda root, bibkey, force_reread: {"ok": True})
     monkeypatch.setattr(
-        "battery_lit.read_pool._finalize_one",
+        "paper_engine.read_pool._finalize_one",
         finalize
         or (lambda root, run_id, bibkey, draft_dir: {"ok": True, "changed": [f"papers/{bibkey}/deep_read.json"], "verification": []}),
     )
-    monkeypatch.setattr("battery_lit.read_pool.audit_reading_library", lambda root, bibkeys=None: {"ok": True, "audit_scope": "selected"})
-    monkeypatch.setattr("battery_lit.read_pool.build_html", lambda root: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool.audit_reading_library", lambda root, bibkeys=None: {"ok": True, "audit_scope": "selected"})
+    monkeypatch.setattr("paper_engine.read_pool.build_html", lambda root: {"ok": True})
 
 
 def test_read_pool_uses_independent_reader_and_reviewer_sessions(tmp_path, monkeypatch):
@@ -479,7 +479,7 @@ def test_cli_read_many_invokes_read_pool(tmp_path, monkeypatch, capsys):
             progress("read-many: test heartbeat")
         return {"ok": True, "run_id": kwargs["run_id"], "results": []}
 
-    monkeypatch.setattr("battery_lit.read_pool.run_read_pool", fake_run)
+    monkeypatch.setattr("paper_engine.read_pool.run_read_pool", fake_run)
 
     result = cli.main(
         [
@@ -541,11 +541,11 @@ def test_dataset_refresh_reuses_read_pool_and_skips_parser(tmp_path, monkeypatch
         assert seen_context == context
         return {"ok": True, "changed": [f"papers/{bibkey}/deep_read.json"], "verification": []}
 
-    monkeypatch.setattr("battery_lit.read_pool._existing_dataset_parse", existing_parse)
-    monkeypatch.setattr("battery_lit.read_pool._prepare_dataset_context", lambda root, bibkey, job_dir: context)
-    monkeypatch.setattr("battery_lit.read_pool._finalize_dataset_section", finalize)
-    monkeypatch.setattr("battery_lit.read_pool.audit_reading_library", lambda root, bibkeys=None: {"ok": True})
-    monkeypatch.setattr("battery_lit.read_pool.build_html", lambda root: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool._existing_dataset_parse", existing_parse)
+    monkeypatch.setattr("paper_engine.read_pool._prepare_dataset_context", lambda root, bibkey, job_dir: context)
+    monkeypatch.setattr("paper_engine.read_pool._finalize_dataset_section", finalize)
+    monkeypatch.setattr("paper_engine.read_pool.audit_reading_library", lambda root, bibkeys=None: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool.build_html", lambda root: {"ok": True})
     shared = {"dataset_patch": {"schema_version": READ_POOL_SCHEMA_VERSION}}
 
     result = run_read_pool(
@@ -574,9 +574,9 @@ def test_dataset_refresh_reuses_read_pool_and_skips_parser(tmp_path, monkeypatch
 
 def test_dataset_refresh_reviewer_rejection_keeps_finalizer_closed(tmp_path, monkeypatch):
     init_topic(tmp_path, "Dataset Review", "reject weak dataset patch")
-    monkeypatch.setattr("battery_lit.read_pool._existing_dataset_parse", lambda root, bibkey: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool._existing_dataset_parse", lambda root, bibkey: {"ok": True})
     monkeypatch.setattr(
-        "battery_lit.read_pool._prepare_dataset_context",
+        "paper_engine.read_pool._prepare_dataset_context",
         lambda root, bibkey, job_dir: {
             "ok": True,
             "bibkey": bibkey,
@@ -588,7 +588,7 @@ def test_dataset_refresh_reviewer_rejection_keeps_finalizer_closed(tmp_path, mon
     )
     finalized = {"called": False}
     monkeypatch.setattr(
-        "battery_lit.read_pool._finalize_dataset_section",
+        "paper_engine.read_pool._finalize_dataset_section",
         lambda *args, **kwargs: finalized.update(called=True) or {"ok": True},
     )
     shared = {
@@ -669,9 +669,9 @@ def test_dataset_finalizer_changes_only_dataset_owned_content(tmp_path, monkeypa
         "source_blocks": [{"id": "S003", "source_text": "new dataset evidence"}],
     }
     (draft_dir / DATASET_PATCH_NAME).write_text(json.dumps(patch), encoding="utf-8")
-    monkeypatch.setattr("battery_lit.read_pool.validate_deep_read_report", lambda root, bibkey: {"ok": True})
-    monkeypatch.setattr("battery_lit.read_pool.rebuild_note", lambda root, bibkey: {"ok": True})
-    monkeypatch.setattr("battery_lit.read_pool.audit_deep_read_quality", lambda root, bibkey: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool.validate_deep_read_report", lambda root, bibkey: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool.rebuild_note", lambda root, bibkey: {"ok": True})
+    monkeypatch.setattr("paper_engine.read_pool.audit_deep_read_quality", lambda root, bibkey: {"ok": True})
 
     result = _finalize_dataset_section(root, "section_merge", bibkey, draft_dir, context)
 
@@ -719,7 +719,7 @@ def test_cli_read_many_accepts_dataset_refresh(tmp_path, monkeypatch, capsys):
         called.update(kwargs)
         return {"ok": True, "run_id": "dataset_cli", "results": []}
 
-    monkeypatch.setattr("battery_lit.read_pool.run_read_pool", fake_run)
+    monkeypatch.setattr("paper_engine.read_pool.run_read_pool", fake_run)
     result = cli.main(
         [
             "read-many",

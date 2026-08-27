@@ -10,9 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from battery_lit.candidates import append_candidates, load_candidates  # noqa: E402
-from battery_lit.topic import init_topic  # noqa: E402
-from battery_lit.web_app import WebApp  # noqa: E402
+from paper_engine.candidates import append_candidates, load_candidates  # noqa: E402
+from paper_engine.topic import init_topic  # noqa: E402
+from paper_engine.web_app import WebApp  # noqa: E402
 
 
 def main() -> int:

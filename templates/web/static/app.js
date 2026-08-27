@@ -1,4 +1,4 @@
-(function batteryTable() {
+(function paperEngineTable() {
   const sortState = new Map();
   const filterState = new Map();
   const translations = {
@@ -217,7 +217,7 @@
   };
 
   function language() {
-    return localStorage.getItem("battery_language") || "zh";
+    return localStorage.getItem("paper_engine_language") || "zh";
   }
 
   function t(key) {
@@ -260,27 +260,27 @@
     const langSelect = document.querySelector("[data-language-select]");
     const modelSelect = document.querySelector("[data-codex-model]");
     const effortSelect = document.querySelector("[data-codex-effort]");
-    codexSelectValue("[data-codex-model]", "battery_codex_model", DEFAULT_CODEX_MODEL);
-    codexSelectValue("[data-codex-effort]", "battery_codex_effort", DEFAULT_CODEX_EFFORT);
+    codexSelectValue("[data-codex-model]", "paper_engine_codex_model", DEFAULT_CODEX_MODEL);
+    codexSelectValue("[data-codex-effort]", "paper_engine_codex_effort", DEFAULT_CODEX_EFFORT);
     if (langSelect) {
       langSelect.value = language();
       langSelect.addEventListener("change", () => {
-        localStorage.setItem("battery_language", langSelect.value || "en");
+        localStorage.setItem("paper_engine_language", langSelect.value || "en");
         applyLanguage();
       });
     }
     if (modelSelect) {
-      modelSelect.addEventListener("change", () => localStorage.setItem("battery_codex_model", modelSelect.value || "default"));
+      modelSelect.addEventListener("change", () => localStorage.setItem("paper_engine_codex_model", modelSelect.value || "default"));
     }
     if (effortSelect) {
-      effortSelect.addEventListener("change", () => localStorage.setItem("battery_codex_effort", effortSelect.value || "default"));
+      effortSelect.addEventListener("change", () => localStorage.setItem("paper_engine_codex_effort", effortSelect.value || "default"));
     }
     applyLanguage();
   }
 
   function appendCodexOptions(params) {
-    const model = codexSelectValue("[data-codex-model]", "battery_codex_model", DEFAULT_CODEX_MODEL);
-    const effort = codexSelectValue("[data-codex-effort]", "battery_codex_effort", DEFAULT_CODEX_EFFORT);
+    const model = codexSelectValue("[data-codex-model]", "paper_engine_codex_model", DEFAULT_CODEX_MODEL);
+    const effort = codexSelectValue("[data-codex-effort]", "paper_engine_codex_effort", DEFAULT_CODEX_EFFORT);
     params.set("codex_model", model);
     params.set("codex_effort", effort);
     return params;
@@ -288,8 +288,8 @@
 
   function codexOptionsPayload() {
     return {
-      codex_model: codexSelectValue("[data-codex-model]", "battery_codex_model", DEFAULT_CODEX_MODEL),
-      codex_effort: codexSelectValue("[data-codex-effort]", "battery_codex_effort", DEFAULT_CODEX_EFFORT),
+      codex_model: codexSelectValue("[data-codex-model]", "paper_engine_codex_model", DEFAULT_CODEX_MODEL),
+      codex_effort: codexSelectValue("[data-codex-effort]", "paper_engine_codex_effort", DEFAULT_CODEX_EFFORT),
     };
   }
 
@@ -564,7 +564,7 @@
   }
 
   function rowsFor(name) {
-    const table = document.querySelector(`[data-battery-table="${name}"]`);
+    const table = document.querySelector(`[data-paper-engine-table="${name}"]`);
     if (!table) return [];
     return Array.from(table.querySelectorAll("tbody tr"));
   }
@@ -599,7 +599,7 @@
   }
 
   function sortTable(name, key) {
-    const table = document.querySelector(`[data-battery-table="${name}"]`);
+    const table = document.querySelector(`[data-paper-engine-table="${name}"]`);
     if (!table) return;
     const tbody = table.querySelector("tbody");
     const stateKey = `${name}:${key}`;
@@ -646,7 +646,7 @@
   });
 
   function visibleCheckboxes(tableName) {
-    return Array.from(document.querySelectorAll(`table[data-battery-table="${tableName}"] tbody input[type="checkbox"]`))
+    return Array.from(document.querySelectorAll(`table[data-paper-engine-table="${tableName}"] tbody input[type="checkbox"]`))
       .filter((input) => !input.closest("tr")?.hidden);
   }
 
@@ -689,7 +689,7 @@
       updateSelectionState();
     });
   });
-  document.querySelectorAll('table[data-battery-table="candidates"] tbody input[type="checkbox"], table[data-battery-table="library"] tbody input[type="checkbox"]').forEach((input) => {
+  document.querySelectorAll('table[data-paper-engine-table="candidates"] tbody input[type="checkbox"], table[data-paper-engine-table="library"] tbody input[type="checkbox"]').forEach((input) => {
     input.addEventListener("change", updateSelectionState);
   });
 
@@ -844,7 +844,7 @@
       } else if (action === "library-read") {
         sessionAction = "library_read_selected";
         payload = {
-          bibkeys: Array.from(document.querySelectorAll('table[data-battery-table="library"] input[name="bibkey"]:checked')).map((input) => input.value),
+          bibkeys: Array.from(document.querySelectorAll('table[data-paper-engine-table="library"] input[name="bibkey"]:checked')).map((input) => input.value),
         };
       }
       const count = Object.values(payload)[0]?.length || 0;
@@ -924,5 +924,5 @@
     updateCandidateTabView();
     updateSelectionState();
   }
-  document.documentElement.dataset.batteryAppReady = "true";
+  document.documentElement.dataset.paperEngineAppReady = "true";
 })();

@@ -1,0 +1,199 @@
+schema_version: 1
+case_id: laghmach2015
+title: Phase field modelling of strain induced crystal growth in an elastic matrix
+source:
+  doi: 10.1063/1.4923226
+  citation: "Laghmach et al., J. Chem. Phys. 142, 244905 (2015)"
+  pdf: paper/laghmach2015.pdf
+  pdf_sha256: 2d3b830facdc18bed8defc7a8f1ab935a930adc824acdb3e872fb9ffb5de80d3
+  pdf_bytes: 1888284
+  governing_equations: [18, 20, 27]
+model:
+  dimension: 2
+  coordinates: eulerian
+  domain_nm: [200.0, 200.0]
+  boundary_conditions: paper_dirichlet
+  fields: [theta, ux, uy, pressure, utx, uty]
+  phase_equation: Allen-Cahn
+  mechanics: incompressible_finite_deformation_relaxation
+  topology: interface_velocity_transport
+  length_unit: nm
+  time_unit: tau1
+parameters:
+  gas_constant_J_mol_K: 8.31446261815324
+  Tm0_K: 303.0
+  temperature_K: 303.0
+  n_segments: 95
+  monomer_density_mol_m3: 14700.0
+  melting_enthalpy_J_mol: 4986.0
+  gamma_J_m2: 0.02
+  interface_width_nm: 1.0
+  free_energy_scale_J_m3: 37030000.0
+  Gamma_J_m3: 169700000.0
+  topological_young_modulus_Pa: 500000.0
+  topological_poisson_ratio: 0.6
+  topological_lambda_Pa: 611000.0
+  topological_mu_Pa: 152750.0
+  alpha_cut: 0.0001
+  tau2_over_tau1: 0.1
+  barrier_coefficient: -0.5
+  printed_eq27_barrier_coefficient: 0.25
+  barrier_convention: variationally_consistent_with_eq4_eq8_eq29
+  stretch_lambda: 4.0
+  initial_radius_nm: 9.0
+  theta_threshold: 0.5
+  theta_boundary: 0.0
+  displacement_initial: "ux=(lambda-1)/lambda*x; uy=(1-lambda)*y"
+numerics:
+  baseline_grid_nm: 1.0
+  convergence_grid_nm: 0.5
+  reference_dt_tau1: 0.002
+  reference_transport_scheme: isotropic_second_order
+  final_time_tau1: 500.0
+  output_interval_tau1: 0.25
+studies:
+  - id: baseline_topology_on
+    temperature_K: 303.0
+    stretch_lambda: 4.0
+    topology: true
+  - id: control_topology_off
+    temperature_K: 303.0
+    stretch_lambda: 4.0
+    topology: false
+  - id: threshold_sweep
+    temperatures_K: [298.0, 303.0, 308.0]
+    stretch_lambdas: [2.0, 3.0, 4.0, 5.0, 6.0]
+    topology: true
+  - id: anisotropic
+    temperature_K: 298.0
+    stretch_lambda: 6.0
+    anisotropy_mode: 2
+    anisotropy_delta: 0.33
+    topological_young_modulus_Pa: 2000000.0
+acceptance:
+  - id: baseline_plateau_radius
+    metric: baseline.final_effective_radius_nm
+    operator: between
+    expected: [22.0, 25.0]
+    units: nm
+    description: Figure 6 baseline radius must saturate near the reported range.
+  - id: baseline_is_stationary
+    metric: baseline.final_relative_drift_per_100tau1
+    operator: <=
+    expected: 0.01
+    units: 1/100tau1
+  - id: topology_control_keeps_growing
+    metric: control.final_radius_slope_nm_per_tau1
+    operator: '>'
+    expected: 0.05
+    units: nm/tau1
+  - id: order_parameter_lower_bound
+    metric: quality.theta_min
+    operator: '>='
+    expected: -0.001
+  - id: order_parameter_upper_bound
+    metric: quality.theta_max
+    operator: <=
+    expected: 1.001
+  - id: incompressibility
+    metric: quality.max_abs_detF_minus_one
+    operator: <=
+    expected: 0.001
+  - id: grid_convergence
+    metric: quality.radius_grid_relative_difference
+    operator: <=
+    expected: 0.03
+  - id: time_step_convergence
+    metric: quality.radius_timestep_relative_difference
+    operator: <=
+    expected: 0.03
+  - id: t95_time_step_convergence
+    metric: quality.t95_timestep_relative_difference
+    operator: <=
+    expected: 0.03
+  - id: elastic_belt_at_interface
+    metric: baseline.elastic_belt_interface_overlap
+    operator: '>='
+    expected: 0.5
+    description: A majority of topology elastic energy lies in the diffuse-interface belt.
+  - id: far_field_stress_relaxes
+    metric: baseline.stress_drop_fraction
+    operator: '>'
+    expected: 0.0
+  - id: radius_curve_nrmse
+    metric: paper_curve.radius_nrmse
+    operator: '<'
+    expected: 0.10
+  - id: plateau_radius_paper_error
+    metric: paper_curve.plateau_relative_error
+    operator: '<'
+    expected: 0.10
+  - id: t95_paper_error
+    metric: paper_curve.t95_relative_error
+    operator: '<'
+    expected: 0.20
+  - id: stress_curve_nrmse
+    metric: paper_curve.stress_nrmse
+    operator: '<'
+    expected: 0.15
+    description: RMSE normalized by mean absolute paper stress because the inset dynamic range is comparable to digitization uncertainty.
+  - id: threshold_298K
+    metric: threshold.lambda_c_298K
+    operator: between
+    expected: [2.5, 3.5]
+  - id: threshold_303K
+    metric: threshold.lambda_c_303K
+    operator: between
+    expected: [3.5, 4.5]
+  - id: threshold_308K
+    metric: threshold.lambda_c_308K
+    operator: between
+    expected: [4.5, 5.5]
+  - id: elastic_surface_A
+    metric: surface_fit.A_J_m2
+    operator: relative_error_le
+    expected: [0.00067359, 0.20]
+    units: J/m2
+  - id: elastic_surface_B
+    metric: surface_fit.B_per_nm
+    operator: relative_error_le
+    expected: [0.308574, 0.20]
+    units: 1/nm
+  - id: elastic_surface_fit_quality
+    metric: surface_fit.r_squared
+    operator: '>='
+    expected: 0.98
+  - id: elastic_surface_nucleus_collapse
+    metric: surface_fit.nucleus_curve_nrmse
+    operator: '<'
+    expected: 0.15
+    description: Rn=5 nm and Rn=9 nm elastic-gamma curves should collapse when plotted against interface displacement.
+  - id: anisotropic_theta099_short
+    metric: anisotropic.theta099_short_nm
+    operator: between
+    expected: [6.375, 8.625]
+    units: nm
+    required: false
+  - id: anisotropic_theta099_long
+    metric: anisotropic.theta099_long_nm
+    operator: between
+    expected: [8.5, 11.5]
+    units: nm
+    required: false
+  - id: anisotropic_theta095_short
+    metric: anisotropic.theta095_short_nm
+    operator: between
+    expected: [8.925, 12.075]
+    units: nm
+    required: false
+  - id: anisotropic_theta095_long
+    metric: anisotropic.theta095_long_nm
+    operator: between
+    expected: [13.6, 18.4]
+    units: nm
+    required: false
+  - id: anisotropic_orientation
+    metric: anisotropic.long_axis
+    operator: ==
+    expected: vertical
+    required: false

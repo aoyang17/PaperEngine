@@ -3,12 +3,12 @@ from __future__ import annotations
 import json
 
 from conftest import fixture_path
-from battery_lit.acquire import acquire_pdf
-from battery_lit.bib import promote_candidate
-from battery_lit.html import build_html, export_standalone_html
-from battery_lit.read import rebuild_note
-from battery_lit.search import collect
-from battery_lit.topic import init_topic
+from paper_engine.acquire import acquire_pdf
+from paper_engine.bib import promote_candidate
+from paper_engine.html import build_html, export_standalone_html
+from paper_engine.read import rebuild_note
+from paper_engine.search import collect
+from paper_engine.topic import init_topic
 
 
 def _write_reading_bundle(tmp_path, bibkey, report=None, source_map=None, paper_index=None, note_plan=None):

@@ -17,13 +17,13 @@ from urllib.request import urlopen
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from battery_lit.bib import list_library  # noqa: E402
-from battery_lit.candidates import load_candidates  # noqa: E402
-from battery_lit.topic import root_from_title  # noqa: E402
+from paper_engine.bib import list_library  # noqa: E402
+from paper_engine.candidates import load_candidates  # noqa: E402
+from paper_engine.topic import root_from_title  # noqa: E402
 
 
 DEFAULT_CHROMIUM = Path("/home/battery/.cache/ms-playwright/chromium-1223/chrome-linux64/chrome")
-DEFAULT_BASE_PARENT = Path("/paper_hub/_battery_e2e")
+DEFAULT_BASE_PARENT = Path("/paper_hub/_paper_engine_e2e")
 
 
 class LiveE2E:
@@ -91,7 +91,7 @@ class LiveE2E:
             self.write_report()
 
     def preflight(self) -> dict[str, Any]:
-        self.run_cmd([str(ROOT / "bin" / "battery_lit"), "--help"], cwd=ROOT, timeout=20)
+        self.run_cmd([str(ROOT / "bin" / "paper_engine"), "--help"], cwd=ROOT, timeout=20)
         self.run_cmd([str(ROOT / "bin" / "paper-search"), "--help"], cwd=ROOT, timeout=20)
         self.run_cmd(["codex", "--help"], cwd=ROOT, timeout=20)
         try:
@@ -290,8 +290,8 @@ class LiveE2E:
                 self.screenshot(page, "08_library_after_pdf.png")
             finally:
                 browser.close()
-        self.run_cmd([str(ROOT / "bin" / "battery_lit"), "bib", "check", "--root", str(self.topic_root)], cwd=ROOT, timeout=60)
-        self.run_cmd([str(ROOT / "bin" / "battery_lit"), "pdf", "check", "--root", str(self.topic_root)], cwd=ROOT, timeout=60)
+        self.run_cmd([str(ROOT / "bin" / "paper_engine"), "bib", "check", "--root", str(self.topic_root)], cwd=ROOT, timeout=60)
+        self.run_cmd([str(ROOT / "bin" / "paper_engine"), "pdf", "check", "--root", str(self.topic_root)], cwd=ROOT, timeout=60)
         return {"downloaded_bibkeys": self.downloaded_bibkeys(before)}
 
     def read_paper(self) -> dict[str, Any]:
@@ -385,7 +385,7 @@ class LiveE2E:
         env = os.environ.copy()
         env["PYTHONPATH"] = f"{self.args.pythonpath}:{ROOT / 'src'}" if self.args.pythonpath else f"{ROOT / 'src'}"
         self.server = subprocess.Popen(
-            [str(ROOT / "bin" / "battery_lit"), "start", *args, "--host", "127.0.0.1", "--port", str(port)],
+            [str(ROOT / "bin" / "paper_engine"), "start", *args, "--host", "127.0.0.1", "--port", str(port)],
             cwd=str(ROOT),
             env=env,
             text=True,
@@ -477,7 +477,7 @@ class LiveE2E:
             raise RuntimeError(f"horizontal overflow detected on {route}")
 
     def wait_for_app_ready(self, page) -> None:
-        page.wait_for_function("() => document.documentElement.dataset.batteryAppReady === 'true'", timeout=10000)
+        page.wait_for_function("() => document.documentElement.dataset.paperEngineAppReady === 'true'", timeout=10000)
 
     def run_cmd(self, cmd: list[str], cwd: Path, timeout: float) -> subprocess.CompletedProcess[str]:
         proc = subprocess.run(cmd, cwd=str(cwd), text=True, capture_output=True, timeout=timeout)
@@ -505,8 +505,8 @@ class LiveE2E:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the canonical live browser user journey for battery_lit.")
-    parser.add_argument("--run-dir", help="Run output directory. Defaults to /paper_hub/_battery_e2e/<timestamp>.")
+    parser = argparse.ArgumentParser(description="Run the canonical live browser user journey for paper_engine.")
+    parser.add_argument("--run-dir", help="Run output directory. Defaults to /paper_hub/_paper_engine_e2e/<timestamp>.")
     parser.add_argument("--title", default="Live Test-Time Guidance Probe")
     parser.add_argument(
         "--direction",

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from battery_lit.codex_prompts import oa_fallback_prompt, parse_fallback_result
+from paper_engine.codex_prompts import oa_fallback_prompt, parse_fallback_result
 
 
 def test_oa_fallback_prompt_forbids_bad_sources():

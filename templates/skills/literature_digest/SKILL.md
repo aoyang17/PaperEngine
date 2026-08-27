@@ -8,12 +8,12 @@ Do not read full `library.bib`, full `candidates.jsonl`, or every paper note by 
 
 Start with:
 
-- `battery_lit status --json`
-- `battery_lit library list --json --limit 50`
-- `battery_lit candidates list --json --status new`
+- `paper_engine status --json`
+- `paper_engine library list --json --limit 50`
+- `paper_engine candidates list --json --status new`
 - recent small files under `reports/`
 
-Read `papers/<bibkey>/note.md` only for papers needed by the user's question. Use `battery_lit library find --json --query TEXT` to narrow the set first.
+Read `papers/<bibkey>/note.md` only for papers needed by the user's question. Use `paper_engine library find --json --query TEXT` to narrow the set first.
 
 ## Output
 

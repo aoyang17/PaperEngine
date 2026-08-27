@@ -42,12 +42,12 @@ def test_deep_read_skill_defines_artifact_contract():
     assert "papers/<bibkey>/note_plan.json" in text
     assert "papers/<bibkey>/deep_read.json" in text
     assert "schemas/deep_read_report.schema.json" in text
-    assert "battery_lit read <bibkey> --vision-formulas" in text
+    assert "paper_engine read <bibkey> --vision-formulas" in text
     assert "model-backed exceptions are project CLI commands" in text
-    assert "battery_lit read-many" in text
-    assert "battery_lit read <bibkey> --validate-report" in text
-    assert "battery_lit read <bibkey> --quality-audit" in text
-    assert "battery_lit read <bibkey> --rebuild-note" in text
+    assert "paper_engine read-many" in text
+    assert "paper_engine read <bibkey> --validate-report" in text
+    assert "paper_engine read <bibkey> --quality-audit" in text
+    assert "paper_engine read <bibkey> --rebuild-note" in text
 
 
 def test_reading_quality_probe_uses_temp_topic_and_quality_audit():
@@ -59,7 +59,7 @@ def test_reading_quality_probe_uses_temp_topic_and_quality_audit():
     assert "\"rebuild\"" in text
     assert text.index("--rebuild-note") < text.index("--quality-audit")
     assert "audit-readings" in text
-    assert "battery_lit read-many --bibkey" in text
+    assert "paper_engine read-many --bibkey" in text
     assert ".tmp/read_pool/<run_id>/<bibkey>/draft" in text
     assert "Do not write final `papers/<bibkey>/source_map.json`" in text
     assert "--codex-reread" in text
@@ -104,8 +104,8 @@ def test_reading_quality_probe_uses_temp_topic_and_quality_audit():
     assert "_latest_read_pool_run" in text
     assert "bulk_timeout" in text
     assert "codex-bypass-sandbox" in text
-    assert "BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE" in text
-    assert "BATTERY_LIT_CODEX_BYPASS_SANDBOX" in text
+    assert "PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE" in text
+    assert "PAPER_ENGINE_CODEX_BYPASS_SANDBOX" in text
     assert "--dangerously-bypass-approvals-and-sandbox" in text
     assert "subprocess.TimeoutExpired" in text
     assert "start_new_session=True" in text
@@ -117,7 +117,7 @@ def test_reading_quality_probe_uses_temp_topic_and_quality_audit():
 
 def test_live_codex_probe_is_opt_in_and_uses_codex_runner():
     text = (ROOT / "scripts" / "run_live_codex_probe.py").read_text(encoding="utf-8")
-    assert "BATTERY_LIT_LIVE_CODEX" in text
+    assert "PAPER_ENGINE_LIVE_CODEX" in text
     assert "SubprocessCodexRunner" in text
     assert "status --json" in text
     assert "policy check --json" in text
@@ -125,7 +125,7 @@ def test_live_codex_probe_is_opt_in_and_uses_codex_runner():
 
 def test_live_web_flow_probe_is_opt_in_and_checks_bootstrap_flow():
     text = (ROOT / "scripts" / "run_live_web_flow_probe.py").read_text(encoding="utf-8")
-    assert "BATTERY_LIT_LIVE_CODEX" in text
+    assert "PAPER_ENGINE_LIVE_CODEX" in text
     assert "sync_playwright" in text
     assert "data-codex-model" in text
     assert "data-codex-effort" in text
@@ -136,7 +136,7 @@ def test_live_web_flow_probe_is_opt_in_and_checks_bootstrap_flow():
 
 def test_reading_quality_probe_rejects_unsandboxed_bypass_without_env(monkeypatch, tmp_path):
     module = _load_reading_probe_module()
-    monkeypatch.delenv("BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE", raising=False)
+    monkeypatch.delenv("PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE", raising=False)
 
     result = module._codex_reread(
         project_root=ROOT,
@@ -149,7 +149,7 @@ def test_reading_quality_probe_rejects_unsandboxed_bypass_without_env(monkeypatc
     )
 
     assert result["ok"] is False
-    assert "BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE=1" in result["error"]
+    assert "PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE=1" in result["error"]
 
 
 def test_reading_quality_probe_scans_assistant_output_not_user_prompt():
@@ -191,7 +191,7 @@ def test_reading_quality_probe_bulk_prompt_uses_configured_parallelism(monkeypat
 
     assert result["ok"] is False
     assert "--max-parallel 4" in captured["prompt"]
-    assert "battery_lit read-many" in captured["prompt"]
+    assert "paper_engine read-many" in captured["prompt"]
 
 
 def test_web_render_script_writes_artifacts():

@@ -10,8 +10,8 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from battery_lit.codex_session import AppServerCodexSessionManager  # noqa: E402
-from battery_lit.topic import init_topic  # noqa: E402
+from paper_engine.codex_session import AppServerCodexSessionManager  # noqa: E402
+from paper_engine.topic import init_topic  # noqa: E402
 
 
 def main() -> int:
@@ -20,8 +20,8 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=90.0)
     args = parser.parse_args()
 
-    if os.environ.get("BATTERY_LIT_LIVE_CODEX") != "1":
-        print(json.dumps({"ok": True, "skipped": True, "reason": "set BATTERY_LIT_LIVE_CODEX=1 to run live Codex probe"}))
+    if os.environ.get("PAPER_ENGINE_LIVE_CODEX") != "1":
+        print(json.dumps({"ok": True, "skipped": True, "reason": "set PAPER_ENGINE_LIVE_CODEX=1 to run live Codex probe"}))
         return 0
 
     topic_root = Path(args.root).expanduser().resolve()
@@ -32,7 +32,7 @@ def main() -> int:
 
     manager = AppServerCodexSessionManager(request_timeout=min(args.timeout, 30.0))
     try:
-        state = manager.ensure_session(topic_root, model=os.environ.get("BATTERY_LIT_CODEX_MODEL"), effort=os.environ.get("BATTERY_LIT_CODEX_EFFORT"))
+        state = manager.ensure_session(topic_root, model=os.environ.get("PAPER_ENGINE_CODEX_MODEL"), effort=os.environ.get("PAPER_ENGINE_CODEX_EFFORT"))
         if not state.get("ok"):
             print(json.dumps({"ok": False, "stage": "ensure_session", "state": state}, ensure_ascii=False))
             return 2

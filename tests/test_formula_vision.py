@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from conftest import fixture_path
-from battery_lit.formula_vision import SubprocessFormulaVisionRunner, transcribe_formulas
+from paper_engine.formula_vision import SubprocessFormulaVisionRunner, transcribe_formulas
 
 
 class FakeFormulaRunner:

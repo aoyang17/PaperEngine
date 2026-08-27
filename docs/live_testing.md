@@ -6,11 +6,11 @@ The purpose is to catch first-step user failures and cross-module regressions be
 
 ## Standard Environment
 
-Run live testing inside the `battery_research_literature` container from the V3 project root:
+Run live testing from the PaperEngine project root:
 
 ```bash
-cd /battery_research_literature/V3
-PYTHONPATH=/home/battery/.local/lib/python3.10/site-packages:src ./bin/battery_lit --help
+cd /path/to/PaperEngine
+PYTHONPATH=/home/battery/.local/lib/python3.10/site-packages:src ./bin/paper_engine --help
 codex --help
 ```
 
@@ -24,7 +24,7 @@ PYTHONPATH=/home/battery/.local/lib/python3.10/site-packages:src
 The canonical command is:
 
 ```bash
-cd /battery_research_literature/V3
+cd /path/to/PaperEngine
 PYTHONPATH=/home/battery/.local/lib/python3.10/site-packages:src \
 python3 scripts/run_live_user_journey_e2e.py
 ```
@@ -36,7 +36,7 @@ A run is not a live test unless it exercises the browser UI and the real Codex w
 Write all test output under an isolated topic parent:
 
 ```text
-/paper_hub/_battery_e2e/<timestamp>/
+/paper_hub/_paper_engine_e2e/<timestamp>/
 ```
 
 Keep successful and failed runs. Each run must preserve:
@@ -44,7 +44,7 @@ Keep successful and failed runs. Each run must preserve:
 - the generated topic directory;
 - `e2e_report.json`;
 - screenshots for every major stage;
-- `.battery_serverlet/` and topic `.battery/` job summaries, events, and stderr logs;
+- `.paper_engine_serverlet/` and topic `.paper_engine/` job summaries, events, and stderr logs;
 - any downloaded PDFs, parsed notes, and generated HTML reading output.
 
 Do not write this test into an ordinary user topic.
@@ -52,14 +52,14 @@ Do not write this test into an ordinary user topic.
 ## Required User Journey
 
 1. **Preflight**
-   - Confirm `./bin/battery_lit --help` works from `/battery_research_literature/V3`.
+   - Confirm `./bin/paper_engine --help` works from `/path/to/PaperEngine`.
    - Confirm `codex --help` works in the same environment that starts the serverlet.
    - Confirm Playwright and Chromium are importable/runnable.
    - Confirm the chosen port is free and do not kill a user's running server.
    - If any check fails, stop and report the blocker as environment, dependency, Codex, network, or code.
 
 2. **Create Topic From UI**
-   - Start the workbench with `./bin/battery_lit start --base-dir /paper_hub/_battery_e2e/<timestamp> --host 127.0.0.1 --port <free-port>`.
+   - Start the workbench with `./bin/paper_engine start --base-dir /paper_hub/_paper_engine_e2e/<timestamp> --host 127.0.0.1 --port <free-port>`.
    - Open `/dashboard.html` in Playwright.
    - Fill title, direction, and optional seed paper in the Create Topic page.
    - Click Create Topic and wait until the app binds to the new topic.
@@ -85,7 +85,7 @@ Do not write this test into an ordinary user topic.
    - If a candidate has no open-access PDF, try additional relevant candidates and record each failure reason.
    - Passing threshold: at least one real PDF is stored as `papers/<bibkey>/paper.pdf`.
    - Assert no duplicate official PDF is shown from `.tmp` or `_incoming`.
-   - Run and record `./bin/battery_lit bib check --root <topic>` and `./bin/battery_lit pdf check --root <topic>`.
+   - Run and record `./bin/paper_engine bib check --root <topic>` and `./bin/paper_engine pdf check --root <topic>`.
    - Assert the Library page shows the promoted paper and that the title-row PDF icon opens the PDF.
 
 6. **Read Paper**
@@ -129,12 +129,12 @@ A failed live test must report the first failing stage, the last successful stag
 Use this gate when a change touches sidecar/subagent execution, batch candidate scoring, batch collection, batch rereading, job locking, or temporary artifact cleanup.
 
 ```bash
-cd /battery_research_literature/V3
+cd /path/to/PaperEngine
 PYTHONPATH=/home/battery/.local/lib/python3.10/site-packages:src \
 python3 scripts/run_subagent_adversarial_probe.py --json
 ```
 
-This probe is intentionally deterministic and does not call a real model by default. It creates a temporary `/tmp/battery-v3-subagent-adversarial-*` workspace, then checks:
+This probe is intentionally deterministic and does not call a real model by default. It creates a temporary `/tmp/paper-engine-subagent-adversarial-*` workspace, then checks:
 
 - topic-level job locking blocks concurrent state writers;
 - score shards can be merged only after schema/range/identity validation;
@@ -155,8 +155,8 @@ The gate must use a temporary copy of a real topic, not an ordinary user topic. 
 A formal reading-quality live test must reread at least five distinct papers:
 
 ```bash
-cd /battery_research_literature/V3
-BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE=1 \
+cd /path/to/PaperEngine
+PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE=1 \
 PYTHONPATH=/home/battery/.local/lib/python3.10/site-packages:src \
 python3 scripts/run_reading_quality_probe.py \
   --topic-root /paper_hub/optimal-control-multiple-shooting-in-ode \
@@ -173,7 +173,7 @@ python3 scripts/run_reading_quality_probe.py \
   --bibkey Janssens2024Parallel
 ```
 
-`--codex-bypass-sandbox` is only for the Docker environment where Codex cannot create user namespaces. It is intentionally guarded by `BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE=1`; do not set that variable for ordinary topic work.
+`--codex-bypass-sandbox` is only for the Docker environment where Codex cannot create user namespaces. It is intentionally guarded by `PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE=1`; do not set that variable for ordinary topic work.
 
 For a one-paper debugging smoke test, explicitly lower the gate:
 
@@ -192,8 +192,8 @@ The 1800-second single-paper budget is deliberate. Math-heavy and PDE/control pa
 For bulk-workflow testing, use one realistic multi-paper Codex prompt instead of one Codex process per paper:
 
 ```bash
-cd /battery_research_literature/V3
-BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE=1 \
+cd /path/to/PaperEngine
+PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE=1 \
 PYTHONPATH=/home/battery/.local/lib/python3.10/site-packages:src \
 python3 scripts/run_reading_quality_probe.py \
   --topic-root /paper_hub/optimal-control-multiple-shooting-in-ode \
@@ -227,9 +227,9 @@ The probe passes only if all of the following are true:
 - bulk prompt runs produce a `read_pool_audit` result with reader/reviewer records for every named paper;
 - bulk prompt runs do not create helper scripts, deterministic draft generators, parsed/index-only schema fillers, or other shortcut files under `.tmp/read_pool` or `.tmp/read_batch`;
 - Codex transcripts do not describe using deterministic draft writers, schema-valid draft generators, staging helpers, or parsed/index-only bulk generation;
-- `battery_lit read <bibkey> --validate-report` passes for every paper;
-- `battery_lit read <bibkey> --quality-audit` passes for every paper;
-- `battery_lit tool audit-readings --json` passes for the temporary topic copy;
+- `paper_engine read <bibkey> --validate-report` passes for every paper;
+- `paper_engine read <bibkey> --quality-audit` passes for every paper;
+- `paper_engine tool audit-readings --json` passes for the temporary topic copy;
 - theory/math papers do not leave required formula-vision fallback in a pending state;
 - generated `note.md`, `note_zh.md`, and `reading_result.html` do not contain prompt text, validator wording, or workflow instructions.
 
@@ -240,7 +240,7 @@ If the probe fails, inspect the generated `reading_quality_probe_*.json` report 
 To audit current topic artifacts without launching Codex rereads:
 
 ```bash
-./bin/battery_lit tool audit-readings --root <topic-root> --json
+./bin/paper_engine tool audit-readings --root <topic-root> --json
 ```
 
 This command is allowed to fail on old topics. A failing result is useful evidence: it means the current knowledge cards need selective rereading or repair before they should be trusted.

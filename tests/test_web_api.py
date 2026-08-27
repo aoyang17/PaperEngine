@@ -3,10 +3,10 @@ from __future__ import annotations
 import json
 import threading
 
-from battery_lit.candidates import append_candidates
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.topic import init_topic
-from battery_lit.web_app import ALLOWED_CODEX_EFFORTS, ALLOWED_CODEX_MODELS, WebApp
+from paper_engine.candidates import append_candidates
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.topic import init_topic
+from paper_engine.web_app import ALLOWED_CODEX_EFFORTS, ALLOWED_CODEX_MODELS, WebApp
 
 
 class BlockingRunner:
@@ -123,7 +123,7 @@ def test_api_chat_action_is_bounded(tmp_path):
 
     assert response.status == 202
     assert data["action"] == "chat"
-    prompt = (tmp_path / ".battery" / "jobs" / data["job_id"] / "prompt.txt").read_text(encoding="utf-8")
+    prompt = (tmp_path / ".paper_engine" / "jobs" / data["job_id"] / "prompt.txt").read_text(encoding="utf-8")
     assert "Summarize topic status" in prompt
     assert "Do not perform shell commands unless required" in prompt
 
@@ -151,5 +151,5 @@ def test_api_library_rebuild_action(tmp_path):
 
     assert response.status == 202
     assert data["action"] == "library-rebuild-html"
-    prompt = (tmp_path / ".battery" / "jobs" / data["job_id"] / "prompt.txt").read_text(encoding="utf-8")
-    assert "battery_lit html build" in prompt
+    prompt = (tmp_path / ".paper_engine" / "jobs" / data["job_id"] / "prompt.txt").read_text(encoding="utf-8")
+    assert "paper_engine html build" in prompt

@@ -6,10 +6,10 @@ import threading
 import time
 
 from conftest import fixture_path
-from battery_lit.acquire import acquire_pdf
-from battery_lit.bib import promote_candidate
-from battery_lit.read import SOURCE_REF_RE, audit_deep_read_quality, audit_reading_library, parse_pdf, rebuild_note, validate_deep_read_report
-from battery_lit.read_batch import (
+from paper_engine.acquire import acquire_pdf
+from paper_engine.bib import promote_candidate
+from paper_engine.read import SOURCE_REF_RE, audit_deep_read_quality, audit_reading_library, parse_pdf, rebuild_note, validate_deep_read_report
+from paper_engine.read_batch import (
     _build_draft_worker_prompt,
     _repair_errors_for_bibkey,
     finalize_read_batch,
@@ -17,10 +17,10 @@ from battery_lit.read_batch import (
     run_read_batch_draft_workers,
     run_read_batch_harvest,
 )
-from battery_lit.codex_worker import CodexEvent
-from battery_lit.search import collect
-from battery_lit.sidecars import READ_DRAFT_WORKER_SCHEMA_VERSION, READ_HARVEST_SCHEMA_VERSION
-from battery_lit.topic import init_topic
+from paper_engine.codex_worker import CodexEvent
+from paper_engine.search import collect
+from paper_engine.sidecars import READ_DRAFT_WORKER_SCHEMA_VERSION, READ_HARVEST_SCHEMA_VERSION
+from paper_engine.topic import init_topic
 
 
 def _promoted_topic(tmp_path):
@@ -1511,10 +1511,10 @@ def test_read_batch_draft_worker_prompt_finishes_after_provenance(tmp_path):
     )
 
     assert "immediately write" in prompt
-    assert "Do not run `battery_lit read ... --validate-report`" in prompt
+    assert "Do not run `paper_engine read ... --validate-report`" in prompt
     assert "Do not keep working after" in prompt
     assert "Do not inspect project implementation source" in prompt
-    assert "src/battery_lit/*.py" in prompt
+    assert "src/paper_engine/*.py" in prompt
     assert "Keep command output small" in prompt
     assert "Do not print long paragraph ranges" in prompt
     assert "Do not read `source_map.schema.json` or `note_plan.schema.json`" in prompt
@@ -2047,7 +2047,7 @@ def test_read_batch_finalize_restores_originals_after_unexpected_copy_error(tmp_
         calls["count"] += 1
         return real_copy2(src, dst, *args, **kwargs)
 
-    monkeypatch.setattr("battery_lit.read_batch.shutil.copy2", flaky_copy2)
+    monkeypatch.setattr("paper_engine.read_batch.shutil.copy2", flaky_copy2)
 
     result = finalize_read_batch(tmp_path, "unit")
 

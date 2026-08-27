@@ -63,7 +63,7 @@ def test_extract_arxiv_bib_titles_from_source_archive(tmp_path: Path):
     text = out.read_text(encoding="utf-8")
     assert "Universal Guidance for Diffusion Models" in text
     assert "Flow Matching at Test Time" in text
-    assert not list(tmp_path.glob("battery_refs_*"))
+    assert not list(tmp_path.glob("paper_engine_refs_*"))
 
 
 def test_extract_arxiv_bib_titles_rejects_path_traversal(tmp_path: Path):
@@ -102,7 +102,7 @@ def test_extract_arxiv_bib_titles_requires_bib_titles(tmp_path: Path):
 
 def test_collect_titles_calls_existing_cli_and_dedup(tmp_path: Path):
     calls = tmp_path / "calls.jsonl"
-    fake = tmp_path / "battery_lit"
+    fake = tmp_path / "paper_engine"
     fake.write_text(
         f"""#!/usr/bin/env python3
 import json
@@ -135,7 +135,7 @@ Universal Guidance for Diffusion Models
             str(tmp_path / "topic"),
             "--titles-file",
             str(titles),
-            "--battery-lit",
+            "--paper-engine",
             str(fake),
             "--json",
         ],

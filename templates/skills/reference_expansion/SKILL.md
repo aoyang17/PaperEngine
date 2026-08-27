@@ -13,13 +13,13 @@ Read only the named candidate or paper first. Do not read full `candidates.jsonl
 
 Useful commands:
 
-- `battery_lit candidates show --root <topic> CAND-ID --json`
-- `battery_lit library find --root <topic> --query TEXT --json`
-- `battery_lit status --root <topic> --json`
+- `paper_engine candidates show --root <topic> CAND-ID --json`
+- `paper_engine library find --root <topic> --query TEXT --json`
+- `paper_engine status --root <topic> --json`
 
 ## Workflow: arXiv Reference Expansion
 
-1. Save the named candidate to `reports/reference_expansion_<CAND-ID>_candidate.json` with `battery_lit candidates show --json`.
+1. Save the named candidate to `reports/reference_expansion_<CAND-ID>_candidate.json` with `paper_engine candidates show --json`.
 2. Extract reference titles:
 
 ```bash
@@ -38,8 +38,8 @@ python3 skills/literature_collect/scripts/collect_titles.py \
   --json
 ```
 
-5. Run `battery_lit tool dedup --root <topic> --fix --json`.
-6. If new candidates were added, follow `skills/candidate_scoring/SKILL.md` before reporting the expansion complete. Run a bounded `battery_lit candidates scoring-batch --status new --limit <added-count> --json`, write `reports/candidate_scores.jsonl`, and apply with `battery_lit candidates apply-scores --scores reports/candidate_scores.jsonl`. If scoring cannot complete, report the blocker and leave those candidates visibly unscored.
+5. Run `paper_engine tool dedup --root <topic> --fix --json`.
+6. If new candidates were added, follow `skills/candidate_scoring/SKILL.md` before reporting the expansion complete. Run a bounded `paper_engine candidates scoring-batch --status new --limit <added-count> --json`, write `reports/candidate_scores.jsonl`, and apply with `paper_engine candidates apply-scores --scores reports/candidate_scores.jsonl`. If scoring cannot complete, report the blocker and leave those candidates visibly unscored.
 
 The extractor owns its temporary directory and cleans it automatically. Do not create fixed `/tmp/<task>` directories for arXiv source archives.
 

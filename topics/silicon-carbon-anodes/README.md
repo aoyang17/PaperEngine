@@ -1,13 +1,13 @@
 # 动力电池硅碳负极文献调研
 
-This is a battery Research Literature topic repository.
+This is a PaperEngine topic repository for silicon-carbon anode research.
 
 Use the browser workbench as the daily entry point:
 
 ```bash
-battery_lit start --root <topic> --host 0.0.0.0 --port 10005
+paper_engine start --root <topic> --host 0.0.0.0 --port 10005
 ```
 
-Codex operation jobs enter this topic by following `skills/topic_enter/SKILL.md`: read `AGENTS.md`, `policy.yml`, `topic.yml`, and `preferences.yml`, then use `battery_lit policy check` and `battery_lit status`.
+Codex operation jobs enter this topic by following `skills/topic_enter/SKILL.md`: read `AGENTS.md`, `policy.yml`, `topic.yml`, and `preferences.yml`, then use `paper_engine policy check` and `paper_engine status`.
 
-Do not read `library.bib`, `candidates.jsonl`, or `papers/*` in full by default. Use `battery_lit` summary commands first.
+Do not read `library.bib`, `candidates.jsonl`, or `papers/*` in full by default. Use `paper_engine` summary commands first.

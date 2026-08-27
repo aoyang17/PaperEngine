@@ -4,10 +4,10 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import threading
 
-from battery_lit.candidates import append_candidates, get_candidate
-from battery_lit.codex_session import FakeCodexSessionManager
-from battery_lit.topic import init_topic, load_preferences
-from battery_lit.web_app import WebApp
+from paper_engine.candidates import append_candidates, get_candidate
+from paper_engine.codex_session import FakeCodexSessionManager
+from paper_engine.topic import init_topic, load_preferences
+from paper_engine.web_app import WebApp
 
 
 def _app(root, manager=None):
@@ -39,7 +39,7 @@ def test_web_app_creates_one_session_manager_under_concurrent_access(tmp_path, m
         created.append(manager)
         return manager
 
-    monkeypatch.setattr("battery_lit.web_app.AppServerCodexSessionManager", create_manager)
+    monkeypatch.setattr("paper_engine.web_app.AppServerCodexSessionManager", create_manager)
 
     def get_session(_: int):
         barrier.wait()
@@ -61,7 +61,7 @@ def test_session_message_enters_session_without_job_artifacts(tmp_path):
 
     assert response.status == 202
     assert data["ok"] is True
-    assert not (tmp_path / ".battery" / "jobs").exists()
+    assert not (tmp_path / ".paper_engine" / "jobs").exists()
     events = manager.events_since(0)["events"]
     assert any(event["kind"] == "user_message" and event["message"] == "Search 30 candidates" for event in events)
 
@@ -83,7 +83,7 @@ def test_session_action_accepts_structured_payload(tmp_path):
     assert event["kind"] == "action"
     assert event["action"] == "work_status"
     assert event["payload"] == {}
-    assert not (tmp_path / ".battery" / "jobs").exists()
+    assert not (tmp_path / ".paper_engine" / "jobs").exists()
 
 
 def test_candidate_download_session_action_updates_state_directly(tmp_path, monkeypatch):
@@ -117,10 +117,10 @@ def test_candidate_download_session_action_updates_state_directly(tmp_path, monk
         assert candidate_id == "CAND-001"
         return {"ok": True, "bibkey": "Lovelace2026Direct", "status": "promoted"}
 
-    monkeypatch.setattr("battery_lit.web_app.enrich_candidate", fake_enrich)
-    monkeypatch.setattr("battery_lit.web_app.acquire_pdf", fake_acquire)
-    monkeypatch.setattr("battery_lit.web_app.promote_candidate", fake_promote)
-    monkeypatch.setattr("battery_lit.web_app.build_html", lambda root: {"ok": True})
+    monkeypatch.setattr("paper_engine.web_app.enrich_candidate", fake_enrich)
+    monkeypatch.setattr("paper_engine.web_app.acquire_pdf", fake_acquire)
+    monkeypatch.setattr("paper_engine.web_app.promote_candidate", fake_promote)
+    monkeypatch.setattr("paper_engine.web_app.build_html", lambda root: {"ok": True})
 
     response = app.handle(
         "/api/session/action",
@@ -133,7 +133,7 @@ def test_candidate_download_session_action_updates_state_directly(tmp_path, monk
     assert data["ok"] is True
     assert data["results"][0]["promote"]["bibkey"] == "Lovelace2026Direct"
     assert manager.events_since(0)["events"] == []
-    assert not (tmp_path / ".battery" / "jobs").exists()
+    assert not (tmp_path / ".paper_engine" / "jobs").exists()
 
 
 def test_candidate_download_session_action_skips_existing_pdf(tmp_path, monkeypatch):
@@ -175,8 +175,8 @@ def test_candidate_download_session_action_skips_existing_pdf(tmp_path, monkeypa
         assert candidate_id == "CAND-001"
         return {"title": "Existing PDF Paper", "year": 2026}
 
-    monkeypatch.setattr("battery_lit.web_app.enrich_candidate", fake_enrich)
-    monkeypatch.setattr("battery_lit.web_app.build_html", lambda root: {"ok": True})
+    monkeypatch.setattr("paper_engine.web_app.enrich_candidate", fake_enrich)
+    monkeypatch.setattr("paper_engine.web_app.build_html", lambda root: {"ok": True})
 
     response = app.handle(
         "/api/session/action",
@@ -223,7 +223,7 @@ def test_candidate_preference_session_action_updates_state_directly(tmp_path):
     assert get_candidate(tmp_path, "CAND-001")["decision"] == "relevant"
     assert load_preferences(tmp_path)["effective_feedbacks"] == 1
     assert manager.events_since(0)["events"] == []
-    assert not (tmp_path / ".battery" / "jobs").exists()
+    assert not (tmp_path / ".paper_engine" / "jobs").exists()
 
 
 def test_candidate_preference_session_action_does_not_double_count_repeat_click(tmp_path):

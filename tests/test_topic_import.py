@@ -5,13 +5,13 @@ import json
 import pytest
 
 from conftest import fixture_path
-from battery_lit.acquire import acquire_pdf
-from battery_lit.bib import promote_candidate
-from battery_lit.candidates import append_candidates, load_candidates, save_candidates
-from battery_lit.read import audit_deep_read_quality
-from battery_lit.search import collect
-from battery_lit.topic import init_topic
-from battery_lit.topic_import import import_paper_from_topic
+from paper_engine.acquire import acquire_pdf
+from paper_engine.bib import promote_candidate
+from paper_engine.candidates import append_candidates, load_candidates, save_candidates
+from paper_engine.read import audit_deep_read_quality
+from paper_engine.search import collect
+from paper_engine.topic import init_topic
+from paper_engine.topic_import import import_paper_from_topic
 
 
 def _bundle(root, bibkey):
@@ -179,7 +179,7 @@ def test_rebuild_failure_rolls_back(monkeypatch, tmp_path):
     target = _target(tmp_path)
     original_bib = (target / "library.bib").read_bytes()
     original_candidates = (target / "candidates.jsonl").read_bytes()
-    monkeypatch.setattr("battery_lit.topic_import.rebuild_note", lambda *_: {"ok": False})
+    monkeypatch.setattr("paper_engine.topic_import.rebuild_note", lambda *_: {"ok": False})
     with pytest.raises(ValueError, match="target import validation"):
         import_paper_from_topic(target, source, key)
     assert (target / "library.bib").read_bytes() == original_bib

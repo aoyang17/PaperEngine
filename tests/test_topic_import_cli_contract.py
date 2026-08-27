@@ -5,19 +5,19 @@ import sys
 import types
 from pathlib import Path
 
-from battery_lit import cli
+from paper_engine import cli
 
 
 def _install_import_module(monkeypatch, result):
     calls = []
-    module = types.ModuleType("battery_lit.topic_import")
+    module = types.ModuleType("paper_engine.topic_import")
 
     def import_paper_from_topic(target_root, source_root, source_bibkey):
         calls.append((target_root, source_root, source_bibkey))
         return result
 
     module.import_paper_from_topic = import_paper_from_topic
-    monkeypatch.setitem(sys.modules, "battery_lit.topic_import", module)
+    monkeypatch.setitem(sys.modules, "paper_engine.topic_import", module)
     return calls
 
 
@@ -124,7 +124,7 @@ def test_cross_topic_import_workflow_and_guides_keep_the_contract():
     english = (root / "docs" / "user_manual.md").read_text(encoding="utf-8")
     chinese = (root / "docs" / "user_manual_zh.md").read_text(encoding="utf-8")
 
-    command = "battery_lit library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json"
+    command = "paper_engine library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json"
     for text in (skill, agents):
         assert command in text
         assert "explicitly names the source topic path" in text or "explicitly name the source topic path" in text

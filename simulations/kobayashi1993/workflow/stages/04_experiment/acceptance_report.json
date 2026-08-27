@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "required_passed": 12,
+  "required_total": 12,
+  "optional_passed": 0,
+  "optional_total": 0,
+  "results": [
+    {
+      "criterion_id": "authoritative_mph_present",
+      "metric": "artifacts.final_mph_bytes",
+      "actual": 1659129698,
+      "expected": 1000000,
+      "operator": ">",
+      "passed": true,
+      "required": true,
+      "units": "bytes",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "comsol_logs_clean",
+      "metric": "quality.comsol_error_count",
+      "actual": 0,
+      "expected": 0,
+      "operator": "==",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "phase_lower_bound",
+      "metric": "quality.p_min",
+      "actual": -3.644014108444248e-06,
+      "expected": -0.05,
+      "operator": ">=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "phase_upper_bound",
+      "metric": "quality.p_max",
+      "actual": 1.0000017967303318,
+      "expected": 1.05,
+      "operator": "<=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "enthalpy_conservation",
+      "metric": "quality.max_relative_enthalpy_drift",
+      "actual": 2.0860322444447883e-13,
+      "expected": 0.01,
+      "operator": "<=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "mesh_tip_convergence",
+      "metric": "convergence.mesh_tip_relative_difference",
+      "actual": 0.003536067892503586,
+      "expected": 0.05,
+      "operator": "<=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "timestep_tip_convergence",
+      "metric": "convergence.timestep_tip_relative_difference",
+      "actual": 0.0,
+      "expected": 0.05,
+      "operator": "<=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "seed_tip_robustness",
+      "metric": "convergence.seed_tip_relative_range",
+      "actual": 0.002114164904862659,
+      "expected": 0.15,
+      "operator": "<=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "anisotropy_increases_tip_growth",
+      "metric": "paper_trend.delta050_to_delta000_tip_ratio",
+      "actual": 1.850931677018633,
+      "expected": 1.02,
+      "operator": ">",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "fourfold_directionality",
+      "metric": "paper_trend.delta050_vertical_to_horizontal_extent_ratio",
+      "actual": 2.0135135135135136,
+      "expected": 1.1,
+      "operator": ">",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "fig7_silhouette_overlap",
+      "metric": "paper_figure.fig7_mean_iou",
+      "actual": 0.3282936401370114,
+      "expected": 0.25,
+      "operator": ">=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    },
+    {
+      "criterion_id": "fig7_contour_distance",
+      "metric": "paper_figure.fig7_normalized_chamfer",
+      "actual": 0.026200561502855626,
+      "expected": 0.1,
+      "operator": "<=",
+      "passed": true,
+      "required": true,
+      "units": "",
+      "message": "pass"
+    }
+  ]
+}

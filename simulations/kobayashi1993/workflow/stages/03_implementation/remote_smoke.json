@@ -1,0 +1,38 @@
+{
+  "solver": "COMSOL Multiphysics 6.4 Build 293",
+  "gateway_instance_id": "2084888314937106434",
+  "remote_suite": "~/paperengine_kobayashi1993_20260826/suite_attempt4/smoke",
+  "accepted_job": {
+    "job_id": "37197",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:00:23",
+    "node": "cn067"
+  },
+  "gates": {
+    "comsol_batch_log_error_count": 0,
+    "solved_mph_bytes": 37641098,
+    "field_csv_bytes": 7534251,
+    "field_grid_points": 90601,
+    "field_times": [0.002],
+    "download_sha256_verified": true
+  },
+  "sha256": {
+    "Kobayashi1993.java": "5595a5eff4f3a384e06ef0d55ea0875e5786ddcb3566503d0cf54b8bfc0783af",
+    "case.properties": "1ac752ce18a239619d901ed63891aef64888689ca7cc5889b28634c438fa2eb0",
+    "smoke_built.mph": "dd6fd176fb60ffaeedae3ae71c2523d58df86bff61075088cb48c44ed0adc515",
+    "smoke_solved.mph": "068c5e9e752bde65a5e8071512f86bd26ae2b77ffc9fd8d5772bb31ee6171d65",
+    "smoke_global.csv": "d1570c0b885f58197eaf24626c64610e979223c74c32a706d1512737c485caae",
+    "smoke_fields.csv": "6537bfcf600d150f9cd73a8d18254a9c1baf37f53fd99cc167dc11774908e9c8"
+  },
+  "failed_attempts": [
+    {"job_id": "37193", "responsibility": "implementation", "error": "GeomFeature.run() API mismatch"},
+    {"job_id": "37194", "responsibility": "implementation", "error": "COMSOL security denied Java case.properties read"},
+    {"job_id": "37196", "responsibility": "implementation", "error": "invalid Data export separator value"}
+  ],
+  "security": {
+    "comsol_file_system_security_disabled": false,
+    "parameter_transport": "shell-whitelisted case.properties to COMSOL -prodargs",
+    "credential_persisted_in_repository": false
+  }
+}

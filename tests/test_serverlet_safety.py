@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import json
 
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.prompt_contracts import build_operation_prompt
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.prompt_contracts import build_operation_prompt
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
 
 
 def _app(root):
@@ -20,7 +20,7 @@ def test_chat_accepts_multiline_natural_language(tmp_path):
     data = json.loads(response.body)
 
     assert response.status == 202
-    prompt = (tmp_path / ".battery" / "jobs" / data["job_id"] / "prompt.txt").read_text(encoding="utf-8")
+    prompt = (tmp_path / ".paper_engine" / "jobs" / data["job_id"] / "prompt.txt").read_text(encoding="utf-8")
     assert "Please summarize\nand suggest next steps" in prompt
 
 
@@ -43,7 +43,7 @@ def test_no_shell_bridge_route_exists(tmp_path):
 
 
 def test_operation_prompt_reports_blockers_instead_of_improvising(tmp_path):
-    prompt = build_operation_prompt("/project/battery", tmp_path, "Do something unsafe.")
+    prompt = build_operation_prompt("/project/paper-engine", tmp_path, "Do something unsafe.")
 
     assert "stop and report the blocker" in prompt
     assert "Do not improvise a new workflow" in prompt

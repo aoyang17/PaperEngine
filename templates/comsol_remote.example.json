@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "ssh": {
+    "host": "comsol-gateway.example.org",
+    "port": 22,
+    "user": "researcher",
+    "instance_selection": "1",
+    "instance_id": "optional-stable-instance-id-for-direct-scp"
+  },
+  "remote": {
+    "environment_script": "~/apps/comsol64_env.sh"
+  }
+}

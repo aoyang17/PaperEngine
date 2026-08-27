@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#EEF3F8"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#50708A"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#23374D" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .cn { font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif; }
+      .title { font-size: 36px; font-weight: 700; fill: #18324A; }
+      .subtitle { font-size: 18px; fill: #597083; }
+      .step { font-size: 23px; font-weight: 700; fill: white; }
+      .scale { font-size: 14px; font-weight: 500; fill: #DDEAF3; }
+      .card-title { font-size: 23px; font-weight: 700; fill: #17334B; }
+      .item { font-size: 18px; fill: #2D4659; }
+      .small { font-size: 15px; fill: #657A8B; }
+      .bottom-title { font-size: 21px; font-weight: 700; fill: #FFFFFF; }
+      .bottom-item { font-size: 20px; font-weight: 600; fill: #17334B; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <text x="80" y="66" class="cn title">硅碳负极“容量跳水”：从材料到电芯的跨尺度参数图谱</text>
+  <text x="80" y="98" class="cn subtitle">微观本征性质逐级决定颗粒失效、网络退化与电芯非线性衰减</text>
+
+  <!-- Top progression -->
+  <line x1="270" y1="166" x2="493" y2="166" stroke="#50708A" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="650" y1="166" x2="873" y2="166" stroke="#50708A" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1030" y1="166" x2="1253" y2="166" stroke="#50708A" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="125" width="190" height="82" rx="14" fill="#315E78"/>
+    <rect x="460" y="125" width="190" height="82" rx="14" fill="#39788A"/>
+    <rect x="840" y="125" width="190" height="82" rx="14" fill="#54836D"/>
+    <rect x="1220" y="125" width="300" height="82" rx="14" fill="#8B6549"/>
+  </g>
+  <text x="175" y="158" text-anchor="middle" class="cn step">材料</text>
+  <text x="175" y="184" text-anchor="middle" class="cn scale">原子 / 纳米尺度</text>
+  <text x="555" y="158" text-anchor="middle" class="cn step">单颗粒</text>
+  <text x="555" y="184" text-anchor="middle" class="cn scale">颗粒尺度</text>
+  <text x="935" y="158" text-anchor="middle" class="cn step">多颗粒</text>
+  <text x="935" y="184" text-anchor="middle" class="cn scale">电极介观尺度</text>
+  <text x="1370" y="158" text-anchor="middle" class="cn step">电池电芯</text>
+  <text x="1370" y="184" text-anchor="middle" class="cn scale">宏观尺度</text>
+
+  <!-- Table cards -->
+  <g filter="url(#shadow)">
+    <rect x="55" y="245" width="350" height="450" rx="16" fill="#FFFFFF"/>
+    <rect x="435" y="245" width="350" height="450" rx="16" fill="#FFFFFF"/>
+    <rect x="815" y="245" width="350" height="450" rx="16" fill="#FFFFFF"/>
+    <rect x="1195" y="245" width="350" height="450" rx="16" fill="#FFFFFF"/>
+  </g>
+  <rect x="55" y="245" width="350" height="10" rx="5" fill="#315E78"/>
+  <rect x="435" y="245" width="350" height="10" rx="5" fill="#39788A"/>
+  <rect x="815" y="245" width="350" height="10" rx="5" fill="#54836D"/>
+  <rect x="1195" y="245" width="350" height="10" rx="5" fill="#8B6549"/>
+
+  <text x="80" y="298" class="cn card-title">本征性质 / 界面化学</text>
+  <text x="80" y="342" class="cn item">• 组成与相态</text>
+  <text x="100" y="369" class="cn small">Si含量、SiOₓ、晶态/非晶态、碳包覆</text>
+  <text x="80" y="413" class="cn item">• 热力学与动力学</text>
+  <text x="100" y="440" class="cn small">OCV/滞后、Li扩散、反应速率、电子电导</text>
+  <text x="80" y="484" class="cn item">• 化学—力学性质</text>
+  <text x="100" y="511" class="cn small">体积膨胀、弹塑性、断裂能、疲劳</text>
+  <text x="80" y="555" class="cn item">• SEI与副反应</text>
+  <text x="100" y="582" class="cn small">生成/开裂/再生、添加剂消耗、产气</text>
+  <text x="80" y="633" class="cn small">核心输出：D、k₀、εch、E、Gc、SEI反应律</text>
+
+  <text x="460" y="298" class="cn card-title">结构响应 / 颗粒失效</text>
+  <text x="460" y="342" class="cn item">• 几何与内部结构</text>
+  <text x="480" y="369" class="cn small">粒径、形貌、孔隙、核壳、缺陷/初始裂纹</text>
+  <text x="460" y="413" class="cn item">• 浓度与应力分布</text>
+  <text x="480" y="440" class="cn small">Li梯度、相变、各向异性膨胀、约束</text>
+  <text x="460" y="484" class="cn item">• 断裂与界面演化</text>
+  <text x="480" y="511" class="cn small">裂纹、碳壳脱层、SEI破裂、新鲜表面</text>
+  <text x="460" y="555" class="cn item">• 可利用性</text>
+  <text x="480" y="582" class="cn small">电子失联、离子隔绝、困锂、残余膨胀</text>
+  <text x="460" y="633" class="cn small">核心输出：活性比例、裂纹面积、接触电阻</text>
+
+  <text x="840" y="298" class="cn card-title">网络输运 / 电极演化</text>
+  <text x="840" y="342" class="cn item">• 配方与制造结构</text>
+  <text x="860" y="369" class="cn small">Si/Gr/CBD/粘结剂、载量、厚度、压实</text>
+  <text x="840" y="413" class="cn item">• 离子—电子网络</text>
+  <text x="860" y="440" class="cn small">孔隙率、曲折度、润湿、导电贯通、接触</text>
+  <text x="840" y="484" class="cn item">• 空间异质性</text>
+  <text x="860" y="511" class="cn small">Si团聚、局部SOC、Si/Gr电流重分配</text>
+  <text x="840" y="555" class="cn item">• 结构退化</text>
+  <text x="860" y="582" class="cn small">孔堵塞、脱粘、裂纹、膨胀、局部析锂</text>
+  <text x="840" y="633" class="cn small">核心输出：aₛ、ε、τ、σeff、κeff、LAM</text>
+
+  <text x="1220" y="298" class="cn card-title">系统耦合 / 使用边界</text>
+  <text x="1220" y="342" class="cn item">• 电极与锂库存匹配</text>
+  <text x="1240" y="369" class="cn small">正极体系、N/P、预锂化、初始效率</text>
+  <text x="1220" y="413" class="cn item">• 电芯设计</text>
+  <text x="1240" y="440" class="cn small">E/C、极片/极耳、层数、堆叠压力、散热</text>
+  <text x="1220" y="484" class="cn item">• 工况与历史</text>
+  <text x="1240" y="511" class="cn small">倍率、SOC窗口、温度、截止电压、静置</text>
+  <text x="1220" y="555" class="cn item">• 电芯退化模式</text>
+  <text x="1240" y="582" class="cn small">LLI、LAM-Si/Gr、阻抗、析锂、干涸、产气</text>
+  <text x="1220" y="633" class="cn small">核心输出：容量、能量、寿命、膨胀、热与安全</text>
+
+  <!-- Bottom convergence -->
+  <path d="M230 695 C230 735, 510 735, 760 758" fill="none" stroke="#91A4B2" stroke-width="3"/>
+  <path d="M610 695 C610 725, 690 735, 780 758" fill="none" stroke="#91A4B2" stroke-width="3"/>
+  <path d="M990 695 C990 725, 900 735, 820 758" fill="none" stroke="#91A4B2" stroke-width="3"/>
+  <path d="M1370 695 C1370 735, 1080 735, 840 758" fill="none" stroke="#91A4B2" stroke-width="3"/>
+
+  <rect x="80" y="752" width="1440" height="108" rx="18" fill="#DCE7ED" stroke="#B7CAD5" stroke-width="2"/>
+  <rect x="80" y="752" width="225" height="108" rx="18" fill="#A14E43"/>
+  <text x="192" y="796" text-anchor="middle" class="cn bottom-title">宏观关注</text>
+  <text x="192" y="829" text-anchor="middle" class="cn bottom-title">阈值与正反馈</text>
+
+  <text x="385" y="803" class="cn bottom-item">容量跳水 / Knee point</text>
+  <text x="385" y="834" class="cn small">何时发生？由哪条失效链触发？</text>
+  <line x1="680" y1="776" x2="680" y2="840" stroke="#AFC0CA" stroke-width="2"/>
+  <text x="730" y="803" class="cn bottom-item">寿命与快充边界</text>
+  <text x="730" y="834" class="cn small">Si利用率、能量密度与耐久性的平衡</text>
+  <line x1="1045" y1="776" x2="1045" y2="840" stroke="#AFC0CA" stroke-width="2"/>
+  <text x="1095" y="803" class="cn bottom-item">膨胀、热与安全</text>
+  <text x="1095" y="834" class="cn small">析锂、产气、局部热点与失效风险</text>
+</svg>

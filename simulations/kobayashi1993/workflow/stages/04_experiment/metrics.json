@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "final_mph_bytes": 1659129698
+  },
+  "quality": {
+    "comsol_error_count": 0,
+    "p_min": -3.644014108444248e-06,
+    "p_max": 1.0000017967303318,
+    "max_relative_enthalpy_drift": 2.0860322444447883e-13
+  },
+  "convergence": {
+    "mesh_tip_relative_difference": 0.003536067892503586,
+    "timestep_tip_relative_difference": 0.0,
+    "seed_tip_relative_range": 0.002114164904862659
+  },
+  "paper_trend": {
+    "delta050_to_delta000_tip_ratio": 1.850931677018633,
+    "delta050_vertical_to_horizontal_extent_ratio": 2.0135135135135136
+  },
+  "paper_figure": {
+    "fig7_mean_iou": 0.3282936401370114,
+    "fig7_normalized_chamfer": 0.026200561502855626
+  }
+}

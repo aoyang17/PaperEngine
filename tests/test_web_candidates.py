@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import json
 
-from battery_lit.candidates import append_candidates
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
-from battery_lit.web_views import render_web_page
+from paper_engine.candidates import append_candidates
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
+from paper_engine.web_views import render_web_page
 
 
 def _candidate_topic(root):
@@ -23,7 +23,7 @@ def _candidate_topic(root):
 
 
 def _prompt(root, job_id):
-    return (root / ".battery" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
+    return (root / ".paper_engine" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
 
 
 def test_candidate_page_uses_session_action_routes(tmp_path):

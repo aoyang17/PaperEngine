@@ -12,16 +12,16 @@ Read only:
 
 - `topic.yml`
 - `preferences.yml`
-- bounded candidate batches from `battery_lit candidates list --json`
+- bounded candidate batches from `paper_engine candidates list --json`
 
 Do not read PDFs, `library.bib`, paper directories, deep-read JSON, parsed text, sibling topics, or the full `candidates.jsonl`.
 
 ## Workflow
 
-1. Run `battery_lit preferences check --root <topic> --json`.
+1. Run `paper_engine preferences check --root <topic> --json`.
 2. Collect at most 40 labeled candidates using CLI summaries:
-   - `battery_lit candidates list --root <topic> --status relevant --sort score --limit 25 --json`
-   - `battery_lit candidates list --root <topic> --status irrelevant --sort score --limit 25 --json`
+   - `paper_engine candidates list --root <topic> --status relevant --sort score --limit 25 --json`
+   - `paper_engine candidates list --root <topic> --status irrelevant --sort score --limit 25 --json`
 3. Use only the candidate title, abstract, venue, year, score, decision, and score reasons as evidence.
 4. Rewrite `preferences.yml` directly with this compact shape:
 
@@ -43,7 +43,7 @@ updated_at: "<current UTC timestamp>"
 ```
 
 5. Keep each list short: 3-8 items is enough. Do not include unsupported guesses.
-6. Run `battery_lit preferences check --root <topic> --json` and `battery_lit status --root <topic> --json`.
+6. Run `paper_engine preferences check --root <topic> --json` and `paper_engine status --root <topic> --json`.
 
 ## Evidence Rules
 

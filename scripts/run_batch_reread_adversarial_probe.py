@@ -12,10 +12,10 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from battery_lit.read import audit_reading_library, parse_pdf
-from battery_lit.read_batch import finalize_read_batch, prepare_read_batch
-from battery_lit.sidecars import READ_DRAFT_WORKER_SCHEMA_VERSION
-from battery_lit.topic import init_topic
+from paper_engine.read import audit_reading_library, parse_pdf
+from paper_engine.read_batch import finalize_read_batch, prepare_read_batch
+from paper_engine.sidecars import READ_DRAFT_WORKER_SCHEMA_VERSION
+from paper_engine.topic import init_topic
 
 
 def _fixture(name: str) -> Path:
@@ -292,7 +292,7 @@ def check_missing_draft_blocks_finalize(work_dir: Path) -> dict[str, Any]:
 
 
 def run_probe(*, keep_work_dir: bool = False) -> dict[str, Any]:
-    work_dir = Path(tempfile.mkdtemp(prefix="battery-batch-reread-adversarial-"))
+    work_dir = Path(tempfile.mkdtemp(prefix="paper-engine-batch-reread-adversarial-"))
     checks = [
         check_template_draft_rejected(work_dir),
         check_oversized_batch_rejected(work_dir),

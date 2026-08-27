@@ -1,0 +1,35 @@
+{
+  "decision": "accepted",
+  "findings": [
+    {
+      "severity": "pass",
+      "area": "source_fidelity",
+      "finding": "The frozen PDF SHA256 matches case.yml, and the reproduction targets paper equations (3) and (5) plus the qualitative Fig. 7 anisotropy sweep."
+    },
+    {
+      "severity": "pass",
+      "area": "comsol_translation",
+      "finding": "The two-field General Form PDE mapping is sign-consistent with ea*u_tt+da*u_t+div(Gamma)=f: phase-field cross fluxes, thermal diffusion, latent-heat source, dependent-variable order [p,T], and zero natural fluxes are explicit."
+    },
+    {
+      "severity": "pass",
+      "area": "execution_integrity",
+      "finding": "All 11 declared COMSOL 6.4 runs completed with exit code 0:0; logs are clean, exports are present, and the authoritative delta020 MPH is 1,659,129,698 bytes with SHA256 1954c1bcd4039b2d7268c55947d126654b32cd30bb2248c7844090ae0ee703fa."
+    },
+    {
+      "severity": "pass",
+      "area": "acceptance",
+      "finding": "All 12 preregistered required criteria pass, including mean Fig. 7 IoU 0.3283, normalized Chamfer 0.02620, mesh-tip difference 0.00354, anisotropy tip ratio 1.8509, and enthalpy drift 2.09e-13."
+    },
+    {
+      "severity": "limitation",
+      "area": "identifiability",
+      "finding": "The paper does not report nucleus radius, random seed, or noise update cadence. The declared R0=0.15 and deterministic hash noise are reproducibility assumptions, supported by R0=0.12/0.18 sensitivity and noise-free controls, not claims about the original hidden settings."
+    },
+    {
+      "severity": "limitation",
+      "area": "interpretation",
+      "finding": "This is a qualitative morphology reproduction, not pixel identity or a physical-SI calibration. The reported zero time-step tip difference is resolution-quantized by the threshold tip metric; it is accepted only alongside the field-health and other convergence gates."
+    }
+  ]
+}

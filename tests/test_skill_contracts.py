@@ -13,9 +13,9 @@ def _repo_text(path: str) -> str:
 
 def test_repository_entry_routes_without_sibling_context():
     text = _repo_text("AGENTS.md")
-    assert "Silicon-Carbon Anode Literature Agent Guide" in text
-    assert "Use `bin/battery_lit`" in text
-    assert "Do not call `battery_lit init` with missing title or direction" in text
+    assert "PaperEngine Agent Guide" in text
+    assert "Use `bin/paper_engine`" in text
+    assert "Do not call `paper_engine init` with missing title or direction" in text
     assert "silicon-carbon negative-electrode materials" in text
     assert "Do not inspect `.agents`, `.codex`, hidden directories" in text
     assert "locate application root" not in text
@@ -24,13 +24,14 @@ def test_repository_entry_routes_without_sibling_context():
 
 def test_repository_readme_uses_product_language():
     text = _repo_text("README.md")
-    assert "structured literature review of silicon-carbon negative-electrode materials" in text
+    assert "PaperEngine is a reusable research workspace" in text
+    assert "current default topic remains silicon-carbon negative-electrode materials" in text
     assert "research_profile/scope.md" in text
-    assert "@/battery_research_literature/README.md" in text
-    assert "使用 battery_lit 工具" in text
+    assert "@/PaperEngine/README.md" in text
+    assert "使用 paper_engine 工具" in text
     assert "名字定为 \"<topic title>\"" in text
     assert "检索方向是 <one paragraph research direction>" in text
-    assert "bin/battery_lit init --base-dir /tmp" in text
+    assert "bin/paper_engine init --base-dir /tmp" in text
     assert "locate application root" not in text
 
 
@@ -38,33 +39,33 @@ def test_agents_context_budget_and_safety_contract():
     text = _text("templates/topic_repo/AGENTS.md")
     assert "policy.yml" in text
     assert "Codex is not the only safety boundary" in text
-    assert "battery_lit policy check --json" in text
+    assert "paper_engine policy check --json" in text
     assert "Do not read these large files or trees in full by default" in text
     assert "library.bib" in text
     assert "candidates.jsonl" in text
-    assert "battery_lit library list --json --limit 20" in text
-    assert "battery_lit library find --json --query TEXT" in text
-    assert "battery_lit library update-metadata <bibkey> --metadata <file> --json" in text
+    assert "paper_engine library list --json --limit 20" in text
+    assert "paper_engine library find --json --query TEXT" in text
+    assert "paper_engine library update-metadata <bibkey> --metadata <file> --json" in text
     assert "dry-run list and explicit user confirmation" in text
     assert "Do not bypass the CLI" in text
     assert "Parent directories and sibling topic folders are out of scope" in text
     assert "use sibling topics as templates" in text
     assert "skills/reference_expansion/SKILL.md" in text
     assert "skills/forward_citation_expansion/SKILL.md" in text
-    assert "battery_lit candidates remove-by-bibkey <bibkey> --json" in text
+    assert "paper_engine candidates remove-by-bibkey <bibkey> --json" in text
     assert "only removes one unique matching record from `candidates.jsonl`" in text
     assert "if multiple queue items match the same bibkey it fails without deleting anything" in text
     assert "must not be treated as permission to delete `library.bib`, `papers/<bibkey>/`, PDFs, notes" in text
     assert "Metadata supplied by an agent must be grounded in real search/source results" in text
     assert "never invented from model memory" in text
-    assert "BibTeX field `batteryMetadataStatus` with value `unverified`" in text
+    assert "BibTeX field `paperEngineMetadataStatus` with value `unverified`" in text
 
 
 def test_project_agents_routes_init_and_enter():
     text = _text("AGENTS.md")
     assert "templates/skills/topic_init/SKILL.md" in text
     assert "templates/skills/topic_enter/SKILL.md" in text
-    assert "Do not call `battery_lit init` with missing title or direction" in text
+    assert "Do not call `paper_engine init` with missing title or direction" in text
     assert "Do not run exploratory directory commands to confirm initialization conventions" in text
     assert "do not run `ls <base-dir>`" in text
     assert "Missing title or direction must be resolved by asking the user" in text
@@ -82,16 +83,16 @@ def test_project_agents_routes_init_and_enter():
 def test_readme_documents_serverlet_first_entry():
     text = _text("README.md")
     assert "Serverlet-first entry" in text
-    assert "battery_lit start --base-dir <parent-dir>" in text
-    assert "battery_lit start --root <topic>" in text
+    assert "paper_engine start --base-dir <parent-dir>" in text
+    assert "paper_engine start --root <topic>" in text
     assert "browser workbench is the ordinary interface" in text
     assert "persistent Codex session" in text
     assert "External interactive Codex is an advanced/debug fallback" in text
-    assert "@/battery_research_literature/README.md" in text
-    assert "使用 battery_lit 工具" in text
+    assert "@/PaperEngine/README.md" in text
+    assert "使用 paper_engine 工具" in text
     assert "动力电池硅碳负极" in text
     assert "规模制造和全电池验证" in text
-    assert "Do not ask Codex to \"load the battery_lit agent\"" in text
+    assert "Do not ask Codex to \"load the paper_engine agent\"" in text
     assert "multi-agent delegation" in text
     assert "templates/skills/topic_init/SKILL.md" in text
     assert "skills/topic_enter/SKILL.md" in text
@@ -108,13 +109,13 @@ def test_readme_documents_serverlet_first_entry():
 def test_user_manuals_document_browser_default():
     english = _text("docs/user_manual.md")
     chinese = _text("docs/user_manual_zh.md")
-    assert "battery_lit start --base-dir <parent-dir>" in english
-    assert "battery_lit start --root <topic>" in english
+    assert "paper_engine start --base-dir <parent-dir>" in english
+    assert "paper_engine start --root <topic>" in english
     assert "browser workbench" in english
     assert "persistent Codex operator" in english
     assert "External Codex" in english
-    assert "battery_lit start --base-dir <parent-dir>" in chinese
-    assert "battery_lit start --root <topic>" in chinese
+    assert "paper_engine start --base-dir <parent-dir>" in chinese
+    assert "paper_engine start --root <topic>" in chinese
     assert "浏览器" in chinese
     assert "持续存在的 Codex 操作员" in chinese
     assert "外部 Codex" in chinese
@@ -165,11 +166,11 @@ def test_live_testing_documents_five_paper_reading_quality_gate():
     assert "--min-papers 5" in text
     assert "--per-paper-timeout 1800" in text
     assert "at least five distinct papers" in text
-    assert "BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE=1" in text
+    assert "PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE=1" in text
     assert "--codex-bypass-sandbox" in text
     assert "Do not report a one-paper smoke test as reading-quality live acceptance" in text
     assert "successful_rereads" in text
-    assert "battery_lit tool audit-readings --json" in text
+    assert "paper_engine tool audit-readings --json" in text
     assert "note.md" in text
     assert "note_zh.md" in text
     assert "reading_result.html" in text
@@ -177,10 +178,10 @@ def test_live_testing_documents_five_paper_reading_quality_gate():
 
 def test_topic_init_skill_refines_rough_description():
     text = _text("templates/skills/topic_init/SKILL.md")
-    assert "Do not call `battery_lit init` with missing title or direction" in text
+    assert "Do not call `paper_engine init` with missing title or direction" in text
     assert "Do Not Explore Before Init" in text
     assert "First contact rule" in text
-    assert "use `bin/battery_lit init` directly" in text
+    assert "use `bin/paper_engine init` directly" in text
     assert "Do not search for local examples or similar topics first" in text
     assert "Do not run `ls <base-dir>`" in text
     assert "do not run `find .agents .codex`" in text
@@ -208,8 +209,8 @@ def test_topic_init_skill_refines_rough_description():
 
 def test_topic_enter_skill_bootstraps_without_large_reads():
     text = _text("templates/skills/topic_enter/SKILL.md")
-    assert "battery_lit policy check --root <topic> --json" in text
-    assert "battery_lit status --root <topic> --json" in text
+    assert "paper_engine policy check --root <topic> --json" in text
+    assert "paper_engine status --root <topic> --json" in text
     assert "Do not read full `library.bib`" in text
     assert "Report the topic title, policy health, status counts" in text
 
@@ -231,17 +232,17 @@ def test_topic_policy_declares_parent_and_sibling_boundary():
 def test_collect_skill_uses_cli_dedup_not_full_bibtex_context():
     text = _text("templates/skills/literature_collect/SKILL.md")
     assert "Do not read full `library.bib` or `candidates.jsonl`" in text
-    assert "battery_lit status --json" in text
-    assert "battery_lit tool dedup --fix --json" in text
+    assert "paper_engine status --json" in text
+    assert "paper_engine tool dedup --fix --json" in text
     assert "skills/candidate_scoring/SKILL.md" in text
-    assert "battery_lit library find --json --query TEXT" in text
+    assert "paper_engine library find --json --query TEXT" in text
     assert "Exact Title Intake" in text
     assert "Batch Title Intake" in text
     assert "skills/literature_collect/scripts/collect_titles.py" in text
     assert "skills/reference_expansion/SKILL.md" in text
     assert "Constrained Collection" in text
     assert "candidate list is the admission gate" in text
-    assert "battery_lit tool search --root <topic> --query" in text
+    assert "paper_engine tool search --root <topic> --query" in text
     assert "Rejected preview hits must not be written to `candidates.jsonl`" in text
     assert "Exact-title candidates must be scored before reporting them as ready for screening" in text
     assert "Batch-title candidates must also be scored before screening" in text
@@ -259,7 +260,7 @@ def test_candidate_scoring_skill_bounds_sidecar_shards():
     assert "Batch Sidecar Acceleration" in text
     assert "sidecars may speed up the judgment step only" in text
     assert "The main Codex worker still owns validation" in text
-    assert "Sidecars must not run `battery_lit candidates apply-scores`" in text
+    assert "Sidecars must not run `paper_engine candidates apply-scores`" in text
     assert "Reject malformed JSONL" in text
     assert "Remove temporary sidecar directories" in text
 
@@ -267,13 +268,13 @@ def test_candidate_scoring_skill_bounds_sidecar_shards():
 def test_topic_agents_declares_sidecar_state_boundary():
     text = _text("templates/topic_repo/AGENTS.md")
     assert "Sidecar / Subagent Boundary" in text
-    assert "battery_lit read-many" in text
+    assert "paper_engine read-many" in text
     assert "one reader session and one independent reviewer session per paper" in text
     assert ".tmp/read_pool/<run_id>/<bibkey>/draft/" in text
     assert "only the controller may copy accepted artifacts into `papers/<bibkey>/`" in text
     assert "Forbidden sidecar actions" in text
     assert "editing `candidates.jsonl`, `library.bib`, `preferences.yml`" in text
-    assert "running `battery_lit collect`, `tool dedup --fix`, `candidates apply-scores`" in text
+    assert "running `paper_engine collect`, `tool dedup --fix`, `candidates apply-scores`" in text
     assert "writing final `source_map.json`, `note_plan.json`, or `deep_read.json`" in text
     assert "Do not merge multi-paper reading artifacts by hand" in text
 
@@ -305,7 +306,7 @@ def test_paper_reread_skill_scales_probe_size_to_change_scope():
 def test_preference_refresh_skill_is_llm_driven_and_bounded():
     text = _text("templates/skills/preference_refresh/SKILL.md")
     assert "LLM synthesis task, not a rule-based keyword extractor" in text
-    assert "battery_lit preferences check --root <topic> --json" in text
+    assert "paper_engine preferences check --root <topic> --json" in text
     assert "at most 40 labeled candidates" in text
     assert "Do not read PDFs" in text
     assert "Do not update `topic.yml`" in text
@@ -316,10 +317,10 @@ def test_preference_refresh_skill_is_llm_driven_and_bounded():
 def test_reference_expansion_skill_uses_bundled_scripts_and_tmp_hygiene():
     text = _text("templates/skills/reference_expansion/SKILL.md")
     assert "reference_expansion" in text
-    assert "battery_lit candidates show --root <topic> CAND-ID --json" in text
+    assert "paper_engine candidates show --root <topic> CAND-ID --json" in text
     assert "skills/reference_expansion/scripts/extract_arxiv_bib_titles.py" in text
     assert "skills/literature_collect/scripts/collect_titles.py" in text
-    assert "battery_lit tool dedup --root <topic> --fix --json" in text
+    assert "paper_engine tool dedup --root <topic> --fix --json" in text
     assert "skills/candidate_scoring/SKILL.md" in text
     assert "Do not create fixed `/tmp/<task>` directories" in text
     assert "Do not read full `candidates.jsonl`, `library.bib`, or sibling topic folders" in text
@@ -342,9 +343,9 @@ def test_forward_citation_expansion_skill_uses_api_not_google_scholar_scraping()
     assert "primary_location`, `best_oa_location`, and every `locations[*]`" in text
     assert "https://arxiv.org/pdf/<arxiv_id>.pdf" in text
     assert "reports/forward_citation_admitted_<seed>.json" in text
-    assert "battery_lit collect --root <topic>" in text
+    assert "paper_engine collect --root <topic>" in text
     assert "--fixture reports/forward_citation_admitted_<seed>.json" in text
-    assert "battery_lit tool dedup --root <topic> --fix --json" in text
+    assert "paper_engine tool dedup --root <topic> --fix --json" in text
     assert "skills/candidate_scoring/SKILL.md" in text
     assert "metadata_only" in text
     assert "acquirable" in text
@@ -357,10 +358,10 @@ def test_candidate_scoring_skill_defines_relevance_rubric():
     assert "`preference` in `[-0.15, 0.15]`" in text
     assert "`credibility` in `[-0.15, 0.15]`" in text
     assert "Do not use DOI, PDF URL, publication year, search backend, or retrieval source" in text
-    assert "battery_lit candidates scoring-batch" in text
-    assert "battery_lit candidates apply-scores" in text
+    assert "paper_engine candidates scoring-batch" in text
+    assert "paper_engine candidates apply-scores" in text
     assert "Preview Scoring Before Admission" in text
-    assert "score raw `battery_lit tool search --json` preview results" in text
+    assert "score raw `paper_engine tool search --json` preview results" in text
     assert "Preview results below threshold are search hits, not candidates" in text
 
 
@@ -394,15 +395,15 @@ def test_paper_reread_skill_prevents_old_artifact_contamination():
     assert "papers/<bibkey>/deep_read.json" in skill
     assert "papers/<bibkey>/note.md" in skill
     assert "papers/<bibkey>/reading_result.html" in skill
-    assert "battery_lit read <bibkey> --parse-only" in skill
-    assert "battery_lit read <bibkey> --vision-formulas" in skill
+    assert "paper_engine read <bibkey> --parse-only" in skill
+    assert "paper_engine read <bibkey> --vision-formulas" in skill
     assert "skills/paper_deep_read/SKILL.md" in skill
-    assert "battery_lit read <bibkey> --validate-report" in skill
-    assert "battery_lit read <bibkey> --quality-audit" in skill
-    assert "battery_lit read <bibkey> --rebuild-note" in skill
-    assert "battery_lit read-many --bibkey <bibkey>" in skill
-    assert "battery_lit read-many --all-library --force-reread --json" in skill
-    assert "battery_lit read-many --bibkey <bibkey> --refresh-section dataset --json" in skill
+    assert "paper_engine read <bibkey> --validate-report" in skill
+    assert "paper_engine read <bibkey> --quality-audit" in skill
+    assert "paper_engine read <bibkey> --rebuild-note" in skill
+    assert "paper_engine read-many --bibkey <bibkey>" in skill
+    assert "paper_engine read-many --all-library --force-reread --json" in skill
+    assert "paper_engine read-many --bibkey <bibkey> --refresh-section dataset --json" in skill
     assert "do not run a full reread" in skill
     assert "Do not mention rereading, updating, old results" in skill
     assert "one reader session and one independent reviewer session" in skill
@@ -417,12 +418,12 @@ def test_paper_reread_skill_prevents_old_artifact_contamination():
     assert "parsed/index-only bulk generator" in skill
     assert "schema filler" in skill
     assert "If `read-many` reports a failed bibkey" in skill
-    assert skill.rindex("battery_lit read <bibkey> --rebuild-note") < skill.rindex("battery_lit read <bibkey> --quality-audit")
+    assert skill.rindex("paper_engine read <bibkey> --rebuild-note") < skill.rindex("paper_engine read <bibkey> --quality-audit")
 
 
 def test_paper_reread_skill_limits_subagents_to_reader_reviewer_jobs():
     skill = _text("templates/skills/paper_reread/SKILL.md")
-    assert "reader/reviewer sessions inside `battery_lit read-many` are the default path" in skill
+    assert "reader/reviewer sessions inside `paper_engine read-many` are the default path" in skill
     assert "The main Codex session must not write multi-paper draft contents" in skill
     assert "generate that paper's staged `source_map.json`, `note_plan.json`, `deep_read.json`" in skill
     assert "Do not write final `papers/<bibkey>/` artifacts" in skill
@@ -484,11 +485,11 @@ def test_paper_deep_read_keeps_internal_instructions_out_of_reader_output():
 def test_acquire_skill_keeps_bibtex_guarded():
     text = _text("templates/skills/paper_acquire_bib/SKILL.md")
     assert "Do not directly edit `library.bib`" in text
-    assert "battery_lit tool enrich-metadata" in text
-    assert "battery_lit tool citation-guard" in text
-    assert "battery_lit acquire" in text
-    assert "battery_lit promote" in text
-    assert "battery_lit bib check" in text
+    assert "paper_engine tool enrich-metadata" in text
+    assert "paper_engine tool citation-guard" in text
+    assert "paper_engine acquire" in text
+    assert "paper_engine promote" in text
+    assert "paper_engine bib check" in text
     assert "Temporary PDF Hygiene" in text
     assert "Do not use fixed paths such as `/tmp/paper.pdf`" in text
 
@@ -517,7 +518,7 @@ def test_deep_read_skill_is_one_paper_and_chunked():
     assert "papers/<bibkey>/formula_vision.json" in text
     assert "vision_fallback.needed" in text
     assert "vision_fallback.status" in text
-    assert "battery_lit read <bibkey> --vision-formulas" in text
+    assert "paper_engine read <bibkey> --vision-formulas" in text
     assert "only allowed Codex image-input exception" in text
     assert "central claims" in text.lower()
     assert "source_refs" in text
@@ -526,7 +527,7 @@ def test_deep_read_skill_is_one_paper_and_chunked():
     assert "note_plan.json" in text
     assert "deep_read.json" in text
     assert "`read --rebuild-note` refreshes static HTML automatically" in text
-    assert "BATTERY_LIT_AUTO_HTML=0" in text
+    assert "PAPER_ENGINE_AUTO_HTML=0" in text
     profile = _text("templates/skills/paper_deep_read/references/paper-profile.md")
     source_map = _text("templates/skills/paper_deep_read/references/source-map.md")
     argument = _text("templates/skills/paper_deep_read/references/argument-anatomy.md")
@@ -571,8 +572,8 @@ def test_deep_read_skill_is_one_paper_and_chunked():
 def test_digest_skill_uses_summaries_before_notes():
     text = _text("templates/skills/literature_digest/SKILL.md")
     assert "Do not read full `library.bib`" in text
-    assert "battery_lit library list --json --limit 50" in text
-    assert "battery_lit library find --json --query TEXT" in text
+    assert "paper_engine library list --json --limit 50" in text
+    assert "paper_engine library find --json --query TEXT" in text
     assert "Read `papers/<bibkey>/note.md` only for papers needed" in text
 
 
@@ -580,7 +581,7 @@ def test_public_guides_do_not_use_development_stage_names():
     public_paths = [
         ROOT / "README.md",
         ROOT / "AGENTS.md",
-        ROOT / "bin" / "battery_lit",
+        ROOT / "bin" / "paper_engine",
         ROOT / "README.md",
         ROOT / "AGENTS.md",
         ROOT / "templates" / "topic_repo" / "README.md",
@@ -593,7 +594,7 @@ def test_public_guides_do_not_use_development_stage_names():
         ROOT / "docs" / "user_manual.md",
         ROOT / "docs" / "user_manual_zh.md",
         ROOT / "docs" / "deployment.md",
-        ROOT / "src" / "battery_lit" / "__init__.py",
+        ROOT / "src" / "paper_engine" / "__init__.py",
     ]
     banned = ["V1", "V2", "V1_legacy", "legacy", "archived"]
     for path in public_paths:

@@ -3,10 +3,10 @@ from __future__ import annotations
 import json
 
 from conftest import fixture_path
-from battery_lit.candidates import load_candidates, normalize_candidate
-from battery_lit.search import collect, resolve_paper, run_backend_search
-from battery_lit.topic import init_topic
-from battery_lit.util import write_jsonl
+from paper_engine.candidates import load_candidates, normalize_candidate
+from paper_engine.search import collect, resolve_paper, run_backend_search
+from paper_engine.topic import init_topic
+from paper_engine.util import write_jsonl
 
 
 def test_fixture_collect_inserts_and_repeated_collect_dedups(tmp_path):
@@ -137,7 +137,7 @@ def test_collect_enriches_openalex_results_with_semantic_pdf(monkeypatch, tmp_pa
         encoding="utf-8",
     )
     monkeypatch.setattr(
-        "battery_lit.metadata._get_json",
+        "paper_engine.metadata._get_json",
         lambda url: {
             "paperId": "SEM-123",
             "title": "OpenAlex Paper",
@@ -172,7 +172,7 @@ def test_collect_survives_semantic_pdf_enrichment_failure(monkeypatch, tmp_path)
     def raise_semantic(url):
         raise RuntimeError("rate limited")
 
-    monkeypatch.setattr("battery_lit.metadata._get_json", raise_semantic)
+    monkeypatch.setattr("paper_engine.metadata._get_json", raise_semantic)
 
     result = collect(tmp_path, fixture=fixture)
     candidate = load_candidates(tmp_path)[0]
@@ -186,7 +186,7 @@ def test_collect_survives_semantic_pdf_enrichment_failure(monkeypatch, tmp_path)
 def test_resolve_paper_returns_semantic_pdf_enriched_candidate(monkeypatch, tmp_path):
     init_topic(tmp_path)
     monkeypatch.setattr(
-        "battery_lit.search.run_backend_search",
+        "paper_engine.search.run_backend_search",
         lambda query, max_results=5: [
             {
                 "title": "OpenAlex Paper",
@@ -228,10 +228,10 @@ def test_backend_search_enriches_openalex_preview(monkeypatch):
             }
         )
 
-    monkeypatch.setattr("battery_lit.search.backend_command", lambda: ["paper-search"])
-    monkeypatch.setattr("battery_lit.search.subprocess.run", lambda *args, **kwargs: Proc())
+    monkeypatch.setattr("paper_engine.search.backend_command", lambda: ["paper-search"])
+    monkeypatch.setattr("paper_engine.search.subprocess.run", lambda *args, **kwargs: Proc())
     monkeypatch.setattr(
-        "battery_lit.metadata._get_json",
+        "paper_engine.metadata._get_json",
         lambda url: {
             "paperId": "SEM-123",
             "title": "OpenAlex Paper",

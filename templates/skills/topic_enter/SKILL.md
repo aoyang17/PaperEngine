@@ -1,6 +1,6 @@
 # topic_enter
 
-Use this skill whenever the user asks to enter, resume, continue, inspect, or work in an existing battery literature topic.
+Use this skill whenever the user asks to enter, resume, continue, inspect, or work in an existing PaperEngine topic.
 
 ## Context Budget
 
@@ -16,11 +16,11 @@ Do not read full `library.bib`, `candidates.jsonl`, `papers/*/parsed.md`, `paper
 ## Workflow
 
 1. Confirm the given root is a topic by checking `AGENTS.md`, `policy.yml`, and `topic.yml`.
-2. Run `battery_lit policy check --root <topic> --json`.
-3. Run `battery_lit status --root <topic> --json`.
-4. Use `battery_lit library list --root <topic> --json --limit 20` only if the user asks about existing library contents.
+2. Run `paper_engine policy check --root <topic> --json`.
+3. Run `paper_engine status --root <topic> --json`.
+4. Use `paper_engine library list --root <topic> --json --limit 20` only if the user asks about existing library contents.
 5. If status reports unscored candidates and the user wants screening or ranking, follow `skills/candidate_scoring/SKILL.md`.
-6. Use `battery_lit candidates list --root <topic> --json --status new --sort score --min-score 0` only if the user asks to screen candidates.
+6. Use `paper_engine candidates list --root <topic> --json --status new --sort score --min-score 0` only if the user asks to screen candidates.
 
 ## Output
 

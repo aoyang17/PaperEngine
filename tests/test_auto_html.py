@@ -9,7 +9,7 @@ from conftest import ROOT, fixture_path
 
 def _run(*args: str, env: dict[str, str] | None = None) -> dict:
     proc = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), *args],
+        [str(ROOT / "bin" / "paper_engine"), *args],
         text=True,
         capture_output=True,
         check=True,
@@ -101,7 +101,7 @@ def test_promote_and_rebuild_note_refresh_library_and_paper_html(tmp_path):
 
 def test_auto_html_can_be_disabled_with_environment(tmp_path):
     _run("init", "--root", str(tmp_path), "--title", "Auto HTML", "--direction", "test-time guidance")
-    env = {**dict(os.environ), "BATTERY_LIT_AUTO_HTML": "0"}
+    env = {**dict(os.environ), "PAPER_ENGINE_AUTO_HTML": "0"}
 
     _run("collect", "--root", str(tmp_path), "--fixture", str(fixture_path("search_results.json")), "--target-new", "5", env=env)
 

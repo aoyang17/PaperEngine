@@ -7,8 +7,8 @@ import threading
 import time
 from pathlib import Path
 
-from battery_lit.codex_session import AppServerCodexSessionManager
-from battery_lit.topic import init_topic
+from paper_engine.codex_session import AppServerCodexSessionManager
+from paper_engine.topic import init_topic
 
 
 class FakeStdout:
@@ -184,7 +184,7 @@ def test_app_server_spawn_adds_common_codex_bins_to_path(tmp_path, monkeypatch):
         popen_args.update(kwargs)
         return FakeAppServerProcess()
 
-    monkeypatch.setattr("battery_lit.codex_session.subprocess.Popen", fake_popen)
+    monkeypatch.setattr("paper_engine.codex_session.subprocess.Popen", fake_popen)
     manager = AppServerCodexSessionManager(project_root=tmp_path)
 
     manager._spawn_process(["codex", "app-server", "--listen", "stdio://"], tmp_path)
@@ -199,7 +199,7 @@ def test_app_server_spawn_adds_common_codex_bins_to_path(tmp_path, monkeypatch):
 
 
 def test_app_server_turn_start_for_message_and_action(tmp_path, monkeypatch):
-    monkeypatch.setenv("BATTERY_LIT_CODEX_BYPASS_SANDBOX", "0")
+    monkeypatch.setenv("PAPER_ENGINE_CODEX_BYPASS_SANDBOX", "0")
     init_topic(tmp_path, "Turn Topic", "turn start")
     process = FakeAppServerProcess()
     manager = AppServerCodexSessionManager(spawn=lambda command, cwd: process)
@@ -214,14 +214,14 @@ def test_app_server_turn_start_for_message_and_action(tmp_path, monkeypatch):
     assert len(turn_messages) == 2
     assert turn_messages[0]["params"]["sandboxPolicy"] == {"type": "workspaceWrite"}
     assert "Search 30 papers" in turn_messages[0]["params"]["input"][0]["text"]
-    assert "When a command says `battery_lit`, run" in turn_messages[0]["params"]["input"][0]["text"]
+    assert "When a command says `paper_engine`, run" in turn_messages[0]["params"]["input"][0]["text"]
     assert "candidate_download_selected" in turn_messages[1]["params"]["input"][0]["text"]
     assert "CAND-001" in turn_messages[1]["params"]["input"][0]["text"]
-    assert "/bin/battery_lit" in turn_messages[1]["params"]["input"][0]["text"]
+    assert "/bin/paper_engine" in turn_messages[1]["params"]["input"][0]["text"]
 
 
 def test_app_server_uses_danger_policy_when_bypass_env_is_set(tmp_path, monkeypatch):
-    monkeypatch.setenv("BATTERY_LIT_CODEX_BYPASS_SANDBOX", "1")
+    monkeypatch.setenv("PAPER_ENGINE_CODEX_BYPASS_SANDBOX", "1")
     init_topic(tmp_path, "Bypass Topic", "turn sandbox")
     process = FakeAppServerProcess()
     manager = AppServerCodexSessionManager(spawn=lambda command, cwd: process)

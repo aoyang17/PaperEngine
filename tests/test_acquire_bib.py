@@ -3,13 +3,13 @@ from __future__ import annotations
 import pytest
 
 from conftest import fixture_path
-from battery_lit.acquire import acquire_pdf
-from battery_lit.bib import promote_candidate
-from battery_lit.candidates import append_candidates, load_candidates
-from battery_lit.citation_guard import check_bib
-from battery_lit.metadata import enrich_candidate
-from battery_lit.search import collect
-from battery_lit.topic import init_topic
+from paper_engine.acquire import acquire_pdf
+from paper_engine.bib import promote_candidate
+from paper_engine.candidates import append_candidates, load_candidates
+from paper_engine.citation_guard import check_bib
+from paper_engine.metadata import enrich_candidate
+from paper_engine.search import collect
+from paper_engine.topic import init_topic
 
 
 def test_manual_acquire_promote_and_repeated_promote(tmp_path):
@@ -105,8 +105,8 @@ def test_manual_pdf_promote_allows_openalex_verified_no_doi(tmp_path):
     assert (tmp_path / "papers" / promoted["bibkey"] / "paper.pdf").exists()
     assert "openalexId = {https://openalex.org/W123456789}" in bib
     assert "issn = {1234-5678}" in bib
-    assert "batteryMetadataStatus = {verified_no_doi}" in bib
-    assert "batteryVerifiedSource = {https://openalex.org/W123456789}" in bib
+    assert "paperEngineMetadataStatus = {verified_no_doi}" in bib
+    assert "paperEngineVerifiedSource = {https://openalex.org/W123456789}" in bib
     assert "openalex_id: https://openalex.org/W123456789" in metadata
     assert check_bib(tmp_path)["ok"] is True
 
@@ -128,7 +128,7 @@ def test_promote_uses_enriched_canonical_metadata(monkeypatch, tmp_path):
         ],
     )
     monkeypatch.setattr(
-        "battery_lit.metadata.enrich_by_doi",
+        "paper_engine.metadata.enrich_by_doi",
         lambda doi: {
             "title": "Canonical Title",
             "authors": ["Ada Example"],

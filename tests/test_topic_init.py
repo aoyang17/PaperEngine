@@ -5,8 +5,8 @@ import subprocess
 import yaml
 
 from conftest import ROOT
-from battery_lit.topic import init_topic, root_from_title
-from battery_lit.util import slugify_path_component
+from paper_engine.topic import init_topic, root_from_title
+from paper_engine.util import slugify_path_component
 
 
 def test_init_creates_file_only_topic_repo(tmp_path):
@@ -32,7 +32,7 @@ def test_init_creates_file_only_topic_repo(tmp_path):
 
 def test_init_is_idempotent_and_cli_builds_initial_html(tmp_path):
     cmd = [
-        str(ROOT / "bin" / "battery_lit"),
+        str(ROOT / "bin" / "paper_engine"),
         "init",
         "--root",
         str(tmp_path),
@@ -63,7 +63,7 @@ def test_root_from_title_uses_slug_under_base_dir(tmp_path):
 
 def test_cli_init_base_dir_derives_safe_root_from_title(tmp_path):
     cmd = [
-        str(ROOT / "bin" / "battery_lit"),
+        str(ROOT / "bin" / "paper_engine"),
         "init",
         "--base-dir",
         str(tmp_path),
@@ -83,7 +83,7 @@ def test_cli_init_base_dir_derives_safe_root_from_title(tmp_path):
 
 def test_repository_root_wrapper_initializes_topic(tmp_path):
     cmd = [
-        str(ROOT / "bin" / "battery_lit"),
+        str(ROOT / "bin" / "paper_engine"),
         "init",
         "--base-dir",
         str(tmp_path),
@@ -102,7 +102,7 @@ def test_repository_root_wrapper_initializes_topic(tmp_path):
 
 def test_init_help_carries_clean_room_rules():
     proc = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "init", "--help"],
+        [str(ROOT / "bin" / "paper_engine"), "init", "--help"],
         text=True,
         capture_output=True,
         check=True,
@@ -121,7 +121,7 @@ def test_cli_init_base_dir_does_not_use_sibling_topic_as_template(tmp_path):
     (sibling / "topic.yml").write_text("title: Old Topic\n", encoding="utf-8")
 
     cmd = [
-        str(ROOT / "bin" / "battery_lit"),
+        str(ROOT / "bin" / "paper_engine"),
         "init",
         "--base-dir",
         str(tmp_path),
@@ -140,7 +140,7 @@ def test_cli_init_base_dir_does_not_use_sibling_topic_as_template(tmp_path):
 
 def test_cli_init_requires_title_and_direction(tmp_path):
     missing_direction = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "init", "--root", str(tmp_path), "--title", "No Direction"],
+        [str(ROOT / "bin" / "paper_engine"), "init", "--root", str(tmp_path), "--title", "No Direction"],
         text=True,
         capture_output=True,
         check=False,
@@ -150,7 +150,7 @@ def test_cli_init_requires_title_and_direction(tmp_path):
     assert "ask the user; do not infer from filesystem" in missing_direction.stderr
 
     missing_title = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "init", "--root", str(tmp_path), "--direction", "No title direction"],
+        [str(ROOT / "bin" / "paper_engine"), "init", "--root", str(tmp_path), "--direction", "No title direction"],
         text=True,
         capture_output=True,
         check=False,
@@ -167,7 +167,7 @@ def test_cli_init_rejects_non_empty_non_topic_root(tmp_path):
 
     proc = subprocess.run(
         [
-            str(ROOT / "bin" / "battery_lit"),
+            str(ROOT / "bin" / "paper_engine"),
             "init",
             "--root",
             str(target),

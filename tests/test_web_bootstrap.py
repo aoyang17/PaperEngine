@@ -2,20 +2,20 @@ from __future__ import annotations
 
 import json
 
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.topic import init_topic, root_from_title
-from battery_lit.web_app import WebApp
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.topic import init_topic, root_from_title
+from paper_engine.web_app import WebApp
 
 
 def _prompt(base_dir, job_id):
-    return (base_dir / ".battery_serverlet" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
+    return (base_dir / ".paper_engine_serverlet" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
 
 
 def test_bootstrap_mode_renders_create_topic_without_loading_topic(tmp_path, monkeypatch):
     def fail_load_topic(root):
         raise AssertionError("bootstrap page should not load topic.yml")
 
-    monkeypatch.setattr("battery_lit.web_views.load_topic", fail_load_topic)
+    monkeypatch.setattr("paper_engine.web_views.load_topic", fail_load_topic)
     app = WebApp(base_dir=tmp_path)
 
     for path in ["/", "/dashboard.html", "/candidates.html", "/library.html", "/papers/Any.html"]:
@@ -55,9 +55,9 @@ def test_bootstrap_init_action_enqueues_clean_room_codex_job(tmp_path):
 
     assert response.status == 202
     assert data["action"] == "topic-init"
-    assert (tmp_path / ".battery_serverlet" / "jobs" / data["job_id"]).exists()
+    assert (tmp_path / ".paper_engine_serverlet" / "jobs" / data["job_id"]).exists()
     assert "templates/skills/topic_init/SKILL.md" in prompt
-    assert "/bin/battery_lit" in prompt
+    assert "/bin/paper_engine" in prompt
     assert " init --base-dir" in prompt
     assert "Test Time Guidance" in prompt
     assert "Flow model test-time guidance" in prompt
@@ -83,8 +83,8 @@ def test_bootstrap_init_defaults_to_direct_project_init(tmp_path):
     assert app.topic_root == expected_root
     assert (expected_root / "topic.yml").exists()
     assert (expected_root / "html" / "dashboard.html").exists()
-    assert (tmp_path / ".battery_serverlet" / "jobs" / data["job_id"] / "summary.json").exists()
-    assert not (tmp_path / ".battery_serverlet" / "active_job.json").exists()
+    assert (tmp_path / ".paper_engine_serverlet" / "jobs" / data["job_id"] / "summary.json").exists()
+    assert not (tmp_path / ".paper_engine_serverlet" / "active_job.json").exists()
 
 
 def test_bootstrap_init_requires_title_and_direction(tmp_path):
@@ -119,7 +119,7 @@ def test_bootstrap_binds_after_successful_init_job(tmp_path):
     assert dashboard.status == 200
     assert "Test Time Guidance" in dashboard.body
     assert "Create Topic" not in dashboard.body
-    assert not (tmp_path / ".battery_serverlet" / "active_job.json").exists()
+    assert not (tmp_path / ".paper_engine_serverlet" / "active_job.json").exists()
 
 
 def test_bootstrap_does_not_bind_without_valid_topic_files(tmp_path):
@@ -154,5 +154,5 @@ def test_bound_topic_actions_use_topic_job_state(tmp_path):
     data = json.loads(response.body)
 
     assert response.status == 202
-    assert (expected_root / ".battery" / "jobs" / data["job_id"]).exists()
-    assert not (tmp_path / ".battery_serverlet" / "jobs" / data["job_id"]).exists()
+    assert (expected_root / ".paper_engine" / "jobs" / data["job_id"]).exists()
+    assert not (tmp_path / ".paper_engine_serverlet" / "jobs" / data["job_id"]).exists()

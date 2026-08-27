@@ -8,7 +8,7 @@ Read only:
 
 - `topic.yml`
 - `preferences.yml`
-- candidate batches from `battery_lit candidates scoring-batch --json`
+- candidate batches from `paper_engine candidates scoring-batch --json`
 
 Do not read full `candidates.jsonl`, `library.bib`, or paper directories.
 
@@ -34,26 +34,26 @@ Do not use DOI, PDF URL, publication year, search backend, or retrieval source a
 
 ## Workflow
 
-1. Run `battery_lit candidates scoring-batch --root <topic> --status new --limit 20 --json`.
+1. Run `paper_engine candidates scoring-batch --root <topic> --status new --limit 20 --json`.
 2. Classify each candidate into zero or more research modules, then score it using the rubric above. If uncertain, use `score_confidence: "low"` and keep the score near zero.
 3. Write JSONL to `reports/candidate_scores.jsonl`, one candidate per line.
-4. Apply the scores with `battery_lit candidates apply-scores --root <topic> --scores reports/candidate_scores.jsonl`.
-5. Inspect ranked candidates with `battery_lit candidates list --root <topic> --status new --sort score --min-score 0 --json`.
+4. Apply the scores with `paper_engine candidates apply-scores --root <topic> --scores reports/candidate_scores.jsonl`.
+5. Inspect ranked candidates with `paper_engine candidates list --root <topic> --status new --sort score --min-score 0 --json`.
 
 ## Batch Sidecar Acceleration
 
 For large scoring batches, sidecars may speed up the judgment step only. The main Codex worker still owns validation and the single `apply-scores` mutation.
 
 - Use sidecars only for independent candidate-score shards.
-- Each sidecar writes a job-local shard such as `.battery/jobs/<job-id>/sidecars/score_shard_01.jsonl` or a temporary `/tmp/battery-v3-sidecar-*` artifact.
-- Sidecars must not run `battery_lit candidates apply-scores`, edit `candidates.jsonl`, edit `preferences.yml`, or mutate the topic.
+- Each sidecar writes a job-local shard such as `.paper_engine/jobs/<job-id>/sidecars/score_shard_01.jsonl` or a temporary `/tmp/paper-engine-sidecar-*` artifact.
+- Sidecars must not run `paper_engine candidates apply-scores`, edit `candidates.jsonl`, edit `preferences.yml`, or mutate the topic.
 - Merge shards with project validation before applying. Reject malformed JSONL, duplicate score identities, scores outside `[-1, 1]`, and missing `candidate_id`.
 - Apply the merged score file once from the main worker.
 - Remove temporary sidecar directories after the merge unless the user explicitly asks to keep them for debugging.
 
 ## Preview Scoring Before Admission
 
-When `skills/literature_collect/SKILL.md` asks for score-gated collection, score raw `battery_lit tool search --json` preview results in the current Codex turn before they become candidates. Use the same rubric, but do not call `battery_lit candidates apply-scores` because these records are not in `candidates.jsonl` yet.
+When `skills/literature_collect/SKILL.md` asks for score-gated collection, score raw `paper_engine tool search --json` preview results in the current Codex turn before they become candidates. Use the same rubric, but do not call `paper_engine candidates apply-scores` because these records are not in `candidates.jsonl` yet.
 
 Keep only preview results that satisfy the requested score threshold, then pass their titles to the literature collection title-intake workflow. Preview results below threshold are search hits, not candidates; do not mark them dismissed or write them to `candidates.jsonl`.
 

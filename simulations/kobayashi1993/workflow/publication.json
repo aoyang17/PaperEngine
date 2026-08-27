@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "case_id": "kobayashi1993",
+  "completed_at": "2026-08-26T04:15:19.809646+00:00",
+  "cycle": 1,
+  "source_sha256": "51f551671c05a7003c20032e97e3864f55d5448505857f7f15f46cfdc0bc5a5f",
+  "stage_outputs": {
+    "research": [
+      {
+        "path": "stages/01_research/evidence_map.json",
+        "sha256": "724713affef72cd42b841b96e404145ed1071a17474807a60109396c33bb8ccc",
+        "bytes": 5977
+      },
+      {
+        "path": "stages/01_research/research_report.md",
+        "sha256": "5772b0c38729f5e08f3dd00c0667de5dbb38ee217ca0011dfedf83e771b22ba3",
+        "bytes": 2074
+      }
+    ],
+    "theory": [
+      {
+        "path": "stages/02_theory/case.yml",
+        "sha256": "6acaa9f08c78cbee2ba57fbb7d2602f376b03c9be91c3f81cba2a323d417ca99",
+        "bytes": 4263
+      },
+      {
+        "path": "stages/02_theory/equation_audit.md",
+        "sha256": "8cb073c11681f46b34e763f0407581340a9e1bc0ae90a4bcff638b3998b23ae8",
+        "bytes": 3478
+      }
+    ],
+    "implementation": [
+      {
+        "path": "stages/03_implementation/implementation_manifest.json",
+        "sha256": "d448451ee49e0b69b3896eab2f8f4fd8a8c5efb13170e51050ed5785c4a3878b",
+        "bytes": 2165
+      },
+      {
+        "path": "stages/03_implementation/comsol_handoff.md",
+        "sha256": "61ac3760909bfb1654c85347dbf5fb50c4c25d04707c440cc335e77f2c4868b2",
+        "bytes": 4319
+      },
+      {
+        "path": "stages/03_implementation/comsol/Kobayashi1993.java",
+        "sha256": "5595a5eff4f3a384e06ef0d55ea0875e5786ddcb3566503d0cf54b8bfc0783af",
+        "bytes": 11616
+      },
+      {
+        "path": "stages/03_implementation/comsol/run_case.sh",
+        "sha256": "195e3af8f6144a5f12feeefc603794e036077c584764b1b798c7ae8ca5aa9e05",
+        "bytes": 1719
+      },
+      {
+        "path": "stages/03_implementation/comsol/comsol_case.slurm",
+        "sha256": "e5d23d377069c695243c881b4d92f536c72be424447becee2bc839ebbde180b1",
+        "bytes": 424
+      },
+      {
+        "path": "stages/03_implementation/comsol/submit_cases.sh",
+        "sha256": "d70718c3c296c05d50e7981360a530f881b97b8cf3d2f094aba7c9fd00ec413c",
+        "bytes": 996
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/smoke.properties",
+        "sha256": "1ac752ce18a239619d901ed63891aef64888689ca7cc5889b28634c438fa2eb0",
+        "bytes": 125
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/delta000.properties",
+        "sha256": "54219594d363dc1adcb899f29a335b6743aee7c471701885b445e35c47e14dfd",
+        "bytes": 124
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/delta005.properties",
+        "sha256": "8b85d394b5c2cb13a93a31b06cd6f90bfbc9dc6b4c01c7b7c93acfe597f8af53",
+        "bytes": 128
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/delta010.properties",
+        "sha256": "c0e630c670c8d0de79a243e90ca66db540d98fe1ec9f7e6b7eec40bc0f54fb31",
+        "bytes": 127
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/delta020.properties",
+        "sha256": "6bf96936a20d09323660364370574185d2ac47b5878bbd0d2c5b38443f290e94",
+        "bytes": 127
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/delta050.properties",
+        "sha256": "a98e8889f0057d3c6ead9a48cfa08c8f4efca5743c9a228bbaeabfaaac2ce5bf",
+        "bytes": 127
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/control_delta000.properties",
+        "sha256": "d1251a4c7be8b4c9c8575f460f1bed5e0c48f14a49a4e2a5a163499da6b5df74",
+        "bytes": 129
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/control_delta020.properties",
+        "sha256": "8de2b72910bd342879dabace16cc33b8e006477d0ba52c15dab4049723a7de8c",
+        "bytes": 132
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/mesh_coarse.properties",
+        "sha256": "41ccd1e6d9f422401a05740dc36946f3c565578c1d1beffcc118dbe0353f2b7d",
+        "bytes": 127
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/mesh_fine.properties",
+        "sha256": "50473efd6347803ba56695ced43947ea64f93df85a5bce8271fd6837327c5835",
+        "bytes": 125
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/timestep_coarse.properties",
+        "sha256": "9a3bb5a805038f594336371dbbe9b4dfb5e52a26ab31f6911d06afeac3cea2a0",
+        "bytes": 131
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/timestep_fine.properties",
+        "sha256": "034a62001bcb1f279ab1c439bf231c93e2f9357a77f71b7632004b45c907810a",
+        "bytes": 129
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/seed_small.properties",
+        "sha256": "01df203e384bf4206de44c2a4c33048062ca5848a3f7728b93da6c4d63e3ae60",
+        "bytes": 126
+      },
+      {
+        "path": "stages/03_implementation/comsol/cases/seed_large.properties",
+        "sha256": "569813ef2c1540e87e721c1f8001acdc00414816063e026f27d5fbec87c1faf7",
+        "bytes": 126
+      },
+      {
+        "path": "stages/03_implementation/extract_fig7_reference.py",
+        "sha256": "ff6a8f23ce7d0544ec926668c85e471b3a1ed6a727036ce850b95cd8e4c946ff",
+        "bytes": 6509
+      },
+      {
+        "path": "stages/03_implementation/fields_to_masks.py",
+        "sha256": "8e99f889ecbde9ee9a2eb1c8106534f0fabe0f62abcccc2387e40842e842cd3a",
+        "bytes": 5738
+      },
+      {
+        "path": "stages/03_implementation/compare_fig7_masks.py",
+        "sha256": "6a1d21aaccd08320faa0f41912c48e8b8761deed9fea02de984839e5e6e436d0",
+        "bytes": 4533
+      },
+      {
+        "path": "stages/03_implementation/postprocess_suite.py",
+        "sha256": "a4e396572365f2489957c3e5f4032f3aba5b41d07eb9feccfd055428016ae629",
+        "bytes": 6970
+      },
+      {
+        "path": "stages/03_implementation/remote_smoke.json",
+        "sha256": "636da9f8e9d3dbf13c796e58bcaa7defc57f8b603ea9878e672f18f40675da53",
+        "bytes": 1680
+      }
+    ],
+    "experiment": [
+      {
+        "path": "stages/04_experiment/run_manifest.json",
+        "sha256": "435c8063352d9c1164adb73b77f5e718d07d5ed123cb8f5caa2146d5cd388bd3",
+        "bytes": 12136
+      },
+      {
+        "path": "stages/04_experiment/metrics.json",
+        "sha256": "47896a2a61801f6067cc1a77adbd4e712b1528553af958c6d7db298248c4b359",
+        "bytes": 685
+      }
+    ],
+    "review": [
+      {
+        "path": "stages/05_review/review.json",
+        "sha256": "4d984e25332be78289a30275df50f200d5aa15ae445c966a134e3f058ced0280",
+        "bytes": 1948
+      },
+      {
+        "path": "stages/05_review/review_report.md",
+        "sha256": "d1b3485ec64fc0da7275983a13188831daaee46e176b666f44ddeb986a3b4b6c",
+        "bytes": 2967
+      }
+    ]
+  }
+}

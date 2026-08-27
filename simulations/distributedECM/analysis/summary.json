@@ -1,0 +1,49 @@
+{
+  "cases": {
+    "uniform": {
+      "time_s": 500.0,
+      "C_rate": 1.0,
+      "hetero_amp": 0.0,
+      "load_factor": 1.0,
+      "imposed_current_A": 60.0,
+      "integrated_boundary_current_A": 60.00000266470706,
+      "mean_local_C_rate": 1.0005403600951797,
+      "min_local_C_rate": 0.002724230406392117,
+      "max_local_C_rate": 1.1253772492091825,
+      "current_cv": 0.14008048608682608,
+      "min_R_factor": 1.0,
+      "max_R_factor": 1.0,
+      "terminal_voltage_V": 3.0049886555989724,
+      "mean_layer_voltage_V": 2.6742118668614387,
+      "mean_boundary_SOC": 0.13885446294494205,
+      "min_boundary_SOC": 0.006643053988989126,
+      "max_boundary_SOC": 0.1583798048191375,
+      "current_balance_relative_error": 4.441178425018677e-08
+    },
+    "heterogeneous": {
+      "time_s": 500.0,
+      "C_rate": 1.0,
+      "hetero_amp": 0.8,
+      "load_factor": 1.0,
+      "imposed_current_A": 60.0,
+      "integrated_boundary_current_A": 59.999999723196005,
+      "mean_local_C_rate": 1.0377038000077359,
+      "min_local_C_rate": 5.446686820606126e-05,
+      "max_local_C_rate": 5.1525524314991635,
+      "current_cv": 1.0848927614002857,
+      "min_R_factor": 0.19999999999999996,
+      "max_R_factor": 1.8,
+      "terminal_voltage_V": 3.1236293750405157,
+      "mean_layer_voltage_V": 2.7751031064581464,
+      "mean_boundary_SOC": 0.1451639217475543,
+      "min_boundary_SOC": 0.0015888440076209376,
+      "max_boundary_SOC": 0.7699348038558158,
+      "current_balance_relative_error": 4.6133998843345125e-09
+    }
+  },
+  "comparison": {
+    "current_cv_ratio": 7.7447815302970655,
+    "peak_local_C_rate_increase": 4.027175182289981,
+    "terminal_voltage_shift_V": 0.11864071944154331
+  }
+}

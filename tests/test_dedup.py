@@ -4,9 +4,9 @@ import json
 import subprocess
 
 from conftest import ROOT
-from battery_lit.candidates import append_candidates, load_candidates, mark_candidate
-from battery_lit.dedup import candidates_match, deduplicate_candidates
-from battery_lit.topic import init_topic
+from paper_engine.candidates import append_candidates, load_candidates, mark_candidate
+from paper_engine.dedup import candidates_match, deduplicate_candidates
+from paper_engine.topic import init_topic
 
 
 def test_candidates_match_arxiv_versions_and_missing_year_title():
@@ -96,7 +96,7 @@ def test_dedup_cli_reports_without_fix_and_fixes_with_flag(tmp_path):
     )
 
     report = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "tool", "dedup", "--root", str(tmp_path), "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "tool", "dedup", "--root", str(tmp_path), "--json"],
         text=True,
         capture_output=True,
         check=False,
@@ -106,7 +106,7 @@ def test_dedup_cli_reports_without_fix_and_fixes_with_flag(tmp_path):
     assert len(load_candidates(tmp_path)) == 2
 
     fixed = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "tool", "dedup", "--root", str(tmp_path), "--fix", "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "tool", "dedup", "--root", str(tmp_path), "--fix", "--json"],
         text=True,
         capture_output=True,
         check=False,

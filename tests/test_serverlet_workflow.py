@@ -3,10 +3,10 @@ from __future__ import annotations
 import json
 import time
 
-from battery_lit.candidates import append_candidates
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
+from paper_engine.candidates import append_candidates
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
 
 
 def test_browser_action_creates_job_and_recent_summary_without_direct_mutation(tmp_path):
@@ -37,7 +37,7 @@ def test_browser_action_creates_job_and_recent_summary_without_direct_mutation(t
     data = json.loads(response.body)
 
     assert response.status == 202
-    job_dir = tmp_path / ".battery" / "jobs" / data["job_id"]
+    job_dir = tmp_path / ".paper_engine" / "jobs" / data["job_id"]
     for _ in range(100):
         if (job_dir / "summary.json").exists():
             break

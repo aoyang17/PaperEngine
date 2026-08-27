@@ -7,7 +7,7 @@ description: Use when the user asks to find newer papers that cite a seed paper,
 
 Use this skill to collect papers that cite a named seed paper. This is the forward-looking counterpart to `skills/reference_expansion/SKILL.md`.
 
-The purpose is to discover later papers, not to download PDFs directly. OpenAlex and Semantic Scholar are used as citation graph and metadata sources; PDF acquisition is handled later by `battery_lit acquire`.
+The purpose is to discover later papers, not to download PDFs directly. OpenAlex and Semantic Scholar are used as citation graph and metadata sources; PDF acquisition is handled later by `paper_engine acquire`.
 
 ## Inputs
 
@@ -15,9 +15,9 @@ Read only the named seed first. Do not read full `library.bib`, full `candidates
 
 Useful commands:
 
-- `battery_lit library find --root <topic> --query TEXT --json`
-- `battery_lit candidates show --root <topic> CAND-ID --json`
-- `battery_lit status --root <topic> --json`
+- `paper_engine library find --root <topic> --query TEXT --json`
+- `paper_engine candidates show --root <topic> CAND-ID --json`
+- `paper_engine status --root <topic> --json`
 
 Acceptable seed identifiers:
 
@@ -54,12 +54,12 @@ Use `--only-acquirable` only when the user asks for papers that can likely be do
 4. Add admitted records with the existing fixture path so arXiv/PDF metadata is preserved:
 
 ```bash
-battery_lit collect --root <topic> \
+paper_engine collect --root <topic> \
   --fixture reports/forward_citation_admitted_<seed>.json \
   --target-new <N>
 ```
 
-5. Run `battery_lit tool dedup --root <topic> --fix --json`.
+5. Run `paper_engine tool dedup --root <topic> --fix --json`.
 6. If new candidates were added, follow `skills/candidate_scoring/SKILL.md` before reporting completion. Unscored candidates have `score: 0` and are not ranked.
 
 ## PDF Expectations

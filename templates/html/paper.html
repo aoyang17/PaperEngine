@@ -494,9 +494,9 @@
     (function () {
       function setLang(lang) {
         document.documentElement.dataset.lang = lang;
-        try { localStorage.setItem("battery-paper-lang", lang); } catch (error) {}
+        try { localStorage.setItem("paper-engine-paper-lang", lang); } catch (error) {}
       }
-      setLang(localStorage.getItem("battery-paper-lang") || "zh");
+      setLang(localStorage.getItem("paper-engine-paper-lang") || "zh");
       document.querySelectorAll("[data-lang-button]").forEach(function (button) {
         button.addEventListener("click", function () { setLang(button.dataset.langButton); });
       });

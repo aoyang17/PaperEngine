@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">容量随循环次数变化的示意图</title>
+  <desc id="desc">白色背景，纵轴为 Q，横轴为 cycle，一条蓝色实线前期快速下降后趋缓，一条蓝色虚线前期平缓后快速下降。</desc>
+
+  <rect width="900" height="620" fill="#ffffff"/>
+
+  <g fill="none" stroke="#123fae" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Axes -->
+    <path d="M145 500 L145 92"/>
+    <path d="M145 500 L765 500"/>
+    <path d="M145 92 L134 114 M145 92 L156 114"/>
+    <path d="M765 500 L743 489 M765 500 L743 511"/>
+
+    <!-- Rapid early decline followed by a long tail -->
+    <path d="M245 160
+             C242 240 280 326 355 382
+             C425 434 510 454 615 454"/>
+
+    <!-- Initially stable, then accelerated capacity loss -->
+    <path d="M245 160
+             C360 158 463 193 530 257
+             C585 309 614 373 615 438"
+          stroke-dasharray="24 22"/>
+  </g>
+
+  <g fill="#123fae" font-family="Arial, Helvetica, sans-serif">
+    <text x="105" y="91" font-size="34" font-style="italic">Q</text>
+    <text x="683" y="552" font-size="30">cycle</text>
+  </g>
+</svg>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="图解硅碳负极锂离子电池的容量跳水：从膨胀、SEI 重建到导电网络和传输通道跨过失效阈值。">
+  <title>硅碳负极电池为什么会“容量跳水”？</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav" aria-label="页面导航">
+      <a class="brand" href="#top">Si/C Wiki</a>
+      <div class="nav-links">
+        <a href="#mechanism">失效链</a>
+        <a href="#diagnosis">怎么判断</a>
+        <a href="#mitigation">如何缓解</a>
+      </div>
+    </nav>
+
+    <div class="hero-copy" id="top">
+      <p class="eyebrow">Silicon–carbon anode · visual explainer</p>
+      <h1>容量不是突然消失的，<br><span>而是损伤突然越过了阈值。</span></h1>
+      <p class="lede">硅碳负极在前期可能只表现为缓慢衰减；当裂纹、SEI 增厚、锂库存损失与传输阻力互相强化，电极会进入“膝点”区，随后可用容量快速下坠。</p>
+      <a class="cta" href="#one-minute">用一分钟看懂 ↓</a>
+    </div>
+
+    <figure class="hero-figure">
+      <img src="assets/si-carbon-degradation.png" alt="从完好硅碳复合颗粒到开裂、碎片化和导电失联的三阶段科学示意图">
+      <figcaption>概念示意：左 → 右依次为结构完整、界面与裂纹累积、颗粒碎裂和失联。蓝点代表锂离子；金色层代表界面膜。非按比例绘制。</figcaption>
+    </figure>
+  </header>
+
+  <main>
+    <section class="one-minute section" id="one-minute">
+      <div class="section-tag">01 · 一句话答案</div>
+      <div class="answer-grid">
+        <h2>“跳水”是一种<strong>系统级临界失效</strong></h2>
+        <div>
+          <p>硅在嵌锂时显著膨胀、脱锂时收缩。一次循环造成的损伤也许很小，但数百次循环会逐步破坏颗粒、黏结剂、导电剂、孔道和界面膜。</p>
+          <p>在这些网络仍连通时，电池看起来只是“慢慢老”；一旦电子或离子通路低于临界连通度，更多硅同时变得不可访问，极化又会进一步放大，于是容量曲线出现明显拐点。</p>
+        </div>
+      </div>
+      <div class="formula" aria-label="容量跳水的简化因果关系">
+        <span>反复体积变化</span><b>→</b><span>裂纹 + 新生表面</span><b>→</b><span>SEI 重建 + 失锂</span><b>→</b><span>阻抗上升 / 接触丢失</span><b>→</b><span class="danger">越过阈值：容量跳水</span>
+      </div>
+    </section>
+
+    <section class="curve-section section" aria-labelledby="curve-title">
+      <div class="curve-copy">
+        <div class="section-tag">02 · 曲线长什么样</div>
+        <h2 id="curve-title">关键不是“掉了多少”，<br>而是<strong>斜率突然变陡</strong></h2>
+        <p>工程上常把这个拐点称为 <em>knee point</em>（膝点）。它是表现，不是单一机理的名字。</p>
+        <ul class="legend-list">
+          <li><i class="dot healthy"></i><span><b>缓慢衰减</b>：副反应和损伤尚可被结构冗余吸收。</span></li>
+          <li><i class="dot warning"></i><span><b>膝点前夜</b>：阻抗、厚度或局部不均匀性开始加速。</span></li>
+          <li><i class="dot cliff"></i><span><b>容量跳水</b>：传输/导电/锂库存中的一个或多个瓶颈越过阈值。</span></li>
+        </ul>
+      </div>
+      <figure class="chart-card">
+        <svg viewBox="0 0 660 390" role="img" aria-labelledby="chart-name chart-desc">
+          <title id="chart-name">硅碳负极容量保持率的示意曲线</title>
+          <desc id="chart-desc">容量保持率前期缓慢下降，到膝点后迅速下降；该图为机制示意，不是实验数据。</desc>
+          <defs>
+            <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ea6b4d" stop-opacity=".25"/>
+              <stop offset="1" stop-color="#ea6b4d" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="grid">
+            <line x1="72" y1="55" x2="72" y2="318"/>
+            <line x1="72" y1="318" x2="614" y2="318"/>
+            <line x1="72" y1="110" x2="614" y2="110"/>
+            <line x1="72" y1="175" x2="614" y2="175"/>
+            <line x1="72" y1="240" x2="614" y2="240"/>
+          </g>
+          <path class="area" d="M72 72 C210 78 330 93 420 122 C465 138 486 165 500 202 C520 255 554 289 614 307 L614 318 L72 318 Z"/>
+          <path class="capacity-line" d="M72 72 C210 78 330 93 420 122 C465 138 486 165 500 202 C520 255 554 289 614 307"/>
+          <line class="knee-line" x1="474" y1="86" x2="474" y2="318"/>
+          <circle class="knee-dot" cx="474" cy="157" r="8"/>
+          <text class="axis-label" x="22" y="57">100%</text>
+          <text class="axis-label" x="40" y="323">0</text>
+          <text class="axis-title" x="265" y="365">循环次数 / 时间</text>
+          <text class="axis-title vertical" x="-235" y="18">可用容量</text>
+          <text class="phase-label" x="174" y="145">损伤累积</text>
+          <text class="knee-label" x="486" y="105">膝点</text>
+          <text class="phase-label hot" x="520" y="236">加速失效</text>
+        </svg>
+        <figcaption>示意曲线：真实膝点位置会随硅含量、负载、温度、倍率、压力、电解液及上下截止电压而变化。</figcaption>
+      </figure>
+    </section>
+
+    <section class="mechanism section" id="mechanism">
+      <div class="section-tag">03 · 四条失效链</div>
+      <h2>不是一个原因，而是四个齿轮互相咬合</h2>
+      <div class="mechanism-grid">
+        <article class="mechanism-card">
+          <div class="number">A</div>
+          <h3>机械：硅在“呼吸”</h3>
+          <p>嵌锂带来巨大体积变化，产生应力、裂纹和颗粒粉化。黏结网络疲劳后，部分硅与导电碳或集流体失去接触，成为“有材料、用不上”的孤岛。</p>
+          <div class="mini-diagram breathe" aria-hidden="true"><span></span><span></span><span></span></div>
+        </article>
+        <article class="mechanism-card">
+          <div class="number">B</div>
+          <h3>化学：SEI 反复破裂重建</h3>
+          <p>SEI 本应是保护膜；但硅不断胀缩会把膜拉裂，裸露的新表面再次分解电解液、消耗可循环锂，膜也越来越厚、越来越不均匀。</p>
+          <div class="mini-diagram sei" aria-hidden="true"><span></span><span></span><span></span></div>
+        </article>
+        <article class="mechanism-card">
+          <div class="number">C</div>
+          <h3>网络：电子与离子通路掉线</h3>
+          <p>开裂、脱粘、孔隙重排和 SEI 堆积会同时破坏电子渗流网络与电解液浸润通道。连通度接近临界点时，小变化也能造成大片活性区失联。</p>
+          <div class="mini-diagram network" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        </article>
+        <article class="mechanism-card">
+          <div class="number">D</div>
+          <h3>电芯：有限的锂库存被耗尽</h3>
+          <p>半电池中的锂金属像“无限补给”；真实全电池的锂来自正极。每次副反应拿走一点锂，累计到余量不足时，可充放容量会明显下滑。</p>
+          <div class="mini-diagram inventory" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="threshold section">
+      <div class="threshold-visual" aria-hidden="true">
+        <div class="iceberg"><span>看得见：容量</span></div>
+        <div class="underwater">
+          <span>阻抗 ↑</span><span>电极厚度 ↑</span><span>活性锂 ↓</span><span>孔隙连通 ↓</span><span>接触点 ↓</span>
+        </div>
+      </div>
+      <div class="threshold-copy">
+        <div class="section-tag light">04 · 为什么“突然”</div>
+        <h2>容量是末端指标，<br>很多损伤早已在水下发生</h2>
+        <p>在膝点之前，电池尚能靠多余导电路径、剩余孔隙和电压余量维持额定测试容量。但当截止电压更早被极化触发，或关键网络断开时，原本还能反应的材料也来不及反应。</p>
+        <blockquote>容量跳水 ≠ 某一圈突然产生全部损伤；更常见的是，累积损伤在那一圈开始“显性化”。</blockquote>
+      </div>
+    </section>
+
+    <section class="diagnosis section" id="diagnosis">
+      <div class="section-tag">05 · 怎么判断是哪一种</div>
+      <h2>先做三个低成本区分</h2>
+      <div class="diagnostic-table" role="table" aria-label="容量跳水诊断线索">
+        <div class="tr th" role="row">
+          <div role="columnheader">观察</div><div role="columnheader">更像什么</div><div role="columnheader">优先验证</div>
+        </div>
+        <div class="tr" role="row">
+          <div role="cell"><b>降低倍率后容量明显回来</b><small>休息后也部分恢复</small></div>
+          <div role="cell">动力学/极化主导，未必是活性材料永久消失</div>
+          <div role="cell">低倍率复测、DCIR/EIS、温度与润湿状态</div>
+        </div>
+        <div class="tr" role="row">
+          <div role="cell"><b>低倍率也回不来</b><small>库仑效率曾长期偏低</small></div>
+          <div role="cell">活性锂损失、持续副反应或活性硅失联</div>
+          <div role="cell">半电池重组、dQ/dV、锂库存/活性材料损失拆解</div>
+        </div>
+        <div class="tr" role="row">
+          <div role="cell"><b>快充或低温下突然恶化</b><small>充电末端异常更明显</small></div>
+          <div role="cell">负极极化过大，并伴随析锂风险</div>
+          <div role="cell">负极参比电位、充电曲线、拆解与析锂表征</div>
+        </div>
+        <div class="tr" role="row">
+          <div role="cell"><b>厚度/压力异常同步出现</b><small>软包鼓胀或回弹增大</small></div>
+          <div role="cell">电极机械失稳、接触丢失或孔道/隔膜受压</div>
+          <div role="cell">原位厚度、压力、截面 SEM / X-ray CT</div>
+        </div>
+      </div>
+      <p class="caution"><b>重要：</b>仅凭容量曲线不能唯一归因。正极衰退、电解液干涸、内短路、测试温漂和 BMS 估算偏差，也可能制造“跳水”外观。</p>
+    </section>
+
+    <section class="mitigation section" id="mitigation">
+      <div class="section-tag">06 · 如何把膝点往后推</div>
+      <div class="mitigation-head">
+        <h2>目标不是让硅不膨胀，<br>而是让变化<strong>可容纳、界面可稳定、网络不断线</strong></h2>
+      </div>
+      <div class="strategy-row">
+        <article><span>材料</span><h3>给膨胀留空间</h3><p>限制硅尺寸和利用深度，采用多孔、核壳或受限结构，减少应力集中。</p></article>
+        <article><span>电极</span><h3>保持柔韧连接</h3><p>选择能承受反复应变的黏结体系，维持导电网络并控制面密度与压实。</p></article>
+        <article><span>界面</span><h3>形成更稳定的 SEI</h3><p>通过电解液、添加剂和表面包覆减少反复破膜与持续副反应。</p></article>
+        <article><span>电芯</span><h3>留出锂与传输余量</h3><p>合理设计 N/P、预锂化、压力与孔隙；避免低温高倍率和过深嵌锂叠加。</p></article>
+      </div>
+    </section>
+
+    <section class="takeaway section">
+      <p class="eyebrow">TAKEAWAY</p>
+      <h2>把硅碳负极想成一座城市：</h2>
+      <p>硅颗粒是工厂，导电剂是电网，孔隙是道路，SEI 是城墙，活性锂是流动资金。前期坏几条支路，城市还能运转；当电网、道路和资金同时逼近下限，整片城区就会停摆——这就是容量“跳水”。</p>
+    </section>
+
+    <section class="sources section">
+      <div class="section-tag">延伸阅读</div>
+      <h2>依据与边界</h2>
+      <p>本文讨论的是液态电解液锂离子电池中的硅/石墨或硅碳复合负极；固态体系还会叠加固–固界面接触和固态电解质力化学失效。图和容量曲线均为机制示意，不代表某一具体电芯数据。</p>
+      <ol>
+        <li><a href="https://doi.org/10.1021/cr500207g">Obrovac &amp; Chevrier, <cite>Alloy Negative Electrodes for Li-Ion Batteries</cite>, Chemical Reviews (2014)</a> — 合金负极体积变化与失效基础。</li>
+        <li><a href="https://doi.org/10.1021/nn204476h">Liu et al., <cite>Size-Dependent Fracture of Silicon Nanoparticles During Lithiation</cite>, ACS Nano (2012)</a> — 原位观察硅颗粒尺寸相关断裂。</li>
+        <li><a href="https://www.nature.com/articles/s41467-023-41867-6">Li et al., <cite>Revealing the aging process of solid electrolyte interphase on SiO<sub>x</sub> anode</cite>, Nature Communications (2023)</a> — SEI 增厚、导电网络衰减与动力学损失。</li>
+        <li><a href="https://www.nature.com/articles/s43246-023-00368-1">Koller et al., <cite>Impact of solid-electrolyte interphase reformation on capacity loss</cite>, Communications Materials (2023)</a> — SEI 重建与活性材料利用不足。</li>
+        <li><a href="https://www.nature.com/articles/s41467-021-25334-8">Chae et al., <cite>Production of high-energy Li-ion batteries comprising silicon-containing anodes</cite>, Nature Communications (2021)</a> — 为什么半电池结果不能直接外推真实全电池。</li>
+        <li><a href="https://www.nature.com/articles/s41467-024-54313-y">Kim et al., <cite>Mechanical shutdown of battery separators: Silicon anode failure</cite>, Nature Communications (2024)</a> — 全电芯中膨胀、压力与隔膜传输耦合。</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>Si/C Wiki · 为理解机制而作，不替代针对具体电芯的失效分析。</p>
+    <a href="#top">回到顶部 ↑</a>
+  </footer>
+</body>
+</html>

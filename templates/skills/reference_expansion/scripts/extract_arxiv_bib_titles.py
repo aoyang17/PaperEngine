@@ -171,7 +171,7 @@ def main() -> int:
     parser.add_argument("--out", type=Path, required=True, help="Output TSV path.")
     args = parser.parse_args()
 
-    with tempfile.TemporaryDirectory(prefix="battery_refs_") as tmp:
+    with tempfile.TemporaryDirectory(prefix="paper_engine_refs_") as tmp:
         tmp_path = Path(tmp)
         if args.source_archive:
             archive_path = args.source_archive

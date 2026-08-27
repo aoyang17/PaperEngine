@@ -1,0 +1,31 @@
+{
+  "paper_baseline": {
+    "domain": [9.0, 9.0],
+    "epsilon_bar": 0.01,
+    "tau": 0.0003,
+    "alpha": 0.9,
+    "gamma": 10.0,
+    "latent_heat_K": 2.0,
+    "anisotropy_mode_j": 4,
+    "theta0": 0.0,
+    "mesh_spacing": 0.03,
+    "max_time_step": 0.0002,
+    "output_times": [0.2, 0.8, 1.4],
+    "noise_amplitude": 0.01,
+    "seed_radius_assumption": 0.15
+  },
+  "runs": {
+    "delta000": {"delta": 0.0, "noise": 0.01, "h": 0.03, "dt_max": 0.0002, "t_final": 1.4},
+    "delta005": {"delta": 0.005, "noise": 0.01, "h": 0.03, "dt_max": 0.0002, "t_final": 1.4},
+    "delta010": {"delta": 0.01, "noise": 0.01, "h": 0.03, "dt_max": 0.0002, "t_final": 1.4},
+    "delta020": {"delta": 0.02, "noise": 0.01, "h": 0.03, "dt_max": 0.0002, "t_final": 1.4},
+    "delta050": {"delta": 0.05, "noise": 0.01, "h": 0.03, "dt_max": 0.0002, "t_final": 1.4},
+    "control_delta000": {"delta": 0.0, "noise": 0.0, "h": 0.03, "dt_max": 0.0002, "t_final": 1.4},
+    "control_delta020": {"delta": 0.02, "noise": 0.0, "h": 0.03, "dt_max": 0.0002, "t_final": 1.4},
+    "mesh_fine": {"delta": 0.02, "noise": 0.0, "h": 0.02, "dt_max": 0.0002, "t_final": 0.8},
+    "timestep_fine": {"delta": 0.02, "noise": 0.0, "h": 0.03, "dt_max": 0.0001, "t_final": 0.8},
+    "seed_small": {"delta": 0.02, "noise": 0.0, "R0": 0.12, "h": 0.03, "dt_max": 0.0002, "t_final": 0.8},
+    "seed_large": {"delta": 0.02, "noise": 0.0, "R0": 0.18, "h": 0.03, "dt_max": 0.0002, "t_final": 0.8}
+  },
+  "units": "nondimensional L0 and t0 represented by COMSOL m and s; not physical SI dimensions"
+}

@@ -6,21 +6,21 @@ Use this skill whenever the user asks to download PDFs, acquire papers, promote 
 
 - Acquire only open-access PDFs.
 - Do not directly edit `library.bib`.
-- Do not move PDFs by shell command unless `battery_lit acquire` or `battery_lit promote` reports a blocker and the user approves a repair.
+- Do not move PDFs by shell command unless `paper_engine acquire` or `paper_engine promote` reports a blocker and the user approves a repair.
 - DOI/arXiv are preferred identifiers, but OpenAlex Work ID, Semantic Scholar ID, DBLP key, or a verified publisher/work URL can identify papers that lack DOI/arXiv. ISSN/ISBN are venue/book metadata only; do not use them alone to pass citation guard.
 - If title/year evidence or a paper-level verified source is missing, report a blocker instead of guessing.
-- Prefer `battery_lit acquire CAND-ID`; if a manual PDF is needed, download it into a fresh temporary directory and remove that directory after `battery_lit acquire --manual-pdf`.
-- For a cross-topic import, use `battery_lit library import-from-topic`; never shell-copy a paper, or directly edit `library.bib`, `candidates.jsonl`, PDFs, or paper directories.
+- Prefer `paper_engine acquire CAND-ID`; if a manual PDF is needed, download it into a fresh temporary directory and remove that directory after `paper_engine acquire --manual-pdf`.
+- For a cross-topic import, use `paper_engine library import-from-topic`; never shell-copy a paper, or directly edit `library.bib`, `candidates.jsonl`, PDFs, or paper directories.
 
 ## Cross-Topic Import
 
 Use this path only when the user explicitly names the source topic path. Do not discover or inspect sibling topics to find a source.
 
-1. If the user supplies a source bibkey, use it directly. If they supply a title instead, run the controlled source lookup `battery_lit library find --root <source-topic> --query "<title>" --json` and continue only when it returns exactly one match; otherwise ask the user to choose a bibkey.
+1. If the user supplies a source bibkey, use it directly. If they supply a title instead, run the controlled source lookup `paper_engine library find --root <source-topic> --query "<title>" --json` and continue only when it returns exactly one match; otherwise ask the user to choose a bibkey.
 2. Run exactly one import command:
 
 ```bash
-battery_lit library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json
+paper_engine library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json
 ```
 
 3. Report `imported`, `already_exists`, or any skipped result clearly. An imported record is a target candidate with `status: in_library` and `decision: relevant`; `preferences.yml` is not refreshed immediately.
@@ -31,12 +31,12 @@ There is no web button or batch interface for cross-topic imports. Map natural-l
 
 For each candidate:
 
-1. Inspect only the candidate record with `battery_lit candidates show --json`.
-2. Run `battery_lit tool enrich-metadata --candidate CAND-ID --live --json`.
-3. Run `battery_lit tool citation-guard --candidate CAND-ID --json`.
-4. Run `battery_lit acquire CAND-ID`.
-5. Run `battery_lit promote CAND-ID`.
-6. Run `battery_lit bib check` and `battery_lit pdf check`.
+1. Inspect only the candidate record with `paper_engine candidates show --json`.
+2. Run `paper_engine tool enrich-metadata --candidate CAND-ID --live --json`.
+3. Run `paper_engine tool citation-guard --candidate CAND-ID --json`.
+4. Run `paper_engine acquire CAND-ID`.
+5. Run `paper_engine promote CAND-ID`.
+6. Run `paper_engine bib check` and `paper_engine pdf check`.
 
 If a PDF already exists, accept the tool's skip result and do not download it again.
 
@@ -49,7 +49,7 @@ For a manual open-access PDF handoff, use a temporary directory and clean it:
 ```bash
 tmpdir=$(mktemp -d)
 # download the approved open-access PDF to "$tmpdir/paper.pdf"
-battery_lit acquire --root <topic> CAND-ID --manual-pdf "$tmpdir/paper.pdf"
+paper_engine acquire --root <topic> CAND-ID --manual-pdf "$tmpdir/paper.pdf"
 rm -rf "$tmpdir"
 ```
 

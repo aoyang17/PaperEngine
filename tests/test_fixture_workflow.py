@@ -7,7 +7,7 @@ from conftest import ROOT, fixture_path
 
 
 def _run(*args: str) -> dict:
-    proc = subprocess.run([str(ROOT / "bin" / "battery_lit"), *args], text=True, capture_output=True, check=True)
+    proc = subprocess.run([str(ROOT / "bin" / "paper_engine"), *args], text=True, capture_output=True, check=True)
     return json.loads(proc.stdout)
 
 

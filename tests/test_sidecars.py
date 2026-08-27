@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from battery_lit.sidecars import (
+from paper_engine.sidecars import (
     READ_DRAFT_WORKER_SCHEMA_VERSION,
     READ_HARVEST_SCHEMA_VERSION,
     SidecarTempWorkspace,
@@ -85,7 +85,7 @@ def _valid_draft_worker(bibkey: str = "Smith2024Paper", run_id: str = "unit") ->
 
 
 def test_sidecar_temp_workspace_cleans_tmp_files():
-    workspace = SidecarTempWorkspace.create(prefix="battery-v3-sidecar-")
+    workspace = SidecarTempWorkspace.create(prefix="paper-engine-sidecar-")
     marker = workspace.root / "marker.txt"
     marker.write_text("temporary sidecar artifact", encoding="utf-8")
 

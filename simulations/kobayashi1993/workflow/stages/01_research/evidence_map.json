@@ -1,0 +1,139 @@
+{
+  "paper": {
+    "title": "Modeling and numerical simulations of dendritic crystal growth",
+    "author": "Ryo Kobayashi",
+    "journal": "Physica D 63 (1993) 410-423",
+    "pdf_pages": 14
+  },
+  "claims": [
+    {
+      "id": "C001",
+      "page": 1,
+      "source_text": "A simple phase field model for one component melt growth is presented, which includes anisotropy in a certain form.",
+      "interpretation": "The contribution is a minimal anisotropic phase-field model aimed at qualitative dendritic morphology."
+    },
+    {
+      "id": "C002",
+      "page": 4,
+      "source_text": "All the simulations were computed by using the model equations (3) and (5).",
+      "interpretation": "Equations (3) and (5), not the singular-limit equation, are the reproduction authority."
+    },
+    {
+      "id": "C003",
+      "page": 4,
+      "source_text": "Noises were given to the system by using a random number sequence χ in the form ap(1-p)χ, where a is an amplitude of the noise and χ is uniformly distributed on the interval [-1/2, 1/2].",
+      "interpretation": "The reported morphology includes interface-localized uniform noise."
+    },
+    {
+      "id": "C004",
+      "page": 9,
+      "source_text": "the velocity of the principal branch increases as δ increases. Also it is clear that the branch structure is very sensitively dependent on δ.",
+      "interpretation": "The primary Fig. 7 trend is faster principal-branch growth and strong morphology sensitivity with anisotropy strength."
+    },
+    {
+      "id": "C005",
+      "page": 12,
+      "source_text": "The phase field p cannot describe a structure which is finer than or the same size as the layer thickness.",
+      "interpretation": "Sub-interface-width branches are not trustworthy and must be excluded from quantitative acceptance."
+    },
+    {
+      "id": "C006",
+      "page": 13,
+      "source_text": "the space mesh size small such that anisotropy induced by the computational lattice does not appear, but not so small such that the interfacial velocity of (3) is precisely approximated.",
+      "interpretation": "The original results are qualitative; the reproduction must add mesh and time-step convergence rather than claim precise pixel agreement."
+    }
+  ],
+  "equations": [
+    {
+      "id": "E001",
+      "page": 3,
+      "source_text": "τ ∂p/∂t = -∂/∂x(εε′ ∂p/∂y) + ∂/∂y(εε′ ∂p/∂x) + ∇·(ε²∇p) + p(1-p)(p-1/2+m)",
+      "paper_equation": 3
+    },
+    {
+      "id": "E002",
+      "page": 3,
+      "source_text": "m(T)=(α/π) tan⁻¹[γ(Te-T)]",
+      "paper_equation": "temperature driving force"
+    },
+    {
+      "id": "E003",
+      "page": 3,
+      "source_text": "σ(θ)=1+δ cos[j(θ-θ0)]",
+      "paper_equation": "anisotropy law"
+    },
+    {
+      "id": "E004",
+      "page": 4,
+      "source_text": "∂T/∂t = ∇²T + K ∂p/∂t",
+      "paper_equation": 5
+    },
+    {
+      "id": "E005",
+      "page": 3,
+      "source_text": "Put ε=ε̄σ(θ)",
+      "paper_equation": "interface-width decomposition"
+    }
+  ],
+  "figures": [
+    {
+      "id": "F001",
+      "page": 8,
+      "source_text": "Fig. 7. After nucleation, crystal grows toward supercooled melt under adiabatic condition for various values of δ. There is 4-mode anisotropy. K=2.0.",
+      "target": "Morphology at t=0.2, 0.8, 1.4 for δ=0, 0.005, 0.010, 0.020, 0.050."
+    },
+    {
+      "id": "F002",
+      "page": 11,
+      "source_text": "Fig. 9. The relation between the side branch structure and the amplitude of noise in the non-oscillating growth. K=2.0 and δ=0.020.",
+      "target": "Negative/noise-control evidence; main-tip velocity is reported unchanged while side branches vary."
+    },
+    {
+      "id": "F003",
+      "page": 12,
+      "source_text": "Fig. 10. The relation between the side branch structure and the amplitude of noise in the oscillating growth. K=2.0 and δ=0.010.",
+      "target": "Noise sensitivity differs between oscillating and non-oscillating growth."
+    }
+  ],
+  "parameters": [
+    {"page": 4, "name": "domain", "value": [9.0, 9.0], "units": "dimensionless"},
+    {"page": 4, "name": "mesh", "value": [300, 300]},
+    {"page": 4, "name": "epsilon_bar", "value": 0.01},
+    {"page": 4, "name": "tau", "value": 0.0003},
+    {"page": 4, "name": "alpha", "value": 0.9},
+    {"page": 4, "name": "gamma", "value": 10.0},
+    {"page": 4, "name": "noise_amplitude", "value": 0.01},
+    {"page": 4, "name": "paper_time_step", "value": 0.0002},
+    {"page": 9, "name": "K", "value": 2.0},
+    {"page": 9, "name": "j", "value": 4},
+    {"page": 9, "name": "theta0", "value": 0.0},
+    {"page": 8, "name": "delta_sweep", "value": [0.0, 0.005, 0.01, 0.02, 0.05]},
+    {"page": 8, "name": "output_times", "value": [0.2, 0.8, 1.4]}
+  ],
+  "ambiguities": [
+    {
+      "id": "A001",
+      "page": 7,
+      "issue": "The paper states that nucleation occurs at the center of the bottom edge but does not specify nucleus radius or smoothing profile.",
+      "treatment": "Declare a smooth semicircular seed and run seed-radius sensitivity; never label the chosen radius as reported."
+    },
+    {
+      "id": "A002",
+      "page": 4,
+      "issue": "The random-number seed and update cadence are not reported.",
+      "treatment": "Use a fixed reproducible pseudo-random field/cadence and separate deterministic a=0 controls."
+    },
+    {
+      "id": "A003",
+      "page": 4,
+      "issue": "Only p is explicitly stated to have zero flux; Fig. 7 is described as adiabatic, implying zero heat flux on all walls.",
+      "treatment": "Use natural zero flux for both equations for the Fig. 7 study and document the inference."
+    },
+    {
+      "id": "A004",
+      "page": 13,
+      "issue": "The paper explicitly disclaims quantitatively converged interfacial velocity at its mesh and time step.",
+      "treatment": "Use qualitative morphology as the paper target and add independent convergence gates for modern COMSOL runs."
+    }
+  ]
+}

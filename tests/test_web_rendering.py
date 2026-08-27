@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import yaml
 
-from battery_lit.candidates import append_candidates, update_candidate
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
+from paper_engine.candidates import append_candidates, update_candidate
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
 
 
 def _topic_with_content(tmp_path):
@@ -87,7 +87,7 @@ def test_workflow_pages_share_single_job_status_container(tmp_path):
 
 
 def test_workflow_pages_show_codex_sandbox_warning(tmp_path, monkeypatch):
-    monkeypatch.setattr("battery_lit.web_views.codex_sandbox_warning", lambda: "Codex sandbox namespace is unavailable in this container")
+    monkeypatch.setattr("paper_engine.web_views.codex_sandbox_warning", lambda: "Codex sandbox namespace is unavailable in this container")
     app = WebApp(_topic_with_content(tmp_path))
 
     body = app.handle("/dashboard.html").body
@@ -119,7 +119,7 @@ def test_dashboard_is_session_first_overview(tmp_path):
 
 def test_dashboard_shows_active_job_without_old_action_forms(tmp_path):
     root = _topic_with_content(tmp_path)
-    state_dir = root / ".battery"
+    state_dir = root / ".paper_engine"
     state_dir.mkdir(exist_ok=True)
     (state_dir / "active_job.json").write_text('{"job_id":"job-1","action":"collect"}', encoding="utf-8")
 
@@ -162,10 +162,10 @@ def test_web_static_js_route_is_available(tmp_path):
 
     assert response.status == 200
     assert response.content_type.startswith("application/javascript")
-    assert "batteryTable" in response.body
+    assert "paperEngineTable" in response.body
     assert "fetch(" in response.body
     assert "/api/jobs" in response.body
-    assert "battery_codex_model" in response.body
+    assert "paper_engine_codex_model" in response.body
     assert "model_reasoning_effort" not in response.body
 
 
@@ -175,11 +175,11 @@ def test_candidate_and_library_pages_have_filter_and_sort_controls(tmp_path):
     candidates = app.handle("/candidates.html").body
     library = app.handle("/library.html").body
 
-    assert 'data-battery-table="candidates"' in candidates
+    assert 'data-paper-engine-table="candidates"' in candidates
     assert 'placeholder="Search title, authors, abstract"' in candidates
     assert 'data-filter-field="status"' in candidates
     assert 'data-sort-key="year"' in candidates
-    assert 'data-battery-table="library"' in library
+    assert 'data-paper-engine-table="library"' in library
 
 
 def test_four_module_dashboard_and_module_filters_render_in_chinese_by_default(tmp_path):

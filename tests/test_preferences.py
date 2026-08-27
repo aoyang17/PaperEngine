@@ -4,9 +4,9 @@ import json
 import subprocess
 
 from conftest import ROOT
-from battery_lit.candidates import append_candidates, get_candidate
-from battery_lit.preferences import check_preferences, mark_candidate_with_feedback, record_label, score_candidate
-from battery_lit.topic import init_topic, load_preferences, save_preferences
+from paper_engine.candidates import append_candidates, get_candidate
+from paper_engine.preferences import check_preferences, mark_candidate_with_feedback, record_label, score_candidate
+from paper_engine.topic import init_topic, load_preferences, save_preferences
 
 
 def test_record_label_counts_without_rule_extraction(tmp_path):
@@ -104,7 +104,7 @@ def test_preferences_check_cli(tmp_path):
     init_topic(tmp_path)
 
     completed = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "preferences", "check", "--root", str(tmp_path), "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "preferences", "check", "--root", str(tmp_path), "--json"],
         cwd=ROOT,
         text=True,
         capture_output=True,

@@ -1,0 +1,208 @@
+{
+  "source_pdf": "/home/aobo/PaperEngine/paper/kobayashi1993.pdf",
+  "source_pdf_sha256": "51f551671c05a7003c20032e97e3864f55d5448505857f7f15f46cfdc0bc5a5f",
+  "pdf_page": 8,
+  "render_scale": 2.5,
+  "mask_size": [
+    192,
+    192
+  ],
+  "method": "strip printed frame, threshold<175, one-pixel dilation, close crystal contacts, bottom closure, exterior flood fill",
+  "panels": [
+    {
+      "delta": 0.0,
+      "time": 0.2,
+      "crop_normalized": [
+        0.2748,
+        0.1259,
+        0.4141,
+        0.2228
+      ],
+      "source": "delta000_t0p2_source.png",
+      "mask": "delta000_t0p2_mask.png",
+      "mask_solid_fraction": 0.021782769097222224
+    },
+    {
+      "delta": 0.0,
+      "time": 0.8,
+      "crop_normalized": [
+        0.4444,
+        0.1259,
+        0.5785,
+        0.2228
+      ],
+      "source": "delta000_t0p8_source.png",
+      "mask": "delta000_t0p8_mask.png",
+      "mask_solid_fraction": 0.14708116319444445
+    },
+    {
+      "delta": 0.0,
+      "time": 1.4,
+      "crop_normalized": [
+        0.6126,
+        0.1259,
+        0.7474,
+        0.2228
+      ],
+      "source": "delta000_t1p4_source.png",
+      "mask": "delta000_t1p4_mask.png",
+      "mask_solid_fraction": 0.24422200520833334
+    },
+    {
+      "delta": 0.005,
+      "time": 0.2,
+      "crop_normalized": [
+        0.2748,
+        0.2762,
+        0.4141,
+        0.3741
+      ],
+      "source": "delta005_t0p2_source.png",
+      "mask": "delta005_t0p2_mask.png",
+      "mask_solid_fraction": 0.016438802083333332
+    },
+    {
+      "delta": 0.005,
+      "time": 0.8,
+      "crop_normalized": [
+        0.4444,
+        0.2762,
+        0.5785,
+        0.3741
+      ],
+      "source": "delta005_t0p8_source.png",
+      "mask": "delta005_t0p8_mask.png",
+      "mask_solid_fraction": 0.1320258246527778
+    },
+    {
+      "delta": 0.005,
+      "time": 1.4,
+      "crop_normalized": [
+        0.6126,
+        0.2762,
+        0.7474,
+        0.3741
+      ],
+      "source": "delta005_t1p4_source.png",
+      "mask": "delta005_t1p4_mask.png",
+      "mask_solid_fraction": 0.3147515190972222
+    },
+    {
+      "delta": 0.01,
+      "time": 0.2,
+      "crop_normalized": [
+        0.2748,
+        0.4201,
+        0.4141,
+        0.518
+      ],
+      "source": "delta010_t0p2_source.png",
+      "mask": "delta010_t0p2_mask.png",
+      "mask_solid_fraction": 0.015462239583333334
+    },
+    {
+      "delta": 0.01,
+      "time": 0.8,
+      "crop_normalized": [
+        0.4444,
+        0.4201,
+        0.5785,
+        0.518
+      ],
+      "source": "delta010_t0p8_source.png",
+      "mask": "delta010_t0p8_mask.png",
+      "mask_solid_fraction": 0.16151258680555555
+    },
+    {
+      "delta": 0.01,
+      "time": 1.4,
+      "crop_normalized": [
+        0.6126,
+        0.4201,
+        0.7474,
+        0.518
+      ],
+      "source": "delta010_t1p4_source.png",
+      "mask": "delta010_t1p4_mask.png",
+      "mask_solid_fraction": 0.3596462673611111
+    },
+    {
+      "delta": 0.02,
+      "time": 0.2,
+      "crop_normalized": [
+        0.2748,
+        0.5651,
+        0.4141,
+        0.6624
+      ],
+      "source": "delta020_t0p2_source.png",
+      "mask": "delta020_t0p2_mask.png",
+      "mask_solid_fraction": 0.01416015625
+    },
+    {
+      "delta": 0.02,
+      "time": 0.8,
+      "crop_normalized": [
+        0.4444,
+        0.5651,
+        0.5785,
+        0.6624
+      ],
+      "source": "delta020_t0p8_source.png",
+      "mask": "delta020_t0p8_mask.png",
+      "mask_solid_fraction": 0.1646050347222222
+    },
+    {
+      "delta": 0.02,
+      "time": 1.4,
+      "crop_normalized": [
+        0.6126,
+        0.5651,
+        0.7474,
+        0.6624
+      ],
+      "source": "delta020_t1p4_source.png",
+      "mask": "delta020_t1p4_mask.png",
+      "mask_solid_fraction": 0.4007975260416667
+    },
+    {
+      "delta": 0.05,
+      "time": 0.2,
+      "crop_normalized": [
+        0.2748,
+        0.7153,
+        0.4141,
+        0.8127
+      ],
+      "source": "delta050_t0p2_source.png",
+      "mask": "delta050_t0p2_mask.png",
+      "mask_solid_fraction": 0.026584201388888888
+    },
+    {
+      "delta": 0.05,
+      "time": 0.8,
+      "crop_normalized": [
+        0.4444,
+        0.7153,
+        0.5785,
+        0.8127
+      ],
+      "source": "delta050_t0p8_source.png",
+      "mask": "delta050_t0p8_mask.png",
+      "mask_solid_fraction": 0.2556423611111111
+    },
+    {
+      "delta": 0.05,
+      "time": 1.4,
+      "crop_normalized": [
+        0.6126,
+        0.7153,
+        0.7474,
+        0.8127
+      ],
+      "source": "delta050_t1p4_source.png",
+      "mask": "delta050_t1p4_mask.png",
+      "mask_solid_fraction": 0.4501139322916667
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from battery_lit.candidates import append_candidates
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
+from paper_engine.candidates import append_candidates
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
 
 
 def _topic(root):
@@ -215,7 +215,7 @@ def test_frontend_library_selection_updates_read_state(tmp_path):
     assert 'data-bulk-action="library-read"' in js
     assert 'button.disabled = librarySelected === 0' in js
     assert '[data-select-all="library"]' in js
-    assert 'table[data-battery-table="library"] tbody input[type="checkbox"]' in js
+    assert 'table[data-paper-engine-table="library"] tbody input[type="checkbox"]' in js
 
 
 def test_frontend_translates_admitted_candidate_copy(tmp_path):
@@ -295,4 +295,4 @@ def test_frontend_binds_session_actions_without_chat_form(tmp_path):
     assert 'const hasSessionAction = document.querySelector("[data-session-action]")' in js
     assert "if (!form && !hasSessionAction && !hasSessionSurface) return;" in js
     assert "if (form) {" in js
-    assert 'document.documentElement.dataset.batteryAppReady = "true";' in js
+    assert 'document.documentElement.dataset.paperEngineAppReady = "true";' in js

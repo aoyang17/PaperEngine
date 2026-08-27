@@ -9,15 +9,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from battery_lit.acquire import acquire_pdf, check_pdfs
-from battery_lit.bib import promote_candidate
-from battery_lit.candidates import load_candidates, update_candidate
-from battery_lit.citation_guard import check_bib
-from battery_lit.html import build_html
-from battery_lit.metadata import enrich_candidate
-from battery_lit.read import parse_pdf
-from battery_lit.search import collect
-from battery_lit.topic import init_topic
+from paper_engine.acquire import acquire_pdf, check_pdfs
+from paper_engine.bib import promote_candidate
+from paper_engine.candidates import load_candidates, update_candidate
+from paper_engine.citation_guard import check_bib
+from paper_engine.html import build_html
+from paper_engine.metadata import enrich_candidate
+from paper_engine.read import parse_pdf
+from paper_engine.search import collect
+from paper_engine.topic import init_topic
 
 
 def main() -> int:

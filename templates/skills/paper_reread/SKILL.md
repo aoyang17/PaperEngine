@@ -16,7 +16,7 @@ Required:
 - one named `bibkey`, or a short explicit list of named `bibkey` values
 - current topic root
 
-Do not infer the target paper by scanning `papers/*`. If the user did not name the paper, ask for the bibkey or use `battery_lit library find --json --query TEXT` with the user's title/query.
+Do not infer the target paper by scanning `papers/*`. If the user did not name the paper, ask for the bibkey or use `paper_engine library find --json --query TEXT` with the user's title/query.
 
 ## Core Rule
 
@@ -53,13 +53,13 @@ If the user names more than one `bibkey`, asks to reread all library papers, or 
 Use the project-controlled per-paper read pool:
 
 ```bash
-battery_lit read-many --bibkey <bibkey> [--bibkey <bibkey> ...] --force-reread --json
+paper_engine read-many --bibkey <bibkey> [--bibkey <bibkey> ...] --force-reread --json
 ```
 
 For all-library rereads, use:
 
 ```bash
-battery_lit read-many --all-library --force-reread --json
+paper_engine read-many --all-library --force-reread --json
 ```
 
 `read-many` creates one independent job per paper. Each job owns exactly one reader session and one independent reviewer session. The reader writes staged artifacts under `.tmp/read_pool/<run_id>/<bibkey>/draft/`; the reviewer inspects those staged artifacts and paper evidence; the controller copies accepted artifacts into `papers/<bibkey>/` only after reviewer approval, `validate-report`, `rebuild-note`, `quality-audit`, and selected reduce audit pass.
@@ -67,7 +67,7 @@ battery_lit read-many --all-library --force-reread --json
 Use the default project parallelism for normal user work: omit `--max-parallel` and let `read-many` use 5 paper jobs. For development probes, add `--max-parallel 3`:
 
 ```bash
-battery_lit read-many --bibkey <bibkey> [--bibkey <bibkey> ...] --force-reread --max-parallel 3 --json
+paper_engine read-many --bibkey <bibkey> [--bibkey <bibkey> ...] --force-reread --max-parallel 3 --json
 ```
 
 Use `--max-parallel N` above 5 only when the user explicitly asks for higher throughput. The hard cap is 20 paper jobs, and each paper job owns one reader session plus one reviewer session, so `--max-parallel N` may start up to 2N Codex sessions.
@@ -81,7 +81,7 @@ Never create or run a deterministic draft writer, helper script, parsed/index-on
 When the user explicitly asks to update only the dataset section of an existing valid knowledge card, do not run a full reread. Use:
 
 ```bash
-battery_lit read-many --bibkey <bibkey> --refresh-section dataset --json
+paper_engine read-many --bibkey <bibkey> --refresh-section dataset --json
 ```
 
 This reuses existing parser artifacts and the normal persistent reader/reviewer cycle. The reader writes only a staged dataset patch; the controller preserves the summary, profile, argument, method, evaluation, other type sections, and note plan. The patch may replace only `dataset_benchmark_understanding`, its Chinese mirror, dataset visual cards, `availability.data`, and their source blocks.
@@ -110,21 +110,21 @@ For one named paper:
 1. Run basic checks from the topic root:
 
 ```bash
-battery_lit policy check --json
-battery_lit status --json
-battery_lit library find --json --query <bibkey>
+paper_engine policy check --json
+paper_engine status --json
+paper_engine library find --json --query <bibkey>
 ```
 
 2. Rebuild parser artifacts before writing the new reading bundle:
 
 ```bash
-battery_lit read <bibkey> --parse-only
+paper_engine read <bibkey> --parse-only
 ```
 
 3. Inspect `papers/<bibkey>/math_index.json`. If formula parsing is poor or `vision_fallback.needed` is true, run:
 
 ```bash
-battery_lit read <bibkey> --vision-formulas
+paper_engine read <bibkey> --vision-formulas
 ```
 
 This is the only nested/model-backed exception allowed by the reading workflow.
@@ -142,22 +142,22 @@ Do not hand-edit generated `note.md`, `note_zh.md`, `reading_result.html`, `pars
 6. Validate and rebuild:
 
 ```bash
-battery_lit read <bibkey> --validate-report
-battery_lit read <bibkey> --rebuild-note
-battery_lit read <bibkey> --quality-audit
+paper_engine read <bibkey> --validate-report
+paper_engine read <bibkey> --rebuild-note
+paper_engine read <bibkey> --quality-audit
 ```
 
 7. If more than one paper was reread, or after `read-many` completes, run:
 
 ```bash
-battery_lit tool audit-readings --json
+paper_engine tool audit-readings --json
 ```
 
 Fix repeated/template reader-facing text before reporting completion.
 
 ## Reader/Reviewer Agent Use
 
-For multi-paper rereads, reader/reviewer sessions inside `battery_lit read-many` are the default path, not an optional optimization. They are useful for speed and quality only when each paper owns its own reader context and its own independent reviewer context. The main Codex session must not write multi-paper draft contents; it invokes `read-many`, watches results, and reports blockers.
+For multi-paper rereads, reader/reviewer sessions inside `paper_engine read-many` are the default path, not an optional optimization. They are useful for speed and quality only when each paper owns its own reader context and its own independent reviewer context. The main Codex session must not write multi-paper draft contents; it invokes `read-many`, watches results, and reports blockers.
 
 Per-paper roles:
 

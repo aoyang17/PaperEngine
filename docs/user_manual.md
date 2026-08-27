@@ -5,17 +5,17 @@
 For a new topic, start the browser workbench from the parent directory:
 
 ```bash
-cd /battery_research_literature/V3
-./bin/battery_lit start --base-dir <parent-dir> --host 0.0.0.0 --port 10005
+cd /path/to/PaperEngine
+./bin/paper_engine start --base-dir <parent-dir> --host 0.0.0.0 --port 10005
 ```
 
-Create the topic in the browser. The init job uses Codex plus `battery_lit init`; it does not inspect sibling topic folders. If init fails, the Create Topic page shows the real error in Recent Jobs and the page status.
+Create the topic in the browser. The init job uses Codex plus `paper_engine init`; it does not inspect sibling topic folders. If init fails, the Create Topic page shows the real error in Recent Jobs and the page status.
 
 For an existing topic:
 
 ```bash
-cd /battery_research_literature/V3
-./bin/battery_lit start --root <topic> --host 0.0.0.0 --port 10005
+cd /path/to/PaperEngine
+./bin/paper_engine start --root <topic> --host 0.0.0.0 --port 10005
 ```
 
 Open:
@@ -30,17 +30,17 @@ Every topic page has Language, Codex model, and Effort selectors. Natural-langua
 
 New sessions default to GPT-5.6 Sol with medium reasoning. Terra is the balanced everyday option, Luna is the faster low-cost option, and GPT-5.5 or Codex Spark remain available for compatibility and fast focused work. The browser exposes low through xhigh reasoning; Max and Ultra remain advanced CLI-only choices.
 
-`battery_lit start` disables the Codex runtime sandbox by default for this serverlet process, because Docker user-namespace sandboxing can prevent Codex from running `battery_lit`. Topic `policy.yml` and the `battery_lit` CLI remain the safety boundary. Use `--codex-sandbox` only for debugging in an environment where Codex workspace sandboxing is known to work.
+`paper_engine start` disables the Codex runtime sandbox by default for this serverlet process, because Docker user-namespace sandboxing can prevent Codex from running `paper_engine`. Topic `policy.yml` and the `paper_engine` CLI remain the safety boundary. Use `--codex-sandbox` only for debugging in an environment where Codex workspace sandboxing is known to work.
 
 ## Initialize A Topic From CLI
 
 Use the CLI directly for scripts or debugging when title and direction are known:
 
 ```bash
-./bin/battery_lit init --base-dir <parent-dir> --title "<topic title>" --direction "<one paragraph research direction>"
+./bin/paper_engine init --base-dir <parent-dir> --title "<topic title>" --direction "<one paragraph research direction>"
 ```
 
-Advanced/debug fallback: if you want Codex to help refine a rough direction, attach the project README and ask it to run `battery_lit init`. It should not inspect sibling topic folders as examples.
+Advanced/debug fallback: if you want Codex to help refine a rough direction, attach the project README and ask it to run `paper_engine init`. It should not inspect sibling topic folders as examples.
 
 ## Collect Papers
 
@@ -49,7 +49,7 @@ In the right-side Codex operator:
 - click Search +30 for a quick collection pass, or
 - type a natural-language command such as `search 50 high-quality candidates and exclude existing papers`.
 
-Codex uses topic skills and `battery_lit` commands. The UI keeps the same session alive across pages.
+Codex uses topic skills and `paper_engine` commands. The UI keeps the same session alive across pages.
 
 ## Screen Candidates
 
@@ -69,7 +69,7 @@ On Library:
 - open PDF or knowledge links from the title row;
 - select papers and press Read Paper.
 
-Codex follows the topic paper-reading skill, writes the structured reading artifact, validates it, and rebuilds note/report output. When multiple papers are selected, the backend uses `battery_lit read-many`: each paper gets an independent reader session plus an independent reviewer session.
+Codex follows the topic paper-reading skill, writes the structured reading artifact, validates it, and rebuilds note/report output. When multiple papers are selected, the backend uses `paper_engine read-many`: each paper gets an independent reader session plus an independent reviewer session.
 Reading artifacts stay in the same paper directory: `papers/<bibkey>/paper.pdf`, `parsed.md`, `visual_index.md`, `page_images/`, `note.md`, and `reading_result.html`. The Library Knowledge link opens `reading_result.html`.
 
 If an existing reading result is poor, tell the Codex operator:
@@ -87,7 +87,7 @@ For a quick download-path check, select one existing candidate and press Downloa
 Explicitly name the source topic path and source bibkey:
 
 ```bash
-./bin/battery_lit library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json
+./bin/paper_engine library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json
 ```
 
 If you only know the title, Codex first uses `library find` against the named source topic and proceeds only with exactly one match. The command reports `imported`, `already_exists`, or a skipped/error result. An import creates an `in_library` candidate marked `relevant`; it does not immediately refresh `preferences.yml`. There is no browser button or batch import interface.
@@ -97,10 +97,10 @@ If you only know the title, Codex first uses `library find` against the named so
 Click Work Status in the Codex operator for ordinary checks. Useful CLI commands for debugging:
 
 ```bash
-./bin/battery_lit status --root <topic> --json
-./bin/battery_lit bib check --root <topic>
-./bin/battery_lit pdf check --root <topic>
-./bin/battery_lit html build --root <topic>
+./bin/paper_engine status --root <topic> --json
+./bin/paper_engine bib check --root <topic>
+./bin/paper_engine pdf check --root <topic>
+./bin/paper_engine html build --root <topic>
 ```
 
 ## Boundaries

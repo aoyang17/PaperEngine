@@ -4,7 +4,7 @@ created_at: "{created_at}"
 
 principles:
   - "Project policy and CLI commands define the default safety boundary; Codex follows them but is not the only safety mechanism."
-  - "Prefer battery_lit commands for state changes."
+  - "Prefer paper_engine commands for state changes."
   - "Do not invent citations, metadata, PDFs, BibTeX, or paper claims."
   - "Treat parent directories and sibling topic folders as out of scope unless the user explicitly names them for migration, copy, comparison, or reference."
 

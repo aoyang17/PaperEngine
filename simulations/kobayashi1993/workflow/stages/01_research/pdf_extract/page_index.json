@@ -1,0 +1,90 @@
+{
+  "schema_version": "paper-engine-one-page-v1",
+  "pdf": "/home/aobo/PaperEngine/paper/kobayashi1993.pdf",
+  "page_count": 14,
+  "metadata": {
+    "format": "PDF 1.7",
+    "title": "PII: 0167-2789(93)90120-P",
+    "author": "",
+    "subject": "",
+    "keywords": "",
+    "creator": "Acrobat 3.0 Capture Plug-in",
+    "producer": "Acrobat 3.0 Import Plug-in",
+    "creationDate": "D:20020511114627",
+    "modDate": "D:20020511165422",
+    "trapped": "",
+    "encryption": null
+  },
+  "pages": [
+    {
+      "page": 1,
+      "characters": 3084,
+      "head": "Physica D 63 (1993) 410-423 North-Holland PHYSICAI Modeling and numerical simulations of dendritic crystal growth Ryo Kobayashi Department of Applied Mathematics and lnformatics, Ryukoku University, Seta, Ohtsu 520-21, Japan Received 12 Aug"
+    },
+    {
+      "page": 2,
+      "characters": 3431,
+      "head": "R. Kobayashi / Simulations of dendritic crystal growth 411 face collectively. Therefore the process limiting the growth rate of the crystal is a removing process of latent heat from the interface, which keeps the interfacial temperature bel"
+    },
+    {
+      "page": 3,
+      "characters": 3149,
+      "head": "412 R. Kobayashi I Simulations of dendritic crystal growth where I ml< ½. The profile of F and its depen- dency on m are shown in fig. 2. The difference of the two minimum values is proportional to m, which gives a difference of chemical po"
+    },
+    {
+      "page": 4,
+      "characters": 4033,
+      "head": "R. Kobayashi / Simulations of dendritic crystal growth 413 The parameter 8 means the strength of aniso- tropy and j is a mode number of anisotropy. The equation for T is derived from the con- servation law of enthalpy as 0___T = V2 T + K 0_"
+    },
+    {
+      "page": 5,
+      "characters": 3642,
+      "head": "414 R. Kobayashi / Simulations of dendritic crystal growth 3. I. No supercooling - isotropic Initially the vessel is filled with a liquid of equilibrium temperature, and the vessel is cooled from its walls simultaneously. Solidification oc-"
+    },
+    {
+      "page": 6,
+      "characters": 1336,
+      "head": "R. Kobayashi / Simulations of dendritic crystal growth 415 (1) (2) K=0.8 time : 0400000 K=0.9 time = 0.000000 (3) K= 1.0 [ (4) K=I.1 (5) K = 1.2 time = 0.400000 time = O, 400000 lime = O, 400000 time = O. 400000 D time : O. ?00000 time = 0?"
+    },
+    {
+      "page": 7,
+      "characters": 1282,
+      "head": "416 R. Kobayashi / Simulations of dendritic crystal growth (1) (2) (3) (4) =o.sj 1 1 time = O. 400000 time = 0.~00000 K=10F l tlze = O. 400000 • o . ~ K=I.1 : ° o* time = 0.400000 I ..,=====._=_~ (5) K = 1.2 ~?'~',,~ time = 0. 700000 time ="
+    },
+    {
+      "page": 8,
+      "characters": 552,
+      "head": "R. Kobayashi / Simulations of dendritic crystal growth (1) 6= o.ooo 417 (2) time = O. 200000 6= 0.005 time = O. BOO000 time = I. 400000 time = O. XO0000 (3) (5= 0.010 time = O. 200000 (4) fi=- 0.020 time = 0. 200000 (5) 6= 0.05O time = 0.80"
+    },
+    {
+      "page": 9,
+      "characters": 2362,
+      "head": "418 R. Kobayashi / Simulations of dendritic crystal growth fixed and 6 is increased gradually from zero. The horizontal and vertical direction is the one at which E has maximum value (i.e. j = 4 and 0~ = 0). Dimensionless latent heat K is f"
+    },
+    {
+      "page": 10,
+      "characters": 989,
+      "head": "R. Kobayashi / Simulations of dendritic crystal growth (3) K = 1.2 419 (3 time = 0.040000 time = 0. 160000 (4) K = 1.6 O time = 0.040000 (5) K = 2.0 time = O. OBO000 time = 0.080000 time = 0. Z00000 time = 0. 160000 time = 0.120000 time = O"
+    },
+    {
+      "page": 11,
+      "characters": 3257,
+      "head": "420 R. Kobayashi / Simulations of dendritic crystal growth tion of water. Nucleation occurs at the center of the vessel and the solidification follows. In these simulations, only the parameter K is changed and the other parameters are fixed"
+    },
+    {
+      "page": 12,
+      "characters": 2994,
+      "head": "R. Kobayashi / Simulations of dendritic crystal growth 421 strongly affected by the existence or amplitude of the noises. Fig. 10 shows crystal forms for 6 = 0.010, in which the parameter a is controlled in the same way as in fig. 9. Their "
+    },
+    {
+      "page": 13,
+      "characters": 3275,
+      "head": "422 R. Kobayashi / Simulations of dendritic crvstal growth quire a finer structure than the size which the phase field can express with given e. For exam- ple, as seen in fig. 6(4), the narrow slits are buried easier than the real physical "
+    },
+    {
+      "page": 14,
+      "characters": 718,
+      "head": "R. Kobayashi / Simulations of dendritic crystal growth 423 [14] B. Chalmers, Principles of Solidification (Wiley, New York, 1964). [15] R. Kobayashi, RIMS kokyuroku 614 (1987) 39 [in Japanese]. [16] M. Mimura, R. Kobayashi and H. Okazaki, D"
+    }
+  ]
+}

@@ -7,10 +7,10 @@ import pytest
 import yaml
 
 from conftest import ROOT
-from battery_lit.candidates import append_candidates, get_candidate, load_candidates, normalize_candidate
-from battery_lit.scoring import apply_candidate_scores, export_scoring_batch
-from battery_lit.topic import init_topic
-from battery_lit.util import write_jsonl
+from paper_engine.candidates import append_candidates, get_candidate, load_candidates, normalize_candidate
+from paper_engine.scoring import apply_candidate_scores, export_scoring_batch
+from paper_engine.topic import init_topic
+from paper_engine.util import write_jsonl
 
 
 def _add_candidates(root):
@@ -248,7 +248,7 @@ def test_scoring_cli_exports_applies_and_lists_by_score(tmp_path):
     _add_candidates(tmp_path)
     batch_proc = subprocess.run(
         [
-            str(ROOT / "bin" / "battery_lit"),
+            str(ROOT / "bin" / "paper_engine"),
             "candidates",
             "scoring-batch",
             "--root",
@@ -294,7 +294,7 @@ def test_scoring_cli_exports_applies_and_lists_by_score(tmp_path):
     )
 
     apply_proc = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "candidates", "apply-scores", "--root", str(tmp_path), "--scores", str(scores)],
+        [str(ROOT / "bin" / "paper_engine"), "candidates", "apply-scores", "--root", str(tmp_path), "--scores", str(scores)],
         text=True,
         capture_output=True,
         check=True,
@@ -303,7 +303,7 @@ def test_scoring_cli_exports_applies_and_lists_by_score(tmp_path):
 
     list_proc = subprocess.run(
         [
-            str(ROOT / "bin" / "battery_lit"),
+            str(ROOT / "bin" / "paper_engine"),
             "candidates",
             "list",
             "--root",

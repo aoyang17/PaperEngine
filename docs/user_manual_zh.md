@@ -5,17 +5,17 @@
 新建 topic 时，先从父目录启动浏览器工作台：
 
 ```bash
-cd /battery_research_literature/V3
-./bin/battery_lit start --base-dir <parent-dir> --host 0.0.0.0 --port 10005
+cd /path/to/PaperEngine
+./bin/paper_engine start --base-dir <parent-dir> --host 0.0.0.0 --port 10005
 ```
 
-然后在浏览器里填写 title、direction 和可选 seed paper。初始化 job 会让 Codex 调用 `battery_lit init`，不会读取父目录下其他 topic 作为模板。如果初始化失败，Create Topic 页面会在 Recent Jobs 和页面状态中显示真实错误。
+然后在浏览器里填写 title、direction 和可选 seed paper。初始化 job 会让 Codex 调用 `paper_engine init`，不会读取父目录下其他 topic 作为模板。如果初始化失败，Create Topic 页面会在 Recent Jobs 和页面状态中显示真实错误。
 
 如果 topic 已经存在，直接启动该 topic：
 
 ```bash
-cd /battery_research_literature/V3
-./bin/battery_lit start --root <topic> --host 0.0.0.0 --port 10005
+cd /path/to/PaperEngine
+./bin/paper_engine start --root <topic> --host 0.0.0.0 --port 10005
 ```
 
 浏览器访问：
@@ -30,17 +30,17 @@ http://<server-ip>:10005/dashboard.html
 
 新 session 默认使用 GPT-5.6 Sol 和 medium 推理强度。Terra 适合平衡性能与用量的日常任务，Luna 适合更快、更低成本的明确任务；GPT-5.5 和 Codex Spark 继续作为兼容及快速选项。浏览器只提供 low 到 xhigh，Max 和 Ultra 保留为高级 CLI 选项。
 
-`battery_lit start` 默认会在本次 serverlet 进程里关闭 Codex runtime sandbox，因为 Docker user namespace sandbox 可能阻止 Codex 执行 `battery_lit`。安全边界仍然是 topic `policy.yml` 和 `battery_lit` CLI 的受控写入。只有在确认当前环境支持 Codex workspace sandbox、并且想调试 sandbox 行为时，才使用 `--codex-sandbox`。
+`paper_engine start` 默认会在本次 serverlet 进程里关闭 Codex runtime sandbox，因为 Docker user namespace sandbox 可能阻止 Codex 执行 `paper_engine`。安全边界仍然是 topic `policy.yml` 和 `paper_engine` CLI 的受控写入。只有在确认当前环境支持 Codex workspace sandbox、并且想调试 sandbox 行为时，才使用 `--codex-sandbox`。
 
 ## 用 CLI 初始化 Topic
 
 脚本化或调试时，如果 title 和 direction 已经明确，可以直接用 CLI：
 
 ```bash
-./bin/battery_lit init --base-dir <parent-dir> --title "<topic title>" --direction "<one paragraph research direction>"
+./bin/paper_engine init --base-dir <parent-dir> --title "<topic title>" --direction "<one paragraph research direction>"
 ```
 
-高级维护或调试 fallback：如果你希望 Codex 帮忙整理粗略方向，可以把项目 README 附给 Codex，让它运行 `battery_lit init`。它不应该读取父目录下其他 topic 作为模板。
+高级维护或调试 fallback：如果你希望 Codex 帮忙整理粗略方向，可以把项目 README 附给 Codex，让它运行 `paper_engine init`。它不应该读取父目录下其他 topic 作为模板。
 
 ## 检索论文
 
@@ -49,7 +49,7 @@ http://<server-ip>:10005/dashboard.html
 - 点击“检索 +30”做一次快速检索；或者
 - 输入自然语言命令，例如“检索 50 篇高质量候选，并排除已有文献”。
 
-Codex 会使用 topic skills 和 `battery_lit` 命令执行。切换页面后仍然是同一个 session。
+Codex 会使用 topic skills 和 `paper_engine` 命令执行。切换页面后仍然是同一个 session。
 
 ## 筛选候选论文
 
@@ -69,7 +69,7 @@ Codex 会使用 topic skills 和 `battery_lit` 命令执行。切换页面后仍
 - 通过标题行的 PDF 或 Knowledge 链接查看结果；
 - 勾选论文后点击 Read Paper。
 
-Codex 会执行 topic 内的 paper-reading skill，写入结构化阅读结果，校验后重建 note/report。多选论文时，后台使用 `battery_lit read-many`：每篇论文都有独立 reader session 和独立 reviewer session。
+Codex 会执行 topic 内的 paper-reading skill，写入结构化阅读结果，校验后重建 note/report。多选论文时，后台使用 `paper_engine read-many`：每篇论文都有独立 reader session 和独立 reviewer session。
 阅读相关产物放在同一个 paper 目录下：`papers/<bibkey>/paper.pdf`、`parsed.md`、`visual_index.md`、`page_images/`、`note.md` 和 `reading_result.html`。Library 里的 Knowledge 链接会打开 `reading_result.html`。
 
 如果已有解读质量不好，在 Codex 操作员里直接说：
@@ -87,7 +87,7 @@ Codex 会执行 topic 内的 paper-reading skill，写入结构化阅读结果�
 必须明确给出源 topic 路径和源 bibkey：
 
 ```bash
-./bin/battery_lit library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json
+./bin/paper_engine library import-from-topic --root <target-topic> --source-root <source-topic> --source-bibkey <bibkey> --json
 ```
 
 如果只知道标题，Codex 会先在这个明确指定的源 topic 中运行 `library find`，只有恰好匹配一篇时才继续。命令会清楚报告 `imported`、`already_exists` 或 skipped/error。导入后目标 topic 会有一条 `in_library`、`relevant` 的 candidate，但不会立刻刷新 `preferences.yml`。此功能没有浏览器按钮，也没有批量导入接口。
@@ -97,10 +97,10 @@ Codex 会执行 topic 内的 paper-reading skill，写入结构化阅读结果�
 日常检查优先点击 Codex 操作员里的“工作状态”。调试时可用：
 
 ```bash
-./bin/battery_lit status --root <topic> --json
-./bin/battery_lit bib check --root <topic>
-./bin/battery_lit pdf check --root <topic>
-./bin/battery_lit html build --root <topic>
+./bin/paper_engine status --root <topic> --json
+./bin/paper_engine bib check --root <topic>
+./bin/paper_engine pdf check --root <topic>
+./bin/paper_engine html build --root <topic>
 ```
 
 ## 边界规则

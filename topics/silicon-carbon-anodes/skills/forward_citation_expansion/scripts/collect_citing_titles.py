@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 
-USER_AGENT = "battery-paper-forward-citation/0.1"
+USER_AGENT = "paper-engine-forward-citation/0.1"
 OPENALEX_WORKS = "https://api.openalex.org/works"
 SEMANTIC_GRAPH = "https://api.semanticscholar.org/graph/v1"
 

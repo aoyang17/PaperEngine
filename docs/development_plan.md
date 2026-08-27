@@ -2,22 +2,22 @@
 
 ## Goal
 
-Build and maintain a serverlet-first literature workbench: the user starts `battery_lit start --base-dir` for first-time topic creation or `battery_lit start --root` for an existing topic, operates from the browser, and topic actions enter one persistent Codex operator session that calls `battery_lit` for state changes.
+Build and maintain a serverlet-first literature workbench: the user starts `paper_engine start --base-dir` for first-time topic creation or `paper_engine start --root` for an existing topic, operates from the browser, and topic actions enter one persistent Codex operator session that calls `paper_engine` for state changes.
 
 ## Non-Drift Rules
 
-- Default first-time user path is `battery_lit start --base-dir <parent-dir>` followed by browser topic creation and operation.
+- Default first-time user path is `paper_engine start --base-dir <parent-dir>` followed by browser topic creation and operation.
 - External interactive Codex is only an advanced/debug fallback.
 - Web handlers may render state and manage session/bootstrap state, but must not directly mutate candidate, library, PDF, metadata, or reading artifacts.
-- The Codex operator must use `battery_lit` CLI commands for state-changing workflow steps.
+- The Codex operator must use `paper_engine` CLI commands for state-changing workflow steps.
 - Topic files remain the source of truth.
 
 ## Current Phases
 
 ## Phase 1: Serverlet Entry
 
-- Keep `battery_lit start --base-dir` as the documented first-time default and `start --root` for existing topics.
-- Keep `battery_lit web serve` as compatibility only.
+- Keep `paper_engine start --base-dir` as the documented first-time default and `start --root` for existing topics.
+- Keep `paper_engine web serve` as compatibility only.
 - Validate topic root before serving existing topics; do not require topic files for bootstrap mode.
 
 ## Phase 2: Codex Operation Kernel
@@ -44,5 +44,5 @@ Build and maintain a serverlet-first literature workbench: the user starts `batt
 ## Phase 5: Documentation
 
 - User manuals describe browser/serverlet as the default workflow.
-- Deployment docs document `battery_lit start`.
+- Deployment docs document `paper_engine start`.
 - Development status records verification evidence and known blockers.

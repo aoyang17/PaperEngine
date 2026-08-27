@@ -1,0 +1,145 @@
+schema_version: 1
+case_id: kobayashi1993
+title: "Modeling and numerical simulations of dendritic crystal growth — Fig. 7"
+source:
+  citation: "R. Kobayashi, Physica D 63 (1993) 410-423"
+  pdf: paper/kobayashi1993.pdf
+  pdf_sha256: 51f551671c05a7003c20032e97e3864f55d5448505857f7f15f46cfdc0bc5a5f
+  governing_equations: [3, 5]
+  target_figures: [7, 9]
+model:
+  dimension: 2
+  coordinates: cartesian
+  fields: [p, T]
+  phase_equation: anisotropic_allen_cahn
+  thermal_equation: equal_diffusivity_heat_equation_with_latent_heat
+  domain: [9.0, 9.0]
+  computational_length_unit: L0
+  computational_time_unit: t0
+  interface: "p=0 liquid, p=1 solid, contour p=0.5"
+  boundary_conditions:
+    p: zero_general_flux
+    T: adiabatic_zero_heat_flux
+  initial_temperature: 0.0
+  initial_phase: smooth_bottom_center_semicircle
+parameters:
+  epsilon_bar: 0.01
+  tau: 0.0003
+  alpha: 0.9
+  gamma: 10.0
+  equilibrium_temperature: 1.0
+  latent_heat_K: 2.0
+  anisotropy_mode_j: 4
+  anisotropy_axis_theta0: 0.0
+  anisotropy_delta_sweep: [0.0, 0.005, 0.01, 0.02, 0.05]
+  paper_noise_amplitude: 0.01
+  noise_distribution: "uniform[-0.5,0.5] approximated by a fixed hash field"
+  noise_seed: 1993
+  seed_radius_baseline: 0.15
+  seed_radius_sensitivity: [0.12, 0.18]
+  seed_radius_source: "declared reproduction assumption; paper does not report it"
+  initial_profile: "0.5*(1-tanh((sqrt((x-4.5)^2+y^2)-R0)/(sqrt(2)*epsilon_bar)))"
+numerics:
+  solver: COMSOL Multiphysics 6.4
+  interface: General Form PDE
+  paper_mesh_spacing: 0.03
+  baseline_mesh_spacing: 0.03
+  fine_mesh_spacing: 0.02
+  smoke_mesh_spacing: 0.06
+  paper_time_step: 0.0002
+  baseline_max_step: 0.0002
+  fine_max_step: 0.0001
+  output_times: [0.0, 0.2, 0.8, 1.4]
+  time_integrator: BDF
+  bdf_max_order: 2
+  relative_tolerance: 0.001
+  orientation_jacobian: "nojac on epsilon and epsilon_theta; residual remains exact"
+studies:
+  - id: smoke
+    delta: 0.02
+    noise_amplitude: 0.0
+    mesh_spacing: 0.06
+    max_step: 0.0002
+    final_time: 0.002
+  - id: delta_sweep
+    delta: [0.0, 0.005, 0.01, 0.02, 0.05]
+    noise_amplitude: 0.01
+    mesh_spacing: 0.03
+    max_step: 0.0002
+    final_time: 1.4
+  - id: deterministic_negative_control
+    delta: [0.0, 0.02]
+    noise_amplitude: 0.0
+    mesh_spacing: 0.03
+    max_step: 0.0002
+    final_time: 1.4
+  - id: grid_convergence
+    delta: 0.02
+    noise_amplitude: 0.0
+    mesh_spacing: [0.03, 0.02]
+    max_step: 0.0002
+    final_time: 0.8
+  - id: timestep_convergence
+    delta: 0.02
+    noise_amplitude: 0.0
+    mesh_spacing: 0.03
+    max_step: [0.0002, 0.0001]
+    final_time: 0.8
+  - id: seed_sensitivity
+    delta: 0.02
+    noise_amplitude: 0.0
+    seed_radius: [0.12, 0.15, 0.18]
+    mesh_spacing: 0.03
+    max_step: 0.0002
+    final_time: 0.8
+acceptance:
+  - id: authoritative_mph_present
+    metric: artifacts.final_mph_bytes
+    operator: ">"
+    expected: 1000000
+    units: bytes
+  - id: comsol_logs_clean
+    metric: quality.comsol_error_count
+    operator: "=="
+    expected: 0
+  - id: phase_lower_bound
+    metric: quality.p_min
+    operator: ">="
+    expected: -0.05
+  - id: phase_upper_bound
+    metric: quality.p_max
+    operator: "<="
+    expected: 1.05
+  - id: enthalpy_conservation
+    metric: quality.max_relative_enthalpy_drift
+    operator: "<="
+    expected: 0.01
+  - id: mesh_tip_convergence
+    metric: convergence.mesh_tip_relative_difference
+    operator: "<="
+    expected: 0.05
+  - id: timestep_tip_convergence
+    metric: convergence.timestep_tip_relative_difference
+    operator: "<="
+    expected: 0.05
+  - id: seed_tip_robustness
+    metric: convergence.seed_tip_relative_range
+    operator: "<="
+    expected: 0.15
+  - id: anisotropy_increases_tip_growth
+    metric: paper_trend.delta050_to_delta000_tip_ratio
+    operator: ">"
+    expected: 1.02
+  - id: fourfold_directionality
+    metric: paper_trend.delta050_vertical_to_horizontal_extent_ratio
+    operator: ">"
+    expected: 1.1
+  - id: fig7_silhouette_overlap
+    metric: paper_figure.fig7_mean_iou
+    operator: ">="
+    expected: 0.25
+  - id: fig7_contour_distance
+    metric: paper_figure.fig7_normalized_chamfer
+    operator: "<="
+    expected: 0.10
+    description: "Distance normalized by the 9-unit domain; qualitative target due unreported nucleus and random seed."

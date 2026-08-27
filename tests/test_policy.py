@@ -6,8 +6,8 @@ import subprocess
 import yaml
 
 from conftest import ROOT
-from battery_lit.policy import check_policy
-from battery_lit.topic import init_topic
+from paper_engine.policy import check_policy
+from paper_engine.topic import init_topic
 
 
 def test_init_policy_contains_safety_contract(tmp_path):
@@ -28,7 +28,7 @@ def test_init_policy_contains_safety_contract(tmp_path):
 def test_policy_check_cli_passes_for_new_topic(tmp_path):
     init_topic(tmp_path)
     proc = subprocess.run(
-        [str(ROOT / "bin" / "battery_lit"), "policy", "check", "--root", str(tmp_path), "--json"],
+        [str(ROOT / "bin" / "paper_engine"), "policy", "check", "--root", str(tmp_path), "--json"],
         text=True,
         capture_output=True,
         check=True,
@@ -60,7 +60,7 @@ def test_policy_check_rejects_weak_destructive_policy(tmp_path):
 
 
 def test_cli_does_not_expose_uncontrolled_destructive_subcommands():
-    text = (ROOT / "src" / "battery_lit" / "cli.py").read_text(encoding="utf-8")
+    text = (ROOT / "src" / "paper_engine" / "cli.py").read_text(encoding="utf-8")
 
     forbidden_snippets = [
         'sub.add_parser("delete"',

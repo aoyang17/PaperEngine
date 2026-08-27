@@ -1,0 +1,349 @@
+{
+  "solver": "COMSOL Multiphysics 6.4 Build 293",
+  "model_sha256": "5595a5eff4f3a384e06ef0d55ea0875e5786ddcb3566503d0cf54b8bfc0783af",
+  "remote_suite": "~/paperengine_kobayashi1993_20260826/suite_attempt4",
+  "runs": [
+    {
+      "id": "delta000",
+      "job_id": "37198",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:36:41",
+      "parameters": {
+        "prefix": "delta000",
+        "delta": "0",
+        "noiseAmp": "0.01",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "1.4[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/delta000/delta000_global.csv",
+        "raw/comsol_suite/delta000/delta000_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/delta000/delta000_comsol_batch.log",
+        "raw/comsol_suite/delta000/slurm.37198.out",
+        "raw/comsol_suite/delta000/slurm.37198.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/delta000/delta000_solved.mph",
+      "remote_solved_mph_bytes": 1659130141,
+      "remote_solved_mph_sha256": "f5c6ea6c7cea92991fdf98fa5143fe0a3475291cf11e58c6803d34ed950a3b3d"
+    },
+    {
+      "id": "delta005",
+      "job_id": "37199",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:36:30",
+      "parameters": {
+        "prefix": "delta005",
+        "delta": "0.005",
+        "noiseAmp": "0.01",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "1.4[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/delta005/delta005_global.csv",
+        "raw/comsol_suite/delta005/delta005_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/delta005/delta005_comsol_batch.log",
+        "raw/comsol_suite/delta005/slurm.37199.out",
+        "raw/comsol_suite/delta005/slurm.37199.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/delta005/delta005_solved.mph",
+      "remote_solved_mph_bytes": 1659130145,
+      "remote_solved_mph_sha256": "65e63bf314d84e132b84b0b83b9df7f4c7f77917d440275332f6a043f7f03397"
+    },
+    {
+      "id": "delta010",
+      "job_id": "37200",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:34:43",
+      "parameters": {
+        "prefix": "delta010",
+        "delta": "0.01",
+        "noiseAmp": "0.01",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "1.4[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/delta010/delta010_global.csv",
+        "raw/comsol_suite/delta010/delta010_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/delta010/delta010_comsol_batch.log",
+        "raw/comsol_suite/delta010/slurm.37200.out",
+        "raw/comsol_suite/delta010/slurm.37200.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/delta010/delta010_solved.mph",
+      "remote_solved_mph_bytes": 1659129884,
+      "remote_solved_mph_sha256": "76d4d5c59ee582f7e594fa89632a95e2998aec640902d8d97e56aa4bb32f9d9f"
+    },
+    {
+      "id": "delta020",
+      "job_id": "37201",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:34:23",
+      "parameters": {
+        "prefix": "delta020",
+        "delta": "0.02",
+        "noiseAmp": "0.01",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "1.4[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/delta020/delta020_global.csv",
+        "raw/comsol_suite/delta020/delta020_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/delta020/delta020_comsol_batch.log",
+        "raw/comsol_suite/delta020/slurm.37201.out",
+        "raw/comsol_suite/delta020/slurm.37201.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/delta020/delta020_solved.mph",
+      "remote_solved_mph_bytes": 1659129698,
+      "remote_solved_mph_sha256": "1954c1bcd4039b2d7268c55947d126654b32cd30bb2248c7844090ae0ee703fa"
+    },
+    {
+      "id": "delta050",
+      "job_id": "37202",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:36:14",
+      "parameters": {
+        "prefix": "delta050",
+        "delta": "0.05",
+        "noiseAmp": "0.01",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "1.4[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/delta050/delta050_global.csv",
+        "raw/comsol_suite/delta050/delta050_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/delta050/delta050_comsol_batch.log",
+        "raw/comsol_suite/delta050/slurm.37202.out",
+        "raw/comsol_suite/delta050/slurm.37202.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/delta050/delta050_solved.mph",
+      "remote_solved_mph_bytes": 1659129530,
+      "remote_solved_mph_sha256": "7e9cd485d96d308ca62eab469c227cf9a4f3af74968f1bd3fbfc9437c2136f78"
+    },
+    {
+      "id": "control_delta000",
+      "job_id": "37203",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:22:31",
+      "parameters": {
+        "prefix": "control_delta000",
+        "delta": "0",
+        "noiseAmp": "0",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "1.4[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/control_delta000/control_delta000_global.csv",
+        "raw/comsol_suite/control_delta000/control_delta000_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/control_delta000/control_delta000_comsol_batch.log",
+        "raw/comsol_suite/control_delta000/slurm.37203.out",
+        "raw/comsol_suite/control_delta000/slurm.37203.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/control_delta000/control_delta000_solved.mph",
+      "remote_solved_mph_bytes": 1659130169,
+      "remote_solved_mph_sha256": "fc07ae8f01cef7dd7e3bec703f965cb6cd5159eea4657be7eeabd8f051f03e65"
+    },
+    {
+      "id": "control_delta020",
+      "job_id": "37204",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:21:39",
+      "parameters": {
+        "prefix": "control_delta020",
+        "delta": "0.02",
+        "noiseAmp": "0",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "1.4[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/control_delta020/control_delta020_global.csv",
+        "raw/comsol_suite/control_delta020/control_delta020_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/control_delta020/control_delta020_comsol_batch.log",
+        "raw/comsol_suite/control_delta020/slurm.37204.out",
+        "raw/comsol_suite/control_delta020/slurm.37204.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/control_delta020/control_delta020_solved.mph",
+      "remote_solved_mph_bytes": 1659129892,
+      "remote_solved_mph_sha256": "9b0e158c3d6fa5ccebe5a123d966db423481a0cc876aca215f52cc42f0cb6e10"
+    },
+    {
+      "id": "mesh_fine",
+      "job_id": "37205",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:32:20",
+      "parameters": {
+        "prefix": "mesh_fine",
+        "delta": "0.02",
+        "noiseAmp": "0",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.02[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "0.8[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/mesh_fine/mesh_fine_global.csv",
+        "raw/comsol_suite/mesh_fine/mesh_fine_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/mesh_fine/mesh_fine_comsol_batch.log",
+        "raw/comsol_suite/mesh_fine/slurm.37205.out",
+        "raw/comsol_suite/mesh_fine/slurm.37205.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/mesh_fine/mesh_fine_solved.mph",
+      "remote_solved_mph_bytes": 2153464289,
+      "remote_solved_mph_sha256": "33a82fa321e657a5efd9bf8ebe0e52a19c3463d0568307955d9b0ceeeeb2b93f"
+    },
+    {
+      "id": "timestep_fine",
+      "job_id": "37206",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:22:36",
+      "parameters": {
+        "prefix": "timestep_fine",
+        "delta": "0.02",
+        "noiseAmp": "0",
+        "noiseSeed": "1993",
+        "R0": "0.15[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0001[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "0.8[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/timestep_fine/timestep_fine_global.csv",
+        "raw/comsol_suite/timestep_fine/timestep_fine_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/timestep_fine/timestep_fine_comsol_batch.log",
+        "raw/comsol_suite/timestep_fine/slurm.37206.out",
+        "raw/comsol_suite/timestep_fine/slurm.37206.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/timestep_fine/timestep_fine_solved.mph",
+      "remote_solved_mph_bytes": 960864990,
+      "remote_solved_mph_sha256": "03c710d5bf1e956e588284bceddfbd22198021284a312541937a815c71efe286"
+    },
+    {
+      "id": "seed_small",
+      "job_id": "37207",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:13:28",
+      "parameters": {
+        "prefix": "seed_small",
+        "delta": "0.02",
+        "noiseAmp": "0",
+        "noiseSeed": "1993",
+        "R0": "0.12[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "0.8[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/seed_small/seed_small_global.csv",
+        "raw/comsol_suite/seed_small/seed_small_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/seed_small/seed_small_comsol_batch.log",
+        "raw/comsol_suite/seed_small/slurm.37207.out",
+        "raw/comsol_suite/seed_small/slurm.37207.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/seed_small/seed_small_solved.mph",
+      "remote_solved_mph_bytes": 960865066,
+      "remote_solved_mph_sha256": "a152885021c3f4738fa5fb596cb78408cd97591cc1ce7ce4c5ecf3a41537ff85"
+    },
+    {
+      "id": "seed_large",
+      "job_id": "37208",
+      "status": "complete",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:13:34",
+      "parameters": {
+        "prefix": "seed_large",
+        "delta": "0.02",
+        "noiseAmp": "0",
+        "noiseSeed": "1993",
+        "R0": "0.18[m]",
+        "hmesh": "0.03[m]",
+        "maxStep": "0.0002[s]",
+        "dtout": "0.01[s]",
+        "tfinal": "0.8[s]"
+      },
+      "raw_outputs": [
+        "raw/comsol_suite/seed_large/seed_large_global.csv",
+        "raw/comsol_suite/seed_large/seed_large_fields.csv"
+      ],
+      "logs": [
+        "raw/comsol_suite/seed_large/seed_large_comsol_batch.log",
+        "raw/comsol_suite/seed_large/slurm.37208.out",
+        "raw/comsol_suite/seed_large/slurm.37208.err"
+      ],
+      "remote_solved_mph": "~/paperengine_kobayashi1993_20260826/suite_attempt4/seed_large/seed_large_solved.mph",
+      "remote_solved_mph_bytes": 960865030,
+      "remote_solved_mph_sha256": "167a2f3dba2244f3d5b770979a68fc585bb343848e882df5a613ffb004c1f184"
+    }
+  ],
+  "authoritative_final_mph": "final_mph/delta020_solved.mph"
+}

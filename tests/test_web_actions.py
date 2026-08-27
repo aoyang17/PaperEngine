@@ -3,10 +3,10 @@ from __future__ import annotations
 import json
 import threading
 
-from battery_lit.candidates import append_candidates
-from battery_lit.codex_worker import CodexEvent, FakeCodexRunner
-from battery_lit.topic import init_topic
-from battery_lit.web_app import WebApp
+from paper_engine.candidates import append_candidates
+from paper_engine.codex_worker import CodexEvent, FakeCodexRunner
+from paper_engine.topic import init_topic
+from paper_engine.web_app import WebApp
 
 
 class BlockingRunner:
@@ -52,7 +52,7 @@ def _app(root):
 
 
 def _prompt(root, job_id):
-    return (root / ".battery" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
+    return (root / ".paper_engine" / "jobs" / job_id / "prompt.txt").read_text(encoding="utf-8")
 
 
 def test_chat_action_enqueues_operation_job(tmp_path):
@@ -75,7 +75,7 @@ def test_score_and_health_actions_enqueue_operation_jobs(tmp_path):
     score_data = json.loads(score.body)
     assert score.status == 202
     assert score_data["action"] == "candidate-score"
-    assert "battery_lit candidates scoring-batch --status new --limit 5 --json" in _prompt(tmp_path, score_data["job_id"])
+    assert "paper_engine candidates scoring-batch --status new --limit 5 --json" in _prompt(tmp_path, score_data["job_id"])
 
     # Use a new app/root because only one job may be active at a time.
     other_root = tmp_path / "other"
@@ -84,7 +84,7 @@ def test_score_and_health_actions_enqueue_operation_jobs(tmp_path):
     health_data = json.loads(health.body)
     assert health.status == 202
     assert health_data["action"] == "health-check"
-    assert "battery_lit policy check" in _prompt(other_root, health_data["job_id"])
+    assert "paper_engine policy check" in _prompt(other_root, health_data["job_id"])
 
 
 def test_candidate_and_library_actions_only_enqueue_jobs(tmp_path):
@@ -96,7 +96,7 @@ def test_candidate_and_library_actions_only_enqueue_jobs(tmp_path):
 
     assert mark.status == 202
     assert json.loads(candidate_line)["status"] == "new"
-    assert "battery_lit candidates mark CAND-001 relevant" in _prompt(tmp_path, mark_data["job_id"])
+    assert "paper_engine candidates mark CAND-001 relevant" in _prompt(tmp_path, mark_data["job_id"])
 
     other_root = tmp_path / "library"
     app = _app(other_root)
@@ -104,12 +104,12 @@ def test_candidate_and_library_actions_only_enqueue_jobs(tmp_path):
     read_data = json.loads(read.body)
     assert read.status == 202
     prompt = _prompt(other_root, read_data["job_id"])
-    assert "battery_lit read Smith2024Paper --validate-report" in prompt
+    assert "paper_engine read Smith2024Paper --validate-report" in prompt
     assert "If validation, rebuild, and quality audit all pass, skip `Smith2024Paper`" in prompt
-    assert "battery_lit read Smith2024Paper --rebuild-note" in prompt
-    assert "battery_lit read Smith2024Paper --quality-audit" in prompt
-    assert prompt.index("battery_lit read Smith2024Paper --validate-report") < prompt.index("battery_lit read Smith2024Paper --parse-only")
-    assert prompt.rindex("battery_lit read Smith2024Paper --rebuild-note") < prompt.rindex("battery_lit read Smith2024Paper --quality-audit")
+    assert "paper_engine read Smith2024Paper --rebuild-note" in prompt
+    assert "paper_engine read Smith2024Paper --quality-audit" in prompt
+    assert prompt.index("paper_engine read Smith2024Paper --validate-report") < prompt.index("paper_engine read Smith2024Paper --parse-only")
+    assert prompt.rindex("paper_engine read Smith2024Paper --rebuild-note") < prompt.rindex("paper_engine read Smith2024Paper --quality-audit")
 
 
 def test_active_job_conflict_returns_409(tmp_path):

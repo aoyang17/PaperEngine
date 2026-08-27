@@ -145,10 +145,10 @@ def _codex_reread(
     worker_timeout_s: int | None = None,
 ) -> dict[str, Any]:
     prompt = (
-        f"@{project_root / 'README.md'} Use battery_lit in topic root {probe_root}. "
+        f"@{project_root / 'README.md'} Use paper_engine in topic root {probe_root}. "
         f"Re-read {bibkey} using the controlled read-many reader/reviewer workflow. "
         f"Hard time budget: finish this one paper within {timeout_s} seconds. "
-        f"Run `battery_lit read-many --bibkey {bibkey} --force-reread --max-parallel 1 --json`. "
+        f"Run `paper_engine read-many --bibkey {bibkey} --force-reread --max-parallel 1 --json`. "
         "Do not cat or dump full parsed.md. Use metadata, paper_index section/paragraph IDs, math_index, visual_index, "
         "and targeted rg/python snippets to harvest only the evidence needed for this paper. "
         "The read-many controller owns the staged draft path, reviewer gate, final copy, validation, note rebuild, quality audit, and selected reduce audit. "
@@ -184,16 +184,16 @@ def _codex_bulk_reread(
     bulk_max_parallel = max(1, min(int(bulk_max_parallel), 5))
     key_args = " ".join(f"--bibkey {bibkey}" for bibkey in bibkeys)
     prompt = (
-        f"@{project_root / 'README.md'} Use battery_lit in topic root {probe_root}. "
+        f"@{project_root / 'README.md'} Use paper_engine in topic root {probe_root}. "
         f"Re-read these library papers as one bounded bulk user task: {joined}. "
         "Do not use existing reading artifacts as evidence. Use one command only for the reading work: "
-        f"`battery_lit read-many {key_args} --force-reread --max-parallel {bulk_max_parallel} --json`. "
+        f"`paper_engine read-many {key_args} --force-reread --max-parallel {bulk_max_parallel} --json`. "
         "The command must run one independent paper job per bibkey, with a persistent reader session and an independent reviewer session for each paper. "
         "If it reports per-bibkey failures, report the failing bibkeys and concrete reader/reviewer/CLI gate errors. Do not process the papers sequentially in the main session. "
         "The main session must not write `.tmp/read_pool/<run_id>/<bibkey>/draft/{source_map.json,note_plan.json,deep_read.json}` for multi-paper jobs; only the read-many controller may manage those staged files and final copies. "
         "Do not create or run helper.py, deterministic draft writer, draft generator, parsed/index-only schema filler, or generic bulk draft generator. "
         "Return a concise summary with the run_id, changed bibkeys, validation, quality-audit, selected reduce-audit, skipped, and blockers. "
-        "If this is an all-library task, run full-library `battery_lit tool audit-readings --json` after read-many completes."
+        "If this is an all-library task, run full-library `paper_engine tool audit-readings --json` after read-many completes."
     )
     command = _codex_command(
         project_root=project_root,
@@ -223,11 +223,11 @@ def _codex_command(
         "--json",
     ]
     if bypass_sandbox:
-        if os.environ.get("BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE") != "1":
+        if os.environ.get("PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE") != "1":
             return {
                 "ok": False,
                 "returncode": None,
-                "error": "set BATTERY_LIT_ALLOW_UNSANDBOXED_PROBE=1 to allow --codex-bypass-sandbox",
+                "error": "set PAPER_ENGINE_ALLOW_UNSANDBOXED_PROBE=1 to allow --codex-bypass-sandbox",
             }
         command.append("--dangerously-bypass-approvals-and-sandbox")
     else:
@@ -259,9 +259,9 @@ def _run_codex_command(
 ) -> dict[str, Any]:
     env = os.environ.copy()
     if bypass_sandbox:
-        env["BATTERY_LIT_CODEX_BYPASS_SANDBOX"] = "1"
+        env["PAPER_ENGINE_CODEX_BYPASS_SANDBOX"] = "1"
     if worker_timeout_s:
-        env["BATTERY_LIT_READ_BATCH_WORKER_TIMEOUT"] = str(worker_timeout_s)
+        env["PAPER_ENGINE_READ_BATCH_WORKER_TIMEOUT"] = str(worker_timeout_s)
     proc = subprocess.Popen(
         command,
         cwd=probe_root,
@@ -358,10 +358,10 @@ def run_probe(args: argparse.Namespace) -> dict[str, Any]:
         setup_errors.append(f"probe requires at least {args.min_papers} paper(s), got {len(bibkeys)}")
     if not args.codex_reread and not args.audit_existing:
         setup_errors.append("real reading quality probes require --codex-reread; use --audit-existing to validate existing artifacts only")
-    work_dir = Path(args.work_dir).expanduser().resolve() if args.work_dir else Path(tempfile.mkdtemp(prefix="battery-reading-probe-"))
+    work_dir = Path(args.work_dir).expanduser().resolve() if args.work_dir else Path(tempfile.mkdtemp(prefix="paper-engine-reading-probe-"))
     work_dir.mkdir(parents=True, exist_ok=True)
     probe_root = _copy_probe_topic(topic_root, bibkeys, work_dir)
-    cli = project_root / "bin" / "battery_lit"
+    cli = project_root / "bin" / "paper_engine"
     results: list[dict[str, Any]] = []
     bulk_codex_result = None
     before_hashes_by_bibkey = {bibkey: _artifact_hashes(probe_root / "papers" / bibkey) for bibkey in bibkeys}
